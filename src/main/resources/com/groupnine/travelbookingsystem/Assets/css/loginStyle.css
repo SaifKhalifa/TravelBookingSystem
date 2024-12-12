@@ -1,0 +1,50 @@
+/* styles.css */
+
+/* Background styling for the login page */
+.root {
+    -fx-background-color: #395A7F;
+    -fx-font-family: 'Poppins';
+}
+
+/* Login form styles */
+.login-label {
+    -fx-font-size: 34px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.anchor-pane .description-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+}
+
+/* Text fields */
+.text-field, .password-field {
+    -fx-pref-height: 30px;
+    -fx-pref-width: 200px;
+    -fx-padding: 0 5px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #A3CAE9;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Login button */
+.button-login {
+    -fx-background-color: #A3CAE9;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Forget password button */
+.button-forgot {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A3CAE9;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border: none;
+    -fx-cursor: hand;
+}
