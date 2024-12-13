@@ -7,52 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!--
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #395A7F;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.view.authentication.Login">
-   <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Assets/imgs/logo.png" />
-         </image></ImageView>
-      <AnchorPane layoutX="279.0" layoutY="-1.0" prefHeight="400.0" prefWidth="323.0">
-         <children>
-            <ImageView fitHeight="359.0" fitWidth="286.0" layoutX="21.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/imgs/login_form_frame.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="47.0" prefHeight="63.0" prefWidth="277.0" text="Login" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Poppins Bold" size="34.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="101.0" prefHeight="35.0" prefWidth="278.0" text="Please login to continue to your account." textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <TextField layoutX="87.0" layoutY="150.0" promptText="Username" />
-            <TextField layoutX="87.0" layoutY="190.0" promptText="Password" />
-            <PasswordField layoutX="87.0" layoutY="190.0" promptText="Password" />
-            <Button layoutX="221.0" layoutY="190.0" mnemonicParsing="false" />
-            <Button layoutX="85.0" layoutY="233.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #A3CAE9;" text="Login">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
-            <Line endX="265.0" endY="303.70001220703125" startX="55.0" startY="303.70001220703125" stroke="#d9d9d9" />
-            <Button layoutX="55.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #A3CAE9;" text="Forget Password?">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-   </children>
-</AnchorPane>
--->
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.view.authentication.Login">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.LoginController">
    <children>
       <!-- Left Logo -->
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
@@ -91,7 +46,16 @@
                   <!-- Password Field with Toggle -->
                   <PasswordField fx:id="passwordField" layoutX="48.0" layoutY="164.0" promptText="Password" styleClass="password-field" />
                   <TextField fx:id="passwordTextField" layoutX="48.0" layoutY="164.0" promptText="Password" styleClass="text-field" visible="false" />
-                  <Button fx:id="togglePasswordButton" layoutX="216.0" layoutY="164.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="194.0" prefHeight="35.0" prefWidth="278.0" text="Error: Email and password are required!" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font name="Poppins Bold" size="12.0" />
+                     </font>
+                  </Label>
+      
+                  <!-- Login Button -->
+                  <Button layoutX="48.0" layoutY="230.0" prefHeight="30.0" prefWidth="200.0" styleClass="button-login" text="Login" />
+                  <Button layoutX="41.0" layoutY="289.0" styleClass="button-forgot" text="Forget Password?" />
+                  <Button fx:id="passwordToggleButton" layoutX="216.0" layoutY="164.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fx:id="passwordToggleIcon" fitHeight="15.0" fitWidth="15.0">
                            <image>
@@ -100,14 +64,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
-      
-                  <!-- Login Button -->
-                  <Button layoutX="48.0" layoutY="224.0" prefHeight="30.0" prefWidth="200.0" styleClass="button-login" text="Login" />
-                  <Button layoutX="41.0" layoutY="289.0" styleClass="button-forgot" text="Forget Password?" />
                </children>
             </Group>
          </children>
       </AnchorPane>
+      <Label fx:id="statusLabel" layoutX="21.0" layoutY="361.0" text="Connecting to database..." textFill="#acacac">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Label>
    </children>
    <stylesheets>
       <URL value="@../../Assets/css/loginStyle.css" />
