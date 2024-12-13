@@ -1,15 +1,20 @@
 package com.groupnine.travelbookingsystem.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
     @FXML
     private PasswordField passwordField;
 
     @FXML
-    private TextField passwordTextField;
+    private TextField passwordTextField, usernameTextField;
 
     @FXML
     private ImageView passwordToggleIcon;
@@ -18,11 +23,14 @@ public class LoginController {
     private Button passwordToggleButton;
 
     @FXML
-    private Label statusLabel;
+    private Label statusLabel, errorLabel;
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Welcome to Travel Booking System");
+        statusLabel.setText("Error connecting to database");
+        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+
+        errorLabel.setVisible(false);
         // Sync password fields
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
 
@@ -42,4 +50,56 @@ public class LoginController {
             passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/show-password-logo.png")));
         }
     }
+
+    @FXML
+    private void onLoginButtonClick()
+    {
+        usernameTextField.setOnMouseClicked(event ->
+        {
+            errorLabel.setVisible(false);
+            //username.clear();
+            usernameTextField.selectAll();
+        });
+
+        passwordField.setOnMouseClicked(event ->
+        {
+            errorLabel.setVisible(false);
+            //password.clear();
+            passwordField.selectAll();
+        });
+
+        if(usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty())
+        {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Username/Email and password are required!");
+        }
+        else
+        {
+            if (usernameTextField.getText().equals("admin")) {
+                if (passwordField.getText().equals("admin")) {
+                    errorLabel.setVisible(false);
+                    statusLabel.setText("Success, Welcome " + usernameTextField.getText() + "!");
+                    statusLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #35b359;");
+                    /*try {
+                        // Load the next view
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
+                        Scene mainScene = new Scene(fxmlLoader.load());
+
+                        // Get the current stage
+                        Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
+
+                        // Set the new scene
+                        currentStage.setScene(mainScene);
+                    } catch (IOException e) {
+                        e.printStackTrace(); // Log any loading errors
+                    }*/
+                }
+            } else {
+                errorLabel.setVisible(true);
+                errorLabel.setText("Invalid username/email or password!");
+            }
+
+        }
+    }
+
 }
