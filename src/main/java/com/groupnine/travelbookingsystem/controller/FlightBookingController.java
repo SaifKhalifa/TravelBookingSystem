@@ -12,6 +12,12 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 
 public class FlightBookingController {
 
@@ -168,6 +174,9 @@ public class FlightBookingController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
+
 
     // Flight class representing flight data
     public static class Flight {

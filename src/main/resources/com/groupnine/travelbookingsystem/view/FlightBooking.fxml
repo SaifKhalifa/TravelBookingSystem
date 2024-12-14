@@ -2,11 +2,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.FlightBookingController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.FlightBookingController" >
     <top>
-        <TabPane>
+        <TabPane >
             <tabs>
-                <Tab text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
+                <Tab   text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
                     <content>
                         <VBox spacing="10" alignment="TOP_CENTER">
                             <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>
@@ -42,9 +42,10 @@
                     </content>
                 </Tab>
 
-                <Tab text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
-                </Tab>
 
+                <Tab  text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
+
+                </Tab>
             </tabs>
         </TabPane>
     </top>
