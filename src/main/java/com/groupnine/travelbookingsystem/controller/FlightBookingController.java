@@ -8,10 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 
 public class FlightBookingController {
 
@@ -42,6 +38,7 @@ public class FlightBookingController {
     private Flight lastSelectedFlight = null;  // Track the last selected flight
 
     public void initialize() {
+
         // Setting column value factories
         flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));

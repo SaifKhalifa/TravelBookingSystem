@@ -3,7 +3,11 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.FlightBookingController">
-    <top>
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
+
+    <center>
         <TabPane>
             <tabs>
                 <Tab text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
@@ -13,7 +17,6 @@
                             <HBox style="-fx-background-color: #385A7F; -fx-padding: 10px; -fx-alignment: center;">
                                 <Label text="Booking Flights" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
                             </HBox>
-                            <!-- TableView with styling -->
                             <TableView fx:id="flightsTable" prefWidth="800" style="-fx-background-color: #CCD2D9;">
                                 <columns>
                                     <TableColumn fx:id="flightIdColumn" text="Flight ID" style="-fx-background-color: #E9ECEE;" sortable="false" />
@@ -25,27 +28,22 @@
                                     <TableColumn fx:id="statusColumn" text="Status" style="-fx-background-color: #E9ECEE;" sortable="false" />
                                 </columns>
                             </TableView>
-
                             <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
-                                <!-- Pending Booking buttons on the left -->
                                 <Button text="Pending Booking" onAction="#setPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
                                 <Button text="Cancel Pending Booking" onAction="#cancelPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
 
-                                <!-- Add a Region to push the Cancel Flight Booking button to the right -->
                                 <Region HBox.hgrow="ALWAYS" />
 
-                                <!-- Cancel Flight Booking button on the right -->
                                 <Button text="Cancel Flight Booking" onAction="#cancelFlightBooking" style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
                             </HBox>
 
                         </VBox>
                     </content>
                 </Tab>
-
                 <Tab text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
                 </Tab>
 
             </tabs>
         </TabPane>
-    </top>
+    </center>
 </BorderPane>
