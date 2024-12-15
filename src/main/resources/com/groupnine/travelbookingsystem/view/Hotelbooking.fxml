@@ -2,81 +2,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.groupnine.travelbookingsystem.controller.HotelBookingController">
-    <top>
-        <TabPane fx:id="tabPane">
-            <tabs>
-                <!-- Flights Dashboard Tab -->
-                <Tab fx:id="flightTab"  text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
-
-                    <content>
-                        <VBox spacing="10" alignment="TOP_CENTER">
-                            <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>
-                            <HBox style="-fx-background-color: #385A7F; -fx-padding: 10px; -fx-alignment: center;">
-                                <Label text="Booking Flights" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                            </HBox>
-                            <!-- TableView with styling -->
-                            <TableView fx:id="flightsTable" prefWidth="800" style="-fx-background-color: #CCD2D9;">
-                                <columns>
-                                    <TableColumn fx:id="flightIdColumn" text="Flight ID" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="customerNameColumn" text="Customer Name" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="airlineColumn" text="Airline" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="bookingDateColumn" text="Booking Date" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="departureColumn" text="Departure" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="arrivalColumn" text="Arrival" style="-fx-background-color:#E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="statusColumn" text="Status" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                </columns>
-                            </TableView>
-
-                            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
-                                <!-- Pending Booking buttons on the left -->
-                                <Button text="Pending Booking" onAction="#setPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
-                                <Button text="Cancel Pending Booking" onAction="#cancelPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
-
-                                <!-- Add a Region to push the Cancel Flight Booking button to the right -->
-                                <Region HBox.hgrow="ALWAYS" />
-
-                                <!-- Cancel Flight Booking button on the right -->
-                                <Button text="Cancel Flight Booking"  onAction="#cancelFlightBooking" style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                            </HBox>
-
-                        </VBox>
-                    </content>
-                </Tab>
-
-                <!-- Hotels Dashboard Tab -->
-                <Tab fx:id="hotelTab" text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
-                    <content>
-                        <VBox spacing="10" alignment="TOP_CENTER" >
-                            <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>
-                            <HBox style="-fx-background-color: #385A7F; -fx-padding: 10px; -fx-alignment: center;">
-                                <Label text="Booking Hotel" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                            </HBox>
-                            <!-- Hotels TableView -->
-                            <TableView fx:id="hotelsTable" prefWidth="800" style="-fx-background-color: #CCD2D9;">
-                                <columns>
-                                    <TableColumn fx:id="hotleIdColumn" text="Hotel ID" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="customerrNameColumn" text="Customer Name" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="hotelNameColumn" text="Hotel Name" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="bookinggDateColumn" text="Booking Date" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="checkInColumn" text="Check in" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="checkOutColumn" text="Check Out" style="-fx-background-color:#E9ECEE;" sortable="false" />
-                                    <TableColumn fx:id="statussColumn" text="Status" style="-fx-background-color: #E9ECEE;" sortable="false" />
-                                </columns>
-                            </TableView>
-                            <!-- Hotels Buttons -->
-                            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
-                                <Button text="Pending Booking" onAction="#setPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
-                                <Button text="Cancel Pending Booking" onAction="#cancelPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
-                                <Region HBox.hgrow="ALWAYS" />
-                                <Button text="Cancel Hotel Booking" onAction="#cancelHotelBooking" style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                                <Button text="Modify Booking" onAction="#modifyBooking" style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
-
-                            </HBox>
-                        </VBox>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </top>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.groupnine.travelbookingsystem.controller.HotelBookingController">
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>
+            <HBox style="-fx-background-color: #385A7F; -fx-padding: 10px; -fx-alignment: center;">
+                <Label text="Booking Hotels" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+            <!-- Hotels TableView -->
+            <TableView fx:id="hotelsTable" prefWidth="800" style="-fx-background-color: #CCD2D9;">
+                <columns>
+                    <TableColumn fx:id="hotleIdColumn" text="Hotel ID" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="customerrNameColumn" text="Customer Name" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="hotelNameColumn" text="Hotel Name" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="bookinggDateColumn" text="Booking Date" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="checkInColumn" text="Check in" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="checkOutColumn" text="Check Out" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                    <TableColumn fx:id="statussColumn" text="Status" style="-fx-background-color: #E9ECEE;" sortable="false" />
+                </columns>
+            </TableView>
+            <!-- Hotels Buttons -->
+            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
+                <Button text="Pending Booking" onAction="#setPendingBooking"
+                        style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Cancel Pending Booking" onAction="#cancelPendingBooking"
+                        style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Cancel Hotel Booking" onAction="#cancelHotelBooking"
+                        style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Modify Booking" onAction="#modifyBooking"
+                        style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </center>
 </BorderPane>

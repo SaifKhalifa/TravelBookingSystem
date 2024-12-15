@@ -41,4 +41,11 @@
                     </content>
                 </Tab>
                 <Tab text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
+                    <content>
+                        <fx:include source="Hotelbooking.fxml" />
+                    </content>
                 </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

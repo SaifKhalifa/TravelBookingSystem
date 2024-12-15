@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootPane" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomepageController">
+<BorderPane fx:id="rootPane" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomepageController">
    <left>
       <fx:include source="Sidebar.fxml" />
    </left>
