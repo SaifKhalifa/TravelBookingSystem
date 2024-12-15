@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,30 +22,36 @@ public class ListOfFlightsController {
     @FXML
     private Button addnewflight;
 
-    // This method is called when the FXML file is loaded
+    @FXML
+    private TableView<?> flightTable;
+
     @FXML
     public void initialize() {
+        // Make the TableView responsive
+        flightTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        flightTable.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            double totalWidth = newWidth.doubleValue();
+            double columnWidth = totalWidth / flightTable.getColumns().size();
+
+            for (TableColumn<?, ?> column : flightTable.getColumns()) {
+                column.setPrefWidth(columnWidth);
+            }
+        });
+
         if (addnewflight != null) {
             addnewflight.setOnAction(event -> navigateToAddFlight());
         } else {
             System.out.println("addnewflight button is null.");
         }
 
-        // actions for hotel buttons
         if (hotel != null) {
             hotel.setOnAction(event -> navigateToHotel());
         }
-
-
     }
-
-    // Method to navigate to AddFlight screen
     public void navigateToAddFlight() {
         System.out.println("Navigating to AddFlight...");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AddFlight.fxml"));
-
-
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -51,7 +59,6 @@ public class ListOfFlightsController {
             stage.setTitle("Add Flight");
             stage.show();
 
-            // Close the current stage (List of Flights screen)
             Stage currentStage = (Stage) addnewflight.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
@@ -60,11 +67,9 @@ public class ListOfFlightsController {
         }
     }
 
-    //  methods for hotel  buttons
+    // Navigation for hotel button
     private void navigateToHotel() {
         System.out.println("Navigating to Hotel screen...");
-        // Implement the hotel navigation logic here
+        // Add logic for navigation here
     }
-
-
 }

@@ -56,7 +56,7 @@ public class AddFlightController {
             stage.setTitle("List Of Flights");
             stage.show();
 
-            // إغلاق الشاشة الحالية
+
             Stage currentStage = (Stage) back_to_list_flight.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
