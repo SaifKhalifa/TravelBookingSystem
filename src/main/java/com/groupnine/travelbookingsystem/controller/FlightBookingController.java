@@ -166,6 +166,9 @@ public class FlightBookingController {
         alert.showAndWait();
     }
 
+
+
+
     // Flight class representing flight data
     public static class Flight {
         private String flightId;

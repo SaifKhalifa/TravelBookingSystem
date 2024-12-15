@@ -10,7 +10,7 @@
     <center>
         <TabPane>
             <tabs>
-                <Tab text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
+                <Tab   text="Flights Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
                     <content>
                         <VBox spacing="10" alignment="TOP_CENTER">
                             <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>
@@ -42,8 +42,3 @@
                 </Tab>
                 <Tab text="Hotels Dashboard" closable="false" style="-fx-background-color: #CCD2D9; -fx-font-weight: bold;">
                 </Tab>
-
-            </tabs>
-        </TabPane>
-    </center>
-</BorderPane>
