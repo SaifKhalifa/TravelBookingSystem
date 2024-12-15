@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="786.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="24.0" layoutY="505.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="691.0" style="-fx-font-weight: bold; -fx-background-color: #334C68; -fx-background-radius: 20;" text="Book now" textFill="#fffefe" />
+      <AnchorPane layoutY="-3.0" prefHeight="179.0" prefWidth="750.0" style="-fx-background-color: white;" />
+      <Label layoutX="80.0" layoutY="95.0" style="-fx-font-size: 1em;" text="Departs on Wednesday, 16 June" />
+      <Label layoutX="80.0" layoutY="120.0" style="-fx-font-size: 1em;" text="Arrives on Thursday, 16 June" />
+      <Label layoutX="80.0" layoutY="144.0" text="Duration - 18hr 40m" />
+      <ImageView fitHeight="72.0" fitWidth="109.0" layoutX="45.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/Screenshot%202024-12-14%20154526.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="84.0" layoutY="52.0" style="-fx-font-weight: bold; -fx-font-size: 2em;" text="Lagos - London" />
+      <AnchorPane layoutX="2.0" layoutY="185.0" prefHeight="89.0" prefWidth="750.0" />
+      <Label layoutX="64.0" layoutY="192.0" style="-fx-font-size: 1em; -fx-font-weight: bold;" text="18:35" />
+      <Label layoutX="56.0" layoutY="210.0" style="-fx-font-size: 1em;" text="Murtala International Airport," />
+      <Label layoutX="59.0" layoutY="228.0" style="-fx-font-size: 1em;" text="Lagos (LOS)" textFill="#5b5757" />
+      <Label layoutX="56.0" layoutY="253.0" style="-fx-font-size: 1em;" text="Wed, 16 june" textFill="#868080" />
+      <Separator layoutX="231.0" layoutY="235.0" prefHeight="4.0" prefWidth="244.0" />
+      <Circle fill="#757e86" layoutX="323.0" layoutY="235.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="294.0" layoutY="210.0" style="-fx-font-size: 1em;" text="11h 00m" textFill="#867e7e" />
+      <Label layoutX="532.0" layoutY="192.0" style="-fx-font-size: 1em; -fx-font-weight: bold;" text="05:35" />
+      <Label layoutX="518.0" layoutY="210.0" style="-fx-font-size: 1em;" text="Palestine Airport," />
+      <Label layoutX="518.0" layoutY="230.0" style="-fx-font-size: 1em;" text="Palestine (Pal)" textFill="#333131" />
+      <Label layoutX="528.0" layoutY="253.0" style="-fx-font-size: 1em;" text="Thur, 17 june" textFill="#867777" />
+      <AnchorPane layoutX="6.0" layoutY="279.0" prefHeight="121.0" prefWidth="762.0" />
+      <Circle fill="WHITE" layoutX="62.0" layoutY="303.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="24.0" fitWidth="18.0" layoutX="53.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/tayara.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="82.0" layoutY="294.0" style="-fx-font-size: 1em;" text="Jordan Airways - 1406 - Class T" />
+      <VBox layoutX="48.0" layoutY="329.0" prefHeight="56.0" prefWidth="616.0" style="-fx-background-color: lightblue; -fx-background-radius: 20; -fx-padding: 10; -fx-border-radius: 20;">
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 1em;" text="Layover at Palestine Airport" />
+            <Label style="-fx-font-size: 1em; -fx-font-weight: bold;" text="2hrs, 25mins" />
+            <AnchorPane prefHeight="200.0" prefWidth="334.0" />
+         </children>
+      </VBox>
+      <AnchorPane layoutX="5.0" layoutY="393.0" prefHeight="97.0" prefWidth="743.0" />
+      <Label layoutX="68.0" layoutY="407.0" style="-fx-font-size: 1em; -fx-font-weight: bold;" text="08:00" />
+      <Label layoutX="59.0" layoutY="431.0" style="-fx-font-size: 1em;" text="Palestine Airport," />
+      <Label layoutX="62.0" layoutY="447.0" style="-fx-font-size: 1em;" text="Palestine (Pal)" />
+      <Label layoutX="62.0" layoutY="465.0" style="-fx-font-size: 1em;" text="Palestine (Pal)" textFill="#867979" />
+      <Label layoutX="324.0" layoutY="422.0" text="05h 15m" textFill="#867070" />
+      <Label layoutX="504.0" layoutY="413.0" style="-fx-font-size: 1em; -fx-font-weight: bold;" text="13:15" />
+      <Label layoutX="498.0" layoutY="431.0" style="-fx-font-size: 1em;" text="London Heathrow," />
+      <Label layoutX="507.0" layoutY="447.0" style="-fx-font-size: 1em;" text="LHR" />
+      <Label layoutX="499.0" layoutY="465.0" style="-fx-font-size: 1em;" text="Wed, 24 july" textFill="#867575" />
+      <Separator layoutX="183.0" layoutY="447.0" prefHeight="4.0" prefWidth="244.0" />
+      <Circle fill="#757e86" layoutX="356.0" layoutY="449.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>
