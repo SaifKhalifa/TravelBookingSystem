@@ -7,7 +7,7 @@
 }
 
 /* Login form styles */
-.login-label {
+.h-label {
     -fx-font-size: 34px;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -19,7 +19,7 @@
 }
 
 /* Text fields */
-.text-field, .password-field {
+.text-field-custom, .password-field-custom {
     -fx-pref-height: 30px;
     -fx-pref-width: 200px;
     -fx-padding: 0 5px;
@@ -29,8 +29,25 @@
     -fx-background-radius: 5px;
 }
 
+.drop-down-custom {
+    -fx-pref-height: 30px;
+    -fx-pref-width: 200px;
+    -fx-padding: 0 5px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #A3CAE9;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.button-back {
+    -fx-background-color: transparent;
+    -fx-text-fill: #385A7F;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border: none;
+    -fx-cursor: hand;
+}
 /* Login button */
-.button-login {
+.button-main {
     -fx-background-color: #A3CAE9;
     -fx-text-fill: white;
     -fx-font-size: 14px;
@@ -40,7 +57,7 @@
 }
 
 /* Forget password button */
-.button-forgot {
+.button-secondary {
     -fx-background-color: transparent;
     -fx-text-fill: #A3CAE9;
     -fx-font-size: 14px;
@@ -50,25 +67,25 @@
 }
 
 /* Login button hover effect */
-.button-login:hover {
+.button-main:hover {
     -fx-background-color: #7EAFD8; /* Slightly darker shade */
     -fx-cursor: hand;
 }
 
 /* Forget password button hover effect */
-.button-forgot:hover {
+.button-secondary:hover {
     -fx-text-fill: #7EAFD8;
     -fx-cursor: hand;
 }
 
 /* Login button click effect */
-.button-login:pressed {
+.button-main:pressed {
     -fx-background-color: #567D9D; /* Even darker shade */
     -fx-padding: 2 5 0 5; /* Add slight padding to simulate a pressed look */
 }
 
 /* Forget password button click effect */
-.button-forgot:pressed {
+.button-secondary:pressed {
     -fx-text-fill: #567D9D;
 
 }
