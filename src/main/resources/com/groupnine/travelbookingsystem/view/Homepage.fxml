@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <!-- الخلفية -->
+      <ImageView fitHeight="750.0" fitWidth="721.0" layoutX="559.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../img/img1.png" />
+         </image>
+      </ImageView>
+
+      <!-- الشعار -->
+      <ImageView fitHeight="276.0" fitWidth="248.0" layoutX="142.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../img/img3.png" />
+         </image>
+      </ImageView>
+
+      <!-- الصورة الرئيسية -->
+      <ImageView fitHeight="750.0" fitWidth="900.0" layoutX="559.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../img/img2.png" />
+         </image>
+      </ImageView>
+
+      <!-- العنوان الرئيسي -->
+      <Label layoutX="669.0" layoutY="373.0" prefHeight="50.0" prefWidth="500.0" text="Your Dream Cruise Awaits-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+
+      <!-- العنوان الفرعي -->
+      <Label layoutX="697.0" layoutY="434.0" text="Explore, Relax, and Enjoy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+
+      <!-- الوصف -->
+      <Label layoutX="606.0" layoutY="515.0" prefHeight="27.0" prefWidth="625.0" text="Explore breathtaking destination, indulge in luxury, and create unforgettable memories" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+
+      <!-- العلامة التجارية -->
+      <Label layoutX="199.0" layoutY="257.0" text="FlyStay" textFill="#334c68">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+
+      <!-- شريط التنقل مع الأزرار تحت "FlyStay" -->
+      <VBox alignment="CENTER" layoutX="130.0" layoutY="349.0" prefWidth="258.0" spacing="15">
+         <children>
+            <!-- زر "Home" -->
+            <Button style="-fx-text-fill: white; -fx-background-radius: 10;">
+               <graphic>
+                  <HBox spacing="10">
+                     <ImageView fitHeight="20" fitWidth="20">
+                        <image>
+                           <Image url="@../../../../img/House.png" />
+                        </image>
+                     </ImageView>
+                     <Label text="Home" textFill="#334c68">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                  </HBox>
+               </graphic>
+            </Button>
+
+            <!-- زر "Flights/Hotels" -->
+            <Button style=" -fx-text-fill: white; -fx-background-radius: 10;">
+               <graphic>
+                  <HBox spacing="10">
+                     <ImageView fitHeight="20" fitWidth="20">
+                        <image>
+                           <Image url="@../../../../img/AirplaneInFlight.png" />
+                        </image>
+                     </ImageView>
+                     <Label text="Flights/Hotels" textFill="#334c68">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                  </HBox>
+               </graphic>
+            </Button>
+
+            <!-- زر "Dashboard" -->
+            <Button style=" -fx-text-fill: white; -fx-background-radius: 10;">
+               <graphic>
+                  <HBox spacing="10">
+                     <ImageView fitHeight="20" fitWidth="20">
+                        <image>
+                           <Image url="@../../../../img/Notepad.png" />
+                        </image>
+                     </ImageView>
+                     <Label text="Dashboard" textFill="#334c68">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                  </HBox>
+               </graphic>
+            </Button>
+
+            <!-- زر "Logout" -->
+            <Button style=" -fx-text-fill: white; -fx-background-radius: 10;">
+               <graphic>
+                  <HBox spacing="10">
+                     <ImageView fitHeight="20" fitWidth="20">
+                        <image>
+                           <Image url="@../../../../img/SignOut.png" />
+                        </image>
+                     </ImageView>
+                     <Label text="Logout" textFill="#334c68">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                  </HBox>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
