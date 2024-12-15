@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainApp extends Application {
+public class FlightBookingApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
