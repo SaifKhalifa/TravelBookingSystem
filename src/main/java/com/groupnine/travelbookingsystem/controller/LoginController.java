@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -102,4 +103,41 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void onForgetPasswordButtonClick()
+    {
+        try {
+            // Load the next view
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/forget_password.fxml"));
+            Scene mainScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage
+            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
+
+            // Set the new scene
+            currentStage.setScene(mainScene);
+            currentStage.setTitle("Forget Password");
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
+        }
+    }
+
+    @FXML
+    private void onCreateAccountButtonClick()
+    {
+        try {
+            // Load the next view
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml"));
+            Scene mainScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage
+            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
+
+            // Set the new scene
+            currentStage.setScene(mainScene);
+            currentStage.setTitle("Create Account");
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
+        }
+    }
 }

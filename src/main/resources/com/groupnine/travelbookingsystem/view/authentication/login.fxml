@@ -54,8 +54,8 @@
       
                   <!-- Login Button -->
                   <Button defaultButton="true" layoutX="48.0" layoutY="230.0" onAction="#onLoginButtonClick" prefHeight="30.0" prefWidth="200.0" styleClass="button-main" stylesheets="@../../Assets/css/authStyle.css" text="Login" />
-                  <Button layoutX="41.0" layoutY="270.0" styleClass="button-secondary" text="Forget Password?" />
-                  <Button layoutX="41.0" layoutY="310.0" styleClass="button-secondary" text="Create admin account" />
+                  <Button layoutX="41.0" layoutY="270.0" onAction="#onForgetPasswordButtonClick" styleClass="button-secondary" text="Forget Password?" />
+                  <Button layoutX="41.0" layoutY="310.0" onAction="#onCreateAccountButtonClick" styleClass="button-secondary" text="Create admin account" />
                   <Button id="togglePasswordButton" fx:id="passwordToggleButton" layoutX="216.0" layoutY="164.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent;" stylesheets="@../../Assets/css/authStyle.css">
                      <graphic>
                         <ImageView fx:id="passwordToggleIcon" fitHeight="15.0" fitWidth="15.0">

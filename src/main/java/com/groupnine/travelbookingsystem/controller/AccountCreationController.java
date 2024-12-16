@@ -2,13 +2,14 @@ package com.groupnine.travelbookingsystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class AccountCreationController {
 
     @FXML
-    private TextField usernameTextField, emailTextField, phoneNumberTextField, addressTextField;
+    private TextField usernameTextField, emailTextField, phoneNumberTextField, addressTextField, passwordTextField;
 
     @FXML
     private ComboBox<String> userRoleComboBox;
@@ -17,14 +18,47 @@ public class AccountCreationController {
     private PasswordField passwordField;
 
     @FXML
-    private Text errorLabel;
+    private Label errorLabel, statusLabel;
 
     @FXML
-    private Label statusLabel;
+    private ImageView passwordToggleIcon;
 
     @FXML
-    private void onLoginButtonClick() {
+    private Button passwordToggleButton;
+
+    @FXML
+    private void initialize() {
+        statusLabel.setText("Error connecting to database");
+        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+
+        errorLabel.setVisible(false);
+        // Sync password fields
+        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
+
+        // Set toggle button action
+        /*passwordToggleButton.setOnMouseClicked(event -> togglePasswordVisibility());*/
+        passwordToggleButton.setOnAction(event -> togglePasswordVisibility());
+    }
+
+    @FXML
+    private void onCreateAccountButtonClick() {
+
+        usernameTextField.setOnMouseClicked(event ->
+        {
+            errorLabel.setVisible(false);
+            //username.clear();
+            usernameTextField.selectAll();
+        });
+
+        passwordField.setOnMouseClicked(event ->
+        {
+            errorLabel.setVisible(false);
+            //password.clear();
+            passwordField.selectAll();
+        });
+
         // Clear previous error messages
+        errorLabel.setVisible(true);
         errorLabel.setText("");
 
         // Retrieve form values
@@ -38,25 +72,31 @@ public class AccountCreationController {
         // Validate the fields
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || role == null || password.isEmpty()) {
             errorLabel.setText("All fields are required!");
-            errorLabel.setFill(Color.RED);
+            errorLabel.setTextFill(Color.RED);
             return;
         }
 
         if (!isValidEmail(email)) {
+            emailTextField.requestFocus();
+            emailTextField.selectAll();
             errorLabel.setText("Invalid email address!");
-            errorLabel.setFill(Color.RED);
+            errorLabel.setTextFill(Color.RED);
             return;
         }
 
         if (!isValidPhone(phone)) {
+            phoneNumberTextField.requestFocus();
+            phoneNumberTextField.selectAll();
             errorLabel.setText("Invalid phone number!");
-            errorLabel.setFill(Color.RED);
+            errorLabel.setTextFill(Color.RED);
             return;
         }
 
         if (password.length() < 8) {
+            passwordTextField.requestFocus();
+            passwordTextField.selectAll();
             errorLabel.setText("Password must be at least 8 characters long!");
-            errorLabel.setFill(Color.RED);
+            errorLabel.setTextFill(Color.RED);
             return;
         }
 
@@ -85,5 +125,17 @@ public class AccountCreationController {
         userRoleComboBox.setValue(null);
         passwordField.clear();
         errorLabel.setText("");
+    }
+
+    private void togglePasswordVisibility() {
+        if (passwordField.isVisible()) {
+            passwordField.setVisible(false);
+            passwordTextField.setVisible(true);
+            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/hide-password-logo.png")));
+        } else {
+            passwordField.setVisible(true);
+            passwordTextField.setVisible(false);
+            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/show-password-logo.png")));
+        }
     }
 }
