@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1280.0" fx:controller="com.groupnine.travelbookingsystem.controller.ResultSearchHotelsController" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="81.0" layoutY="42.0" prefHeight="87.0" prefWidth="910.0" style="-fx-background-color: #4445; -fx-background-radius: 99;" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="52.0">
+         <children>
+            <Button fx:id="myBookingButton" layoutX="452.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: non; -fx-text-fill: white; -fx-font-size: 18px;" text="My Booking" />
+            <Button fx:id="profileButton" layoutX="611.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: non; -fx-text-fill: white; -fx-font-size: 18px;" text="Profile" />
+            <Label fx:id="flyStayLabel" layoutX="26.0" layoutY="28.0" text="FlyStay" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="comboBox1" layoutX="262.0" layoutY="31.0" prefWidth="150.0" promptText="Flights/Hotels" style="-fx-background-color: #4445; -fx-background-radius: 60;" />
+            <ComboBox fx:id="comboBox2" layoutX="903.0" layoutY="31.0" prefWidth="150.0" promptText="Signup/Login" style="-fx-background-color: #4445; -fx-background-radius: 60; -fx-border-radius: 60;" />
+            <Button fx:id="homeButton" layoutX="148.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: non; -fx-text-fill: white; -fx-font-size: 18px;" text="Home" />
+         </children>
+      </AnchorPane>
+      <Slider fx:id="verticalSlider" layoutX="44.0" layoutY="290.0" orientation="VERTICAL" />
+      <TextField fx:id="suggestedStayTextField" layoutX="90.0" layoutY="155.0" style="-fx-background-color: non;" text="Suggested Stay">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="chooseFromTextField" layoutX="90.0" layoutY="188.0" prefHeight="26.0" prefWidth="201.0" style="-fx-background-color: non;" text="Choose From The Top Rated Stays" />
+
+
+
+      <AnchorPane fx:id="card1AnchorPane" layoutX="112.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fx:id="card1ImageView" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="card1Background" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s1.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="card1TitleTextField" layoutY="131.0" style="-fx-background-color: non;" text="Big White Village">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="card1RatingTextField" layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.7">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="card1Circle" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="card1PointerImageView" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="card1StarImageView"  fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="card1LocationTextField" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="card1DetailsTextField" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 6 Max -  5 Rooms -  3 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="card1PriceTextField" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="145$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="card1Button" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="card1DropShadow" height="105.5125" radius="52.183125000000004" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+
+
+
+      <AnchorPane fx:id="card2AnchorPane" layoutX="914.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <ImageView fx:id="imageView2" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="backgroundPane2" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s3.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="textField1" layoutY="131.0" style="-fx-background-color: non;" text="Outstanding house">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ratingTextField2"  layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.9">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="circle2" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="pointerImageView2" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starImageView2" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="locationTextField2" layoutX="14.0" layoutY="161.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="detailsTextField2" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 4 Max -  3 Rooms -  2 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="priceTextField2" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="140$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button2" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="dropShadow2" height="106.39" radius="52.4025" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+
+
+
+      <AnchorPane fx:id="card3AnchorPane" layoutX="502.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fx:id="imageView3" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="backgroundPane3" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s2.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="textField3"  layoutY="131.0" style="-fx-background-color: non;" text="Condo To The Beach">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ratingTextField3" layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.2">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="circle3" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="pointerImageView3" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starImageView3" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="locationTextField3" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="detailsTextField3" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 10 Max -  6 Rooms -  3 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="priceTextField3" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="180$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button3" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="dropShadow3" height="105.805" radius="52.25625" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+
+
+
+      <AnchorPane fx:id="card4AnchorPane" layoutX="502.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <ImageView fx:id="imageView4" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="backgroundPane4" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s5.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="textField4" layoutY="131.0" style="-fx-background-color: non;" text="Outstanding house">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ratingTextField4" layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="circle4" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="pointerImageView4" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starImageView4" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="locationTextField4" layoutX="14.0" layoutY="161.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="detailsTextField4" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 10 Max -  6 Rooms -  4 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="priceTextField4" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="160$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button4" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="dropShadow4" height="106.39" radius="52.4025" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+
+
+
+      <AnchorPane fx:id="card5AnchorPane" layoutX="914.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fx:id="imageView5" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="backgroundPane5" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s7.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="textField5" layoutY="131.0" style="-fx-background-color: non;" text="Big White Village">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ratingTextField5" layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.1">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="circle5" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="pointerImageView5" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starImageView5" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="locationTextField5" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="detailsTextField5" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 14 Max -  7 Rooms -  5 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="priceTextField5" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="200$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button5" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="dropShadow5" height="106.39" radius="52.4025" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+
+
+
+      <AnchorPane fx:id="card6AnchorPane" layoutX="112.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fx:id="imageView6" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="backgroundPane6" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/s6.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover; -fx-background-position: cover cover;" />
+            <TextField fx:id="textField6" layoutY="131.0" style="-fx-background-color: non;" text="Condo To The Beach">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ratingTextField6" layoutX="233.0" layoutY="146.0" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: non;" text="4.3">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Circle fx:id="circle6" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
+            <ImageView fx:id="pointerImageView6" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../pointer2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starImageView6" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../star.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="locationTextField6" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
+            <TextField fx:id="detailsTextField6" layoutX="8.0" layoutY="185.0" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: non;" text=" 5 Max -  3 Rooms -  2 Bathroom">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="priceTextField6" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: non;" text="99$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button6" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+         </children>
+         <effect>
+            <DropShadow fx:id="dropShadow6" height="106.39" radius="52.4025" spread="0.23" width="105.22">
+               <color>
+                  <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
