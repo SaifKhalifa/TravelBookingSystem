@@ -10,7 +10,6 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.HotelController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="827.0" style="-fx-background-color: white;">
 
-
    <children>
       <ImageView fx:id="starsImage" fitHeight="32.0" fitWidth="109.0" layoutX="37.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
