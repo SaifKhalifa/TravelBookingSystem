@@ -9,6 +9,7 @@ module com.groupnine.travelbookingsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.desktop;
 
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
