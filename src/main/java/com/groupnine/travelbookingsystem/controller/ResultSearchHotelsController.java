@@ -18,7 +18,8 @@ import java.io.IOException;
 
 public class ResultSearchHotelsController {
 
-    @FXML public AnchorPane card1Background;
+    @FXML
+    public AnchorPane card1Background;
     public Label flyStayLabel;
     public Slider verticalSlider;
     public Circle card1Circle;
@@ -63,38 +64,66 @@ public class ResultSearchHotelsController {
     public Button button6;
     public Circle circle3;
     public DropShadow dropShadow3;
-    @FXML private Button myBookingButton;
-    @FXML private Button profileButton;
-    @FXML private Button homeButton;
-    @FXML private ComboBox<String> comboBox1;
-    @FXML private ComboBox<String> comboBox2;
+    @FXML
+    private Button myBookingButton;
+    @FXML
+    private Button profileButton;
+    @FXML
+    private Button homeButton;
+    @FXML
+    private ComboBox<String> comboBox1;
+    @FXML
+    private ComboBox<String> comboBox2;
 
-    @FXML private TextField suggestedStayTextField;
-    @FXML private TextField chooseFromTextField;
+    @FXML
+    private TextField suggestedStayTextField;
+    @FXML
+    private TextField chooseFromTextField;
 
-    @FXML private AnchorPane card1AnchorPane;
-    @FXML private ImageView card1ImageView;
-    @FXML private TextField card1TitleTextField;
-    @FXML private TextField card1RatingTextField;
-    @FXML private TextField card1LocationTextField;
-    @FXML private TextField card1DetailsTextField;
-    @FXML private TextField card1PriceTextField;
-    @FXML private Button card1Button;
+    @FXML
+    private AnchorPane card1AnchorPane;
+    @FXML
+    private ImageView card1ImageView;
+    @FXML
+    private TextField card1TitleTextField;
+    @FXML
+    private TextField card1RatingTextField;
+    @FXML
+    private TextField card1LocationTextField;
+    @FXML
+    private TextField card1DetailsTextField;
+    @FXML
+    private TextField card1PriceTextField;
+    @FXML
+    private Button card1Button;
 
-    @FXML private AnchorPane card2AnchorPane;
-    @FXML private ImageView imageView2;
-    @FXML private TextField textField1;
-    @FXML private TextField ratingTextField2;
-    @FXML private TextField locationTextField2;
-    @FXML private TextField detailsTextField2;
-    @FXML private TextField priceTextField2;
-    @FXML private Button button2;
-    @FXML private ImageView pointerImageView2;
-    @FXML private ImageView starImageView2;
+    @FXML
+    private AnchorPane card2AnchorPane;
+    @FXML
+    private ImageView imageView2;
+    @FXML
+    private TextField textField1;
+    @FXML
+    private TextField ratingTextField2;
+    @FXML
+    private TextField locationTextField2;
+    @FXML
+    private TextField detailsTextField2;
+    @FXML
+    private TextField priceTextField2;
+    @FXML
+    private Button button2;
+    @FXML
+    private ImageView pointerImageView2;
+    @FXML
+    private ImageView starImageView2;
 
-    @FXML private AnchorPane card3AnchorPane;
-    @FXML private ImageView imageView3;
-    @FXML private TextField textField3;
+    @FXML
+    private AnchorPane card3AnchorPane;
+    @FXML
+    private ImageView imageView3;
+    @FXML
+    private TextField textField3;
 
     // Initializes the controller
     public void initialize() {
@@ -132,7 +161,7 @@ public class ResultSearchHotelsController {
 
     }
 
-   //card3
+    //card3
 
     private void setCard3() {
         imageView3.setImage(new Image(getClass().getResource("/img/s3.png").toExternalForm()));
@@ -170,90 +199,90 @@ public class ResultSearchHotelsController {
     }
 
 
-
-
     /// ////////////////////////////
-    // Handle button click for card 1
-    private void handleCard1Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
+    // Navigation logic
+    private void navigateToPage(String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene newScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage
+            Stage currentStage = (Stage) homeButton.getScene().getWindow();
+
+            // Set the new scene
+            currentStage.setScene(newScene);
+            currentStage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
+        }
     }
 
-    // Handle button click for card 2
-    private void handleCard2Button() {
-        System.out.println("Card 2 button clicked");
-        // Implement logic when the user interacts with the button
+    // Handle button clicks
+    @FXML
+    private void handleHomeButton() {
+        System.out.println("Home button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/home.fxml", "Home");
     }
 
-    private void handleCard3Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard4Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard5Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard6Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    // Handle "My Booking" button
     @FXML
     private void handleMyBookingButton() {
         System.out.println("My Booking button clicked");
-        // Navigate to My Booking page or show booking details
+        navigateToPage("/com/groupnine/travelbookingsystem/view/my_booking.fxml", "My Booking");
     }
 
-    // Handle "Profile" button
     @FXML
     private void handleProfileButton() {
         System.out.println("Profile button clicked");
-        // Navigate to Profile page or show profile details
+        navigateToPage("/com/groupnine/travelbookingsystem/view/profile.fxml", "Profile");
     }
 
-    // Handle "Home" button
-   /* @FXML
-    private void handleHomeButton() {
-        System.out.println("Home button clicked");
-        // Navigate to the homepage
-    }*/
-
-
-   /* @FXML
-    private void handleHomeButtonAction(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/home.fxml"));
-            Scene homeScene = new Scene(fxmlLoader.load());
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(homeScene);
-            currentStage.setTitle("Home");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*****////
-
-
-
-    // Handle ComboBox selection changes
     @FXML
-    private void handleComboBox1Action() {
-        String selectedOption = comboBox1.getValue();
+    private void handleCard1Button() {
+        System.out.println("Card 1 button clicked");
+        // Action for Card 1 button click
+    }
+
+    @FXML
+    private void handleCard2Button() {
+        System.out.println("Card 2 button clicked");
+        // Action for Card 2 button click
+    }
+
+    @FXML
+    private void handleCard3Button() {
+        System.out.println("Card 3 button clicked");
+        // Action for Card 3 button click
+    }
+
+    @FXML
+    private void handleCard4Button() {
+        System.out.println("Card 4 button clicked");
+        // Action for Card 4 button click
+    }
+
+    @FXML
+    private void handleCard5Button() {
+        System.out.println("Card 5 button clicked");
+        // Action for Card 5 button click
+    }
+
+    @FXML
+    private void handleCard6Button() {
+        System.out.println("Card 6 button clicked");
+        // Action for Card 6 button click
+    }
+
+    @FXML
+    private void handleComboBox1Selection() {
+        String selectedOption = comboBox1.getSelectionModel().getSelectedItem();
         System.out.println("ComboBox1 selected: " + selectedOption);
-        // Implement logic based on selected option
     }
 
     @FXML
-    private void handleComboBox2Action() {
-        String selectedOption = comboBox2.getValue();
+    private void handleComboBox2Selection() {
+        String selectedOption = comboBox2.getSelectionModel().getSelectedItem();
         System.out.println("ComboBox2 selected: " + selectedOption);
-        // Implement logic based on selected option
     }
+
+
 }

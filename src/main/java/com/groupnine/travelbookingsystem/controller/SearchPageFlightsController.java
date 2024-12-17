@@ -1,6 +1,8 @@
 package com.groupnine.travelbookingsystem.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import javafx.fxml.FXML;
@@ -19,8 +21,10 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 public class SearchPageFlightsController {
 
@@ -110,59 +114,119 @@ public class SearchPageFlightsController {
         btnHotels.setOnAction(event -> handleHotels());
         btnSearch.setOnAction(event -> handleSearch());
         */
+        btnHome.setOnAction(event -> handleHomeButton());
+        btnMyBooking.setOnAction(event -> handleMyBookingButton());
+        btnProfile.setOnAction(event -> handleProfileButton());
 
-        /*******try {
-         Image backgroundImage = new Image(getClass().getResource("./img/sf.jpeg").toExternalForm());
-         //backGroundd.setBackground(new Image(getClass().getResource("/img/s3.png").toExternalForm()));
-         // Create a BackgroundImage object
-         BackgroundImage background = new BackgroundImage(backgroundImage,
-         BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
-         BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
-         BackgroundPosition.CENTER,     // Center the image
-         BackgroundSize.DEFAULT);       // Scale to the default size
+        btnFlights.setOnAction(event -> handleFlightsButton());
+        btnHotels.setOnAction(event -> handleHotelsButton());
+        btnSearch.setOnAction(event -> handleSearchButton());
 
-         // Set the background to the AnchorPane
-         backGroundd.setBackground(new Background(background));
-         } catch (NullPointerException e) {
-         System.out.println("Image not found!");
-         e.printStackTrace();
-         }*/
+        // Set combo box actions
+        cbFlightsHotels.setOnAction(event -> handleFlightsHotelsCombo());
+        cbSignupLogin.setOnAction(event -> handleSignupLoginCombo());
 
-       /* File file = new File("C:/Users/HP/Desktop/TravelBookingSystem/src/main/resources/img/sf.jpeg");
-        if (!file.exists()) {
-            System.out.println("Image file not found at: " + file.getAbsolutePath());
-        } else {
-            backGround.setStyle(new StringBuilder().append("-fx-background-image: url('file:").append(file.toURI().toString()).append("'); ").append("-fx-background-radius: 60; ").append("-fx-background-repeat: no-repeat; ").append("-fx-background-size: cover;").toString());
-        }*/
+        setBackgroundImage();
+    }
+
+    private void setBackgroundImage() {
+        backG.setImage(new Image(getClass().getResource("/img/sf.jpeg").toExternalForm()));
+
+    }
 
 
-        // Event handler methods for buttons
-      /*  private void handleMyBooking () {
-            // Logic for My Booking button click
-            System.out.println("My Booking clicked");
+    private void navigateToPage(String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene newScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage
+            Stage currentStage = (Stage) btnHome.getScene().getWindow();
+
+            // Set the new scene
+            currentStage.setScene(newScene);
+            currentStage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
         }
+    }
 
-        private void handleProfile () {
-            // Logic for Profile button click
-            System.out.println("Profile clicked");
+    @FXML
+    private void handleHomeButton() {
+        System.out.println("Home button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/home.fxml", "Home");
+    }
+
+    @FXML
+    private void handleMyBookingButton() {
+        System.out.println("My Booking button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/my_booking.fxml", "My Booking");
+    }
+
+    @FXML
+    private void handleProfileButton() {
+        System.out.println("Profile button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/profile.fxml", "Profile");
+    }
+
+    @FXML
+    private void handleFlightsButton() {
+        System.out.println("Flights button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/flights.fxml", "Flights");
+    }
+
+    @FXML
+    private void handleHotelsButton() {
+        System.out.println("Hotels button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/hotels.fxml", "Hotels");
+    }
+
+    @FXML
+    private void handleSearchButton() {
+        System.out.println("Search button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/search_results.fxml", "Search Results");
+    }
+
+    @FXML
+    private void handleFlightsHotelsCombo() {
+        String selectedOption = cbFlightsHotels.getSelectionModel().getSelectedItem();
+        System.out.println("Flights/Hotels ComboBox selected: " + selectedOption);
+
+        if (selectedOption != null) {
+            switch (selectedOption) {
+                case "Flights":
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/flights.fxml", "Flights");
+                    break;
+                case "Hotels":
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/hotels.fxml", "Hotels");
+                    break;
+                default:
+                    System.out.println("Unknown option selected.");
+            }
         }
+    }
 
-        private void handleHome () {
-            // Logic for Home button click
-            System.out.println("Home clicked");
+    @FXML
+    private void handleSignupLoginCombo() {
+        String selectedOption = cbSignupLogin.getSelectionModel().getSelectedItem();
+        System.out.println("Signup/Login ComboBox selected: " + selectedOption);
+
+        if (selectedOption != null) {
+            switch (selectedOption) {
+                case "Signup":
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/signup.fxml", "Signup");
+                    break;
+                case "Login":
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/login.fxml", "Login");
+                    break;
+                default:
+                    System.out.println("Unknown option selected.");
+            }
         }
+    }
 
-        private void handleFlights () {
-            // Logic for Flights button click
-            System.out.println("Flights clicked");
-        }
 
-        private void handleHotels () {
-            // Logic for Hotels button click
-            System.out.println("Hotels clicked");
-        }
-
-        private void handleSearch () {
+        /*private void handleSearch () {
             // Logic for Search button click
             System.out.println("Search clicked");
 
@@ -175,5 +239,6 @@ public class SearchPageFlightsController {
             System.out.println("Searching for " + passengers + " passengers to " + destination + " from " + checkIn + " to " + checkOut);
         }*/
 
-    }
+
 }
+

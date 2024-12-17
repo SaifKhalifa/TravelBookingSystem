@@ -18,7 +18,7 @@ public class SearchPageHotels extends Application {
         Parent root = loader.load();
 
         primaryStage.setTitle("Search Page Hotels");
-        primaryStage.setScene(new Scene(root, 1280, 800));
+        primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
     }
 
