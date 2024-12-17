@@ -11,12 +11,12 @@ import java.io.IOException;
 public class MainApplication_DEFAULT extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/forget_password.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
         Parent root = fxmlLoader.load();
 
         // Automatically set stage size based on the root node
         Scene scene = new Scene(root);
-        stage.setTitle("Hello!");
+        stage.setTitle("Login");
         stage.setResizable(false);
         stage.setScene(scene);
 
