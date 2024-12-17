@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.BookingHotel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/23.0.1">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.BookingDetailsController.BookingHotelControoler" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/23.0.1">
    <children>
       <AnchorPane layoutX="126.0" layoutY="90.0" prefHeight="280.0" prefWidth="536.0" style="-fx-border-radius: 20; -fx-border-color: #334C68; -fx-background-color: white;">
          <children>

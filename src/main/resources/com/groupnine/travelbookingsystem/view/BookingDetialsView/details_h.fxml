@@ -8,38 +8,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.HotelController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="827.0" style="-fx-background-color: white;">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.BookingDetailsController.HotelController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="827.0" style="-fx-background-color: white;">
 
    <children>
       <ImageView fx:id="starsImage" fitHeight="32.0" fitWidth="109.0" layoutX="37.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/stars.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/stars.png" />
          </image>
       </ImageView>
       <Label fx:id="hotelTitle" layoutX="44.0" layoutY="101.0" style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Condo To The Beach" />
       <ImageView fx:id="hotelImage" fitHeight="220.0" fitWidth="357.0" layoutX="44.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: circal;">
          <image>
-            <Image url="@../../../../images/hotel.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/hotel.png" />
          </image>
       </ImageView>
       <ImageView fx:id="emptyImage1" fitHeight="104.0" fitWidth="152.0" layoutX="413.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/empty.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
          </image>
       </ImageView>
       <ImageView fx:id="emptyImage2" fitHeight="104.0" fitWidth="166.0" layoutX="557.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/empty.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
          </image>
       </ImageView>
       <ImageView fx:id="emptyImage3" fitHeight="104.0" fitWidth="152.0" layoutX="557.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/empty.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
          </image>
       </ImageView>
       <ImageView fx:id="emptyImage4" fitHeight="104.0" fitWidth="152.0" layoutX="414.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/empty.png" />
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
          </image>
       </ImageView>
       <VBox fx:id="aboutHotelBox" layoutX="38.0" layoutY="368.0" prefHeight="130.0" prefWidth="357.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20;">
@@ -55,25 +55,25 @@
                <children>
                   <ImageView fx:id="swimmingPoolImage" fitHeight="19.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/swimming.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/swimming.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="swimmingPoolLabel" text="Open pool" />
                   <ImageView fx:id="spaImage" fitHeight="19.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/SPA-center.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/SPA-center.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="spaLabel" text="SPA-center" />
                   <ImageView fx:id="barImage" fitHeight="21.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Bar.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Bar.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="barLabel" text="Bar" />
                   <ImageView fx:id="restaurantImage" fitHeight="21.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Restaurant.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Restaurant.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="restaurantLabel" text="Restaurant" />
@@ -83,19 +83,19 @@
                <children>
                   <ImageView fx:id="breakfastImage" fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Breakfast included.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Breakfast included.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="breakfastLabel" text="Breakfast included" />
                   <ImageView fx:id="wifiImage" fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Wi-Fi.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Wi-Fi.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="wifiLabel" text="Wi-Fi" />
                   <ImageView fx:id="roomServiceImage" fitHeight="23.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Room service.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Room service.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="roomServiceLabel" text="Room service" />
@@ -105,19 +105,19 @@
                <children>
                   <ImageView fx:id="coastalImage" fitHeight="110.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/coastal.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/coastal.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="coastalLabel" text="First coastal" />
                   <ImageView fx:id="fitnessImage" fitHeight="21.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Fitness Center.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Fitness Center.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="fitnessLabel" text="Fitness Center" />
                   <ImageView fx:id="airportShuttleImage" fitHeight="19.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/Airport shuttle.png" />
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Airport shuttle.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="airportShuttleLabel" text="Airport shuttle" />
