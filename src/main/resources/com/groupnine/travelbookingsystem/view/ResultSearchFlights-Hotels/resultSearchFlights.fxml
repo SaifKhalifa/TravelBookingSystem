@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1280.0" fx:controller="com.groupnine.travelbookingsystem.controller.ResultSearchFlightsController" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1280.0" fx:controller="com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="91.0" layoutY="52.0" prefHeight="87.0" prefWidth="910.0" style="-fx-background-color: #4445; -fx-background-radius: 99;" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="52.0">
          <children>
@@ -34,7 +34,7 @@
       <AnchorPane fx:id="popularDestinationCard" layoutX="123.0" layoutY="256.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="destinationImageView" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="destinationImageAnchorPane" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss1.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="destinationImageAnchorPane" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss1.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField" layoutY="131.0" style="-fx-background-color: non;" text="Paris">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -48,12 +48,12 @@
             <Circle fx:id="ratingCircle" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView"  fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png"></Image>
+                  <Image url="@../../../../../../../../../star.png"></Image>
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Paris" />
@@ -91,7 +91,7 @@
       <AnchorPane fx:id="card2" layoutX="502.0" layoutY="256.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="imageView2" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="backgroundImage2" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss2.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="backgroundImage2" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss2.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField2" layoutY="131.0" style="-fx-background-color: non;" text="London">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -105,12 +105,12 @@
             <Circle fx:id="ratingCircle2" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView2" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView2" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png"></Image>
+                  <Image url="@../../../../../../../../../star.png"></Image>
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField2" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - London" />
@@ -141,7 +141,7 @@
       <AnchorPane fx:id="card3" layoutX="914.0" layoutY="256.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="imageView3" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="backgroundImage3" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss3.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="backgroundImage3" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss3.png); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField3" layoutY="131.0" style="-fx-background-color: non;" text="Maldive">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -155,12 +155,12 @@
             <Circle fx:id="ratingCircle3"  fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView3" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView3" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png" />
+                  <Image url="@../../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField3" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Maldive" />
@@ -191,7 +191,7 @@
       <AnchorPane fx:id="card4"  layoutX="914.0" layoutY="543.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="imageView4" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="backgroundImage4" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss6.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="backgroundImage4" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss6.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField4" layoutY="131.0" style="-fx-background-color: non;" text="Dubai">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -205,12 +205,12 @@
             <Circle fx:id="ratingCircle4" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView4" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView4" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png" />
+                  <Image url="@../../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField4" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Dubai" />
@@ -241,7 +241,7 @@
       <AnchorPane fx:id="card5" layoutX="123.0" layoutY="543.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="imageView5" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="backgroundImage5" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss5.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="backgroundImage5" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss5.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField5" layoutY="131.0" style="-fx-background-color: non;" text="Istanbul">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -255,12 +255,12 @@
             <Circle fx:id="ratingCircle5" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView5" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView5" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png" />
+                  <Image url="@../../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField5" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Istanbul" />
@@ -291,7 +291,7 @@
       <AnchorPane fx:id="card6" layoutX="502.0" layoutY="543.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
             <ImageView fx:id="imageView6" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <AnchorPane fx:id="backgroundImage6" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(img/ss4.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
+            <AnchorPane fx:id="backgroundImage6" layoutY="-1.0" prefHeight="132.0" prefWidth="276.0" style="-fx-background-image: url(../../../../../img/ss4.jpg); -fx-background-repeat: no-repeat; -fx-background-radius: 20px; -fx-background-size: cover;" />
             <TextField fx:id="destinationNameField6"  layoutY="131.0" style="-fx-background-color: non;" text="Madrid">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -305,12 +305,12 @@
             <Circle fx:id="ratingCircle6" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView6" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pointer2.png" />
+                  <Image url="@../../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView6" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../star.png" />
+                  <Image url="@../../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField6" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Madrid" />

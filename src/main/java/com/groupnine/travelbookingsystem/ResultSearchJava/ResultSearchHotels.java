@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.ResultSearchJava;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,18 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 
-public class ResultSearchFlights extends Application {
+public class ResultSearchHotels extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/resultSearchFlights.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setTitle("Result Search Flights");
+        primaryStage.setTitle("Result Search Hotels");
         primaryStage.setScene(new Scene(root, 1280, 800));
         primaryStage.show();
     }
@@ -27,4 +26,3 @@ public class ResultSearchFlights extends Application {
     }
 
 }
-

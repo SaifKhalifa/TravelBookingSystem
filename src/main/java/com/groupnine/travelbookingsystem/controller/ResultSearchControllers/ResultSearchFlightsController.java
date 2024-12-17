@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +11,10 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
-import java.awt.*;
 import java.io.IOException;
 
 public class ResultSearchFlightsController {
