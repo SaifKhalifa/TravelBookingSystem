@@ -118,7 +118,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.groupnine.travelbookingsystem/com.groupnine.travelbookingsystem.HelloApplication
+                                com.groupnine.travelbookingsystem/com.groupnine.travelbookingsystem.MainApplication_DEFAULT
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
