@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class BookingHotel {
+public class BookingHotelControoler {
 
     @FXML
     private TextField hotelNameField;
@@ -35,7 +35,6 @@ public class BookingHotel {
     @FXML
     private Label checkInDateLabel;
 
-    // Method to handle booking button click
     @FXML
     private void onBookingButtonClick() {
 
@@ -44,14 +43,12 @@ public class BookingHotel {
         String checkInDate = checkInDateField.getText();
         String checkOutDate = checkOutDateField.getText();
 
-        // Print the entered details in the console
         System.out.println("Hotel Name: " + hotelName);
         System.out.println("Customer Name: " + customerName);
         System.out.println("Check-In Date: " + checkInDate);
         System.out.println("Check-Out Date: " + checkOutDate);
         System.out.println("Button clicked!");
 
-        // Show the booking confirmation in an alert
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Booking Confirmation");
         alert.setHeaderText("Booking Successful!");
@@ -59,7 +56,6 @@ public class BookingHotel {
         alert.showAndWait();
     }
 
-    // Initialize method to set up the event handler for the button
     @FXML
     public void initialize() {
         bookingButton.setOnAction(event -> onBookingButtonClick());

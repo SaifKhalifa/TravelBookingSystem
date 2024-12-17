@@ -80,10 +80,9 @@ public class DetailsController {
     @FXML
     private Label finalArrivalDateLabel;
 
-    // Initialize the controller
+
     @FXML
     private void initialize() {
-        // Set default values for labels
         departureLabel.setText("Departs on Wednesday, 16 June");
         arrivalLabel.setText("Arrives on Thursday, 17 June");
         durationLabel.setText("Duration - 18hr 40m");
@@ -91,20 +90,16 @@ public class DetailsController {
         departureAirportLabel.setText("Murtala International Airport, Lagos (LOS)");
         arrivalAirportLabel.setText("Palestine Airport, Palestine (PAL)");
 
-        // Load the airline logo image
         airlineLogo.setImage(new Image(getClass().getResource("/images/ta.png").toExternalForm()));
 
-        // Add event handling for the Book Now button
         bookNowButton.setOnAction(event -> handleBookNow());
     }
 
     private void handleBookNow() {
         try {
-            // Load the FXML for the booking window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingFlight.fxml"));
             Scene scene = new Scene(loader.load());
 
-            // Create a new Stage (window) for the booking window
             Stage stage = new Stage();
             stage.setTitle("Booking Hotel");
             stage.setScene(scene);

@@ -45,20 +45,16 @@ public class HotelController {
     public void handleBookNowButton() {
         System.out.println("Button clicked: Booking now!");
 
-        // فتح نافذة جديدة (الصفحة المنبثقة) عند الضغط على الزر
         try {
-            // تحميل الصفحة المنبثقة
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingHotel.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
 
-            // إظهار النافذة المنبثقة
             stage.setTitle("Booking Hotel");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            // معالجة الأخطاء إذا حدثت أثناء تحميل الصفحة المنبثقة
         }
     }
 
