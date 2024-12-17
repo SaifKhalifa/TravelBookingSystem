@@ -20,7 +20,7 @@
 
 <BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.HotelInfoController">
     <stylesheets>
-        <URL value="@AdminPanelHotel.css" />
+        <URL value="@../Assets/css/AdminPanelHotel.css" />
     </stylesheets>
 
     <!-- Main Content -->
@@ -33,7 +33,7 @@
                   <children>
                      <ImageView fitHeight="29.0" fitWidth="26.0" onMouseClicked="#GoBackIcon" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@back.png" />
+                           <Image url="@../Assets/Imgs/back.png" />
                         </image>
                         <HBox.margin>
                            <Insets left="5.0" top="12.0" />

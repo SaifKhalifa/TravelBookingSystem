@@ -14,10 +14,12 @@
 
 <BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.ManageHotelsListController">
     <stylesheets>
-        <URL value="@AdminPanelHotel.css" />
+        <URL value="@../Assets/css/AdminPanelHotel.css" />
     </stylesheets>
     <!-- Left Navigation Pane -->
     <left>
+
+<!--        <fx:include source="Sidebar.fxml" />-->
         <VBox alignment="CENTER" layoutX="130.0" layoutY="349.0" prefWidth="258.0" spacing="15" style="-fx-background-color: #395A7F; -fx-background-color: #CCD2D9; -fx-padding: 10;">
 
         </VBox>
