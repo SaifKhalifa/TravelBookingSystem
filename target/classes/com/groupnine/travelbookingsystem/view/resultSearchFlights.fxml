@@ -48,12 +48,12 @@
             <Circle fx:id="ratingCircle" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView"  fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/star.png"></Image>
+                  <Image url="@../../../../../../../../star.png"></Image>
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Paris" />
@@ -105,12 +105,12 @@
             <Circle fx:id="ratingCircle2" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView2" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView2" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/star.png"></Image>
+                  <Image url="@../../../../../../../../star.png"></Image>
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField2" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - London" />
@@ -155,12 +155,12 @@
             <Circle fx:id="ratingCircle3"  fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView3" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView3" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField3" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Maldive" />
@@ -205,12 +205,12 @@
             <Circle fx:id="ratingCircle4" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView4" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView4" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField4" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Dubai" />
@@ -255,12 +255,12 @@
             <Circle fx:id="ratingCircle5" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView5" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView5" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/star.png" />
+                  <Image url="@../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField5" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Istanbul" />
@@ -305,12 +305,12 @@
             <Circle fx:id="ratingCircle6" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="ratingPointerImageView6" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../pointer2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="starImageView6" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/img/pointer2.png" />
+                  <Image url="@../../../../../../../../star.png" />
                </image>
             </ImageView>
             <TextField fx:id="destinationInfoField6" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Palestine - Madrid" />

@@ -2,14 +2,62 @@ package com.groupnine.travelbookingsystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.image.Image;
+
+
+import java.awt.*;
 
 public class ResultSearchFlightsController {
 
+    public ImageView destinationImageView;
+    public AnchorPane destinationImageAnchorPane;
+    public TextField tripTypeField2;
+    public DropShadow card2DropShadow;
+    public AnchorPane card3;
+    public ImageView imageView3;
+    public AnchorPane backgroundImage3;
+    public TextField destinationNameField3;
+    public ImageView ratingPointerImageView3;
+    public Circle ratingCircle3;
+    public ImageView starImageView3;
+    public Button roundTripButton3;
+    public DropShadow card3DropShadow;
+    public AnchorPane card4;
+    public ImageView imageView4;
+    public AnchorPane backgroundImage4;
+    public TextField destinationNameField4;
+    public ImageView ratingPointerImageView4;
+    public Circle ratingCircle4;
+    public ImageView starImageView4;
+    public Button roundTripButton4;
+    public DropShadow card4DropShadow;
+    public AnchorPane card5;
+    public ImageView imageView5;
+    public AnchorPane backgroundImage5;
+    public TextField destinationNameField5;
+    public TextField ratingField5;
+    public ImageView ratingPointerImageView5;
+    public Circle ratingCircle5;
+    public ImageView starImageView5;
+    public Button roundTripButton5;
+    public AnchorPane card6;
+    public ImageView imageView6;
+    public AnchorPane backgroundImage6;
+    public TextField destinationNameField6;
+    public TextField ratingField6;
+    public Circle ratingCircle6;
+    public ImageView ratingPointerImageView6;
+    public ImageView starImageView6;
+    public Button roundTripButton6;
+    public TextField tripTypeField6;
     @FXML
     private Button myBookingButton;
 
@@ -103,41 +151,151 @@ public class ResultSearchFlightsController {
     @FXML
     private DropShadow cardDropShadow;
 
-    // Initialize method to set up any initial behavior or properties
-    @FXML
+    // Initializes the controller
     public void initialize() {
-        // Set comboBox1 items
+        // Initialize ComboBoxes
         comboBox1.getItems().addAll("Flights", "Hotels");
+        comboBox2.getItems().addAll("Signup", "Login");
 
-        // Set comboBox2 items
-        comboBox2.getItems().addAll("Sign Up", "Log In");
-
-        // Add default event handlers
-        setButtonActions();
+        // Example card 1 setup
+        setCard1();
+        setCard2();
+        setCard3();
+        setCard4();
+        setCard5();
+        setCard6();
     }
 
-    private void setButtonActions() {
+
+    private void setCard1() {
+        destinationImageView.setImage(new Image(getClass().getResource("/img/ss1.png").toExternalForm()));
+        ratingPointerImageView.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton.setOnAction(event -> handleCard1Button());
+    }
+
+    private void setCard2() {
+        imageView2.setImage(new Image(getClass().getResource("/img/ss2.png").toExternalForm()));
+        ratingPointerImageView2.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView2.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton2.setOnAction(event -> handleCard2Button());
+    }
+
+    private void setCard3() {
+        imageView3.setImage(new Image(getClass().getResource("/img/ss3.png").toExternalForm()));
+        ratingPointerImageView3.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView3.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton3.setOnAction(event -> handleCard3Button());
+    }
+
+    private void setCard4() {
+        imageView4.setImage(new Image(getClass().getResource("/img/ss4.jpg").toExternalForm()));
+        ratingPointerImageView4.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView4.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton4.setOnAction(event -> handleCard4Button());
+    }
+
+    private void setCard5() {
+        imageView5.setImage(new Image(getClass().getResource("/img/ss5.jpg").toExternalForm()));
+        ratingPointerImageView5.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView5.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton5.setOnAction(event -> handleCard5Button());
+    }
+
+    private void setCard6() {
+        imageView6.setImage(new Image(getClass().getResource("/img/ss6.jpg").toExternalForm()));
+        ratingPointerImageView6.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView6.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        roundTripButton6.setOnAction(event -> handleCard6Button());
+    }
+
+
+
+
+
+
+
+
+  /*  private void setButtonActions() {
         myBookingButton.setOnAction(event -> handleMyBooking());
         profileButton.setOnAction(event -> handleProfile());
         roundTripButton.setOnAction(event -> handleRoundTrip());
         roundTripButton2.setOnAction(event -> handleRoundTrip());
+    }*/
+
+    /// ////////////////////////////
+    // Handle button click for card 1
+    private void handleCard1Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
     }
 
-    private void handleMyBooking() {
-        System.out.println("My Booking button clicked.");
-        // Add functionality to navigate to the 'My Booking' page
+    // Handle button click for card 2
+    private void handleCard2Button() {
+        System.out.println("Card 2 button clicked");
+        // Implement logic when the user interacts with the button
     }
 
-    private void handleProfile() {
-        System.out.println("Profile button clicked.");
-        // Add functionality to navigate to the 'Profile' page
+    private void handleCard3Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
     }
 
-    private void handleRoundTrip() {
-        System.out.println("Round Trip button clicked.");
-        // Add functionality for round trip action
+    private void handleCard4Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
     }
 
-    // Add more methods for other interactions as needed
+    private void handleCard5Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    private void handleCard6Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    // Handle "My Booking" button
+    @FXML
+    private void handleMyBookingButton() {
+        System.out.println("My Booking button clicked");
+        // Navigate to My Booking page or show booking details
+    }
+
+    // Handle "Profile" button
+    @FXML
+    private void handleProfileButton() {
+        System.out.println("Profile button clicked");
+        // Navigate to Profile page or show profile details
+    }
+
+    // Handle "Home" button
+    @FXML
+    private void handleHomeButton() {
+        System.out.println("Home button clicked");
+        // Navigate to the homepage
+    }
+
+    // Handle ComboBox selection changes
+    @FXML
+    private void handleComboBox1Action() {
+        String selectedOption = comboBox1.getValue();
+        System.out.println("ComboBox1 selected: " + selectedOption);
+        // Implement logic based on selected option
+    }
+
+    @FXML
+    private void handleComboBox2Action() {
+        String selectedOption = comboBox2.getValue();
+        System.out.println("ComboBox2 selected: " + selectedOption);
+        // Implement logic based on selected option
+    }
 }
 

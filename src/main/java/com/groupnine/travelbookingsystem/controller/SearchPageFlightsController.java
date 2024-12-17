@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 //
@@ -23,6 +24,7 @@ import java.io.File;
 
 public class SearchPageFlightsController {
 
+    public ImageView backG;
     @FXML
     private Label welcomeText;
 
@@ -30,9 +32,6 @@ public class SearchPageFlightsController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
-
-
-
 
 
     // Defining the UI components with fx:id
@@ -85,7 +84,7 @@ public class SearchPageFlightsController {
     public AnchorPane btnFlightsPane;
 
     @FXML
-    public AnchorPane backGround;
+    public AnchorPane backGroundd;
 
 
     @FXML
@@ -98,36 +97,36 @@ public class SearchPageFlightsController {
         // For example, filling the ComboBoxes with values:
         cbFlightsHotels.getItems().addAll("Flights", "Hotels");
         cbSignupLogin.getItems().addAll("Sign Up", "Login");
-        cbDestination.getItems().addAll("New York", "London", "Paris", "Madrid", "Dobui" , "Maldivs");  // Example destinations
-        cbPassengers.getItems().addAll("1", "2", "3", "4", "5" , "6" , "More than 6");
+        cbDestination.getItems().addAll("New York", "London", "Paris", "Madrid", "Dobui", "Maldivs");  // Example destinations
+        cbPassengers.getItems().addAll("1", "2", "3", "4", "5", "6", "More than 6");
         cbCheckIn.getItems().addAll("2024-12-01", "2024-12-15", "2024-12-30");
         cbCheckOut.getItems().addAll("2024-12-05", "2024-12-20", "2024-12-30");
 
-        // Example event handlers for buttons
+        /* Example event handlers for buttons
         btnMyBooking.setOnAction(event -> handleMyBooking());
         btnProfile.setOnAction(event -> handleProfile());
         btnHome.setOnAction(event -> handleHome());
         btnFlights.setOnAction(event -> handleFlights());
         btnHotels.setOnAction(event -> handleHotels());
         btnSearch.setOnAction(event -> handleSearch());
-        //
+        */
 
-       try {
-            Image backgroundImage = new Image(getClass().getResource("./img/sf.jpeg").toExternalForm());
+        /*******try {
+         Image backgroundImage = new Image(getClass().getResource("./img/sf.jpeg").toExternalForm());
+         //backGroundd.setBackground(new Image(getClass().getResource("/img/s3.png").toExternalForm()));
+         // Create a BackgroundImage object
+         BackgroundImage background = new BackgroundImage(backgroundImage,
+         BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
+         BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
+         BackgroundPosition.CENTER,     // Center the image
+         BackgroundSize.DEFAULT);       // Scale to the default size
 
-            // Create a BackgroundImage object
-            BackgroundImage background = new BackgroundImage(backgroundImage,
-                    BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
-                    BackgroundRepeat.NO_REPEAT,    // Do not repeat the image
-                    BackgroundPosition.CENTER,     // Center the image
-                    BackgroundSize.DEFAULT);       // Scale to the default size
-
-            // Set the background to the AnchorPane
-            backGround.setBackground(new Background(background));
-        } catch (NullPointerException e) {
-            System.out.println("Image not found!");
-            e.printStackTrace();
-        }
+         // Set the background to the AnchorPane
+         backGroundd.setBackground(new Background(background));
+         } catch (NullPointerException e) {
+         System.out.println("Image not found!");
+         e.printStackTrace();
+         }*/
 
        /* File file = new File("C:/Users/HP/Desktop/TravelBookingSystem/src/main/resources/img/sf.jpeg");
         if (!file.exists()) {
@@ -137,45 +136,44 @@ public class SearchPageFlightsController {
         }*/
 
 
+        // Event handler methods for buttons
+      /*  private void handleMyBooking () {
+            // Logic for My Booking button click
+            System.out.println("My Booking clicked");
+        }
+
+        private void handleProfile () {
+            // Logic for Profile button click
+            System.out.println("Profile clicked");
+        }
+
+        private void handleHome () {
+            // Logic for Home button click
+            System.out.println("Home clicked");
+        }
+
+        private void handleFlights () {
+            // Logic for Flights button click
+            System.out.println("Flights clicked");
+        }
+
+        private void handleHotels () {
+            // Logic for Hotels button click
+            System.out.println("Hotels clicked");
+        }
+
+        private void handleSearch () {
+            // Logic for Search button click
+            System.out.println("Search clicked");
+
+            // Example: Get selected ComboBox values
+            String destination = cbDestination.getValue();
+            String passengers = cbPassengers.getValue();
+            String checkIn = cbCheckIn.getValue();
+            String checkOut = cbCheckOut.getValue();
+
+            System.out.println("Searching for " + passengers + " passengers to " + destination + " from " + checkIn + " to " + checkOut);
+        }*/
+
     }
-
-    // Event handler methods for buttons
-    private void handleMyBooking() {
-        // Logic for My Booking button click
-        System.out.println("My Booking clicked");
-    }
-
-    private void handleProfile() {
-        // Logic for Profile button click
-        System.out.println("Profile clicked");
-    }
-
-    private void handleHome() {
-        // Logic for Home button click
-        System.out.println("Home clicked");
-    }
-
-    private void handleFlights() {
-        // Logic for Flights button click
-        System.out.println("Flights clicked");
-    }
-
-    private void handleHotels() {
-        // Logic for Hotels button click
-        System.out.println("Hotels clicked");
-    }
-
-    private void handleSearch() {
-        // Logic for Search button click
-        System.out.println("Search clicked");
-
-        // Example: Get selected ComboBox values
-        String destination = cbDestination.getValue();
-        String passengers = cbPassengers.getValue();
-        String checkIn = cbCheckIn.getValue();
-        String checkOut = cbCheckOut.getValue();
-
-        System.out.println("Searching for " + passengers + " passengers to " + destination + " from " + checkIn + " to " + checkOut);
-    }
-
 }

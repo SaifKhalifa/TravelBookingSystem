@@ -3,11 +3,13 @@ package com.groupnine.travelbookingsystem.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class SearchPageHotelsController {
 
+    public ImageView backGG;
     // FXML fields to bind the UI components
     @FXML private AnchorPane backGround;
     @FXML private Button btnMyBooking;

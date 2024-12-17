@@ -1,16 +1,68 @@
 package com.groupnine.travelbookingsystem.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class ResultSearchHotelsController {
 
     @FXML public AnchorPane card1Background;
+    public Label flyStayLabel;
+    public Slider verticalSlider;
+    public Circle card1Circle;
+    public ImageView card1PointerImageView;
+    public ImageView card1StarImageView;
+    public AnchorPane backgroundPane2;
+    public Circle circle2;
+    public AnchorPane backgroundPane3;
+    public TextField ratingTextField3;
+    public ImageView pointerImageView3;
+    public ImageView starImageView3;
+    public TextField locationTextField3;
+    public TextField detailsTextField3;
+    public TextField priceTextField3;
+    public Button button3;
+    public AnchorPane card4AnchorPane;
+    public ImageView imageView4;
+    public AnchorPane backgroundPane4;
+    public TextField textField4;
+    public TextField ratingTextField4;
+    public Circle circle4;
+    public ImageView pointerImageView4;
+    public TextField locationTextField4;
+    public ImageView starImageView4;
+    public TextField detailsTextField4;
+    public TextField priceTextField4;
+    public Button button4;
+    public AnchorPane card5AnchorPane;
+    public ImageView imageView5;
+    public AnchorPane backgroundPane5;
+    public TextField textField5;
+    public TextField ratingTextField5;
+    public ImageView pointerImageView5;
+    public ImageView starImageView5;
+    public TextField locationTextField5;
+    public Button button5;
+    public AnchorPane card6AnchorPane;
+    public ImageView imageView6;
+    public AnchorPane backgroundPane6;
+    public ImageView pointerImageView6;
+    public ImageView starImageView6;
+    public Button button6;
+    public Circle circle3;
+    public DropShadow dropShadow3;
     @FXML private Button myBookingButton;
     @FXML private Button profileButton;
     @FXML private Button homeButton;
@@ -37,6 +89,8 @@ public class ResultSearchHotelsController {
     @FXML private TextField detailsTextField2;
     @FXML private TextField priceTextField2;
     @FXML private Button button2;
+    @FXML private ImageView pointerImageView2;
+    @FXML private ImageView starImageView2;
 
     @FXML private AnchorPane card3AnchorPane;
     @FXML private ImageView imageView3;
@@ -48,59 +102,77 @@ public class ResultSearchHotelsController {
         comboBox1.getItems().addAll("Flights", "Hotels");
         comboBox2.getItems().addAll("Signup", "Login");
 
-        // Set default values for text fields
-        suggestedStayTextField.setText("Suggested Stay");
-        chooseFromTextField.setText("Choose From The Top Rated Stays");
-
         // Example card 1 setup
         setCard1();
         setCard2();
         setCard3();
+        setCard4();
+        setCard5();
+        setCard6();
     }
 
+
+    //card 1
     private void setCard1() {
-        // Set data for card 1
-        card1TitleTextField.setText("Big White Village");
-        card1RatingTextField.setText("4.7");
-        card1LocationTextField.setText("Maui Banayan, HI");
-        card1DetailsTextField.setText("6 Max - 5 Rooms - 3 Bathroom");
-        card1PriceTextField.setText("145$");
-
-        // Set the image for card 1
-        Image card1Image = new Image(getClass().getResourceAsStream("/img/s1.png"));
-        card1ImageView.setImage(card1Image);
-
+        card1ImageView.setImage(new Image(getClass().getResource("/img/s1.png").toExternalForm()));
+        card1PointerImageView.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        card1StarImageView.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
         // Set button action
         card1Button.setOnAction(event -> handleCard1Button());
     }
 
+    //card2
     private void setCard2() {
-        // Set data for card 2
-        textField1.setText("Outstanding House");
-        ratingTextField2.setText("4.9");
-        locationTextField2.setText("Maui Banayan, HI");
-        detailsTextField2.setText("4 Max - 3 Rooms - 2 Bathrooms");
-        priceTextField2.setText("140$");
 
-        // Set the image for card 2
-        Image card2Image = new Image(getClass().getResourceAsStream("/img/s3.png"));
-        imageView2.setImage(card2Image);
-
-
+        imageView2.setImage(new Image(getClass().getResource("/img/s2.png").toExternalForm()));
+        pointerImageView2.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView2.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
         // Set button action
         button2.setOnAction(event -> handleCard2Button());
+
     }
+
+   //card3
 
     private void setCard3() {
-        // Set data for card 3
-        textField3.setText("Beautiful Escape");
-        // Add more details if necessary
-
-        // Set the image for card 3
-        Image card3Image = new Image(getClass().getResourceAsStream("/img/s2.png"));
-        imageView3.setImage(card3Image);
+        imageView3.setImage(new Image(getClass().getResource("/img/s3.png").toExternalForm()));
+        pointerImageView3.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView3.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        button3.setOnAction(event -> handleCard3Button());
     }
 
+    //card4
+    private void setCard4() {
+        imageView4.setImage(new Image(getClass().getResource("/img/s5.jpg").toExternalForm()));
+        pointerImageView4.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView4.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        button4.setOnAction(event -> handleCard4Button());
+    }
+
+    //card5
+    private void setCard5() {
+        imageView5.setImage(new Image(getClass().getResource("/img/s6.jpg").toExternalForm()));
+        pointerImageView5.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView5.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        button5.setOnAction(event -> handleCard5Button());
+    }
+
+    //card6
+    private void setCard6() {
+        imageView6.setImage(new Image(getClass().getResource("/img/s7.jpg").toExternalForm()));
+        pointerImageView6.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
+        starImageView6.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        // Set button action
+        button6.setOnAction(event -> handleCard6Button());
+    }
+
+
+
+
+    /// ////////////////////////////
     // Handle button click for card 1
     private void handleCard1Button() {
         System.out.println("Card 1 button clicked");
@@ -110,6 +182,26 @@ public class ResultSearchHotelsController {
     // Handle button click for card 2
     private void handleCard2Button() {
         System.out.println("Card 2 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    private void handleCard3Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    private void handleCard4Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    private void handleCard5Button() {
+        System.out.println("Card 1 button clicked");
+        // Implement logic when the user interacts with the button
+    }
+
+    private void handleCard6Button() {
+        System.out.println("Card 1 button clicked");
         // Implement logic when the user interacts with the button
     }
 
@@ -128,11 +220,27 @@ public class ResultSearchHotelsController {
     }
 
     // Handle "Home" button
-    @FXML
+   /* @FXML
     private void handleHomeButton() {
         System.out.println("Home button clicked");
         // Navigate to the homepage
-    }
+    }*/
+
+
+   /* @FXML
+    private void handleHomeButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/home.fxml"));
+            Scene homeScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(homeScene);
+            currentStage.setTitle("Home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*****////
+
+
 
     // Handle ComboBox selection changes
     @FXML
