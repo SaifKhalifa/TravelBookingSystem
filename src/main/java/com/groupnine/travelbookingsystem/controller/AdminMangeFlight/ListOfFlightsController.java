@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -149,7 +149,7 @@ public class ListOfFlightsController {
     public void navigateToAddFlight() {
         System.out.println("Navigating to AddFlight...");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AddFlight.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/AddFlight.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();

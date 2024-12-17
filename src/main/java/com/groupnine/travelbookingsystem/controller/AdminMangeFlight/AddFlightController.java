@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,7 +48,7 @@ public class AddFlightController {
     private void navigateToListOfFlights() {
         System.out.println("Navigating to List Of Flights...");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ListFlights.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -64,6 +64,7 @@ public class AddFlightController {
             System.out.println("Error: Unable to load ListFlights.fxml");
         }
     }
+
 
     }
 

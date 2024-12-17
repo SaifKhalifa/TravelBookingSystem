@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="20" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #385A7F;" vgap="15" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AddFlightController">
+<GridPane alignment="CENTER" hgap="20" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #385A7F;" vgap="15" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.AddFlightController">
     <padding>
         <Insets bottom="20" left="30" right="30" top="20" />
     </padding>
