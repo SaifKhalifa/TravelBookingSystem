@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.groupnine.travelbookingsystem.controller.HotelBookingController">
+            fx:controller="com.groupnine.travelbookingsystem.controller.BookingController.HotelBookingController">
     <center>
         <VBox spacing="10" alignment="TOP_CENTER">
             <Region style="-fx-background-color: #385A7F; -fx-pref-height: 10px;"/>

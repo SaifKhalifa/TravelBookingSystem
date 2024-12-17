@@ -2,9 +2,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.FlightBookingController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.BookingController.FlightBookingController">
     <left>
-        <fx:include source="Sidebar.fxml" />
+        <fx:include source="../Sidebar/Sidebar.fxml" />
     </left>
 
     <center>

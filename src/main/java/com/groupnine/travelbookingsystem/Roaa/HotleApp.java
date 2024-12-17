@@ -1,4 +1,5 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.Roaa;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,11 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class FlightBookingApp extends Application {
-
+public class HotleApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/FlightBooking.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Booking/Hotelbooking.fxml"));
         Parent root = loader.load();
 
         primaryStage.setTitle("Agent Profile Management");
@@ -23,3 +23,4 @@ public class FlightBookingApp extends Application {
         launch(args);
     }
 }
+

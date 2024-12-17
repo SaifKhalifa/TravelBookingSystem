@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.HomeController;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;

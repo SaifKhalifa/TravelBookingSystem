@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.Sana;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ public class SidebarApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/sidebar.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Sidebar/Sidebar.fxml"));
             Parent root = loader.load();
 
             Screen screen = Screen.getPrimary();

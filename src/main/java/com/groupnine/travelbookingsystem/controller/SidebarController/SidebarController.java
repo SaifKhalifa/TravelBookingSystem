@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.SidebarController;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
@@ -17,7 +17,7 @@ public class SidebarController {
     private void handleHomeClick(MouseEvent event) {
         try {
             Stage stage = (Stage) root.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/com/groupnine/travelbookingsystem/view/Homepage.fxml")));
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/com/groupnine/travelbookingsystem/view/Home/Homepage.fxml")));
             stage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,7 +28,7 @@ public class SidebarController {
     private void handleDashboardClick(MouseEvent event) {
         try {
             Stage stage = (Stage) root.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/com/groupnine/travelbookingsystem/view/FlightBooking.fxml")));
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/com/groupnine/travelbookingsystem/view/Booking/FlightBooking.fxml")));
             stage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();

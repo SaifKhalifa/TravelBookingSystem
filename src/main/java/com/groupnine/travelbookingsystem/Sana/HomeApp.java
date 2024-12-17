@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.Sana;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class HomeApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Homepage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Home/Homepage.fxml"));
         Parent root = loader.load(); // Cast to Parent, not AnchorPane
 
         // Create Scene and set it

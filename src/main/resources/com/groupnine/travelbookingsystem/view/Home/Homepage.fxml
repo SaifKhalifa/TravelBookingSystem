@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootPane" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomepageController">
+<BorderPane fx:id="rootPane" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomeController.HomepageController">
    <left>
-      <fx:include source="Sidebar.fxml" />
+      <fx:include source="../Sidebar/Sidebar.fxml" />
    </left>
    <right>
       <StackPane>
          <ImageView fx:id="backgroundImage" fitHeight="750.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../../../../img/img1.jpeg" />
+               <Image url="@../../../../../img/Home/img1.jpeg" />
             </image>
          </ImageView>
          <VBox alignment="CENTER" prefHeight="698.0" prefWidth="645.0" spacing="10.0">

@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.BookingController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
