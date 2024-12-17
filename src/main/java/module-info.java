@@ -14,6 +14,14 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem;
     exports com.groupnine.travelbookingsystem.controller;
     opens com.groupnine.travelbookingsystem.controller to javafx.fxml;
-    exports com.groupnine.travelbookingsystem.controller.authentication;
-    opens com.groupnine.travelbookingsystem.controller.authentication to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.controller.BookingController;
+    opens com.groupnine.travelbookingsystem.controller.BookingController to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.controller.HomeController;
+    opens com.groupnine.travelbookingsystem.controller.HomeController to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.controller.SidebarController;
+    opens com.groupnine.travelbookingsystem.controller.SidebarController to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.Sana;
+    opens com.groupnine.travelbookingsystem.Sana to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.Roaa;
+    opens com.groupnine.travelbookingsystem.Roaa to javafx.fxml;
 }
