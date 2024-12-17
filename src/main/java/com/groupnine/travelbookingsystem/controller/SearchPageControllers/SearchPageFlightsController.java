@@ -162,13 +162,13 @@ public class SearchPageFlightsController {
     @FXML
     private void handleFlightsButton() {
         System.out.println("Flights button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/flights.fxml", "Flights");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageFlights.fxml", "Flights");
     }
 
     @FXML
     private void handleHotelsButton() {
         System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/hotels.fxml", "Hotels");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageHotels.fxml", "Hotels");
     }
 
     @FXML
