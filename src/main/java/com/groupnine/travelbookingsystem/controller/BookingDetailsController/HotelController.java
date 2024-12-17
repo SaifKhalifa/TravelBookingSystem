@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +46,7 @@ public class HotelController {
         System.out.println("Button clicked: Booking now!");
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingHotel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingHotel.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
 

@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -90,14 +90,14 @@ public class DetailsController {
         departureAirportLabel.setText("Murtala International Airport, Lagos (LOS)");
         arrivalAirportLabel.setText("Palestine Airport, Palestine (PAL)");
 
-        airlineLogo.setImage(new Image(getClass().getResource("/images/ta.png").toExternalForm()));
+        airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatailsFlight/tayara.png").toExternalForm()));
 
         bookNowButton.setOnAction(event -> handleBookNow());
     }
 
     private void handleBookNow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingFlight.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingFlight.fxml"));
             Scene scene = new Scene(loader.load());
 
             Stage stage = new Stage();
