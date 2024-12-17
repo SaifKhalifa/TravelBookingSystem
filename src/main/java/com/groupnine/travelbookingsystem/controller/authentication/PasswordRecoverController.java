@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.authentication;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import javafx.event.ActionEvent;

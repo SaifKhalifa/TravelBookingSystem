@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.controller;
+package com.groupnine.travelbookingsystem.controller.authentication;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
