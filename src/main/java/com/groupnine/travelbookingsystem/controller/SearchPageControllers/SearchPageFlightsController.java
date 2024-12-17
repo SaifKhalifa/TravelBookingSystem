@@ -174,7 +174,7 @@ public class SearchPageFlightsController {
     @FXML
     private void handleSearchButton() {
         System.out.println("Search button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/search_results.fxml", "Search Results");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml", "Search Results");
     }
 
     @FXML
