@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.BookingDetailsController.HotelController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="827.0" style="-fx-background-color: white;">
+
+   <children>
+      <ImageView fx:id="starsImage" fitHeight="32.0" fitWidth="109.0" layoutX="37.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/stars.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hotelTitle" layoutX="44.0" layoutY="101.0" style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Condo To The Beach" />
+      <ImageView fx:id="hotelImage" fitHeight="220.0" fitWidth="357.0" layoutX="44.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: circal;">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/hotel.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="emptyImage1" fitHeight="104.0" fitWidth="152.0" layoutX="413.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="emptyImage2" fitHeight="104.0" fitWidth="166.0" layoutX="557.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="emptyImage3" fitHeight="104.0" fitWidth="152.0" layoutX="557.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="emptyImage4" fitHeight="104.0" fitWidth="152.0" layoutX="414.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/empty.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="aboutHotelBox" layoutX="38.0" layoutY="368.0" prefHeight="130.0" prefWidth="357.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20;">
+         <children>
+            <Label fx:id="aboutHotelLabel" style="-fx-font-weight: bold;" text="     About the hotel" />
+            <Label fx:id="hotelDescription" prefHeight="98.0" prefWidth="363.0" text="Lorem ipsum dolor sit amet consectetur. Molestie sit diam volutpat sed fusce. At commodo euismod phasellus sed dictumst. Egestas nec duis tempus nunc posuere non. Praesent in consectetur suspendisse ipsum vitae. Tincidunt fringilla aenean amet blandit. Ultricies ut pretium viverra malesuada sem in at praesent. Ac dictum rhoncus amet maecenas in non vulputate. Integer sed consectetur lobortis praesent " wrapText="true" />
+         </children>
+      </VBox>
+      <VBox fx:id="amenityBox" layoutX="409.0" layoutY="367.0" prefHeight="130.0" prefWidth="305.0" style="-fx-border-color: black; -fx-border-radius: 20;">
+         <children>
+            <Label fx:id="amenityLabel" style="-fx-font-weight: bold;" text="     Amenity" />
+            <HBox fx:id="firstAmenityRow" prefHeight="38.0" prefWidth="224.0">
+               <children>
+                  <ImageView fx:id="swimmingPoolImage" fitHeight="19.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/swimming.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="swimmingPoolLabel" text="Open pool" />
+                  <ImageView fx:id="spaImage" fitHeight="19.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/SPA-center.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="spaLabel" text="SPA-center" />
+                  <ImageView fx:id="barImage" fitHeight="21.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Bar.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="barLabel" text="Bar" />
+                  <ImageView fx:id="restaurantImage" fitHeight="21.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Restaurant.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="restaurantLabel" text="Restaurant" />
+               </children>
+            </HBox>
+            <HBox fx:id="secondAmenityRow" prefHeight="40.0" prefWidth="204.0">
+               <children>
+                  <ImageView fx:id="breakfastImage" fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Breakfast included.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="breakfastLabel" text="Breakfast included" />
+                  <ImageView fx:id="wifiImage" fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Wi-Fi.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="wifiLabel" text="Wi-Fi" />
+                  <ImageView fx:id="roomServiceImage" fitHeight="23.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Room service.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="roomServiceLabel" text="Room service" />
+               </children>
+            </HBox>
+            <HBox fx:id="thirdAmenityRow" prefHeight="34.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="coastalImage" fitHeight="110.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/coastal.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="coastalLabel" text="First coastal" />
+                  <ImageView fx:id="fitnessImage" fitHeight="21.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Fitness Center.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="fitnessLabel" text="Fitness Center" />
+                  <ImageView fx:id="airportShuttleImage" fitHeight="19.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatilsHotel/Airport shuttle.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="airportShuttleLabel" text="Airport shuttle" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="bookNowButton" layoutX="75.0" layoutY="556.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="691.0" style="-fx-font-weight: bold; -fx-background-color: #334C68; -fx-background-radius: 20;" text="Book now" textFill="#fffefe" />
+   </children>
+</AnchorPane>
