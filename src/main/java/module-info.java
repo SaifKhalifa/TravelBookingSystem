@@ -40,4 +40,12 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem.controller.SidebarController;
     opens com.groupnine.travelbookingsystem.controller.SidebarController to javafx.fxml;
 
+    //booking details
+    exports com.groupnine.travelbookingsystem.controller.BookingDetailsController;
+    opens com.groupnine.travelbookingsystem.controller.BookingDetailsController to javafx.fxml;
+
+    //TO REMOVE LATER:
+    exports com.groupnine.travelbookingsystem.otherApplications;
+    opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
+
 }

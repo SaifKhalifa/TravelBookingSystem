@@ -20,7 +20,7 @@
 
 <BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.HotelInfoController">
     <stylesheets>
-        <URL value="@../Assets/css/AdminPanelHotel.css" />
+        <URL value="@../../Assets/css/AdminPanelHotel.css" />
     </stylesheets>
 
     <!-- Main Content -->

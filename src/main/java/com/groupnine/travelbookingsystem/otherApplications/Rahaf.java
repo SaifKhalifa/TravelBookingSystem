@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem;
+package com.groupnine.travelbookingsystem.otherApplications;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
