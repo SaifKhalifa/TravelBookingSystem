@@ -7,12 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane styleClass="anchor-pane" prefHeight="860.0" prefWidth="1454.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="860.0" prefWidth="1454.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <left>
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+<!--
         <VBox prefHeight="860.0" prefWidth="263.0" style="-fx-background-color: #CCD2D9;" BorderPane.alignment="CENTER" />
+-->
     </left>
     <center>
-        <AnchorPane BorderPane.alignment="CENTER">
+        <AnchorPane style="-fx-background-color: #B0B8C1;" BorderPane.alignment="CENTER">
             <children>
                 <!--<ImageView fitHeight="860.0" layoutY="-1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <image>

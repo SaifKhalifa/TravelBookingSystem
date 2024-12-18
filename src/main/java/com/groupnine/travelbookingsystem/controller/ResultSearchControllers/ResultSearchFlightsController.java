@@ -160,7 +160,8 @@ public class ResultSearchFlightsController {
         comboBox2.getItems().addAll("Signup", "Login");
 
         // Example card 1 setup
-        /*setCard1();
+        setCard1();
+        /*
         setCard2();
         setCard3();
         setCard4();
@@ -168,15 +169,15 @@ public class ResultSearchFlightsController {
         setCard6();*/
     }
 
-/*
+
     private void setCard1() {
-        destinationImageView.setImage(new Image(getClass().getResource("/img/ss1.png").toExternalForm()));
+        /*destinationImageView.setImage(new Image(getClass().getResource("/img/ss1.png").toExternalForm()));
         ratingPointerImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
+        starImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));*/
         // Set button action
         roundTripButton.setOnAction(event -> handleCard1Button());
     }
-
+/*
     private void setCard2() {
         imageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss2.png").toExternalForm()));
         ratingPointerImageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
@@ -256,8 +257,10 @@ public class ResultSearchFlightsController {
 
     @FXML
     private void handleCard1Button() {
-        System.out.println("Round Trip Button 2 clicked");
+        System.out.println("Round Trip Button 1 clicked");
         // Action for Round Trip Button 2 click
+
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
     }
 
     @FXML

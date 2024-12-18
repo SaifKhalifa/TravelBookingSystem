@@ -19,10 +19,10 @@
     <!-- Left Navigation Pane -->
     <left>
 
-<!--        <fx:include source="Sidebar.fxml" />-->
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+<!--
         <VBox alignment="CENTER" layoutX="130.0" layoutY="349.0" prefWidth="258.0" spacing="15" style="-fx-background-color: #395A7F; -fx-background-color: #CCD2D9; -fx-padding: 10;">
-
-        </VBox>
+-->
     </left>
 
     <!-- Main Content -->

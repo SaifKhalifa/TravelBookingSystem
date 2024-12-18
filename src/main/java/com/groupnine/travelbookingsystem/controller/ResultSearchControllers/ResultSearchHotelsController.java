@@ -130,19 +130,19 @@ public class ResultSearchHotelsController {
 
         // Example card 1 setup
         setCard1();
-        setCard2();
+        /*setCard2();
         setCard3();
         setCard4();
         setCard5();
-        setCard6();
+        setCard6();*/
     }
 
 
     //card 1
     private void setCard1() {
-        card1ImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/s1.png").toExternalForm()));
+        /*card1ImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/s1.png").toExternalForm()));
         card1PointerImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        card1StarImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
+        card1StarImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));*/
         // Set button action
         card1Button.setOnAction(event -> handleCard1Button());
     }
@@ -237,6 +237,8 @@ public class ResultSearchHotelsController {
     private void handleCard1Button() {
         System.out.println("Card 1 button clicked");
         // Action for Card 1 button click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+
     }
 
     @FXML

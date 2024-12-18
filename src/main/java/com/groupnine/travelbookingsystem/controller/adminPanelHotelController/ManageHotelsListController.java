@@ -121,7 +121,7 @@ public class ManageHotelsListController {
 
     public void ToFlightsList(ActionEvent event) {
         try {
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/manageFlightsList.fxml");
+            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

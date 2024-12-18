@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="470.0" prefWidth="250" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.SidebarController.SidebarController">
+<BorderPane fx:id="root" prefHeight="470.0" prefWidth="250" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.SidebarController.SidebarController">
     <center>
         <VBox alignment="CENTER" prefHeight="150.0" prefWidth="250.0" spacing="5" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
@@ -25,7 +26,7 @@
    <bottom>
 
         <VBox alignment="CENTER_LEFT" prefHeight="320.0" prefWidth="250.0" spacing="20" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
-            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;" onMouseClicked="#handleHomeClick">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#handleHomeClick" spacing="15" style="-fx-padding: 5;">
                 <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                     <Image url="@../../Assets/imgs/Sidebar/House.png" />
                 </ImageView>
@@ -33,21 +34,39 @@
             </HBox>
 
 
-            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;" onMouseClicked="#handleFlightsSearchClick">
                 <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                     <Image url="@../../Assets/imgs/Sidebar/AirplaneInFlight.png" />
                 </ImageView>
                 <Label style="-fx-font-size: 16px; -fx-text-fill: #334C68;" text="Flights/Hotels" />
             </HBox>
 
-            <HBox fx:id="dashboardBox" alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;"  onMouseClicked="#handleDashboardClick">
-                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                    <Image url="@../../Assets/imgs/Sidebar/Notepad.png" />
-                </ImageView>
-                <Label style="-fx-font-size: 16px; -fx-text-fill: #334C68;" text="Dashboard" />
+            <HBox fx:id="dashboardBox" alignment="CENTER_LEFT" onMouseClicked="#handleAgentDashboardClick" spacing="15" style="-fx-padding: 5;">
+            <Group>
+               <children>
+                      <ImageView fitHeight="20" fitWidth="20" layoutY="3.1999998092651367" preserveRatio="true">
+                          <Image url="@../../Assets/imgs/Sidebar/Notepad.png" />
+                      </ImageView>
+                      <Label layoutX="35.19999980926514" style="-fx-font-size: 16px; -fx-text-fill: #334C68;" text="Agent Dashboard" />
+               </children>
+            </Group>
             </HBox>
+         <HBox fx:id="dashboardBox1" alignment="CENTER_LEFT" layoutX="20.0" layoutY="180.0" onMouseClicked="#handleAdminDashboardClick" spacing="15" style="-fx-padding: 5;">
+            <children>
+               <Group>
+                  <children>
+                     <ImageView fitHeight="20" fitWidth="20" layoutY="3.1999998092651367" preserveRatio="true">
+                        <image>
+                           <Image url="@../../Assets/imgs/Sidebar/Notepad.png" />
+                        </image>
+                     </ImageView>
+                     <Label layoutX="35.19999980926514" style="-fx-font-size: 16px; -fx-text-fill: #334C68;" text="Admin Dashboard" />
+                  </children>
+               </Group>
+            </children>
+         </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5;" onMouseClicked="#handleLogoutClick">
                 <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                     <Image url="@../../Assets/imgs/Sidebar/SignOut.png" />
                 </ImageView>

@@ -8,7 +8,10 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.ListOfFlightsController">
+
     <children>
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+
         <TableView fx:id="flightTable" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
             <columns>
                 <TableColumn fx:id="flightId" text="Flight ID" />

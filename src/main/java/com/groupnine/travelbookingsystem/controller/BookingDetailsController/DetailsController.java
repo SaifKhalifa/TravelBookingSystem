@@ -90,7 +90,9 @@ public class DetailsController {
         departureAirportLabel.setText("Murtala International Airport, Lagos (LOS)");
         arrivalAirportLabel.setText("Palestine Airport, Palestine (PAL)");
 
+/*
         airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
+*/
 
         bookNowButton.setOnAction(event -> handleBookNow());
     }
