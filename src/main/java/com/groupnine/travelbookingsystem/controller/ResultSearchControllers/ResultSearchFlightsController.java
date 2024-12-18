@@ -160,62 +160,62 @@ public class ResultSearchFlightsController {
         comboBox2.getItems().addAll("Signup", "Login");
 
         // Example card 1 setup
-        setCard1();
+        /*setCard1();
         setCard2();
         setCard3();
         setCard4();
         setCard5();
-        setCard6();
+        setCard6();*/
     }
 
-
+/*
     private void setCard1() {
         destinationImageView.setImage(new Image(getClass().getResource("/img/ss1.png").toExternalForm()));
-        ratingPointerImageView.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        ratingPointerImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton.setOnAction(event -> handleCard1Button());
     }
 
     private void setCard2() {
-        imageView2.setImage(new Image(getClass().getResource("/img/ss2.png").toExternalForm()));
-        ratingPointerImageView2.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView2.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        imageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss2.png").toExternalForm()));
+        ratingPointerImageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton2.setOnAction(event -> handleCard2Button());
     }
 
     private void setCard3() {
         imageView3.setImage(new Image(getClass().getResource("/img/ss3.png").toExternalForm()));
-        ratingPointerImageView3.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView3.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        ratingPointerImageView3.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView3.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton3.setOnAction(event -> handleCard3Button());
     }
 
     private void setCard4() {
-        imageView4.setImage(new Image(getClass().getResource("/img/ss4.jpg").toExternalForm()));
-        ratingPointerImageView4.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView4.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        imageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss4.jpg").toExternalForm()));
+        ratingPointerImageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton4.setOnAction(event -> handleCard4Button());
     }
 
     private void setCard5() {
-        imageView5.setImage(new Image(getClass().getResource("/img/ss5.jpg").toExternalForm()));
-        ratingPointerImageView5.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView5.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        imageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss5.jpg").toExternalForm()));
+        ratingPointerImageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton5.setOnAction(event -> handleCard5Button());
     }
 
     private void setCard6() {
-        imageView6.setImage(new Image(getClass().getResource("/img/ss6.jpg").toExternalForm()));
-        ratingPointerImageView6.setImage(new Image(getClass().getResource("/img/pointer2.png").toExternalForm()));
-        starImageView6.setImage(new Image(getClass().getResource("/img/star.png").toExternalForm()));
+        imageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss6.jpg").toExternalForm()));
+        ratingPointerImageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
+        starImageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
         // Set button action
         roundTripButton6.setOnAction(event -> handleCard6Button());
-    }
+    }*/
 
 
 

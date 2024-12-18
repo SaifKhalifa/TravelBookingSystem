@@ -42,7 +42,10 @@
 
       <AnchorPane fx:id="card1AnchorPane" layoutX="112.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <ImageView fx:id="card1ImageView" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card1ImageView" fitHeight="125.0" fitWidth="276.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s1.png" />
+               </image></ImageView>
             <TextField fx:id="card1TitleTextField" layoutY="131.0" style="-fx-background-color: non;" text="Big White Village">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -56,12 +59,15 @@
             <Circle fx:id="card1Circle" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="card1PointerImageView" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="card1StarImageView" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="card1LocationTextField" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
@@ -91,7 +97,10 @@
 
       <AnchorPane fx:id="card2AnchorPane" layoutX="914.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <ImageView fx:id="imageView2" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView2" fitHeight="125.0" fitWidth="272.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s3.png" />
+               </image></ImageView>
             <TextField fx:id="textField1" layoutY="131.0" style="-fx-background-color: non;" text="Outstanding house">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -105,12 +114,15 @@
             <Circle fx:id="circle2" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="pointerImageView2" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="starImageView2" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="locationTextField2" layoutX="14.0" layoutY="161.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
@@ -140,7 +152,10 @@
 
       <AnchorPane fx:id="card3AnchorPane" layoutX="502.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <ImageView fx:id="imageView3" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView3" fitHeight="125.0" fitWidth="272.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s2.png" />
+               </image></ImageView>
             <TextField fx:id="textField3" layoutY="131.0" style="-fx-background-color: non;" text="Condo To The Beach">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -154,12 +169,15 @@
             <Circle fx:id="circle3" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="pointerImageView3" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="starImageView3" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="locationTextField3" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
@@ -189,7 +207,10 @@
 
       <AnchorPane fx:id="card4AnchorPane" layoutX="502.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <ImageView fx:id="imageView4" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView4" fitHeight="125.0" fitWidth="272.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s7.jpg" />
+               </image></ImageView>
             <TextField fx:id="textField4" layoutY="131.0" style="-fx-background-color: non;" text="Outstanding house">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -203,12 +224,15 @@
             <Circle fx:id="circle4" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="pointerImageView4" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="starImageView4" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="locationTextField4" layoutX="14.0" layoutY="161.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
@@ -238,7 +262,10 @@
 
       <AnchorPane fx:id="card5AnchorPane" layoutX="914.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <ImageView fx:id="imageView5" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView5" fitHeight="125.0" fitWidth="272.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s5.jpg" />
+               </image></ImageView>
             <TextField fx:id="textField5" layoutY="131.0" style="-fx-background-color: non;" text="Big White Village">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -252,12 +279,15 @@
             <Circle fx:id="circle5" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="pointerImageView5" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="starImageView5" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="locationTextField5" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />
@@ -287,7 +317,10 @@
 
       <AnchorPane fx:id="card6AnchorPane" layoutX="112.0" layoutY="541.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <ImageView fx:id="imageView6" fitHeight="125.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView6" fitHeight="125.0" fitWidth="272.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Assets/imgs/result_search/s6.jpg" />
+               </image></ImageView>
             <TextField fx:id="textField6" layoutY="131.0" style="-fx-background-color: non;" text="Condo To The Beach">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -301,12 +334,15 @@
             <Circle fx:id="circle6" fill="#334c68" layoutX="243.0" layoutY="217.0" radius="19.0" stroke="#334c68" strokeType="INSIDE" />
             <ImageView fx:id="pointerImageView6" fitHeight="26.0" fitWidth="26.0" layoutX="230.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../pointer2.png" />
+                  <Image url="@../../Assets/imgs/result_search/pointer2.png" />
+
                </image>
             </ImageView>
             <ImageView fx:id="starImageView6" fitHeight="31.0" fitWidth="38.0" layoutX="209.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../star.png" />
+                  <Image url="@../../Assets/imgs/result_search/star.png" />
+
+
                </image>
             </ImageView>
             <TextField fx:id="locationTextField6" layoutX="14.0" layoutY="158.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: non;" text="Maui Banayan , HI" />

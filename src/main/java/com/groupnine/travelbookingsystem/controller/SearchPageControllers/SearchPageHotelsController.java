@@ -61,7 +61,7 @@ public class SearchPageHotelsController {
     }
 
     private void setBackgroundImage() {
-        backGG.setImage(new Image(getClass().getResource("/img/sh.jpeg").toExternalForm()));
+        backGG.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/sh.jpeg").toExternalForm()));
 
     }
 

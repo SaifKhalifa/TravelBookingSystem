@@ -120,7 +120,7 @@ public class SearchPageFlightsController {
     }
 
     private void setBackgroundImage() {
-        backG.setImage(new Image(getClass().getResource("/img/sf.jpeg").toExternalForm()));
+        backG.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/sf.jpeg").toExternalForm()));
 
     }
 
@@ -162,13 +162,13 @@ public class SearchPageFlightsController {
     @FXML
     private void handleFlightsButton() {
         System.out.println("Flights button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageFlights.fxml", "Flights");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
     }
 
     @FXML
     private void handleHotelsButton() {
         System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageHotels.fxml", "Hotels");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
     }
 
     @FXML
