@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.Sana;
+package com.groupnine.travelbookingsystem.otherApplications.Sana;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -10,11 +10,34 @@ module com.groupnine.travelbookingsystem {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
+    // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
-    exports com.groupnine.travelbookingsystem.controller;
+
     opens com.groupnine.travelbookingsystem.controller to javafx.fxml;
-    exports com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
+    exports com.groupnine.travelbookingsystem.controller;
+
+    opens com.groupnine.travelbookingsystem.controller.authentication to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.controller.authentication;
+
+    //admin panel
     opens com.groupnine.travelbookingsystem.controller.adminPanelHotelController to javafx.fxml;
+    exports com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
+
+    //homepage
+    exports com.groupnine.travelbookingsystem.controller.HomeController;
+    opens com.groupnine.travelbookingsystem.controller.HomeController to javafx.fxml;
+
+    //admin manager
+    exports com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
+    opens com.groupnine.travelbookingsystem.controller.AdminMangeFlight to javafx.fxml;
+
+    //booking
+    exports com.groupnine.travelbookingsystem.controller.BookingController;
+    opens com.groupnine.travelbookingsystem.controller.BookingController to javafx.fxml;
+
+    //sidebar
+    exports com.groupnine.travelbookingsystem.controller.SidebarController;
+    opens com.groupnine.travelbookingsystem.controller.SidebarController to javafx.fxml;
 
 }

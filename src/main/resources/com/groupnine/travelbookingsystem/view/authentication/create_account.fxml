@@ -14,7 +14,7 @@
       <!-- Left Logo -->
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Assets/imgs/logo.png" />
+            <Image url="@../../Assets/imgs/auth/logo.png" />
          </image>
       </ImageView>
       <!-- Right Login Form -->
@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="450.0" fitWidth="280.0" layoutX="23.0" layoutY="21.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../Assets/imgs/login_form_frame.png" />
+                  <Image url="@../../Assets/imgs/auth/login_form_frame.png" />
                </image>
             </ImageView>
             <!-- Login Title -->
@@ -63,7 +63,7 @@
                      <graphic>
                         <ImageView fx:id="passwordToggleIcon" fitHeight="15.0" fitWidth="15.0">
                            <image>
-                              <Image url="@../../Assets/imgs/show-password-logo.png" />
+                              <Image url="@../../Assets/imgs/auth/show-password-logo.png" />
                            </image>
                         </ImageView>
                      </graphic>

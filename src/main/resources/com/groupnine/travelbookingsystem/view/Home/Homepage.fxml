@@ -13,7 +13,7 @@
       <StackPane>
          <ImageView fx:id="backgroundImage" fitHeight="750.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../../../../../img/Home/img1.jpeg" />
+               <Image url="@../../Assets/imgs/Home/img1.jpeg" />
             </image>
          </ImageView>
          <VBox alignment="CENTER" prefHeight="698.0" prefWidth="645.0" spacing="10.0">
