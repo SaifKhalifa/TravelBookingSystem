@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.HotelInfoController">
+    <stylesheets>
+        <URL value="@../../Assets/css/AdminPanelHotel.css" />
+    </stylesheets>
+
+    <!-- Main Content -->
+
+    <center>
+        <VBox prefHeight="846.0" prefWidth="1519.0" spacing="10" style="-fx-padding: 10; -fx-background-color: #E9ECEE;">
+            <Pane prefHeight="72.0" prefWidth="1498.0" style="-fx-background-radius: 5; -fx-border-color: #ACACAC; -fx-background-color: #395A7F; -fx-border-radius: 5; -fx-background-radius: 5;">
+                <children>
+               <HBox prefHeight="45.0" prefWidth="768.0">
+                  <children>
+                     <ImageView fitHeight="29.0" fitWidth="26.0" onMouseClicked="#GoBackIcon" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../Assets/Imgs/back.png" />
+                        </image>
+                        <HBox.margin>
+                           <Insets left="5.0" top="12.0" />
+                        </HBox.margin>
+                     </ImageView>
+                          <!-- Header -->
+                          <Label fx:id="TitleInfo" prefHeight="35.0" prefWidth="346.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" wrapText="true">
+                              <font>
+                                  <Font size="43.0" />
+                              </font>
+                        <HBox.margin>
+                           <Insets left="8.0" top="8.0" />
+                        </HBox.margin>
+                          </Label>
+                  </children>
+               </HBox>
+                </children>
+            <VBox.margin>
+               <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+            </Pane>
+            <Pane prefHeight="781.0" prefWidth="1498.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: #395A7F; -fx-border-radius: 5;">
+                <children>
+               <VBox prefHeight="759.0" prefWidth="1476.0">
+                  <children>
+                     <HBox prefHeight="370.0" prefWidth="1415.0" spacing="50.0">
+                        <children>
+                                <VBox maxHeight="2000.0" maxWidth="2000.0" prefHeight="2000.0" prefWidth="2000.0">
+                                    <children>
+                                        <Label prefHeight="30.0" prefWidth="71.0" text="Hotel Name" />
+                                        <TextField opacity="0.3" prefHeight="26.0" prefWidth="361.0" style="-fx-background-radius: 5; -fx-border-color: black; -fx-background-color: #E9ECEE;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </TextField>
+                                        <Label prefHeight="35.0" prefWidth="71.0" text="Location" />
+                                        <TextField opacity="0.3" prefHeight="26.0" prefWidth="361.0" style="-fx-background-radius: 5; -fx-border-color: black; -fx-background-color: #E9ECEE;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </TextField>
+                                        <Label prefHeight="38.0" prefWidth="96.0" text="Price per Night" />
+                                        <TextField opacity="0.3" prefHeight="26.0" prefWidth="361.0" style="-fx-background-radius: 5; -fx-border-color: black; -fx-background-color: #E9ECEE;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </TextField>
+                                        <Label prefHeight="37.0" prefWidth="90.0" text="Total Rooms" />
+                                        <TextField opacity="0.3" prefHeight="26.0" prefWidth="361.0" style="-fx-background-radius: 5; -fx-border-color: black; -fx-background-color: #E9ECEE;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </TextField>
+                                        <Label prefHeight="29.0" prefWidth="90.0" text="Rating" />
+                                        <HBox layoutX="50" layoutY="50" prefHeight="38.0" prefWidth="186.0" spacing="10">
+                                            <Label fx:id="star1" maxHeight="40" maxWidth="40" minHeight="30" minWidth="30" prefHeight="30" prefWidth="30" style="-fx-font-size: 30px; -fx-text-fill: #cccccc;" styleClass="star-label" text="★" />
+                                            <Label fx:id="star2" maxHeight="40.0" maxWidth="40.0" minHeight="30" minWidth="30" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 30px; -fx-text-fill: #cccccc;" styleClass="star-label" text="★" />
+                                            <Label fx:id="star3" maxHeight="40.0" maxWidth="40.0" minHeight="30" minWidth="30" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 30px; -fx-text-fill: #cccccc;" styleClass="star-label" text="★" />
+                                            <Label fx:id="star4" maxHeight="40.0" maxWidth="40.0" minHeight="30" minWidth="30" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 30px; -fx-text-fill: #cccccc;" styleClass="star-label" text="★" />
+                                            <Label fx:id="star5" maxHeight="40.0" maxWidth="40.0" minHeight="30" minWidth="30" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 30px; -fx-text-fill: #cccccc;" styleClass="star-label" text="★" />
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <VBox maxHeight="2000.0" maxWidth="2000.0" prefHeight="2000.0" prefWidth="2000.0">
+                                    <children>
+                                        <Label prefHeight="34.0" prefWidth="90.0" text="Room Types" />
+                                        <Pane prefHeight="151.0" prefWidth="404.0" style="-fx-background-radius: 5; -fx-border-color: #E9ECEE;">
+                                            <children>
+                                                <HBox prefHeight="140.0" prefWidth="361.0">
+                                                    <children>
+                                                        <VBox prefHeight="140.0" prefWidth="204.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Single Room" />
+                                                                <CheckBox mnemonicParsing="false" text="Double Room" />
+                                                                <CheckBox mnemonicParsing="false" text="Twin Room" />
+                                                                <CheckBox mnemonicParsing="false" text="Triple Room" />
+                                                                <CheckBox mnemonicParsing="false" text="Deluxe Room" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="140.0" prefWidth="184.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Family Room" />
+                                                                <CheckBox mnemonicParsing="false" text="Villa" />
+                                                                <CheckBox mnemonicParsing="false" text="Bungalow" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </Pane>
+                                        <Label prefHeight="35.0" prefWidth="124.0" text="Promotional Offers" />
+                                        <TextField opacity="0.3" prefHeight="26.0" prefWidth="361.0" style="-fx-background-radius: 5; -fx-border-color: black; -fx-background-color: #E9ECEE;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </TextField>
+                                        <Label prefHeight="37.0" prefWidth="90.0" text="Availability" />
+                                        <ComboBox fx:id="AvailabilityComboBox" prefHeight="34.0" prefWidth="192.0">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="Available" />
+                                                    <String fx:value="Fully Booked" />
+                                                    <String fx:value="Temporarily Unavailable" />
+                                                    <String fx:value="Closed" />
+                                                    <String fx:value="Not Listed" />
+                                                </FXCollections>
+                                            </items>
+                                        </ComboBox>
+                                    </children>
+                                </VBox>
+                                <VBox maxHeight="2000.0" maxWidth="2000.0" prefHeight="2000.0" prefWidth="2000.0">
+                                    <children>
+                                        <Label prefHeight="42.0" prefWidth="90.0" text="Facilities" />
+                                        <Pane prefHeight="160.0" prefWidth="438.0" style="-fx-background-radius: 5; -fx-border-color: #E9ECEE;">
+                                            <children>
+                                                <HBox layoutY="-1.0" prefHeight="146.0" prefWidth="425.0">
+                                                    <children>
+                                                        <VBox prefHeight="146.0" prefWidth="193.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Garden" />
+                                                                <CheckBox mnemonicParsing="false" text="Restaurant" />
+                                                                <CheckBox mnemonicParsing="false" text="Lounge" />
+                                                                <CheckBox mnemonicParsing="false" text="Business Center" />
+                                                                <CheckBox mnemonicParsing="false" text="Meeting Rooms" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="146.0" prefWidth="193.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Swimming Pool" />
+                                                                <CheckBox mnemonicParsing="false" text="Gym/Fitness Center" />
+                                                                <CheckBox mnemonicParsing="false" text="Kid's Play Area" />
+                                                                <CheckBox mnemonicParsing="false" text="Tennis Court" />
+                                                                <CheckBox mnemonicParsing="false" text="Parking" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </Pane>
+                                        <Label prefHeight="44.0" prefWidth="90.0" text="Amenities" />
+                                        <Pane prefHeight="157.0" prefWidth="458.0" style="-fx-background-radius: 5; -fx-border-color: #E9ECEE;">
+                                            <children>
+                                                <HBox prefHeight="136.0" prefWidth="427.0">
+                                                    <children>
+                                                        <VBox prefHeight="136.0" prefWidth="195.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Air Conditioning" />
+                                                                <CheckBox mnemonicParsing="false" text="Free Wi-Fi" />
+                                                                <CheckBox mnemonicParsing="false" text="Television with Cable" />
+                                                                <CheckBox mnemonicParsing="false" text="Coffee/Tea Maker" />
+                                                                <CheckBox mnemonicParsing="false" text="Hair Dryer" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="136.0" prefWidth="230.0" spacing="3.0">
+                                                            <children>
+                                                                <CheckBox mnemonicParsing="false" text="Desk/Workspace" />
+                                                                <CheckBox mnemonicParsing="false" text="Free Breakfast" />
+                                                                <CheckBox mnemonicParsing="false" text="Bottled Water" />
+                                                                <CheckBox mnemonicParsing="false" text="Premium Bedding" />
+                                                                <CheckBox mnemonicParsing="false" text="Bathrobe and Slippers" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </VBox>
+                        </children>
+                        <padding>
+                           <Insets left="20.0" top="20.0" />
+                        </padding>
+                     </HBox>
+                     <HBox prefHeight="460.0" prefWidth="1520.0">
+                        <children>
+                           <VBox prefHeight="405.0" prefWidth="1138.0">
+                              <children>
+                                      <Label prefHeight="35.0" prefWidth="89.0" text="Description" />
+                                      <TextArea prefHeight="366.0" prefWidth="969.0" />
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="405.0" prefWidth="540.0">
+                              <children>
+                                 <VBox prefHeight="406.0" prefWidth="462.0">
+                                    <children>
+                                       <HBox prefHeight="96.0" prefWidth="506.0">
+                                          <children>
+                                                    <Button fx:id="uploadButton" mnemonicParsing="false" onAction="#onUploadButtonClick" prefHeight="42.0" prefWidth="106.0" text="+ Photos">
+                                                <HBox.margin>
+                                                   <Insets left="20.0" />
+                                                </HBox.margin>
+                                             </Button>
+                                          </children>
+                                          <VBox.margin>
+                                             <Insets />
+                                          </VBox.margin>
+                                          <padding>
+                                             <Insets bottom="20.0" left="40.0" top="20.0" />
+                                          </padding>
+                                       </HBox>
+                                       <HBox prefHeight="300.0" prefWidth="531.0">
+                                          <children>
+                                                      <ImageView fitHeight="190.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                                                <HBox.margin>
+                                                   <Insets right="5.0" />
+                                                </HBox.margin>
+                                             </ImageView>
+                                                      <ImageView fitHeight="191.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true" />
+                                          </children>
+                                          <padding>
+                                             <Insets left="40.0" />
+                                          </padding>
+                                          <VBox.margin>
+                                             <Insets bottom="10.0" />
+                                          </VBox.margin>
+                                       </HBox>
+                                       <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="531.0" spacing="8.0">
+                                          <children>
+                                                  <Button fx:id="HotelInfoBackBtn" maxHeight="40" minHeight="21.0" onAction="#BackToHotelsList" prefHeight="44.0" prefWidth="83.0" text=" Back" />
+                                                  <Button fx:id="SaveButton" maxHeight="40" minHeight="21.0" onAction="#SaveHotelInfo" prefHeight="44.0" prefWidth="132.0" text="Save" />
+                                          </children>
+                                          <padding>
+                                             <Insets right="8.0" />
+                                          </padding>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </VBox>
+                        </children>
+                        <padding>
+                           <Insets bottom="20.0" left="20.0" />
+                        </padding>
+                     </HBox>
+                  </children>
+               </VBox>
+                </children>
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" />
+            </VBox.margin>
+            </Pane>
+        </VBox>
+    </center>
+</BorderPane>

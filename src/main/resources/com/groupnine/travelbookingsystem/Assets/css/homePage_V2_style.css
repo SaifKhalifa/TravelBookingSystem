@@ -1,0 +1,7 @@
+.anchor-pane {
+    -fx-background-image: url("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/bg.png");
+    -fx-background-size: 50px 50px; /* Makes the image stretch to fill the container */
+    -fx-background-position: center; /* Centers the image */
+    -fx-background-repeat: no-repeat; /* Prevents tiling */
+    -fx-background-color: rgba(204, 210, 217, 0.9); /* Adds a semi-transparent overlay color */
+}
