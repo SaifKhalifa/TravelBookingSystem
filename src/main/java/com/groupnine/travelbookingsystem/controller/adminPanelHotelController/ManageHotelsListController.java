@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -28,7 +26,8 @@ public class ManageHotelsListController {
     private Button AddHotelBtn;
     @FXML
     private Button EditHotelBtn;
-
+    @FXML
+    private TableView<?> tableView; // Replace `?` with your data type
     @FXML
     public void AddHotel() throws Exception{
        try{
@@ -69,21 +68,37 @@ public class ManageHotelsListController {
         flightsButton.setToggleGroup(group);
         hotelsButton.setToggleGroup(group);
 
-        flightsButton.setSelected(true); // You can change this to hotelsButton if needed
+        hotelsButton.setSelected(true); // You can change this to hotelsButton if needed
 
-        // Ensure flightsButton stays selected if clicked again
-        flightsButton.setOnAction(event -> {
-            if (!flightsButton.isSelected()) {
-                flightsButton.setSelected(true); // Keep the button selected
+        // Get all columns from TableView
+        tableView.getColumns().forEach(column -> {
+            column.setResizable(true);
+            column.setPrefWidth(100); // Set a default width
+        });
+
+        // Optionally, set dynamic width for each column based on the percentage of total width
+        double[] columnRatios = {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05}; // Total = 100%
+        tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double tableWidth = newValue.doubleValue();
+            for (int i = 0; i < tableView.getColumns().size(); i++) {
+                TableColumn<?, ?> column = tableView.getColumns().get(i);
+                column.setPrefWidth(tableWidth * columnRatios[i]);
             }
         });
 
-        // Ensure hotelsButton stays selected if clicked again
-        hotelsButton.setOnAction(event -> {
-            if (!hotelsButton.isSelected()) {
-                hotelsButton.setSelected(true); // Keep the button selected
-            }
-        });
+//        // Ensure flightsButton stays selected if clicked again
+//        flightsButton.setOnAction(event -> {
+//            if (!flightsButton.isSelected()) {
+//                flightsButton.setSelected(true); // Keep the button selected
+//            }
+//        });
+//
+//        // Ensure hotelsButton stays selected if clicked again
+//        hotelsButton.setOnAction(event -> {
+//            if (!hotelsButton.isSelected()) {
+//                hotelsButton.setSelected(true); // Keep the button selected
+//            }
+//        });
     }
 
     public void DeleteHotel(ActionEvent event) {
