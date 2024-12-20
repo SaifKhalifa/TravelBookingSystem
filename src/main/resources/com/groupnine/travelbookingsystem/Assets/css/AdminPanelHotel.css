@@ -56,7 +56,7 @@
 .edit-button {
     -fx-background-color: #ACACAC;
     -fx-text-fill: white;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-max-width: 80px;
     -fx-max-height: 35px;
 }
@@ -64,14 +64,14 @@
 .delete-button {
     -fx-background-color: #d9534f;
     -fx-text-fill: white;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-max-width: 80px;
     -fx-max-height: 35px;
 }
 .add-button {
     -fx-background-color: #395A7F;
     -fx-text-fill: white;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-max-width: 120px;
     -fx-max-height: 35px;
 }
@@ -92,21 +92,21 @@
 #SaveButton{
     -fx-background-color: #395A7F;
     -fx-text-fill: white;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-max-width: 120px;
     -fx-max-height: 40px;
 }
 #HotelInfoBackBtn {
     -fx-background-color: #ACACAC;
     -fx-text-fill: white;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-max-width: 80px;
     -fx-max-height: 40px;
 }
 #uploadButton{
     -fx-background-color: #A3CAE9;
     -fx-text-fill: black;
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
 }
 
 /* تصميم النص داخل الـ Label */

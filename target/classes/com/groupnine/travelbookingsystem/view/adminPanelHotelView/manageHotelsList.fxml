@@ -30,7 +30,7 @@
     <center>
         <VBox prefHeight="846.0" prefWidth="1320.0" spacing="10" style="-fx-padding: 10; -fx-background-color: #E9ECEE;">
             <!-- Header -->
-            <Label fx:id="TitleLabel" prefHeight="75.0" prefWidth="242.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Panel" wrapText="true">
+            <Label fx:id="TitleLabel" prefHeight="75.0" prefWidth="242.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Dashboard" wrapText="true">
                 <font>
                     <Font size="24.0" />
                 </font>
@@ -42,19 +42,18 @@
             </padding>
             </Label>
 
-            <HBox prefHeight="62.0" prefWidth="1261.0">
-                <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="351.0">
-                    <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList" prefHeight="15" prefWidth="300" text="Flights" />
-                    <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="15" prefWidth="300" text="Hotels" />
+            <HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="312.0">
+                    <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList" prefHeight="38.0" prefWidth="136.0" text="Flights" />
+                    <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" text="Hotels" />
                <HBox.margin>
-                  <Insets />
+                  <Insets left="5.0" />
                </HBox.margin>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="931.0" spacing="5">
-                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefHeight="44.0" prefWidth="132.0" styleClass="edit-button" text="Edit" />
-
-                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefHeight="44.0" prefWidth="132.0" styleClass="delete-button" text="Delete" />
-                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefHeight="44.0" prefWidth="132.0" styleClass="add-button" text="+ Add" />
+                <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="1149.0" spacing="5">
+                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefWidth="100.0" styleClass="edit-button" text="Edit" />
+                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefWidth="132.0" styleClass="delete-button" text="Delete" />
+                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefWidth="100.0" styleClass="add-button" text="+ Add" />
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -63,7 +62,7 @@
             </HBox>
 
             <!-- Table -->
-            <TableView prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 10;">
+            <TableView fx:id="tableView" prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 10;">
                 <columns>
                     <TableColumn prefWidth="122.40003395080566" text="Name" />
                     <TableColumn prefWidth="126.39999389648438" text="Location" />
@@ -78,9 +77,6 @@
                     <TableColumn prefWidth="70.4000244140625" text="Edit" />
                     <TableColumn prefWidth="68.0" text="Delete" />
                 </columns>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
             </TableView>
         </VBox>
     </center>

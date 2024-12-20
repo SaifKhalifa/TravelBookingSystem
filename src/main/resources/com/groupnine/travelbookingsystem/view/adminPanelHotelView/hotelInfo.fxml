@@ -33,7 +33,7 @@
                   <children>
                      <ImageView fitHeight="29.0" fitWidth="26.0" onMouseClicked="#GoBackIcon" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../Assets/Imgs/back.png" />
+                           <Image url="@../../Assets/imgs/AdminPanelHotel/back.png" />
                         </image>
                         <HBox.margin>
                            <Insets left="5.0" top="12.0" />
