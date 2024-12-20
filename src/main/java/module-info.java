@@ -9,7 +9,10 @@ module com.groupnine.travelbookingsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-
+    requires org.hibernate.orm.core;
+    requires java.naming;
+    requires java.persistence;
+    requires java.sql;
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
@@ -44,7 +47,7 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem.controller.BookingDetailsController;
     opens com.groupnine.travelbookingsystem.controller.BookingDetailsController to javafx.fxml;
 
-    //serach page
+    //search page
     exports com.groupnine.travelbookingsystem.controller.SearchPageControllers;
     opens com.groupnine.travelbookingsystem.controller.SearchPageControllers to javafx.fxml;
     exports com.groupnine.travelbookingsystem.controller.ResultSearchControllers;

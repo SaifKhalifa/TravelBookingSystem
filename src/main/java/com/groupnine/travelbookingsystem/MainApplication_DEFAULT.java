@@ -1,11 +1,14 @@
 package com.groupnine.travelbookingsystem;
 
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 
@@ -30,6 +33,9 @@ public class MainApplication_DEFAULT extends Application {
 
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+
+        boolean status = HibernateUtil.getInstance().isConnected();
+        System.out.println("Database Connected: " + status);
     }
 }
