@@ -1,9 +1,11 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
+import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -75,7 +77,7 @@ public class ListOfFlightsController {
         }
 
         if (hotel != null) {
-            hotel.setOnAction(event -> navigateToHotel());
+            hotel.setOnAction(event -> navigateToHotel(event));
         }
     }
 
@@ -165,7 +167,12 @@ public class ListOfFlightsController {
         }
     }
 
-    private void navigateToHotel() {
+    private void navigateToHotel(ActionEvent event) {
+        try {
+            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Navigating to Hotel screen...");
         // Add logic for navigation here
     }

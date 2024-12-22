@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="860.0" prefWidth="1454.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+<!--
+        <VBox prefHeight="860.0" prefWidth="263.0" style="-fx-background-color: #CCD2D9;" BorderPane.alignment="CENTER" />
+-->
+    </left>
+    <center>
+        <AnchorPane style="-fx-background-color: #B0B8C1;" BorderPane.alignment="CENTER">
+            <children>
+                <!--<ImageView fitHeight="860.0" layoutY="-1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="@../../Assets/imgs/homePage_V2/bg.png" />
+                    </image>
+                </ImageView>-->
+                <VBox alignment="TOP_CENTER" layoutX="-1.0" spacing="20" style="-fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <Label alignment="CENTER" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 20; -fx-text-fill: white;" />
+
+                    <!-- Summary Cards -->
+                    <HBox alignment="TOP_CENTER" spacing="20">
+                        <!-- Hostels Card -->
+                        <VBox alignment="CENTER" prefWidth="130.0" style="-fx-background-color: #6E9FC1; -fx-padding: 20; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-text-fill: black; -fx-font-weight: bold;" text="Hotels" />
+                            <Label fx:id="hostelsCount" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: black;" text="0" />
+                        </VBox>
+                        <VBox alignment="CENTER" prefWidth="130.0" style="-fx-background-color: A3CAE9; -fx-padding: 20; -fx-background-radius: 10;">
+                            <children>
+                                <Label style="-fx-font-size: 16px; -fx-text-fill: black; -fx-font-weight: bold;" text="Flights" />
+                                <Label fx:id="hostelsCount1" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: black;" text="0" />
+                            </children>
+                        </VBox>
+
+                        <!-- Bookings Card -->
+                        <VBox alignment="CENTER" prefWidth="130.0" style="-fx-background-color: ACACAC; -fx-padding: 20; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-text-fill: black; -fx-font-weight: bold;" text="Bookings" />
+                            <Label fx:id="bookingsCount" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: black;" text="0" />
+                        </VBox>
+
+                        <!-- Customers Card -->
+                        <VBox alignment="CENTER" prefWidth="130.0" style="-fx-background-color: #CCD2D9; -fx-padding: 20; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-text-fill: black; -fx-font-weight: bold;" text="Customers" />
+                            <Label fx:id="customersCount" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: black;" text="0" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Last Logged-in Agent -->
+                    <VBox style="-fx-padding: 20; -fx-background-radius: 20;">
+                        <Label prefHeight="38.0" prefWidth="1211.0" style="-fx-font-size: 19; -fx-text-fill: #395A7F; -fx-font-weight: bold; -fx-background-color: #CCD2D9; -fx-background-radius: 20;" text="Last Logged-in Agent">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <HBox>
+                            <children>
+                                <Label fx:id="agentInfo" style="-fx-font-size: 17; -fx-text-fill: white; -fx-font-weight: bold;" text="Name: ">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0" />
+                                    </padding>
+                                </Label>
+                                <Label prefHeight="27.0" prefWidth="246.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                            </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Label fx:id="agentInfo1" style="-fx-font-size: 17; -fx-text-fill: white; -fx-font-weight: bold;" text="Last Login: ">
+                                    <padding>
+                                        <Insets left="10.0" />
+                                    </padding>
+                                </Label>
+                                <Label prefHeight="27.0" prefWidth="282.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <VBox.margin>
+                            <Insets top="40.0" />
+                        </VBox.margin>
+                    </VBox>
+
+                    <!-- Latest Booking Info Table -->
+                    <VBox style="-fx-padding: 20; -fx-background-radius: 10; -fx-background-color: #CCD2D9e;">
+                        <Label style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Latest Booking Info">
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <TableView fx:id="latestBookingsTable" prefHeight="107.0" style="-fx-padding: 10; -fx-border-radius: 50; -fx-background-radius: 20;">
+                            <columns>
+                                <TableColumn text="Booking ID" />
+                                <TableColumn prefWidth="101.60000610351562" text="Customer Name" />
+                                <TableColumn prefWidth="90.4000244140625" text="Room Type" />
+                                <TableColumn prefWidth="92.0" text="Check-in Date" />
+                                <TableColumn prefWidth="128.7999267578125" text="Check-out Date" />
+                            </columns>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </TableView>
+                        <TableView fx:id="latestBookingsTable1" prefHeight="114.0" style="-fx-padding: 10; -fx-border-radius: 50; -fx-background-radius: 20;">
+                            <columns>
+                                <TableColumn text="Booking ID" />
+                                <TableColumn prefWidth="101.60000610351562" text="Customer Name" />
+                                <TableColumn prefWidth="90.4000244140625" text="Room Type" />
+                                <TableColumn prefWidth="92.0" text="Check-in Date" />
+                                <TableColumn prefWidth="128.7999267578125" text="Check-out Date" />
+                            </columns>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </TableView>
+                        <VBox.margin>
+                            <Insets top="70.0" />
+                        </VBox.margin>
+                    </VBox>
+                </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" />
+            </children>
+         <stylesheets>
+            <URL value="@../../Assets/css/homePage_V2_style.css" />
+         </stylesheets>
+        </AnchorPane>
+    </center>
+
+</BorderPane>
