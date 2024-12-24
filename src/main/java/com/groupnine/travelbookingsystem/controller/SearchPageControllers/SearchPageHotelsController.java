@@ -7,23 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class SearchPageHotelsController {
 
-    public ImageView backGG;
-    // FXML fields to bind the UI components
-    @FXML private AnchorPane backGround;
+    @FXML public ImageView backGG;
     @FXML private Button btnMyBooking;
     @FXML private Button btnProfile;
     @FXML private Button btnHome;
     @FXML private Button btnFlights;
     @FXML private Button btnHotels;
     @FXML private Button btnSearch;
-
     @FXML private ComboBox<String> cbFlightsHotels;
     @FXML private ComboBox<String> cbSignupLogin;
     @FXML private ComboBox<String> cbDestination;
@@ -85,7 +80,7 @@ public class SearchPageHotelsController {
     @FXML
     private void handleHomeButton() {
         System.out.println("Home button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/home.fxml", "Home");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/Home/Homepage_V2.fxml", "Home");
     }
 
     @FXML
@@ -103,13 +98,13 @@ public class SearchPageHotelsController {
     @FXML
     private void handleFlightsButton() {
         System.out.println("Flights button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageFlights.fxml", "Flights");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
     }
 
     @FXML
     private void handleHotelsButton() {
         System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlights-Hotels/searchPageHotels.fxml", "Hotels");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
     }
 
     @FXML
@@ -126,10 +121,10 @@ public class SearchPageHotelsController {
         if (selectedOption != null) {
             switch (selectedOption) {
                 case "Flights":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/flights.fxml", "Flights");
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
                     break;
                 case "Hotels":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/hotels.fxml", "Hotels");
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
                     break;
                 default:
                     System.out.println("Unknown option selected.");

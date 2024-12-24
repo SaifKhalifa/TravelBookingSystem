@@ -5,13 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -19,139 +12,28 @@ import java.io.IOException;
 
 public class ResultSearchFlightsController {
 
-    public ImageView destinationImageView;
-    public AnchorPane destinationImageAnchorPane;
-    public TextField tripTypeField2;
-    public DropShadow card2DropShadow;
-    public AnchorPane card3;
-    public ImageView imageView3;
-    public AnchorPane backgroundImage3;
-    public TextField destinationNameField3;
-    public ImageView ratingPointerImageView3;
-    public Circle ratingCircle3;
-    public ImageView starImageView3;
-    public Button roundTripButton3;
-    public DropShadow card3DropShadow;
-    public AnchorPane card4;
-    public ImageView imageView4;
-    public AnchorPane backgroundImage4;
-    public TextField destinationNameField4;
-    public ImageView ratingPointerImageView4;
-    public Circle ratingCircle4;
-    public ImageView starImageView4;
-    public Button roundTripButton4;
-    public DropShadow card4DropShadow;
-    public AnchorPane card5;
-    public ImageView imageView5;
-    public AnchorPane backgroundImage5;
-    public TextField destinationNameField5;
-    public TextField ratingField5;
-    public ImageView ratingPointerImageView5;
-    public Circle ratingCircle5;
-    public ImageView starImageView5;
-    public Button roundTripButton5;
-    public AnchorPane card6;
-    public ImageView imageView6;
-    public AnchorPane backgroundImage6;
-    public TextField destinationNameField6;
-    public TextField ratingField6;
-    public Circle ratingCircle6;
-    public ImageView ratingPointerImageView6;
-    public ImageView starImageView6;
-    public Button roundTripButton6;
-    public TextField tripTypeField6;
     @FXML
     private Button myBookingButton;
-
     @FXML
     private Button profileButton;
-
     @FXML
     private Button roundTripButton;
-
     @FXML
     private ComboBox<String> comboBox1;
-
     @FXML
     private ComboBox<String> comboBox2;
-
-    @FXML
-    private Label flyStayLabel;
-
-    @FXML
-    private TextField destinationNameField;
-
-    @FXML
-    private TextField ratingField;
-
-    @FXML
-    private Circle ratingCircle;
-
-    @FXML
-    private ImageView ratingPointerImageView;
-
-    @FXML
-    private ImageView starImageView;
-
-    @FXML
-    private TextField destinationInfoField;
-
-    @FXML
-    private TextField travelDatesField;
-
-    @FXML
-    private TextField priceField;
-
-    @FXML
-    private Slider verticalSlider;
-
-    @FXML
-    private TextField popularDestinationsText;
-
-    @FXML
-    private TextField descriptionText;
-
-    @FXML
-    private AnchorPane popularDestinationCard;
-
-    @FXML
-    private AnchorPane card2;
-
-    @FXML
-    private ImageView imageView2;
-
-    @FXML
-    private AnchorPane backgroundImage2;
-
-    @FXML
-    private TextField destinationNameField2;
-
-    @FXML
-    private TextField ratingField2;
-
-    @FXML
-    private Circle ratingCircle2;
-
-    @FXML
-    private ImageView ratingPointerImageView2;
-
-    @FXML
-    private ImageView starImageView2;
-
-    @FXML
-    private TextField destinationInfoField2;
-
-    @FXML
-    private TextField travelDatesField2;
-
-    @FXML
-    private TextField priceField2;
-
     @FXML
     private Button roundTripButton2;
-
     @FXML
-    private DropShadow cardDropShadow;
+    private Button roundTripButton3;
+    @FXML
+    private Button roundTripButton4;
+    @FXML
+    private Button roundTripButton5;
+    @FXML
+    private Button roundTripButton6;
+    @FXML
+    public Button homeButton;
 
     // Initializes the controller
     public void initialize() {
@@ -159,66 +41,50 @@ public class ResultSearchFlightsController {
         comboBox1.getItems().addAll("Flights", "Hotels");
         comboBox2.getItems().addAll("Signup", "Login");
 
-        // Example card 1 setup
         setCard1();
-        /*
         setCard2();
         setCard3();
         setCard4();
         setCard5();
-        setCard6();*/
+        setCard6();
     }
 
 
     private void setCard1() {
-        /*destinationImageView.setImage(new Image(getClass().getResource("/img/ss1.png").toExternalForm()));
-        ratingPointerImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));*/
-        // Set button action
         roundTripButton.setOnAction(event -> handleCard1Button());
     }
-/*
+
     private void setCard2() {
-        imageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss2.png").toExternalForm()));
-        ratingPointerImageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView2.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
-        // Set button action
         roundTripButton2.setOnAction(event -> handleCard2Button());
     }
 
     private void setCard3() {
-        imageView3.setImage(new Image(getClass().getResource("/img/ss3.png").toExternalForm()));
-        ratingPointerImageView3.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView3.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
-        // Set button action
         roundTripButton3.setOnAction(event -> handleCard3Button());
     }
 
     private void setCard4() {
-        imageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss4.jpg").toExternalForm()));
-        ratingPointerImageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView4.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
-        // Set button action
         roundTripButton4.setOnAction(event -> handleCard4Button());
     }
 
     private void setCard5() {
-        imageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss5.jpg").toExternalForm()));
-        ratingPointerImageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView5.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
-        // Set button action
         roundTripButton5.setOnAction(event -> handleCard5Button());
     }
 
     private void setCard6() {
-        imageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/ss6.jpg").toExternalForm()));
-        ratingPointerImageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/pointer2.png").toExternalForm()));
-        starImageView6.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/star.png").toExternalForm()));
-        // Set button action
         roundTripButton6.setOnAction(event -> handleCard6Button());
-    }*/
+    }
 
+    private void setHomeButton() {
+        homeButton.setOnAction(event -> handleHomeButton());
+    }
 
+    private void setMyBookingButton() {
+        myBookingButton.setOnAction(event -> handleMyBookingButton());
+    }
+
+    private void setProfileButton() {
+        profileButton.setOnAction(event -> handleProfileButton());
+    }
 
     private void navigateToPage(String fxmlPath, String title) {
         try {
@@ -240,7 +106,7 @@ public class ResultSearchFlightsController {
     @FXML
     private void handleHomeButton() {
         System.out.println("Home button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/home.fxml", "Home");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/Home/Homepage_V2.fxml", "Home");
     }
 
     @FXML
@@ -259,7 +125,6 @@ public class ResultSearchFlightsController {
     private void handleCard1Button() {
         System.out.println("Round Trip Button 1 clicked");
         // Action for Round Trip Button 2 click
-
         navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
     }
 
@@ -267,30 +132,40 @@ public class ResultSearchFlightsController {
     private void handleCard2Button() {
         System.out.println("Round Trip Button 3 clicked");
         // Action for Round Trip Button 3 click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+
     }
 
     @FXML
     private void handleCard3Button() {
         System.out.println("Round Trip Button 4 clicked");
         // Action for Round Trip Button 4 click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+
     }
 
     @FXML
     private void handleCard4Button() {
         System.out.println("Round Trip Button 5 clicked");
         // Action for Round Trip Button 5 click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+
     }
 
     @FXML
     private void handleCard5Button() {
         System.out.println("Round Trip Button 6 clicked");
         // Action for Round Trip Button 6 click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+
     }
 
     @FXML
     private void handleCard6Button() {
         System.out.println("Round Trip Button 6 clicked");
         // Action for Round Trip Button 6 click
+        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+
     }
 
     @FXML

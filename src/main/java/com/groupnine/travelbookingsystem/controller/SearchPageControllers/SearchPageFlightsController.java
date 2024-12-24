@@ -3,92 +3,56 @@ package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
-//
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class SearchPageFlightsController {
 
+    @FXML
     public ImageView backG;
     @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-
-    // Defining the UI components with fx:id
-    @FXML
     private Button btnMyBooking;
-
     @FXML
     private Button btnProfile;
-
     @FXML
     private Button btnHome;
-
     @FXML
     private ComboBox<String> cbFlightsHotels;
-
     @FXML
     private ComboBox<String> cbSignupLogin;
-
     @FXML
     private ComboBox<String> cbDestination;
-
     @FXML
     private ComboBox<String> cbPassengers;
-
     @FXML
     private ComboBox<String> cbCheckIn;
-
     @FXML
     private ComboBox<String> cbCheckOut;
-
     @FXML
     private Button btnFlights;
-
     @FXML
     private Button btnHotels;
-
     @FXML
     private Button btnSearch;
-
     @FXML
     public AnchorPane searchPane;
-
     @FXML
     public AnchorPane navBar;
-
     @FXML
     public AnchorPane btnHotelsPane;
-
     @FXML
     public AnchorPane btnFlightsPane;
 
-    @FXML
-    public AnchorPane backGroundd;
-
-
-    @FXML
-    private Label lblFlyStay;
 
     // Initialize method is called when the FXML file is loaded
     @FXML
     public void initialize() {
-        // You can set up any initialization logic here, such as populating ComboBoxes or setting event handlers.
-        // For example, filling the ComboBoxes with values:
+
         cbFlightsHotels.getItems().addAll("Flights", "Hotels");
         cbSignupLogin.getItems().addAll("Sign Up", "Login");
         cbDestination.getItems().addAll("New York", "London", "Paris", "Madrid", "Dobui", "Maldivs");  // Example destinations
@@ -96,14 +60,6 @@ public class SearchPageFlightsController {
         cbCheckIn.getItems().addAll("2024-12-01", "2024-12-15", "2024-12-30");
         cbCheckOut.getItems().addAll("2024-12-05", "2024-12-20", "2024-12-30");
 
-        /* Example event handlers for buttons
-        btnMyBooking.setOnAction(event -> handleMyBooking());
-        btnProfile.setOnAction(event -> handleProfile());
-        btnHome.setOnAction(event -> handleHome());
-        btnFlights.setOnAction(event -> handleFlights());
-        btnHotels.setOnAction(event -> handleHotels());
-        btnSearch.setOnAction(event -> handleSearch());
-        */
         btnHome.setOnAction(event -> handleHomeButton());
         btnMyBooking.setOnAction(event -> handleMyBookingButton());
         btnProfile.setOnAction(event -> handleProfileButton());
@@ -144,7 +100,7 @@ public class SearchPageFlightsController {
     @FXML
     private void handleHomeButton() {
         System.out.println("Home button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/home.fxml", "Home");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/Home/Homepage_V2.fxml", "Home");
     }
 
     @FXML
@@ -185,10 +141,10 @@ public class SearchPageFlightsController {
         if (selectedOption != null) {
             switch (selectedOption) {
                 case "Flights":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/flights.fxml", "Flights");
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
                     break;
                 case "Hotels":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/hotels.fxml", "Hotels");
+                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
                     break;
                 default:
                     System.out.println("Unknown option selected.");
@@ -214,21 +170,5 @@ public class SearchPageFlightsController {
             }
         }
     }
-
-
-        /*private void handleSearch () {
-            // Logic for Search button click
-            System.out.println("Search clicked");
-
-            // Example: Get selected ComboBox values
-            String destination = cbDestination.getValue();
-            String passengers = cbPassengers.getValue();
-            String checkIn = cbCheckIn.getValue();
-            String checkOut = cbCheckOut.getValue();
-
-            System.out.println("Searching for " + passengers + " passengers to " + destination + " from " + checkIn + " to " + checkOut);
-        }*/
-
-
 }
 
