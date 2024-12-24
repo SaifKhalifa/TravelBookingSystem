@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class ResultSearchHotelsController {
 
+
     @FXML
     private Button myBookingButton;
     @FXML
