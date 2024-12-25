@@ -137,6 +137,8 @@ public class LoginController {
     @FXML
     private void onCreateAccountButtonClick()
     {
+        showAlert("Access Denied", "You need to login as an admin first.");
+
         try {
             // Load the next view
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml"));
@@ -151,5 +153,13 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace(); // Log any loading errors
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
