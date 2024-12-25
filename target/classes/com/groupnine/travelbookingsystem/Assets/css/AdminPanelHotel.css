@@ -1,0 +1,353 @@
+/* Style for the star labels */
+.star-label {
+    -fx-font-size: 30px;                /* Large font size for the star */
+    -fx-text-fill: #cccccc;             /* Default gray color for unselected stars */
+    -fx-min-width: 30px;                /* Ensures the label has a consistent size */
+    -fx-min-height: 30px;               /* Ensures the label has a consistent size */
+    -fx-alignment: center;              /* Centers the star inside the label */
+}
+
+.star-label:hover {
+    -fx-text-fill: #FFD700;             /* Gold color when hovering over the star */
+}
+
+.star-label:focused {
+    -fx-background-color: transparent; /* Remove background when focused */
+    -fx-border-color: transparent;     /* No border when focused */
+}
+
+.star-label:pressed {
+    -fx-scale-x: 1;                    /* Prevent shrinking on click */
+    -fx-scale-y: 1;                    /* Prevent shrinking on click */
+}
+/*___________________________________________________________________________________*/
+
+/*_______________________________________________________________________*/
+/*    !* Default style for ToggleButton *!*/
+#flightsButton, #hotelsButton {
+    -fx-background-color: #f0f0f0; /* Light grey background */
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-font-weight: normal; /* Regular text */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px 20px; /* Padding inside the button */
+    -fx-border-color: #cccccc; /* Light grey border */
+    -fx-border-width: 1px; /* Thin border */
+    -fx-transition: background-color 0.3s; /* Smooth transition on background color */
+}
+
+/* Selected (toggled) state for ToggleButton */
+#flightsButton:selected, #hotelsButton:selected {
+    -fx-background-color: #6E9FC1; /* Blue when selected */
+    -fx-text-fill: white; /* White text */
+    -fx-font-weight: bold; /* Bold text */
+}
+
+
+/* Hover effect for ToggleButton */
+#flightsButton:hover, #hotelsButton:hover {
+    -fx-background-color: #ddd; /* Light grey when hovered */
+}
+
+/* Hover effect for selected ToggleButton */
+#flightsButton:selected:hover, #hotelsButton:selected:hover {
+    -fx-background-color: #6E9FC1; /* Keep the blue color when hovered on selected */
+}
+/*__________________________________________________________________________________________*/
+.edit-button {
+    -fx-background-color: #ACACAC;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-max-width: 80px;
+    -fx-max-height: 35px;
+}
+
+.delete-button {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-max-width: 80px;
+    -fx-max-height: 35px;
+}
+.add-button {
+    -fx-background-color: #395A7F;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-max-width: 120px;
+    -fx-max-height: 35px;
+}
+
+.delete-button:hover {
+    -fx-background-color: #9e4040;
+}
+.edit-button:hover, #HotelInfoBackBtn:hover {
+    -fx-background-color: #6a6a6a;
+}
+.add-button:hover, #SaveButton:hover {
+    -fx-background-color: #2c4861;
+}
+#uploadButton:hover {
+    -fx-background-color: #8cafc8;
+}
+
+#SaveButton{
+    -fx-background-color: #395A7F;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-max-width: 120px;
+    -fx-max-height: 40px;
+}
+#HotelInfoBackBtn {
+    -fx-background-color: #ACACAC;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-max-width: 80px;
+    -fx-max-height: 40px;
+}
+#uploadButton{
+    -fx-background-color: #A3CAE9;
+    -fx-text-fill: black;
+    -fx-background-radius: 5;
+}
+
+/* تصميم النص داخل الـ Label */
+/*#TitleLabel {*/
+/*    -fx-font-size: 24px; !* زيادة حجم الخط *!*/
+/*    -fx-font-weight: bold; !* جعل النص عريض *!*/
+/*    -fx-text-fill: #2C3E50; !* لون النص (أزرق غامق) *!*/
+/*    -fx-padding: 10px; !* إضافة تباعد داخلي *!*/
+/*}*/
+
+/* General Styles */
+* {
+    -fx-margin: 0;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/*!*___________________________________________________________________________________________*!*/
+/*!*!* Table View *!*!*/
+/*!*.table-view {*!*/
+/*!*    -fx-background-color: transparent;*!*/
+/*!*    -fx-border-color: transparent;*!*/
+/*!*    -fx-padding: 1%;*!*/
+/*!*}*!*/
+
+/*!*.table-view .column-header-background {*!*/
+/*!*    -fx-background-color: #395A7F;*!*/
+/*!*}*!*/
+
+/*!*.table-view .column-header .label {*!*/
+/*!*    !*-fx-text-fill: white;*!*!*/
+/*!*    -fx-font-size: 1.2vw;*!*/
+/*!*}*!*/
+
+/*!*.table-view .table-row-cell {*!*/
+/*!*    -fx-font-size: 1vw;*!*/
+/*!*    -fx-border-color: #ccc;*!*/
+/*!*    -fx-border-width: 0 0 1px 0;*!*/
+/*!*}*!*/
+/*!*________________________________________*!*/
+/*!*    !* TableView Styling *!*!*/
+/*!*TableView {*!*/
+/*!*    -fx-background-color: #ffffff; !* White background for the Table *!*!*/
+/*!*    -fx-border-color: #cccccc; !* Light border *!*!*/
+/*!*    -fx-border-width: 1px;*!*/
+/*!*    -fx-padding: 10px;*!*/
+/*!*    -fx-font-size: 14px; !* Set a readable font size *!*!*/
+/*!*    -fx-alignment: center; !* Center content *!*!*/
+/*!*}*!*/
+
+/*!*!* TableView Styling *!*!*/
+/*!*TableView {*!*/
+/*!*    -fx-background-color: #ffffff; !* White background for the Table *!*!*/
+/*!*    -fx-border-color: #cccccc; !* Light border *!*!*/
+/*!*    -fx-border-width: 1px;*!*/
+/*!*    -fx-padding: 10px;*!*/
+/*!*    -fx-font-size: 14px; !* Set a readable font size *!*!*/
+/*!*    -fx-alignment: center; !* Center content *!*!*/
+/*!*}*!*/
+
+/*!*!* TableColumn Header Styling *!*!*/
+/*!*TableColumn {*!*/
+/*!*    -fx-font-weight: bold;*!*/
+/*!*    -fx-alignment: center;*!*/
+/*!*    -fx-text-fill: #333333; !* Dark gray text for better readability *!*!*/
+/*!*    -fx-background-color: #f7f7f7; !* Light gray background *!*!*/
+/*!*    -fx-border-color: #dcdcdc; !* Light gray borders *!*!*/
+/*!*    -fx-border-width: 1px;*!*/
+/*!*}*!*/
+
+/*!*!* Column header hover effect *!*!*/
+/*!*TableColumn:hover {*!*/
+/*!*    -fx-background-color: #eaeaea; !* Slight darker gray for hover effect *!*!*/
+/*!*}*!*/
+
+/*!*!* Row Styling *!*!*/
+/*!*.TableRow {*!*/
+/*!*    -fx-background-color: #ffffff; !* White background for rows *!*!*/
+/*!*    -fx-border-color: #f1f1f1; !* Light gray border between rows *!*!*/
+/*!*    -fx-border-width: 0.5px;*!*/
+/*!*}*!*/
+
+/*!*!* Row hover effect *!*!*/
+/*!*.TableRow:hover {*!*/
+/*!*    -fx-background-color: #f0f0f0; !* Light gray for row hover effect *!*!*/
+/*!*}*!*/
+__________________________________
+/*!*!* Alternating row colors for better readability *!*!*/
+/*!*TableRow:odd {*!*/
+/*!*    -fx-background-color: #fafafa; !* Light gray for odd rows *!*!*/
+/*!*}*!*/
+
+/*!*TableRow:even {*!*/
+/*!*    -fx-background-color: #ffffff; !* White for even rows *!*!*/
+/*!*}*!*/
+
+/*!*!* Table Cell Styling *!*!*/
+/*!*TableCell {*!*/
+/*!*    -fx-padding: 5px;*!*/
+/*!*    -fx-alignment: center; !* Align text to the center of each cell *!*!*/
+/*!*}*!*/
+
+/*!*!* TableCell styling when a row is selected *!*!*/
+/*!*TableView:focused .TableRow {*!*/
+/*!*    -fx-background-color: #cce5ff; !* Light blue background for selected row *!*!*/
+/*!*}*!*/
+/*!*______________________________________________*!*/
+/*!*    !* Base TableView styling *!*!*/
+/*!*.TableView {*!*/
+/*!*    -fx-background-color: #ffffff;*!*/
+/*!*    -fx-border-color: #cccccc;*!*/
+/*!*    -fx-border-width: 1px;*!*/
+/*!*    -fx-padding: 1vw;                   !* Use percentage or vw to make it responsive *!*!*/
+/*!*    -fx-font-size: 1.2vw;               !* Font size scales with screen width *!*!*/
+/*!*    -fx-alignment: center;*!*/
+/*!*    -fx-border-radius: 10px;*!*/
+/*!*    -fx-column-halignment: center;    !* Center text horizontally in columns *!*!*/
+/*!*}*!*/
+
+/*!*!* TableColumn header styling *!*!*/
+/*!*.TableColumn {*!*/
+/*!*    -fx-font-weight: bold;*!*/
+/*!*    -fx-alignment: center;*!*/
+/*!*    -fx-text-fill: #333333;*!*/
+/*!*    -fx-background-color: #f7f7f7;*!*/
+/*!*    -fx-border-color: #dcdcdc;*!*/
+/*!*    -fx-border-width: 1px;*!*/
+/*!*    -fx-font-size: 1.2vw;*!*/
+/*!*}*!*/
+
+/*!*!* TableRow styling *!*!*/
+/*!*.TableRow {*!*/
+/*!*    -fx-background-color: #ffffff;*!*/
+/*!*    -fx-border-color: #f1f1f1;*!*/
+/*!*    -fx-border-width: 0.5px;*!*/
+/*!*}*!*/
+
+/*!*.TableRow:hover {*!*/
+/*!*    -fx-background-color: #f0f0f0;*!*/
+/*!*}*!*/
+
+/*!*!* Alternating row colors for better readability *!*!*/
+/*!*.TableRow:odd {*!*/
+/*!*    -fx-background-color: #fafafa;*!*/
+/*!*}*!*/
+
+/*!*.TableRow:even {*!*/
+/*!*    -fx-background-color: #ffffff;*!*/
+/*!*}*!*/
+
+/*!*!* TableCell styling *!*!*/
+/*!*.TableCell {*!*/
+/*!*    -fx-padding: 0.5vw;                !* Padding scales with screen *!*!*/
+/*!*    -fx-alignment: center;*!*/
+/*!*    -fx-font-size: 1vw;*!*/
+/*!*    -fx-wrap-text: true;               !* Ensures text wraps within the cell *!*!*/
+/*!*}*!*/
+
+/*!*.TableView:focused .TableRow {*!*/
+/*!*    -fx-background-color: #cce5ff;*!*/
+/*!*}*!*/
+/*!*_________________________________________________________________________________________*!*/
+
+/*!*____________________________________________________________________________________________*!*/
+/*!*!* Left Navigation Pane *!*!*/
+/*!*.vbox {*!*/
+/*!*    -fx-background-color: #CCD2D9;*!*/
+/*!*    -fx-padding: 2%;*!*/
+/*!*    -fx-spacing: 15px;*!*/
+/*!*}*!*/
+
+/*!*.vbox .button {*!*/
+/*!*    -fx-background-color: #334c68;*!*/
+/*!*    -fx-text-fill: white;*!*/
+/*!*    -fx-font-size: 1.5vw;*!*/
+/*!*}*!*/
+
+/*!*.vbox .button:hover {*!*/
+/*!*    -fx-background-color: #395A7F;*!*/
+/*!*}*!*/
+/*!*____________________________________________________________________________________________*!*/
+
+/*____________________________________________________________________________*/
+/*!* Responsive Layout for Small Screens *!*/
+@media screen and (max-width: 768px) {
+    #TitleLabel {
+        -fx-font-size: 5vw;
+    }
+
+    .table-view .column-header .label {
+        -fx-font-size: 3vw;
+    }
+
+    .table-view .table-row-cell {
+        -fx-font-size: 2.5vw;
+    }
+
+    .button {
+        -fx-font-size: 3vw;
+        -fx-padding: 5px 10px;
+    }
+}
+
+/* Responsive Layout for Medium Screens */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    #TitleLabel {
+        -fx-font-size: 4vw;
+    }
+
+    .table-view .column-header .label {
+        -fx-font-size: 2vw;
+    }
+
+    .table-view .table-row-cell {
+        -fx-font-size: 1.8vw;
+    }
+
+    .button {
+        -fx-font-size: 2vw;
+        -fx-padding: 10px 15px;
+    }
+}
+
+/* Responsive Layout for Larger Screens */
+@media screen and (min-width: 1201px) {
+    #TitleLabel {
+        -fx-font-size: 3vw;
+    }
+
+    .table-view .column-header .label {
+        -fx-font-size: 1.5vw;
+    }
+
+    .table-view .table-row-cell {
+        -fx-font-size: 1.5vw;
+    }
+
+    .button {
+        -fx-font-size: 1.5vw;
+        -fx-padding: 10px 20px;
+    }
+}
+
+
+

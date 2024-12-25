@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.ManageHotelsListController">
+    <stylesheets>
+        <URL value="@../../Assets/css/AdminPanelHotel.css" />
+    </stylesheets>
+    <!-- Left Navigation Pane -->
+    <left>
+
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+<!--
+        <VBox alignment="CENTER" layoutX="130.0" layoutY="349.0" prefWidth="258.0" spacing="15" style="-fx-background-color: #395A7F; -fx-background-color: #CCD2D9; -fx-padding: 10;">
+-->
+    </left>
+
+    <!-- Main Content -->
+
+    <center>
+        <VBox prefHeight="846.0" prefWidth="1320.0" spacing="10" style="-fx-padding: 10; -fx-background-color: #E9ECEE;">
+            <!-- Header -->
+            <Label fx:id="TitleLabel" prefHeight="75.0" prefWidth="242.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Dashboard" wrapText="true">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            <VBox.margin>
+               <Insets left="3.0" />
+            </VBox.margin>
+            <padding>
+               <Insets left="5.0" top="8.0" />
+            </padding>
+            </Label>
+
+            <HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="312.0">
+                    <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList" prefHeight="38.0" prefWidth="136.0" text="Flights" />
+                    <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" text="Hotels" />
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+                </HBox>
+                <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="1149.0" spacing="5">
+                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefWidth="100.0" styleClass="edit-button" text="Edit" />
+                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefWidth="132.0" styleClass="delete-button" text="Delete" />
+                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefWidth="100.0" styleClass="add-button" text="+ Add" />
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+
+                </HBox>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tableView" prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 10;">
+                <columns>
+                    <TableColumn prefWidth="122.40003395080566" text="Name" />
+                    <TableColumn prefWidth="126.39999389648438" text="Location" />
+                    <TableColumn prefWidth="107.20001220703125" text="Price Per Night" />
+                    <TableColumn prefWidth="100.0" text="Total Rooms" />
+                    <TableColumn minWidth="7.199951171875" prefWidth="103.20001220703125" text="Room types" />
+                    <TableColumn prefWidth="109.5999755859375" text="Facilities" />
+                    <TableColumn minWidth="0.0" prefWidth="106.40008544921875" text="Aminities" />
+                    <TableColumn minWidth="0.0" prefWidth="140.800048828125" text="promotional offers" />
+                    <TableColumn minWidth="0.0" prefWidth="96.0001220703125" text="Availability" />
+                    <TableColumn prefWidth="97.5999755859375" text="Rating" />
+                    <TableColumn prefWidth="70.4000244140625" text="Edit" />
+                    <TableColumn prefWidth="68.0" text="Delete" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

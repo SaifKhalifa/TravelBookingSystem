@@ -44,11 +44,11 @@ public class LoginController {
         if (passwordField.isVisible()) {
             passwordField.setVisible(false);
             passwordTextField.setVisible(true);
-            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/hide-password-logo.png")));
+            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/auth/hide-password-logo.png")));
         } else {
             passwordField.setVisible(true);
             passwordTextField.setVisible(false);
-            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/show-password-logo.png")));
+            passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/auth/show-password-logo.png")));
         }
     }
 
@@ -81,9 +81,9 @@ public class LoginController {
                     errorLabel.setVisible(false);
                     statusLabel.setText("Success, Welcome " + usernameTextField.getText() + "!");
                     statusLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #35b359;");
-                    /*try {
-                        // Load the next view
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
+                    try {
+                        // Corrected path for the FXML file
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml"));
                         Scene mainScene = new Scene(fxmlLoader.load());
 
                         // Get the current stage
@@ -91,9 +91,12 @@ public class LoginController {
 
                         // Set the new scene
                         currentStage.setScene(mainScene);
+                        currentStage.setTitle("Welcome " + usernameTextField.getText() +"!");
+                        currentStage.setMaximized(true);
                     } catch (IOException e) {
                         e.printStackTrace(); // Log any loading errors
-                    }*/
+                    }
+
                 }
             } else {
                 errorLabel.setVisible(true);
