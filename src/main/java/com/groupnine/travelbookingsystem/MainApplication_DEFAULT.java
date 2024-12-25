@@ -13,6 +13,10 @@ import org.hibernate.SessionFactory;
 import java.io.IOException;
 
 public class MainApplication_DEFAULT extends Application {
+    // app data
+    public static String loggedInUser = "";
+
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
@@ -32,9 +36,9 @@ public class MainApplication_DEFAULT extends Application {
 
 
     public static void main(String[] args) {
-        //launch();
-
         boolean status = HibernateUtil.getInstance().isConnected();
         System.out.println("Database Connected: " + status);
+
+        launch();
     }
 }
