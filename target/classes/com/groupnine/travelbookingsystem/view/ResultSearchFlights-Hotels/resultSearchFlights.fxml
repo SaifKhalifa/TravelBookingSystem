@@ -27,7 +27,7 @@
             </Label>
             <ComboBox fx:id="comboBox1" layoutX="262.0" layoutY="31.0" prefWidth="150.0" promptText="Flights/Hotels" style="-fx-background-color: #4445; -fx-background-radius: 60;" />
             <ComboBox fx:id="comboBox2" layoutX="903.0" layoutY="31.0" prefWidth="150.0" promptText="Signup/Login" style="-fx-background-color: #4445; -fx-background-radius: 60; -fx-border-radius: 60;" />
-            <Button layoutX="148.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: non; -fx-text-fill: white; -fx-font-size: 18px;" text="Home" />
+            <Button fx:id="homeButton" layoutX="148.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: non; -fx-text-fill: white; -fx-font-size: 18px;" text="Home" />
          </children>
       </AnchorPane>
 

@@ -46,6 +46,14 @@
     -fx-border: none;
     -fx-cursor: hand;
 }
+.button-back-white {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border: none;
+    -fx-cursor: hand;
+}
 /* Login button */
 .button-main {
     -fx-background-color: #A3CAE9;
