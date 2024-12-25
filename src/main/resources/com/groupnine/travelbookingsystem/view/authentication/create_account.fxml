@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import java.net.URL?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController">
    <children>
       <Group layoutX="21.0" layoutY="80.0">
          <children>
@@ -95,11 +90,6 @@
             <Button defaultButton="true" layoutX="71.0" layoutY="400.0" onAction="#onCreateAccountButtonClick" prefHeight="30.0" prefWidth="200.0" styleClass="button-main" stylesheets="@../../Assets/css/authStyle.css" text="Crerate account" />
          </children>
       </AnchorPane>
-      <Label fx:id="statusLabel" layoutX="21.0" layoutY="450.0" text="Connecting to database..." textFill="#acacac">
-         <font>
-            <Font name="Poppins Regular" size="14.0" />
-         </font>
-      </Label>
    </children>
    <stylesheets>
       <URL value="@../../Assets/css/authStyle.css" />

@@ -24,7 +24,7 @@ public class AccountCreationController {
     private PasswordField passwordField;
 
     @FXML
-    private Label errorLabel, statusLabel;
+    private Label errorLabel;
 
     @FXML
     private ImageView passwordToggleIcon;
@@ -34,9 +34,6 @@ public class AccountCreationController {
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Error connecting to database");
-        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
-
         errorLabel.setVisible(false);
         // Sync password fields
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
@@ -107,8 +104,6 @@ public class AccountCreationController {
         }
 
         // If validation passes
-        statusLabel.setText("Account created successfully!");
-        statusLabel.setTextFill(Color.GREEN);
         clearForm();
     }
 
