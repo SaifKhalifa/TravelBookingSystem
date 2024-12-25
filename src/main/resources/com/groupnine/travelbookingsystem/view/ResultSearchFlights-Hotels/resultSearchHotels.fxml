@@ -82,7 +82,10 @@
                </font>
             </TextField>
             <Button fx:id="card1Button" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="133.0" prefWidth="276.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s1.png&quot;); -fx-background-size: cover;" />
+-->
+            <HBox prefHeight="133.0" prefWidth="276.0"/>
          </children>
          <effect>
             <DropShadow fx:id="card1DropShadow" height="105.5125" radius="52.183125000000004" spread="0.23" width="105.22">
@@ -137,7 +140,9 @@
                </font>
             </TextField>
             <Button fx:id="button2" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="134.0" prefWidth="272.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s3.png&quot;); -fx-background-size: cover;" />
+-->
          </children>
          <effect>
             <DropShadow fx:id="dropShadow2" height="106.39" radius="52.4025" spread="0.23" width="105.22">
@@ -192,7 +197,9 @@
                </font>
             </TextField>
             <Button fx:id="button3" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="134.0" prefWidth="272.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s2.png&quot;); -fx-background-size: cover;" />
+-->
          </children>
          <effect>
             <DropShadow fx:id="dropShadow3" height="105.805" radius="52.25625" spread="0.23" width="105.22">
@@ -247,7 +254,9 @@
                </font>
             </TextField>
             <Button fx:id="button4" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="134.0" prefWidth="272.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s5.jpg&quot;); -fx-background-size: cover;" />
+-->
          </children>
          <effect>
             <DropShadow fx:id="dropShadow4" height="106.39" radius="52.4025" spread="0.23" width="105.22">
@@ -302,7 +311,9 @@
                </font>
             </TextField>
             <Button fx:id="button5" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="134.0" prefWidth="272.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s7.jpg&quot;); -fx-background-size: cover;" />
+-->
          </children>
          <effect>
             <DropShadow fx:id="dropShadow5" height="106.39" radius="52.4025" spread="0.23" width="105.22">
@@ -357,7 +368,9 @@
                </font>
             </TextField>
             <Button fx:id="button6" layoutX="230.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: non;" />
+<!--
             <HBox prefHeight="134.0" prefWidth="272.0" style="-fx-background-image: url(&quot;file:/C:/Users/HP/Desktop/s6.jpg&quot;); -fx-background-size: cover;" />
+-->
          </children>
          <effect>
             <DropShadow fx:id="dropShadow6" height="106.39" radius="52.4025" spread="0.23" width="105.22">
