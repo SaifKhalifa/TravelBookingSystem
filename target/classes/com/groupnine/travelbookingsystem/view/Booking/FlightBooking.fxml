@@ -31,12 +31,9 @@
                             <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
                                 <Button text="Pending Booking" onAction="#setPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
                                 <Button text="Cancel Pending Booking" onAction="#cancelPendingBooking" style="-fx-background-color: #6E9FC1; -fx-background-radius: 15; -fx-text-fill: white ; -fx-font-weight: bold;"/>
-
                                 <Region HBox.hgrow="ALWAYS" />
-
                                 <Button text="Cancel Flight Booking" onAction="#cancelFlightBooking" style="-fx-background-color: #385A7F; -fx-background-radius: 15; -fx-text-fill: white; -fx-font-weight: bold;"/>
                             </HBox>
-
                         </VBox>
                     </content>
                 </Tab>

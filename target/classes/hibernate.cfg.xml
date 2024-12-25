@@ -4,12 +4,19 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/travelbookingdb</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3000/travelbookingdb</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">saif1234</property>
+        <property name="connection.password">sana1234</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.connection.autocommit">true</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+
+        <mapping class="com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel"/>
+
     </session-factory>
 </hibernate-configuration>

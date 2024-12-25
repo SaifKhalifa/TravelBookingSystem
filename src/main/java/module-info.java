@@ -13,6 +13,11 @@ module com.groupnine.travelbookingsystem {
     requires java.naming;
     requires java.persistence;
     requires java.sql;
+
+    // Spring dependencies
+    requires spring.context;  // إضافة هذا السطر
+    requires spring.beans;    // إضافة هذا السطر إذا كنت بحاجة إليها
+
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
@@ -56,5 +61,8 @@ module com.groupnine.travelbookingsystem {
     //TO REMOVE LATER:
     exports com.groupnine.travelbookingsystem.otherApplications;
     opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
+
+    exports com.groupnine.travelbookingsystem.otherApplications.Sana;
+
 
 }
