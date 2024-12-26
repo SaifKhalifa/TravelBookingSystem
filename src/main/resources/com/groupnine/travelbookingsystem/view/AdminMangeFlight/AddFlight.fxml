@@ -41,11 +41,11 @@
          <Font size="36.0" />
       </font></Label>
 
-    <Label style="-fx-text-fill: white;" text="Flight Name:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <Label style="-fx-text-fill: white;" text="Flight ID:" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="flightname" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="flightid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <Label style="-fx-text-fill: white;" text="Gate Number:" GridPane.columnIndex="2" GridPane.rowIndex="2">
       <font>
@@ -57,7 +57,7 @@
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="seatcapacit" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+    <TextField fx:id="seatcapacity" GridPane.columnIndex="5" GridPane.rowIndex="2" />
 
     <Label style="-fx-text-fill: white;" text="Origin:" GridPane.columnIndex="0" GridPane.rowIndex="3">
       <font>
@@ -69,7 +69,7 @@
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="detination" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <TextField fx:id="destination" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 
     <Label style="-fx-text-fill: white;" text="Flight Price:" GridPane.columnIndex="4" GridPane.rowIndex="3">
       <font>
@@ -119,13 +119,17 @@
       </font></Label>
     <TextArea fx:id="notes" prefWidth="860.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="6" />
 
-    <Button fx:id="addButton" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;" text="+Add" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
-      <font>
-         <Font size="36.0" />
-      </font></Button>
-   <Button fx:id="back_to_list_flight" mnemonicParsing="false" onAction="#navigateToListOfFlights" style="-fx-background-color: #385A7F;" text="&lt;-" textFill="WHITE">
+    <Button fx:id="addButton" onAction="#addFlight" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;" text="+Add" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+        <font>
+            <Font size="36.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="back_to_list_flight" mnemonicParsing="false" onAction="#navigateToListOfFlights" style="-fx-background-color: #385A7F;" text="&lt;-" textFill="WHITE">
       <font>
          <Font size="24.0" />
       </font></Button>
+    <Label fx:id="notificationLabel" text="" style="-fx-text-fill: green;" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="6" />
+
 
 </GridPane>
