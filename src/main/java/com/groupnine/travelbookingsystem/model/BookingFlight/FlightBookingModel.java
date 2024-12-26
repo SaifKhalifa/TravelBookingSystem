@@ -1,6 +1,9 @@
 package com.groupnine.travelbookingsystem.model.BookingFlight;
-
 import javax.persistence.*;
+import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "flights")
@@ -18,21 +21,20 @@ public class FlightBookingModel {
     private String airline;
 
     @Column(name = "bookingDate")
-    private String bookingDate;
+    private Date bookingDate;
 
     @Column(name = "departure")
-    private String departure;
+    private Date departure;
 
     @Column(name = "arrival")
-    private String arrival;
+    private Date arrival;
 
     @Column(name = "status")
     private String status;
 
-    // منشئ فارغ
     public FlightBookingModel() {}
 
-    public FlightBookingModel(String customerName, String airline, String bookingDate, String departure, String arrival, String status) {
+    public FlightBookingModel(String customerName, String airline, Date bookingDate, Date departure, Date arrival, String status) {
         this.customerName = customerName;
         this.airline = airline;
         this.bookingDate = bookingDate;
@@ -66,27 +68,27 @@ public class FlightBookingModel {
         this.airline = airline;
     }
 
-    public String getBookingDate() {
+    public Date getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(String bookingDate) {
+    public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public String getDeparture() {
+    public Date getDeparture() {
         return departure;
     }
 
-    public void setDeparture(String departure) {
+    public void setDeparture(Date departure) {
         this.departure = departure;
     }
 
-    public String getArrival() {
+    public Date getArrival() {
         return arrival;
     }
 
-    public void setArrival(String arrival) {
+    public void setArrival(Date arrival) {
         this.arrival = arrival;
     }
 

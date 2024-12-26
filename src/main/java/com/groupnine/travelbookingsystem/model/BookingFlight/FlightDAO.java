@@ -1,11 +1,11 @@
 package com.groupnine.travelbookingsystem.model.BookingFlight;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
 import java.util.List;
 
-public interface FlightRepository {
-    // جلب جميع الرحلات
+public interface FlightDAO {
+
+    //get all data
     List<FlightBookingModel> getAllFlights();
 
-    // تحديث حالة الرحلة
+    // update the flight status
     void updateFlightStatus(int flightId, String status);
 }
