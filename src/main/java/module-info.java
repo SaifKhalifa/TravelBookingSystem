@@ -15,8 +15,9 @@ module com.groupnine.travelbookingsystem {
     requires java.sql;
 
     // Spring dependencies
-    requires spring.context;  // إضافة هذا السطر
-    requires spring.beans;    // إضافة هذا السطر إذا كنت بحاجة إليها
+    requires spring.context;
+    requires spring.beans;
+    requires mysql.connector.java;
 
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
@@ -64,5 +65,5 @@ module com.groupnine.travelbookingsystem {
 
     exports com.groupnine.travelbookingsystem.otherApplications.Sana;
 
-
+    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
 }

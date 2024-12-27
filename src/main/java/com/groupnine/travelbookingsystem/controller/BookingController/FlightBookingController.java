@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
 import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightRepository;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightRepositoryImp;
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class FlightBookingController {
 
@@ -41,7 +44,7 @@ public class FlightBookingController {
 
     private Flight lastSelectedFlight = null;  // Track the last selected flight
 
-    private FlightRepositoryImp flightRepositoryImp = new FlightRepositoryImp(); // Repository instance
+    private FlightDAOImp flightRepositoryImp = new FlightDAOImp(); // Repository instance
 
     public void initialize() {
         try {
@@ -71,7 +74,6 @@ public class FlightBookingController {
         // Align the columns' headers to the center
         flightIdColumn.setStyle("-fx-alignment: CENTER;");
         customerNameColumn.setStyle("-fx-alignment: CENTER;");
-
         airlineColumn.setStyle("-fx-alignment: CENTER;");
         bookingDateColumn.setStyle("-fx-alignment: CENTER;");
         departureColumn.setStyle("-fx-alignment: CENTER;");
@@ -117,14 +119,16 @@ public class FlightBookingController {
         if (flightModels != null && !flightModels.isEmpty()) {
             // Convert to Flight objects for TableView display
             for (FlightBookingModel model : flightModels) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
                 System.out.println("Converting FlightBookingModel to Flight: " + model);
                 flightData.add(new Flight(
                         String.valueOf(model.getFlightId()),
                         model.getCustomerName(),
                         model.getAirline(),
-                        model.getBookingDate(),
-                        model.getDeparture(),
-                        model.getArrival(),
+                        sdf.format(model.getBookingDate()),
+                        sdf.format(model.getDeparture()),
+                        sdf.format(model.getArrival()),
                         model.getStatus()
                 ));
             }
@@ -146,6 +150,9 @@ public class FlightBookingController {
             if (!selectedFlight.getStatus().equalsIgnoreCase("Cancelled")) {
                 // Update the status to "Cancelled"
                 selectedFlight.setStatus("Cancelled");
+
+                updateFlightStatusInDatabase(selectedFlight);
+
                 flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Cancellation Successful", "The flight has been successfully cancelled.");
             } else {
@@ -156,6 +163,34 @@ public class FlightBookingController {
         }
     }
 
+    private void updateFlightStatusInDatabase(Flight flight) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            FlightBookingModel flightModel = session.get(FlightBookingModel.class, Integer.parseInt(flight.getFlightId()));
+
+            if (flightModel != null) {
+                flightModel.setStatus(flight.getStatus());
+                session.update(flightModel);
+                transaction.commit();
+                System.out.println("Flight status updated successfully in the database.");
+            } else {
+                System.out.println("Flight not found in the database.");
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+
     @FXML
     private void setPendingBooking() {
         Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
@@ -164,6 +199,9 @@ public class FlightBookingController {
         if (selectedFlight != null) {
             if (!selectedFlight.getStatus().equalsIgnoreCase("Pending")) {
                 selectedFlight.setStatus("Pending");
+
+                updateFlightStatusInDatabase(selectedFlight);
+
                 flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The flight is now in Pending Booking status.");
             } else {
@@ -182,6 +220,9 @@ public class FlightBookingController {
         if (selectedFlight != null) {
             if (selectedFlight.getStatus().equalsIgnoreCase("Pending")) {
                 selectedFlight.setStatus("Confirmed");
+
+                updateFlightStatusInDatabase(selectedFlight);
+
                 flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The Pending Booking status has been cancelled.");
             } else {

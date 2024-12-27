@@ -3,35 +3,23 @@ package com.groupnine.travelbookingsystem.model.BookingFlight;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
-public class FlightRepositoryImp implements FlightRepository {
+public class FlightDAOImp implements FlightDAO {
 
-    @Autowired
-    private static SessionFactory sessionFactory;
+HibernateUtil hibernateUtil;
+SessionFactory sessionFactory;
 
-    /**
-     * Shuts down the SessionFactory to release resources properly.
-     */
-    public static void shutdown() {
-        if (sessionFactory != null && !sessionFactory.isClosed()) {
-            try {
-                sessionFactory.close();
-                System.out.println("SessionFactory has been closed successfully.");
-            } catch (Exception e) {
-                System.err.println("Error occurred while closing SessionFactory: " + e.getMessage());
-            }
-        } else {
-            System.out.println("SessionFactory is already closed or not initialized.");
-        }
-    }
+    public FlightDAOImp(){
+    hibernateUtil= HibernateUtil.getInstance();
+    sessionFactory = hibernateUtil.getSessionFactory();
+}
 
     @Override
     public List<FlightBookingModel> getAllFlights() {
+
         try (Session session = sessionFactory.openSession()) {
             List<FlightBookingModel> flights = session.createQuery("from FlightBookingModel", FlightBookingModel.class).list();
 
