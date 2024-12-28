@@ -9,6 +9,7 @@ public class Users {
     @GeneratedValue
     int user_id;
 
+
     @Column(name = "user_name")
     String user_name;
 
