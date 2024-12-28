@@ -2,7 +2,11 @@ module com.groupnine.travelbookingsystem {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-
+    requires java.transaction;
+    requires spring.context;
+    requires spring.beans;
+    requires spring.core;
+    requires spring.tx;
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
