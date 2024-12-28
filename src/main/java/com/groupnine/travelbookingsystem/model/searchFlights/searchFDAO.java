@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface searchFDAO {
 
+
     // Create a new flight booking
     void addFlightBooking(searchF flightBooking);
 
