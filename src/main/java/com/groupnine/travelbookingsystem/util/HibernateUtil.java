@@ -11,6 +11,7 @@ public class HibernateUtil {
 
     private static HibernateUtil instance ;
 
+
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
