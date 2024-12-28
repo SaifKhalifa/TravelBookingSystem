@@ -1,2 +1,2 @@
-src/main/resources/hibernate.cfg.xml
-/target/classes/hibernate.cfg.xml
+/target
+/src/main/resources/hibernate.cfg.xml

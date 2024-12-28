@@ -23,7 +23,7 @@ public class PasswordRecoverController {
     private Button setPasswordButton;
 
     @FXML
-    private Label errorLabel, statusLabel;
+    private Label errorLabel;
 
     @FXML
     private TextField emailTextField, passwordTextField;
@@ -33,9 +33,6 @@ public class PasswordRecoverController {
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Error connecting to database");
-        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
-
         errorLabel.setVisible(false);
     }
 
@@ -108,9 +105,6 @@ public class PasswordRecoverController {
             return;
         }
 
-        // Simulate email submission success (needs to be replaced with the actual logic)
-        statusLabel.setText("Password recovery email sent to: " + email);
-        statusLabel.setTextFill(Color.GREEN);
         emailTextField.clear();
     }
 

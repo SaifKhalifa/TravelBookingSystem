@@ -16,6 +16,7 @@ public class MainApplication_DEFAULT extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml"));
 
         Parent root = fxmlLoader.load();
 
@@ -32,7 +33,7 @@ public class MainApplication_DEFAULT extends Application {
 
 
     public static void main(String[] args) {
-        //launch();
+        launch();
 
         boolean status = HibernateUtil.getInstance().isConnected();
         System.out.println("Database Connected: " + status);

@@ -17,6 +17,12 @@ module com.groupnine.travelbookingsystem {
     requires java.naming;
     requires java.persistence;
     requires java.sql;
+
+    // Spring dependencies
+    requires spring.context;
+    requires spring.beans;
+    requires mysql.connector.java;
+
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
@@ -61,4 +67,7 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem.otherApplications;
     opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
 
+    exports com.groupnine.travelbookingsystem.otherApplications.Sana;
+
+    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
 }

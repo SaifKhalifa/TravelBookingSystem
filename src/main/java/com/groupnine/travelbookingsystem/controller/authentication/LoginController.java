@@ -1,6 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.authentication;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +19,7 @@ public class LoginController {
     private TextField passwordTextField, usernameTextField;
 
     @FXML
-    private ImageView passwordToggleIcon;
+    private ImageView passwordToggleIcon, statusIcon;
 
     @FXML
     private Button passwordToggleButton;
@@ -28,8 +29,16 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Error connecting to database");
-        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+        if(!HibernateUtil.getInstance().isConnected())
+        {
+            statusLabel.setText("Error connecting to database");
+            //statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+            statusIcon.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/auth/disconnected_icon.png").toExternalForm()));
+        }
+        else{
+            statusLabel.setText("Connected to database");
+            statusIcon.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/auth/connected_icon.png").toExternalForm()));
+        }
 
         errorLabel.setVisible(false);
         // Sync password fields
@@ -128,6 +137,8 @@ public class LoginController {
     @FXML
     private void onCreateAccountButtonClick()
     {
+        showAlert("Access Denied", "You need to login as an admin first.");
+
         try {
             // Load the next view
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml"));
@@ -142,5 +153,13 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace(); // Log any loading errors
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
