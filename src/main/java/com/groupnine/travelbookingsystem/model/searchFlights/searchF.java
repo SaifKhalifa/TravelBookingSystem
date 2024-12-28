@@ -7,7 +7,6 @@ import java.sql.Date;
 @Table(name = "flightbookings")
 public class searchF {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")

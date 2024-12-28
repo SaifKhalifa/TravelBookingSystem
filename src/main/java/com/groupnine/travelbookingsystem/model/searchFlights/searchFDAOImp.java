@@ -1,6 +1,6 @@
 package com.groupnine.travelbookingsystem.model.searchFlights;
 
-import org.springframework.stereotype.Repository;
+//import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -8,7 +8,7 @@ import java.util.List;
 //import org.springframework.data.jpa.repository.JpaRepository;
 
 
-@Repository
+//@Repository
 @Transactional
 public class searchFDAOImp implements searchFDAO {
 
