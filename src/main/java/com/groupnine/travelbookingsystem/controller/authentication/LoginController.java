@@ -1,6 +1,9 @@
 package com.groupnine.travelbookingsystem.controller.authentication;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.model.userMangment.User;
+import com.groupnine.travelbookingsystem.model.userMangment.UserDAO;
+import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,7 @@ import javafx.scene.image.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class LoginController {
     @FXML
@@ -26,6 +30,8 @@ public class LoginController {
 
     @FXML
     private Label statusLabel, errorLabel;
+
+    private final UserDAO userDAO = new UserDAOImpl();
 
     @FXML
     private void initialize() {
@@ -81,37 +87,41 @@ public class LoginController {
         if(usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty())
         {
             errorLabel.setVisible(true);
-            errorLabel.setText("Username/Email and password are required!");
+            errorLabel.setText("Username and password are required!");
         }
         else
         {
-            if (usernameTextField.getText().equals("admin")) {
-                if (passwordField.getText().equals("admin")) {
+            User user = userDAO.getUserByUsername(usernameTextField.getText());
+
+            if (user != null)
+            {
+                if(user.getPassword().equals(passwordField.getText())) {
                     errorLabel.setVisible(false);
-                    statusLabel.setText("Success, Welcome " + usernameTextField.getText() + "!");
-                    statusLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #35b359;");
+                    statusLabel.setText("Success, Welcome " + user.getUsername() + "!, Loading app...");
+                    userDAO.updateLastLogin(usernameTextField.getText());
+                    user.setLastLogin(LocalDateTime.now());
+
                     try {
-                        // Corrected path for the FXML file
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml"));
                         Scene mainScene = new Scene(fxmlLoader.load());
 
-                        // Get the current stage
                         Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
-
-                        // Set the new scene
                         currentStage.setScene(mainScene);
-                        currentStage.setTitle("Welcome " + usernameTextField.getText() +"!");
+                        currentStage.setTitle("Welcome " + user.getName() + "! - " + "(" + user.getRole() + ")");
                         currentStage.setMaximized(true);
                     } catch (IOException e) {
-                        e.printStackTrace(); // Log any loading errors
+                        e.printStackTrace();
                     }
-
                 }
-            } else {
-                errorLabel.setVisible(true);
-                errorLabel.setText("Invalid username/email or password!");
+                else {
+                    errorLabel.setVisible(true);
+                    errorLabel.setText("Entered password is wrong!");
+                }
             }
-
+            else{
+                errorLabel.setVisible(true);
+                errorLabel.setText("No user account found with this username '" + usernameTextField.getText() + "' !");
+            }
         }
     }
 
