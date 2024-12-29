@@ -1,5 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class FlightBookingController {
 
@@ -37,9 +44,25 @@ public class FlightBookingController {
 
     private Flight lastSelectedFlight = null;  // Track the last selected flight
 
-    public void initialize() {
+    private FlightDAOImp flightRepositoryImp = new FlightDAOImp(); // Repository instance
 
-        // Setting column value factories
+    public void initialize() {
+        try {
+            // Get all flights from repository
+            List<FlightBookingModel> flights = flightRepositoryImp.getAllFlights();
+            System.out.println("Flights retrieved: " + (flights != null ? flights.size() : "null"));
+
+            if (flights != null && !flights.isEmpty()) {
+                // If flights are retrieved, print them
+                flights.forEach(flight -> System.out.println("Flight: " + flight));
+            } else {
+                System.out.println("No flights retrieved.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Set column value factories for binding with Flight object
         flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         airlineColumn.setCellValueFactory(new PropertyValueFactory<>("airline"));
@@ -48,16 +71,7 @@ public class FlightBookingController {
         arrivalColumn.setCellValueFactory(new PropertyValueFactory<>("arrival"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Adding test data to the table
-        ObservableList<Flight> flightData = FXCollections.observableArrayList(
-                new Flight("F001", "Flight 101", "Air Arabia", "2024-12-01", "2024-12-10", "2024-12-11", "Confirmed"),
-                new Flight("F002", "Flight 102", "Qatar Airways", "2024-12-02", "2024-12-15", "2024-12-16", "Pending"),
-                new Flight("F003", "Flight 103", "Emirates", "2024-12-03", "2024-12-20", "2024-12-21", "Confirmed")
-        );
-
-        flightsTable.setItems(flightData);
-
-        // Center align column headers
+        // Align the columns' headers to the center
         flightIdColumn.setStyle("-fx-alignment: CENTER;");
         customerNameColumn.setStyle("-fx-alignment: CENTER;");
         airlineColumn.setStyle("-fx-alignment: CENTER;");
@@ -69,6 +83,9 @@ public class FlightBookingController {
         // Apply constrained resize policy to the table
         flightsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        // Load flight data from repository
+        loadFlightData();
+
         // Add event listener for row click
         flightsTable.setOnMouseClicked(this::handleRowClick);
     }
@@ -76,84 +93,142 @@ public class FlightBookingController {
     private void handleRowClick(MouseEvent event) {
         // Get the clicked row (flight)
         Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Row clicked: " + selectedFlight);
 
         if (selectedFlight != null) {
             if (selectedFlight.equals(lastSelectedFlight)) {
                 // If the same row is clicked again, deselect it
                 flightsTable.getSelectionModel().clearSelection();
                 lastSelectedFlight = null; // Reset the last selected flight
+                System.out.println("Row deselected: " + selectedFlight);
             } else {
                 // If a new row is clicked, select it
                 lastSelectedFlight = selectedFlight;
+                System.out.println("New row selected: " + selectedFlight);
             }
         }
     }
 
+    private void loadFlightData() {
+        ObservableList<Flight> flightData = FXCollections.observableArrayList();
+
+        // Retrieve all flights from the repository
+        List<FlightBookingModel> flightModels = flightRepositoryImp.getAllFlights();
+        System.out.println("Flight models retrieved: " + (flightModels != null ? flightModels.size() : "null"));
+
+        if (flightModels != null && !flightModels.isEmpty()) {
+            // Convert to Flight objects for TableView display
+            for (FlightBookingModel model : flightModels) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                System.out.println("Converting FlightBookingModel to Flight: " + model);
+                flightData.add(new Flight(
+                        String.valueOf(model.getFlightId()),
+                        model.getCustomerName(),
+                        model.getAirline(),
+                        sdf.format(model.getBookingDate()),
+                        sdf.format(model.getDeparture()),
+                        sdf.format(model.getArrival()),
+                        model.getStatus()
+                ));
+            }
+        } else {
+            System.out.println("No flight data available to display.");
+        }
+
+        // Set data in the TableView
+        flightsTable.setItems(flightData);
+        System.out.println("Flight data added to TableView.");
+    }
+
     @FXML
     private void cancelFlightBooking() {
-        // Get the selected flight
         Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Cancel booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
             if (!selectedFlight.getStatus().equalsIgnoreCase("Cancelled")) {
                 // Update the status to "Cancelled"
                 selectedFlight.setStatus("Cancelled");
-                flightsTable.refresh();
 
-                // Show success message
+                updateFlightStatusInDatabase(selectedFlight);
+
+                flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Cancellation Successful", "The flight has been successfully cancelled.");
             } else {
-                // If already cancelled
                 showAlert(Alert.AlertType.WARNING, "Already Cancelled", "This flight is already cancelled.");
             }
         } else {
-            // No flight selected
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to cancel.");
         }
     }
 
+    private void updateFlightStatusInDatabase(Flight flight) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            FlightBookingModel flightModel = session.get(FlightBookingModel.class, Integer.parseInt(flight.getFlightId()));
+
+            if (flightModel != null) {
+                flightModel.setStatus(flight.getStatus());
+                session.update(flightModel);
+                transaction.commit();
+                System.out.println("Flight status updated successfully in the database.");
+            } else {
+                System.out.println("Flight not found in the database.");
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+
     @FXML
     private void setPendingBooking() {
-        // Get the selected flight
         Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Set pending booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
             if (!selectedFlight.getStatus().equalsIgnoreCase("Pending")) {
-                // Update the status to "Pending Booking"
                 selectedFlight.setStatus("Pending");
-                flightsTable.refresh();
 
-                // Show success message
+                updateFlightStatusInDatabase(selectedFlight);
+
+                flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The flight is now in Pending Booking status.");
             } else {
-                // If already pending
                 showAlert(Alert.AlertType.WARNING, "Already Pending", "This flight is already in Pending Booking status.");
             }
         } else {
-            // No flight selected
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to set to Pending Booking.");
         }
     }
 
     @FXML
     private void cancelPendingBooking() {
-        // Get the selected flight
         Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Cancel pending booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
             if (selectedFlight.getStatus().equalsIgnoreCase("Pending")) {
-                // Change the status back to "Confirmed"
                 selectedFlight.setStatus("Confirmed");
-                flightsTable.refresh();
 
-                // Show success message
+                updateFlightStatusInDatabase(selectedFlight);
+
+                flightsTable.refresh(); // Refresh TableView to reflect changes
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The Pending Booking status has been cancelled.");
             } else {
-                // If not in Pending Booking
                 showAlert(Alert.AlertType.WARNING, "Not Pending", "This flight is not in Pending Booking status.");
             }
         } else {
-            // No flight selected
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to cancel Pending Booking.");
         }
     }
@@ -165,9 +240,6 @@ public class FlightBookingController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
-
 
     // Flight class representing flight data
     public static class Flight {
@@ -221,6 +293,19 @@ public class FlightBookingController {
 
         public void setStatus(String status) {
             this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return "flights{" +
+                    "flightId='" + flightId + '\'' +
+                    ", customerName='" + customerName + '\'' +
+                    ", airline='" + airline + '\'' +
+                    ", bookingDate='" + bookingDate + '\'' +
+                    ", departure='" + departure + '\'' +
+                    ", arrival='" + arrival + '\'' +
+                    ", status='" + status + '\'' +
+                    '}';
         }
     }
 }

@@ -11,6 +11,16 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController">
    <children>
+      <Group layoutX="21.0" layoutY="80.0">
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/imgs/auth/back_arrow_icon_white.png" />
+               </image>
+            </ImageView>
+            <Button focusTraversable="false" layoutX="23.0" layoutY="-2.0" mnemonicParsing="false" onAction="#onBackToLoginButtonClick" styleClass="button-back-white" stylesheets="@../../Assets/css/authStyle.css" text="Back to login" textFill="WHITE" />
+         </children>
+      </Group>
       <!-- Left Logo -->
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -80,11 +90,6 @@
             <Button defaultButton="true" layoutX="71.0" layoutY="400.0" onAction="#onCreateAccountButtonClick" prefHeight="30.0" prefWidth="200.0" styleClass="button-main" stylesheets="@../../Assets/css/authStyle.css" text="Crerate account" />
          </children>
       </AnchorPane>
-      <Label fx:id="statusLabel" layoutX="21.0" layoutY="450.0" text="Connecting to database..." textFill="#acacac">
-         <font>
-            <Font name="Poppins Regular" size="14.0" />
-         </font>
-      </Label>
    </children>
    <stylesheets>
       <URL value="@../../Assets/css/authStyle.css" />

@@ -1,10 +1,16 @@
 package com.groupnine.travelbookingsystem.controller.authentication;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AccountCreationController {
 
@@ -18,7 +24,7 @@ public class AccountCreationController {
     private PasswordField passwordField;
 
     @FXML
-    private Label errorLabel, statusLabel;
+    private Label errorLabel;
 
     @FXML
     private ImageView passwordToggleIcon;
@@ -28,9 +34,6 @@ public class AccountCreationController {
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Error connecting to database");
-        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
-
         errorLabel.setVisible(false);
         // Sync password fields
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
@@ -101,8 +104,6 @@ public class AccountCreationController {
         }
 
         // If validation passes
-        statusLabel.setText("Account created successfully!");
-        statusLabel.setTextFill(Color.GREEN);
         clearForm();
     }
 
@@ -136,6 +137,24 @@ public class AccountCreationController {
             passwordField.setVisible(true);
             passwordTextField.setVisible(false);
             passwordToggleIcon.setImage(new Image(getClass().getResourceAsStream("/com/groupnine/travelbookingsystem/Assets/imgs/auth/show-password-logo.png")));
+        }
+    }
+
+    @FXML
+    public void onBackToLoginButtonClick() {
+        try {
+            // Load the next view
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
+            Scene mainScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage
+            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
+
+            // Set the new scene
+            currentStage.setScene(mainScene);
+            currentStage.setTitle("Login");
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
         }
     }
 }
