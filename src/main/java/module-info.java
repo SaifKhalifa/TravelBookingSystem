@@ -57,4 +57,6 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem.otherApplications;
     opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
 
+    opens com.groupnine.travelbookingsystem.model to javafx.base, javafx.fxml, org.hibernate.orm.core;
+
 }
