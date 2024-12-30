@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <AnchorPane prefHeight="840.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.ListOfFlightsController">
 
     <children>
@@ -22,18 +21,18 @@
         <TableView fx:id="flightTable" layoutX="251.0" prefHeight="720.0" prefWidth="1269.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
             <columns>
                 <TableColumn fx:id="flightId" text="Flight ID" />
-                <TableColumn text="Origin" />
-                <TableColumn fx:id="flightDuration" text="Destination" />
-                <TableColumn text="Departure Date" />
-                <TableColumn text="Arrival Date" />
+                <TableColumn fx:id="origin" text="Origin" />
+                <TableColumn fx:id="destination" text="Destination" />
+                <TableColumn fx:id="departureDate" text="Departure Date" />
+                <TableColumn fx:id="arrivalDate" text="Arrival Date" />
                 <TableColumn fx:id="departureTime" text="Departure Time" />
-                <TableColumn text="Arrival Time" />
-                <TableColumn text="Gate Number" />
-                <TableColumn text="Flight Duration" />
-                <TableColumn text="Seat Capacity" />
-                <TableColumn text="Class Types" />
-                <TableColumn text="Notes" />
-                <TableColumn text="Price" />
+                <TableColumn fx:id="arrivalTime" text="Arrival Time" />
+                <TableColumn fx:id="gateNumber" text="Gate Number" />
+                <TableColumn fx:id="flightDuration" text="Flight Duration" />
+                <TableColumn fx:id="seatCapacity" text="Seat Capacity" />
+                <TableColumn fx:id="classType" text="Class Types" />
+                <TableColumn fx:id="notes" text="Notes" />
+                <TableColumn fx:id="price" text="Price" />
                 <TableColumn fx:id="deleteColumn" text="Delete" />
                 <TableColumn fx:id="editColumn" text="Edit" />
             </columns>
@@ -46,5 +45,6 @@
             </font>
         </Label>
         <Button fx:id="addnewflight" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #385A7F;" text="Add" textFill="WHITE" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="63.0" />
+      <Button layoutX="1434.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #334C6840;" text="+ Create Account" />
     </children>
 </AnchorPane>

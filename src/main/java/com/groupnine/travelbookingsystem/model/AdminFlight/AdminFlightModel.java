@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.model;
+package com.groupnine.travelbookingsystem.model.AdminFlight;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

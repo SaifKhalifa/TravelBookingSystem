@@ -1,8 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
-import com.groupnine.travelbookingsystem.Services.ImpAdminFlightInterface;
-import com.groupnine.travelbookingsystem.model.*;
-import javafx.event.ActionEvent;
+import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
+import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -175,4 +174,5 @@ public class AddFlightController {
         departuredate.setValue(null);
         arrivaldate.setValue(null);
     }
+
 }
