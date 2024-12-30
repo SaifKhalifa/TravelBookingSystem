@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
+import com.groupnine.travelbookingsystem.model.services.HotelDOAImp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -7,7 +8,29 @@ import javafx.stage.Stage;
 public class HotelConfirmDeletionController {
 
     @FXML
-    public void onYesButtonClick(javafx.event.ActionEvent event) {
+    private Button YesButton;
+    private int hotelID;
+    private HotelDOAImp hotelDOAImp = new HotelDOAImp();
+    private ManageHotelsListController manageHotelsListController;  // مرجع للكونترولر الذي يحتوي على الجدول
+
+    // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)
+    public void setMainController(ManageHotelsListController manageHotelsListController) {
+        this.manageHotelsListController = manageHotelsListController;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelID = hotelId;
+    }
+
+    @FXML
+    public void onYesButtonClick() {
+        hotelDOAImp.delete(this.hotelID);
+        Stage stage = (Stage) YesButton.getScene().getWindow();
+        stage.close();
+// تحديث الجدول بعد الحذف
+        if (manageHotelsListController != null) {
+            manageHotelsListController.updateTableView();  // استدعاء دالة تحديث الجدول
+        }
     }
 
     @FXML

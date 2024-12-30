@@ -42,18 +42,18 @@
             </padding>
             </Label>
 
-            <HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="312.0">
+            <HBox prefHeight="20.0" prefWidth="1269.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="8.0" prefWidth="186.0">
                     <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList" prefHeight="38.0" prefWidth="136.0" text="Flights" />
                     <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" text="Hotels" />
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
                 </HBox>
-                <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="1149.0" spacing="5">
-                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefWidth="100.0" styleClass="edit-button" text="Edit" />
-                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefWidth="132.0" styleClass="delete-button" text="Delete" />
-                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefWidth="100.0" styleClass="add-button" text="+ Add" />
+                <HBox alignment="TOP_RIGHT" prefHeight="9.0" prefWidth="1086.0" spacing="5">
+<!--                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefWidth="100.0" styleClass="edit-button" text="Edit" />-->
+<!--                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefWidth="132.0" styleClass="delete-button" text="Delete" />-->
+                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefHeight="35.0" prefWidth="76.0" styleClass="add-button" text="+ Add" />
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -64,18 +64,19 @@
             <!-- Table -->
             <TableView fx:id="tableView" prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 10;">
                 <columns>
-                    <TableColumn prefWidth="122.40003395080566" text="Name" />
-                    <TableColumn prefWidth="126.39999389648438" text="Location" />
-                    <TableColumn prefWidth="107.20001220703125" text="Price Per Night" />
-                    <TableColumn prefWidth="100.0" text="Total Rooms" />
-                    <TableColumn minWidth="7.199951171875" prefWidth="103.20001220703125" text="Room types" />
-                    <TableColumn prefWidth="109.5999755859375" text="Facilities" />
-                    <TableColumn minWidth="0.0" prefWidth="106.40008544921875" text="Aminities" />
-                    <TableColumn minWidth="0.0" prefWidth="140.800048828125" text="promotional offers" />
-                    <TableColumn minWidth="0.0" prefWidth="96.0001220703125" text="Availability" />
-                    <TableColumn prefWidth="97.5999755859375" text="Rating" />
-                    <TableColumn prefWidth="70.4000244140625" text="Edit" />
-                    <TableColumn prefWidth="68.0" text="Delete" />
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="nameColumn" text="Name" />
+                    <TableColumn fx:id="locationColumn" text="Location" />
+                    <TableColumn fx:id="pricePerNightColumn" text="Price Per Night" />
+                    <TableColumn fx:id="totalRoomsColumn" text="Total Rooms" />
+                    <TableColumn fx:id="roomTypesColumn" text="Room Types" />
+                    <TableColumn fx:id="facilitiesColumn" text="Facilities" />
+                    <TableColumn fx:id="amenitiesColumn" text="Amenities" />
+<!--                    <TableColumn fx:id="promotionalOffersColumn" text="Promotional Offers" />-->
+                    <TableColumn fx:id="availabilityColumn" text="Availability" />
+                    <TableColumn fx:id="ratingColumn" text="Rating" />
+                    <TableColumn fx:id="editColumn" />
+                    <TableColumn fx:id="deleteColumn" />
                 </columns>
             </TableView>
         </VBox>
