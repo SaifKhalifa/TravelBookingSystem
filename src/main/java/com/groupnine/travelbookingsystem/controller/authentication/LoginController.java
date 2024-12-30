@@ -138,7 +138,7 @@ public class LoginController {
     {
         /*if(MainApplication_DEFAULT.getLoggedInUser() != null
             || !Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "")
-            && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "admin"))
+            && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "Admin"))
         {
             MainApplication_DEFAULT.loadScene(
                     "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
