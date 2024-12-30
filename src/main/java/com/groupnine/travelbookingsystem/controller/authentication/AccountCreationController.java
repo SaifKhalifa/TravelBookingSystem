@@ -1,6 +1,10 @@
 package com.groupnine.travelbookingsystem.controller.authentication;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.model.userMangment.User;
+import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,13 +13,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
 public class AccountCreationController {
 
     @FXML
-    private TextField usernameTextField, emailTextField, phoneNumberTextField, addressTextField, passwordTextField;
+    private TextField nameTextField, usernameTextField, emailTextField, phoneNumberTextField, addressTextField, passwordTextField;
 
     @FXML
     private ComboBox<String> userRoleComboBox;
@@ -27,15 +32,23 @@ public class AccountCreationController {
     private Label errorLabel, statusLabel;
 
     @FXML
-    private ImageView passwordToggleIcon;
+    private ImageView passwordToggleIcon, statusIcon;
 
     @FXML
-    private Button passwordToggleButton;
+    private Button passwordToggleButton, createAccountBtn;
 
     @FXML
     private void initialize() {
-        statusLabel.setText("Error connecting to database");
-        statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+        if(!HibernateUtil.getInstance().isConnected())
+        {
+            statusLabel.setText("Error connecting to database");
+            //statusLabel.setStyle("-fx-text-fill: #FF6B6B;");
+            statusIcon.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/auth/disconnected_icon.png").toExternalForm()));
+        }
+        else{
+            statusLabel.setText("Connected to database");
+            statusIcon.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/auth/connected_icon.png").toExternalForm()));
+        }
 
         errorLabel.setVisible(false);
         // Sync password fields
@@ -47,7 +60,7 @@ public class AccountCreationController {
     }
 
     @FXML
-    private void onCreateAccountButtonClick() {
+    private void onCreateAccountButtonClick(){
 
         usernameTextField.setOnMouseClicked(event ->
         {
@@ -68,7 +81,8 @@ public class AccountCreationController {
         errorLabel.setText("");
 
         // Retrieve form values
-        String name = usernameTextField.getText().trim();
+        String name = nameTextField.getText();
+        String userName = usernameTextField.getText().trim();
         String email = emailTextField.getText().trim();
         String phone = phoneNumberTextField.getText().trim();
         String address = addressTextField.getText().trim();
@@ -76,7 +90,7 @@ public class AccountCreationController {
         String password = passwordField.getText();
 
         // Validate the fields
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || role == null || password.isEmpty()) {
+        if (name.isEmpty() || userName.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || role == null || password.isEmpty()) {
             errorLabel.setText("All fields are required!");
             errorLabel.setTextFill(Color.RED);
             return;
@@ -106,10 +120,59 @@ public class AccountCreationController {
             return;
         }
 
-        // If validation passes
-        statusLabel.setText("Account created successfully!");
-        statusLabel.setTextFill(Color.GREEN);
-        clearForm();
+
+        /*
+            String address,
+            String email,
+            String password,
+            String phoneNumber,
+            String role,
+            String username,
+            String name
+        */
+        User user = new User(address, email, password, phone, role, userName, name);
+        UserDAOImpl userDAO = new UserDAOImpl();
+
+        switch (userDAO.addUser(user))
+        {
+            case 1:
+                createAccountBtn.setStyle("-fx-background-color: #078f07");
+                createAccountBtn.setText("Account Created");
+                errorLabel.setVisible(true);
+                errorLabel.setText("Account created successfully!");
+                errorLabel.setTextFill(Color.GREEN);
+                clearForm();
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    createAccountBtn.setStyle("");
+                    createAccountBtn.setText("Create Account");
+                });
+                pause.play();
+
+                break;
+
+            case -1:
+                errorLabel.setVisible(true);
+                errorLabel.setText("Email already exists.");
+                errorLabel.setTextFill(Color.RED);
+                break;
+            case -2:
+                errorLabel.setVisible(true);
+                errorLabel.setText("Username already exists.");
+                errorLabel.setTextFill(Color.RED);
+                break;
+            case -3:
+                errorLabel.setVisible(true);
+                errorLabel.setText("Both username and email already exist.");
+                errorLabel.setTextFill(Color.RED);
+                break;
+            default:
+                errorLabel.setVisible(true);
+                errorLabel.setText("Unknown error!");
+                errorLabel.setTextFill(Color.RED);
+                break;
+        }
     }
 
     private boolean isValidEmail(String email) {
@@ -124,6 +187,7 @@ public class AccountCreationController {
     }
 
     private void clearForm() {
+        nameTextField.clear();
         usernameTextField.clear();
         emailTextField.clear();
         phoneNumberTextField.clear();
@@ -147,19 +211,10 @@ public class AccountCreationController {
 
     @FXML
     public void onBackToLoginButtonClick() {
-        try {
-            // Load the next view
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
-            Scene mainScene = new Scene(fxmlLoader.load());
-
-            // Get the current stage
-            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
-
-            // Set the new scene
-            currentStage.setScene(mainScene);
-            currentStage.setTitle("Login");
-        } catch (IOException e) {
-            e.printStackTrace(); // Log any loading errors
-        }
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/authentication/login.fxml",
+                "Login",
+                false
+        );
     }
 }

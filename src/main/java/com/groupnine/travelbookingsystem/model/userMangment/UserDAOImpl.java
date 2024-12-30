@@ -27,17 +27,42 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public int addUser(User user){
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+
+            Query<Long> usernameCount = session.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE u.username = :username AND u.id != :id", Long.class);
+            usernameCount.setParameter("username", user.getUsername());
+            usernameCount.setParameter("id", user.getId());
+
+            Query<Long> emailCount = session.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE u.email = :email AND u.id != :id", Long.class);
+            emailCount.setParameter("email", user.getEmail());
+            emailCount.setParameter("id", user.getId());
+
+            long usernameExists = usernameCount.uniqueResult();
+            long emailExists = emailCount.uniqueResult();
+
+            if (usernameExists > 0 && emailExists > 0) {
+                return -3;
+                // Both username and email already exist.
+            } else if (usernameExists > 0) {
+                return -2;
+                // Username already exists.
+            } else if (emailExists > 0) {
+                return -1;
+                // Email already exists.
+            }
+
             session.save(user);
             transaction.commit();
-            return true;
+            return 1;
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-            return false;
+            return 0;
         }
     }
 

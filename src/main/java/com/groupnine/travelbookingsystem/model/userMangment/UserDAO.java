@@ -1,12 +1,15 @@
 package com.groupnine.travelbookingsystem.model.userMangment;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO {
     User getUserByUsername(String username);
     List<User> getAllUsers();
-    boolean addUser(User user);
+
+    int addUser(User user) throws Exception;
     boolean updateUser(User user);
+
     boolean deleteUser(int id);
 
     String getUserRoleByUsername(String username);

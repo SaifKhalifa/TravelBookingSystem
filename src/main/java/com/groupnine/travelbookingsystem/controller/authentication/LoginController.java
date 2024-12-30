@@ -136,7 +136,7 @@ public class LoginController {
     @FXML
     private void onCreateAccountButtonClick()
     {
-        if(MainApplication_DEFAULT.getLoggedInUser() != null
+        /*if(MainApplication_DEFAULT.getLoggedInUser() != null
             || !Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "")
             && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "admin"))
         {
@@ -147,7 +147,14 @@ public class LoginController {
             );
         } else {
             showAlert("Access Denied", "You need to be logged in as an admin to create accounts.");
-        }
+        }*/
+
+        //just for debugging
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                "Create Account",
+                false
+        );
     }
 
     private void showAlert(String title, String message) {

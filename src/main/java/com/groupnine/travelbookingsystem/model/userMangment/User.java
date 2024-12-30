@@ -38,8 +38,15 @@ public class User {
     // Constructor
     public User() {}
 
-    public User(int id, String username, String password, String role, String email, String phoneNumber, String address, String name) {
-        this.id = id;
+    public User(
+            String address,
+            String email,
+            String password,
+            String phoneNumber,
+            String role,
+            String username,
+            String name
+            ) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -52,10 +59,6 @@ public class User {
     // Getters and Setters
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
