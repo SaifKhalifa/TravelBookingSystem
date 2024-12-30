@@ -25,6 +25,8 @@ module com.groupnine.travelbookingsystem {
     requires spring.beans;
     requires mysql.connector.java;
 
+    opens com.groupnine.travelbookingsystem.model.BookingHotel to org.hibernate.orm.core;
+
     // Authentication and Security
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;

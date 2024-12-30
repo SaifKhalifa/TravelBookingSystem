@@ -33,9 +33,9 @@ public class MainApplication_DEFAULT extends Application {
 
 
     public static void main(String[] args) {
-        launch();
-
         boolean status = HibernateUtil.getInstance().isConnected();
         System.out.println("Database Connected: " + status);
+
+        launch();
     }
 }

@@ -5,30 +5,29 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "hotel-booking")
+@Table(name = "hotel_booking")
 public class HotelBookingModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "Custmer Name")
+    @Column(name = "Custmer_Name")
     private String customerName;
 
-    @Column(name = "Hotel name")
+    @Column(name = "Hotel_name")
     private String hotelName;
 
-    @Column(name = "Booking Date")
+    @Column(name = "Booking_Date")
     private Date bookingDate;
 
-    @Column(name = "check in")
+    @Column(name = "Check_in")
     private Date checkIn;
 
-    @Column(name = "Check out")
+    @Column(name = "Check_out")
     private Date checkOut;
 
-    @Column(name = "status")
+    @Column(name = "Status")
     private String status;
 
     public HotelBookingModel() {}
