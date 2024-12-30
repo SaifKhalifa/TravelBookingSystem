@@ -1,4 +1,8 @@
 module com.groupnine.travelbookingsystem {
+    requires org.hibernate.orm.core;
+    requires java.persistence;
+
+    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -9,10 +13,9 @@ module com.groupnine.travelbookingsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires org.hibernate.orm.core;
     requires java.naming;
-    requires java.persistence;
     requires java.sql;
+
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;

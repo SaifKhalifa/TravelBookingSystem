@@ -1,10 +1,11 @@
 package com.groupnine.travelbookingsystem.model.userMangment;
 
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
@@ -26,17 +27,42 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public int addUser(User user){
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+
+            Query<Long> usernameCount = session.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE u.username = :username AND u.id != :id", Long.class);
+            usernameCount.setParameter("username", user.getUsername());
+            usernameCount.setParameter("id", user.getId());
+
+            Query<Long> emailCount = session.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE u.email = :email AND u.id != :id", Long.class);
+            emailCount.setParameter("email", user.getEmail());
+            emailCount.setParameter("id", user.getId());
+
+            long usernameExists = usernameCount.uniqueResult();
+            long emailExists = emailCount.uniqueResult();
+
+            if (usernameExists > 0 && emailExists > 0) {
+                return -3;
+                // Both username and email already exist.
+            } else if (usernameExists > 0) {
+                return -2;
+                // Username already exists.
+            } else if (emailExists > 0) {
+                return -1;
+                // Email already exists.
+            }
+
             session.save(user);
             transaction.commit();
-            return true;
+            return 1;
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-            return false;
+            return 0;
         }
     }
 
@@ -71,6 +97,49 @@ public class UserDAOImpl implements UserDAO {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public String getUserRoleByUsername(String username) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<String> query = session.createQuery("SELECT role FROM User WHERE username = :username", String.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public String getUserNameByUsername(String username) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<String> query = session.createQuery("SELECT name FROM User WHERE username = :username", String.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public String getUserAddressByUsername(String username) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<String> query = session.createQuery("SELECT address FROM User WHERE username = :username", String.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public void updateLastLogin(String username) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("UPDATE User SET lastLogin = :now WHERE username = :username");
+            query.setParameter("now", LocalDateTime.now());
+            query.setParameter("username", username);
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
         }
     }
 }

@@ -1,6 +1,9 @@
 package com.groupnine.travelbookingsystem.controller.authentication;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.model.userMangment.User;
+import com.groupnine.travelbookingsystem.model.userMangment.UserDAO;
+import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,8 @@ import javafx.scene.image.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class LoginController {
     @FXML
@@ -26,6 +31,8 @@ public class LoginController {
 
     @FXML
     private Label statusLabel, errorLabel;
+
+    private final UserDAO userDAO = new UserDAOImpl();
 
     @FXML
     private void initialize() {
@@ -81,78 +88,73 @@ public class LoginController {
         if(usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty())
         {
             errorLabel.setVisible(true);
-            errorLabel.setText("Username/Email and password are required!");
+            errorLabel.setText("Username and password are required!");
         }
         else
         {
-            if (usernameTextField.getText().equals("admin")) {
-                if (passwordField.getText().equals("admin")) {
+            User user = userDAO.getUserByUsername(usernameTextField.getText());
+
+            if (user != null)
+            {
+                if(user.getPassword().equals(passwordField.getText())) {
                     errorLabel.setVisible(false);
-                    statusLabel.setText("Success, Welcome " + usernameTextField.getText() + "!");
-                    statusLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #35b359;");
-                    try {
-                        // Corrected path for the FXML file
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml"));
-                        Scene mainScene = new Scene(fxmlLoader.load());
+                    statusLabel.setText("Success, Welcome " + user.getUsername() + "!, Loading app...");
+                    userDAO.updateLastLogin(usernameTextField.getText());
+                    user.setLastLogin(LocalDateTime.now());
 
-                        // Get the current stage
-                        Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
+                    MainApplication_DEFAULT.setLoggedInUser(user.getName());
+                    MainApplication_DEFAULT.setLoggedInUserRole(user.getRole());
 
-                        // Set the new scene
-                        currentStage.setScene(mainScene);
-                        currentStage.setTitle("Welcome " + usernameTextField.getText() +"!");
-                        currentStage.setMaximized(true);
-                    } catch (IOException e) {
-                        e.printStackTrace(); // Log any loading errors
-                    }
-
+                    MainApplication_DEFAULT.loadScene(
+                            "/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml",
+                            "Welcome " + user.getName() + "! - " + "(" + user.getRole() + ")",
+                            true
+                    );
                 }
-            } else {
-                errorLabel.setVisible(true);
-                errorLabel.setText("Invalid username/email or password!");
+                else {
+                    errorLabel.setVisible(true);
+                    errorLabel.setText("Entered password is wrong!");
+                }
             }
-
+            else{
+                errorLabel.setVisible(true);
+                errorLabel.setText("No user account found with this username '" + usernameTextField.getText() + "' !");
+            }
         }
     }
 
     @FXML
     private void onForgetPasswordButtonClick()
     {
-        try {
-            // Load the next view
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/forget_password.fxml"));
-            Scene mainScene = new Scene(fxmlLoader.load());
-
-            // Get the current stage
-            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
-
-            // Set the new scene
-            currentStage.setScene(mainScene);
-            currentStage.setTitle("Forget Password");
-        } catch (IOException e) {
-            e.printStackTrace(); // Log any loading errors
-        }
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/authentication/forget_password.fxml",
+                "Forget Password",
+                false
+        );
     }
 
     @FXML
     private void onCreateAccountButtonClick()
     {
-        showAlert("Access Denied", "You need to login as an admin first.");
+        /*if(MainApplication_DEFAULT.getLoggedInUser() != null
+            || !Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "")
+            && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "Admin"))
+        {
+            MainApplication_DEFAULT.loadScene(
+                    "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                    "Create Account",
+                    false
+            );
+        } else {
+            showAlert("Access Denied", "You need to be logged in as an admin to create accounts.");
+        }*/
 
-        try {
-            // Load the next view
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml"));
-            Scene mainScene = new Scene(fxmlLoader.load());
-
-            // Get the current stage
-            Stage currentStage = (Stage) usernameTextField.getScene().getWindow();
-
-            // Set the new scene
-            currentStage.setScene(mainScene);
-            currentStage.setTitle("Create Account");
-        } catch (IOException e) {
-            e.printStackTrace(); // Log any loading errors
-        }
+        //just for debugging
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                "Create Account",
+                false
+        );
     }
 
     private void showAlert(String title, String message) {
