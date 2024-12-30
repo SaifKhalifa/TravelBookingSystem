@@ -1,5 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
+import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchHotelsController;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.Date;
 
 public class SearchPageHotelsController {
 
@@ -150,4 +153,48 @@ public class SearchPageHotelsController {
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    private void handleSearchButton2() {
+        System.out.println("Search button clicked");
+
+        // Collect data from ComboBoxes
+        String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
+
+        // Create a searchH object to store the search data
+        searchH searchCriteria = new searchH(selectedDestination);
+
+
+        // Pass the search criteria to the ResultHotelsPage
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
+            Scene newScene = new Scene(fxmlLoader.load());
+
+            // Get the controller of the ResultHotelsPage
+            ResultSearchHotelsController resultController = fxmlLoader.getController();
+
+            // Pass the search criteria to the ResultHotelsPage controller
+            resultController.setSearchCriteria(searchCriteria);
+
+            // Get the current stage and set the new scene
+            Stage currentStage = (Stage) btnSearch.getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Search Results");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

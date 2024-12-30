@@ -1,11 +1,22 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAO;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAOImp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import javax.smartcardio.Card;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultSearchHotelsController {
 
@@ -32,6 +43,17 @@ public class ResultSearchHotelsController {
     private Button button5;
     @FXML
     private Button button6;
+    @FXML
+    private searchH searchCriteria;
+
+    @FXML
+    private searchHDAO searchHDao = new searchHDAOImp();
+    @FXML
+    private List<searchH> allHotels;
+    @FXML
+    private ListView<Card> resultCardsList;
+    @FXML
+    private AnchorPane cardsContainer;
 
     // Initializes the controller
     public void initialize() {
@@ -44,6 +66,18 @@ public class ResultSearchHotelsController {
         setCard4();
         setCard5();
         setCard6();
+        //loadSearchResults();
+
+        allHotels = new ArrayList<>(); // Create an empty list of hotels
+
+        allHotels.add(new searchH("Big White Village",6));
+        allHotels.add(new searchH("Condo To The Beach",10));
+        allHotels.add(new searchH("Big White Village",15));
+        allHotels.add(new searchH("Condo To The Beach",5));
+        allHotels.add(new searchH("Outstanding house",10));
+        allHotels.add(new searchH("Outstanding house",4));
+
+        loadFilteredResults();
     }
 
 
@@ -179,5 +213,36 @@ public class ResultSearchHotelsController {
     private void handleComboBox2Selection() {
         String selectedOption = comboBox2.getSelectionModel().getSelectedItem();
         System.out.println("ComboBox2 selected: " + selectedOption);
+    }
+
+
+    // Method to accept search criteria
+    public void setSearchCriteria(searchH searchCriteria) {
+        this.searchCriteria = searchCriteria;
+        loadFilteredResults();
+    }
+
+    // Method to filter and load results
+    private void loadFilteredResults() {
+        if (searchCriteria != null) {
+            String selectedDestination = searchCriteria.getDestination();
+
+            // Filter hotels by destination
+            List<searchH> filteredHotels = allHotels.stream()
+                    .filter(hotel -> hotel.getDestination().equalsIgnoreCase(selectedDestination))
+                    .collect(Collectors.toList());
+
+            // Display the filtered hotels
+            for (searchH hotel : filteredHotels) {
+                addCardToContainer(hotel);
+            }
+        }
+    }
+
+    // Dynamically add cards to the container
+    private void addCardToContainer(searchH hotel) {
+        Label cardLabel = new Label("Hotel: " + hotel.getDestination() + " | Rooms num: " + hotel.getRoomCount());
+        cardLabel.setStyle("-fx-border-color: black; -fx-padding: 10;");
+        cardsContainer.getChildren().add(cardLabel);
     }
 }
