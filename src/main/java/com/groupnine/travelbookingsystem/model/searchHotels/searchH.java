@@ -24,7 +24,12 @@ public class searchH {
     @Column(name = "checkOutDate")
     private Date checkOutDate;
 
-    public searchH() {}
+   public searchH(String destination, int roomCount) {
+       this.destination = destination;
+       this.roomCount = roomCount;
+   }
+
+    public searchH(String destination){}
 
     public searchH(String destination, int roomCount, Date checkInDate, Date checkOutDate) {
         this.destination = destination;

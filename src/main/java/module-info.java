@@ -18,6 +18,7 @@ module com.groupnine.travelbookingsystem {
     requires java.persistence;
     requires java.sql;
     requires mysql.connector.java;
+    requires java.smartcardio;
 
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
