@@ -49,7 +49,6 @@ public class AdminFlightModel {
     @Column(name = "notes")
     private String notes;
 
-    // Getter and Setter methods...
 
 
     public int getSeatCapacity() {

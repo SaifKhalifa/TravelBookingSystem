@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
+import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightInterface;
 import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
 import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
 import javafx.fxml.FXML;
@@ -39,16 +40,27 @@ public class AddFlightController {
     private TextField seatcapacity;
     @FXML
     private TextField flightprice;
-    @FXML
-    private TextField classtype;
+
     @FXML
     private TextArea notes;
     @FXML
     private Button back_to_list_flight;
 
+    private int currentFlightId = -1;
+    @FXML
+    private ChoiceBox<String>offerType;
+
+
+    @FXML
+    private void initialize() {
+
+        offerType.getItems().addAll("Economy", "Premium Economy", "Business" , "First");
+
+        offerType.setValue("Economy");
+    }
+
     @FXML
     private void navigateToListOfFlights() {
-        System.out.println("Navigating to List Of Flights...");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml"));
             Parent root = loader.load();
@@ -63,12 +75,12 @@ public class AddFlightController {
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error: Unable to load ListFlights.fxml");
+            showAlert("Error", "Unable to load ListFlights.fxml", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    private void addFlight() {
+    private void addOrUpdateFlight() {
         try {
             // Check required fields
             if (origin.getText().isEmpty() || destination.getText().isEmpty() || departuretime.getText().isEmpty() || arrivaltime.getText().isEmpty()) {
@@ -90,42 +102,79 @@ public class AddFlightController {
             int parsedGateNumber = parseInteger(gatenumber.getText(), "Gate Number");
             int parsedSeatCapacity = parseInteger(seatcapacity.getText(), "Seat Capacity");
             BigDecimal parsedFlightPrice = parseBigDecimal(flightprice.getText(), "Flight Price");
-            AdminFlightModel flight = new AdminFlightModel();
 
-            // Create flight model object and set fields
+            // Create or update flight model object
+            AdminFlightModel flight = new AdminFlightModel();
             flight.setOrigin(origin.getText());
             flight.setDestination(destination.getText());
-            flight.setDepartureTime(parsedDepartureTime); // وقت المغادرة
-            flight.setArrivalTime(parsedArrivalTime);     // وقت الوصول
-            flight.setFlightDuration(parsedFlightDuration); // مدة الرحلة
+            flight.setDepartureTime(parsedDepartureTime);
+            flight.setArrivalTime(parsedArrivalTime);
+            flight.setFlightDuration(parsedFlightDuration);
             flight.setGateNumber(parsedGateNumber);
             flight.setSeatCapacity(parsedSeatCapacity);
             flight.setPrice(parsedFlightPrice);
-            flight.setClassType(classtype.getText());
+            flight.setClassType(offerType.getValue());
             flight.setNotes(notes.getText());
-            flight.setDepartureDate(parsedDepartureDate); // تاريخ المغادرة
-            flight.setArrivalDate(parsedArrivalDate);     // تاريخ الوصول
+            flight.setDepartureDate(parsedDepartureDate);
+            flight.setArrivalDate(parsedArrivalDate);
 
-
-            // Create service and add the flight
+            // Create service
             ImpAdminFlightInterface service = new ImpAdminFlightInterface();
-            service.addFlight(flight);
 
-            // Show success message
-            showAlert("Success", "Flight has been added successfully.", Alert.AlertType.INFORMATION);
+            if (currentFlightId == -1) {
+                // Add new flight
+                service.addFlight(flight);
+                showAlert("Success", "Flight has been added successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                // Update existing flight
+                flight.setFlightId(currentFlightId);
+                service.updateFlight(flight);
+                showAlert("Success", "Flight has been updated successfully.", Alert.AlertType.INFORMATION);
+            }
 
-            // Clear fields after adding flight
+            // Clear fields after adding/updating flight
             clearFields();
 
         } catch (NumberFormatException e) {
             showAlert("Error", "Invalid number format: " + e.getMessage(), Alert.AlertType.ERROR);
         } catch (Exception e) {
-            showAlert("Error", "An error occurred while adding the flight: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Error", "An error occurred while adding/updating the flight: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
 
-    // Utility methods for parsing and validation
+    public void setFlightDataForEditing(int flightId) {
+        try {
+            AdminFlightInterface adminFlightInterface = new ImpAdminFlightInterface();
+            AdminFlightModel flightData = adminFlightInterface.getFlightById(flightId);
+
+            if (flightData != null) {
+                origin.setText(flightData.getOrigin());
+                destination.setText(flightData.getDestination());
+                departuretime.setText(flightData.getDepartureTime().toString());
+                arrivaltime.setText(flightData.getArrivalTime().toString());
+                flightduration.setText(flightData.getFlightDuration().toString());
+                gatenumber.setText(String.valueOf(flightData.getGateNumber()));
+                seatcapacity.setText(String.valueOf(flightData.getSeatCapacity()));
+                flightprice.setText(flightData.getPrice().toString());
+                offerType.setValue(flightData.getClassType());
+                notes.setText(flightData.getNotes());
+                departuredate.setValue(flightData.getDepartureDate());
+                arrivaldate.setValue(flightData.getArrivalDate());
+
+                currentFlightId = flightId;
+                addButton.setText("Update Flight");
+            } else {
+                showAlert("Error", "Flight not found.", Alert.AlertType.ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "An error occurred while fetching the flight data.", Alert.AlertType.ERROR);
+        }
+    }
+
+
     private LocalTime parseTime(String timeString, String fieldName) {
         try {
             return LocalTime.parse(timeString);
@@ -150,7 +199,6 @@ public class AddFlightController {
         }
     }
 
-    // Show alert method for error/success messages
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -159,7 +207,6 @@ public class AddFlightController {
         alert.showAndWait();
     }
 
-    // Clear fields after successful flight addition
     private void clearFields() {
         departuretime.clear();
         flightduration.clear();
@@ -169,10 +216,11 @@ public class AddFlightController {
         gatenumber.clear();
         seatcapacity.clear();
         flightprice.clear();
-        classtype.clear();
+        offerType.setValue(null);
         notes.clear();
         departuredate.setValue(null);
         arrivaldate.setValue(null);
+        addButton.setText("Add Flight");
+        currentFlightId = -1;
     }
-
 }

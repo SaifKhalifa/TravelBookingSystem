@@ -1,4 +1,5 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
+
 import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
 import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
 import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
@@ -22,11 +23,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 public class ListOfFlightsController {
-    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    static {
-        sessionFactory = HibernateUtil.getInstance().getSessionFactory();
-    }
     @FXML
     private TableView<FlightData> flightTable;
     @FXML
@@ -59,18 +57,23 @@ public class ListOfFlightsController {
     private TableColumn<FlightData, Void> deleteColumn;
     @FXML
     private TableColumn<FlightData, Void> editColumn;
-
     @FXML
     private Button hotel;
     @FXML
     private Button addnewflight;
 
-
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
-//responsive table
+    private final ImpAdminFlightInterface GetFlight = new ImpAdminFlightInterface();
+
+
+    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+    static {
+        sessionFactory = HibernateUtil.getInstance().getSessionFactory();
+    }
+
     @FXML
     public void initialize() {
-        // Make the TableView responsive
         flightTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         flightTable.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             double totalWidth = newWidth.doubleValue();
@@ -84,6 +87,7 @@ public class ListOfFlightsController {
         initializeTableData();
         addEditButtonToTable();
         addDeleteButtonToTable();
+
         if (addnewflight != null) {
             addnewflight.setOnAction(event -> navigateToAddFlight());
         }
@@ -92,7 +96,14 @@ public class ListOfFlightsController {
             hotel.setOnAction(event -> navigateToHotel(event));
         }
     }
-    private final ImpAdminFlightInterface GetFlight = new ImpAdminFlightInterface();
+    public void refreshTable() {
+        // Clear the existing items in the TableView
+        flightTable.getItems().clear();
+
+        // Reinitialize the table data by fetching fresh data from the database
+        initializeTableData();
+    }
+
 
     private void initializeTableData() {
         try {
@@ -107,17 +118,15 @@ public class ListOfFlightsController {
                         flight.getArrivalDate().toString(),
                         flight.getDepartureTime().toString(),
                         flight.getArrivalTime().toString(),
-                        flight.getGateNumber(),  // int
-                        flight.getSeatCapacity(), // int
+                        flight.getGateNumber(),
+                        flight.getSeatCapacity(),
                         new BigDecimal(flight.getPrice().toString()),
-
                         flight.getClassType(),
                         flight.getFlightDuration().toString(),
                         flight.getNotes()
                 ));
             }
 
-            // إعداد الأعمدة وربطها مع الخصائص
             flightId.setCellValueFactory(cellData -> cellData.getValue().flightIdProperty().asObject());
             origin.setCellValueFactory(cellData -> cellData.getValue().originProperty());
             destination.setCellValueFactory(cellData -> cellData.getValue().destinationProperty());
@@ -128,7 +137,6 @@ public class ListOfFlightsController {
             gateNumber.setCellValueFactory(cellData -> cellData.getValue().gateNumberProperty().asObject());
             flightDuration.setCellValueFactory(cellData -> cellData.getValue().flightDurationProperty());
             seatCapacity.setCellValueFactory(cellData -> cellData.getValue().seatCapacityProperty().asObject());
-
             classType.setCellValueFactory(cellData -> cellData.getValue().classTypeProperty());
             notes.setCellValueFactory(cellData -> cellData.getValue().notesProperty());
             price.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
@@ -136,18 +144,17 @@ public class ListOfFlightsController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error initializing table data: " + e.getMessage());
         }
     }
+
     private void addEditButtonToTable() {
         Callback<TableColumn<FlightData, Void>, TableCell<FlightData, Void>> cellFactory = param -> new TableCell<>() {
             private final Button editButton = new Button("Edit");
 
             {
                 editButton.setOnAction(event -> {
-                    FlightData data = getTableView().getItems().get(getIndex());
-                    System.out.println("Editing: " + data);
-                    // Add edit logic here, e.g., open a new window
+                    FlightData selectedFlight = getTableView().getItems().get(getIndex());
+                    handleEditFlight(selectedFlight.getFlightId());
                 });
             }
 
@@ -165,6 +172,48 @@ public class ListOfFlightsController {
         editColumn.setCellFactory(cellFactory);
     }
 
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleEditFlight(int flightId) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/AddFlight.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        AddFlightController addFlightController = loader.getController();
+        FlightData selectedFlight = flightTable.getSelectionModel().getSelectedItem();
+        // Close the current window (List of Flights)
+        Stage currentStage = (Stage) flightTable.getScene().getWindow();
+        currentStage.close();
+        if (selectedFlight != null) {
+            // Pass the selected flight data for editing
+            addFlightController.setFlightDataForEditing(selectedFlight.getFlightId());
+
+            // Open the edit window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 1280, 832));
+            stage.setTitle("Edit Flight");
+            stage.show();
+
+            // Add a listener to the stage close event to refresh the table after editing
+            stage.setOnHidden(event -> refreshTable()); // Refresh the table when the edit window is closed
+        } else {
+            showAlert("Error", "Please select a flight to edit.", Alert.AlertType.ERROR);
+        }
+    }
+
+
+
     private void addDeleteButtonToTable() {
         Callback<TableColumn<FlightData, Void>, TableCell<FlightData, Void>> cellFactory = param -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete");
@@ -172,24 +221,20 @@ public class ListOfFlightsController {
             {
                 deleteButton.setOnAction(event -> {
                     FlightData data = getTableView().getItems().get(getIndex());
-
-                    // إنشاء نافذة تأكيد الحذف
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirm Deletion");
                     alert.setHeaderText("Are you sure you want to delete this flight?");
                     alert.setContentText("Once deleted, it cannot be undone.");
 
-
                     alert.showAndWait().ifPresent(response -> {
                         if (response == ButtonType.OK) {
-
                             flightTable.getItems().remove(data);
                             deleteFlightFromDatabase(data);
-                            System.out.println("Deleted: " + data);
                         }
                     });
                 });
             }
+
             private void deleteFlightFromDatabase(FlightData data) {
                 try (Session session = sessionFactory.openSession()) {
                     Transaction transaction = session.beginTransaction();
@@ -199,11 +244,9 @@ public class ListOfFlightsController {
                     if (flight != null) {
                         session.delete(flight);
                         transaction.commit();
-                        System.out.println("Flight deleted from database.");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("Error deleting flight from database: " + e.getMessage());
                 }
             }
 
@@ -222,7 +265,6 @@ public class ListOfFlightsController {
     }
 
     public void navigateToAddFlight() {
-        System.out.println("Navigating to AddFlight...");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/AddFlight.fxml"));
             Parent root = loader.load();
@@ -236,7 +278,6 @@ public class ListOfFlightsController {
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error: Unable to load AddFlight.fxml");
         }
     }
 
@@ -247,6 +288,7 @@ public class ListOfFlightsController {
             e.printStackTrace();
         }
     }
+
     public static class FlightData {
         private final SimpleIntegerProperty flightId;
         private final SimpleStringProperty departureTime;
@@ -263,7 +305,7 @@ public class ListOfFlightsController {
         private final SimpleStringProperty notes;
 
         public FlightData(int flightId, String origin, String destination, String departureDate, String arrivalDate,
-                                   String arrivalTime , String departureTime, int gateNumber, int seatCapacity, BigDecimal price,
+                          String arrivalTime, String departureTime, int gateNumber, int seatCapacity, BigDecimal price,
                           String classType, String flightDuration, String notes) {
             this.flightId = new SimpleIntegerProperty(flightId);
             this.departureTime = new SimpleStringProperty(departureTime);
@@ -274,7 +316,7 @@ public class ListOfFlightsController {
             this.destination = new SimpleStringProperty(destination);
             this.gateNumber = new SimpleIntegerProperty(gateNumber);
             this.seatCapacity = new SimpleIntegerProperty(seatCapacity);
-            this.price = new SimpleObjectProperty<>(price);  // Correct usage of BigDecimal
+            this.price = new SimpleObjectProperty<>(price);
             this.classType = new SimpleStringProperty(classType);
             this.flightDuration = new SimpleStringProperty(flightDuration);
             this.notes = new SimpleStringProperty(notes);
@@ -293,8 +335,9 @@ public class ListOfFlightsController {
         public SimpleStringProperty classTypeProperty() { return classType; }
         public SimpleStringProperty flightDurationProperty() { return flightDuration; }
         public SimpleStringProperty notesProperty() { return notes; }
+
+        public int getFlightId() {
+            return flightId.get();
+        }
     }
-
-
 }
-
