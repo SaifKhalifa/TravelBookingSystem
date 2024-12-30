@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,12 +14,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImplemention;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 
 
 public class HotelBookingController {
+
+
 
     @FXML
     private TableView<Hotel> hotelsTable;
@@ -46,6 +54,9 @@ public class HotelBookingController {
 
 
     private Hotel lastSelectedHotel = null;  // Track the last selected hotel
+
+    private HotelDAOImplemention hotelDAO = new HotelDAOImplemention();
+
 
     public void initialize() {
         // Setting column value factories
@@ -100,6 +111,30 @@ public class HotelBookingController {
         }
     }
 
+    private  void updateFlightStatusInDatabase(Hotel hotel) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            HotelBookingModel hotelModel = session.get(HotelBookingModel.class, Integer.parseInt(hotel.getHotelId()));
+            if (hotelModel != null) {
+                hotelModel.setStatus(hotel.getStatus());
+                session.update(hotelModel);
+                transaction.commit();
+                System.out.println("Flight status updated successfully in the database.");
+            } else {
+                System.out.println("Flight not found in the database.");
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     @FXML
     private void cancelHotelBooking() {
         // Get the selected hotel
@@ -132,17 +167,33 @@ public class HotelBookingController {
             if (!selectedHotel.getStatus().equalsIgnoreCase("Pending")) {
                 // Update the status to "Pending Booking"
                 selectedHotel.setStatus("Pending");
+                updateFlightStatusInDatabase(selectedHotel);
                 hotelsTable.refresh();
 
                 // Show success message
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The booking is now in Pending Booking status.");
-            } else {
-                // If already pending
-                showAlert(Alert.AlertType.WARNING, "Already Pending", "This booking is already in Pending Booking status.");
+
             }
-        } else {
-            // No hotel selected
-            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a booking to set to Pending Booking.");
+
+
+            else {
+                if (selectedHotel != null) {
+                    if (selectedHotel.getStatus().equalsIgnoreCase("Pending")) {
+
+                        selectedHotel.setStatus("Confirmed");
+                        updateFlightStatusInDatabase(selectedHotel);
+                        hotelsTable.refresh(); // Refresh TableView to reflect changes
+                        showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The Pending Booking status has been cancelled.");
+
+                    }
+                    else {
+                        showAlert(Alert.AlertType.WARNING, "Not Pending", "This flight is not in Pending Booking status.");
+                    }
+                }
+                else {
+                    showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to cancel Pending Booking.");
+                }
+            }
         }
     }
 
@@ -320,31 +371,5 @@ public class HotelBookingController {
 
     }
 
-
-
-    @FXML
-    private TableView<FlightBookingController.Flight> flightsTable;
-    @FXML
-    private void cancelFlightBooking() {
-        // Get the selected flight
-        FlightBookingController.Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
-
-        if (selectedFlight != null) {
-            if (!selectedFlight.getStatus().equalsIgnoreCase("Cancelled")) {
-                // Update the status to "Cancelled"
-                selectedFlight.setStatus("Cancelled");
-                flightsTable.refresh();
-
-                // Show success message
-                showAlert(Alert.AlertType.INFORMATION, "Cancellation Successful", "The flight has been successfully cancelled.");
-            } else {
-                // If already cancelled
-                showAlert(Alert.AlertType.WARNING, "Already Cancelled", "This flight is already cancelled.");
-            }
-        } else {
-            // No flight selected
-            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to cancel.");
-        }
-    }
 
 }
