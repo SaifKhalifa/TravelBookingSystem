@@ -1,49 +1,23 @@
 package com.groupnine.travelbookingsystem.model.searchHotels;
 
-import java.util.ArrayList;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import java.util.List;
-import java.util.Optional;
 
 public class searchHDAOImp implements searchHDAO {
 
-    // List to store hotel bookings
-    private List<searchH> hotelBookings = new ArrayList<>();
-
-    // Add a hotel booking
     @Override
-    public void addHotelBooking(searchH hotelBooking) {
-        hotelBookings.add(hotelBooking);
-    }
-
-    // Get a hotel booking by ID
-    @Override
-    public searchH getHotelBookingById(int id) {
-        Optional<searchH> hotelBooking = hotelBookings.stream()
-                .filter(hb -> hb.getHotelId() == id)
-                .findFirst();
-        return hotelBooking.orElse(null); // Returns null if not found
-    }
-
-    // Get all hotel bookings
-    @Override
-    public List<searchH> getAllHotelBookings() {
-        return new ArrayList<>(hotelBookings); // Return a copy of the list to avoid external modifications
-    }
-
-    // Update an existing hotel booking
-    @Override
-    public void updateHotelBooking(searchH hotelBooking) {
-        for (int i = 0; i < hotelBookings.size(); i++) {
-            if (hotelBookings.get(i).getHotelId() == hotelBooking.getHotelId()) {
-                hotelBookings.set(i, hotelBooking);
-                return;
-            }
+    public List<searchH> searchHotelsByDestination(String destination) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM searchH WHERE destination = :destination";
+            Query<searchH> query = session.createQuery(hql, searchH.class);
+            query.setParameter("destination", destination);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-    }
-
-    // Delete a hotel booking by ID
-    @Override
-    public void deleteHotelBooking(int id) {
-        hotelBookings.removeIf(hb -> hb.getHotelId() == id);
     }
 }

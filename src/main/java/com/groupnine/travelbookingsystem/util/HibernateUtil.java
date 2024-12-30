@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+
 public class HibernateUtil {
 
     private static HibernateUtil instance ;
@@ -18,7 +19,7 @@ public class HibernateUtil {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass( FlightBookingModel.class);
         configuration.configure();
-        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getPropertiesbookings()).build();
+        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 

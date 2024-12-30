@@ -24,7 +24,7 @@
                   <ColorAdjust />
                </effect>
             </Button>
-            <ComboBox fx:id="cbDestination" layoutX="14.0" layoutY="46.0" prefHeight="26.0" prefWidth="479.0" promptText="Your Destination" style="-fx-background-color: rgba(255,255,255,0.68); -fx-border-color: white; -fx-background-radius: 60; -fx-border-radius: 60;" />
+            <ComboBox fx:id="cbDestination" layoutX="14.0" layoutY="46.0" prefHeight="26.0" prefWidth="479.0" promptText="Your Hotel Name" style="-fx-background-color: rgba(255,255,255,0.68); -fx-border-color: white; -fx-background-radius: 60; -fx-border-radius: 60;" />
             <ComboBox fx:id="cbRooms" layoutX="14.0" layoutY="119.0" prefHeight="26.0" prefWidth="179.0" promptText="No. of Rooms" style="-fx-background-color: rgba(255,255,255,0.68); -fx-background-radius: 60; -fx-border-color: white; -fx-border-radius: 60;" />
             <ComboBox fx:id="cbCheckIn" layoutX="519.0" layoutY="46.0" prefWidth="150.0" promptText="Check-in Date" style="-fx-background-color: rgba(255,255,255,0.68); -fx-border-color: white; -fx-background-radius: 60; -fx-border-radius: 60;" />
             <ComboBox fx:id="cbCheckOut" layoutX="705.0" layoutY="46.0" prefWidth="150.0" promptText="Check-out Date" style="-fx-background-color: rgba(255,255,255,0.68); -fx-background-radius: 60; -fx-border-radius: 60; -fx-border-color: white;" />

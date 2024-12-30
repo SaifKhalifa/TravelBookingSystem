@@ -1,15 +1,23 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchPageFlightsController {
 
@@ -48,14 +56,23 @@ public class SearchPageFlightsController {
     @FXML
     public AnchorPane btnFlightsPane;
 
+    // New components for search functionality
+    @FXML
+    private TextField searchBar; // TextField for entering search query.
+    @FXML
+    private ListView<String> listView; // Display search results.
+
+    // Mock data for flight bookings.
+    private final List<String> flightDestinations = new ArrayList<>(List.of(
+            "New York", "London", "Paris", "Madrid", "Dubai", "Maldives"
+    ));
 
     // Initialize method is called when the FXML file is loaded
     @FXML
     public void initialize() {
-
         cbFlightsHotels.getItems().addAll("Flights", "Hotels");
         cbSignupLogin.getItems().addAll("Sign Up", "Login");
-        cbDestination.getItems().addAll("New York", "London", "Paris", "Madrid", "Dobui", "Maldivs");  // Example destinations
+        cbDestination.getItems().addAll("New York", "London", "Paris", "Madrid", "Dubai", "Maldives");  // Example destinations
         cbPassengers.getItems().addAll("1", "2", "3", "4", "5", "6", "More than 6");
         cbCheckIn.getItems().addAll("2024-12-01", "2024-12-15", "2024-12-30");
         cbCheckOut.getItems().addAll("2024-12-05", "2024-12-20", "2024-12-30");
@@ -63,23 +80,22 @@ public class SearchPageFlightsController {
         btnHome.setOnAction(event -> handleHomeButton());
         btnMyBooking.setOnAction(event -> handleMyBookingButton());
         btnProfile.setOnAction(event -> handleProfileButton());
-
         btnFlights.setOnAction(event -> handleFlightsButton());
         btnHotels.setOnAction(event -> handleHotelsButton());
         btnSearch.setOnAction(event -> handleSearchButton());
-
-        // Set combo box actions
         cbFlightsHotels.setOnAction(event -> handleFlightsHotelsCombo());
         cbSignupLogin.setOnAction(event -> handleSignupLoginCombo());
 
         setBackgroundImage();
+
+        // Initialize search functionality
+        listView.setItems(FXCollections.observableArrayList(flightDestinations));
+        searchBar.setOnAction(event -> handleSearch());
     }
 
     private void setBackgroundImage() {
         backG.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/sf.jpeg").toExternalForm()));
-
     }
-
 
     private void navigateToPage(String fxmlPath, String title) {
         try {
@@ -170,5 +186,22 @@ public class SearchPageFlightsController {
             }
         }
     }
-}
 
+    // New functionality for search
+    private void handleSearch() {
+        String query = searchBar.getText().toLowerCase().trim();
+        List<String> filteredDestinations = filterDestinations(query);
+        updateListView(filteredDestinations);
+    }
+
+    private List<String> filterDestinations(String query) {
+        return flightDestinations.stream()
+                .filter(destination -> destination.toLowerCase().contains(query))
+                .collect(Collectors.toList());
+    }
+
+    private void updateListView(List<String> filteredDestinations) {
+        ObservableList<String> observableList = FXCollections.observableArrayList(filteredDestinations);
+        listView.setItems(observableList);
+    }
+}

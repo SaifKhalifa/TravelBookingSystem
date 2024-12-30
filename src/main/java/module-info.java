@@ -17,10 +17,6 @@ module com.groupnine.travelbookingsystem {
     requires java.naming;
     requires java.persistence;
     requires java.sql;
-
-    // Spring dependencies
-    requires spring.context;
-    requires spring.beans;
     requires mysql.connector.java;
 
     // authentication
