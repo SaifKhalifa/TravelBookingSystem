@@ -14,12 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImplemention;
 import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.text.SimpleDateFormat;
+
 import java.util.Optional;
 
 
@@ -55,7 +54,7 @@ public class HotelBookingController {
 
     private Hotel lastSelectedHotel = null;  // Track the last selected hotel
 
-    private HotelDAOImplemention hotelDAO = new HotelDAOImplemention();
+    private HotelDAOImplemention_roaa_deprecated hotelDAO = new HotelDAOImplemention_roaa_deprecated();
 
 
     public void initialize() {

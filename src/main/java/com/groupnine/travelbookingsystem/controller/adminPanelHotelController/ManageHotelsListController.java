@@ -1,8 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.Hotel;
-import com.groupnine.travelbookingsystem.model.interfaces.HotelDOA;
-import com.groupnine.travelbookingsystem.model.services.HotelDOAImp;
+import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.services.HotelDOAImp_reem_deprecated;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,14 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +27,7 @@ import java.util.List;
 
 public class ManageHotelsListController {
 
-    private HotelDOAImp hotelDOAImp;
+    private HotelDOAImp_reem_deprecated hotelDOAImp;
 
     @FXML
     private ToggleButton flightsButton;
@@ -46,33 +42,33 @@ public class ManageHotelsListController {
     private Button EditHotelBtn;
 
     @FXML
-    private TableView<Hotel> tableView;
+    private TableView<Hotel_reem_deprecated> tableView;
     @FXML
-    private TableColumn<Hotel, Number> idColumn;
+    private TableColumn<Hotel_reem_deprecated, Number> idColumn;
     @FXML
-    private TableColumn<Hotel, String> nameColumn;
+    private TableColumn<Hotel_reem_deprecated, String> nameColumn;
     @FXML
-    private TableColumn<Hotel, String> locationColumn;
+    private TableColumn<Hotel_reem_deprecated, String> locationColumn;
     @FXML
-    private TableColumn<Hotel, Double> pricePerNightColumn;
+    private TableColumn<Hotel_reem_deprecated, Double> pricePerNightColumn;
     @FXML
-    private TableColumn<Hotel, Integer> totalRoomsColumn;
+    private TableColumn<Hotel_reem_deprecated, Integer> totalRoomsColumn;
     @FXML
-    private TableColumn<Hotel, String> roomTypesColumn;
+    private TableColumn<Hotel_reem_deprecated, String> roomTypesColumn;
     @FXML
-    private TableColumn<Hotel, String> facilitiesColumn;
+    private TableColumn<Hotel_reem_deprecated, String> facilitiesColumn;
     @FXML
-    private TableColumn<Hotel, String> amenitiesColumn;
+    private TableColumn<Hotel_reem_deprecated, String> amenitiesColumn;
     //    @FXML
 //    private TableColumn<Hotel, String> promotionalOffersColumn;
     @FXML
-    private TableColumn<Hotel, String> availabilityColumn;
+    private TableColumn<Hotel_reem_deprecated, String> availabilityColumn;
     @FXML
-    private TableColumn<Hotel, Number> ratingColumn;
+    private TableColumn<Hotel_reem_deprecated, Number> ratingColumn;
     @FXML
-    private TableColumn<Hotel, Void> editColumn;
+    private TableColumn<Hotel_reem_deprecated, Void> editColumn;
     @FXML
-    private TableColumn<Hotel, Void> deleteColumn;
+    private TableColumn<Hotel_reem_deprecated, Void> deleteColumn;
 
     @FXML
     public void AddHotel() throws Exception {
@@ -112,7 +108,7 @@ public class ManageHotelsListController {
 
     @FXML
     public void initialize() {
-        hotelDOAImp = new HotelDOAImp();
+        hotelDOAImp = new HotelDOAImp_reem_deprecated();
 
         // Create a ToggleGroup to manage the buttons
         ToggleGroup group = new ToggleGroup();
@@ -146,7 +142,7 @@ public class ManageHotelsListController {
         totalRoomsColumn.setCellValueFactory(new PropertyValueFactory<>("totalRooms"));
 
         roomTypesColumn.setCellValueFactory(new PropertyValueFactory<>("roomTypes"));
-        roomTypesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
+        roomTypesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -169,7 +165,7 @@ public class ManageHotelsListController {
 
         // تعديل facilitiesColumn
         facilitiesColumn.setCellValueFactory(new PropertyValueFactory<>("facilities"));
-        facilitiesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
+        facilitiesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -188,7 +184,7 @@ public class ManageHotelsListController {
 
 // تعديل amenitiesColumn
         amenitiesColumn.setCellValueFactory(new PropertyValueFactory<>("amenities"));
-        amenitiesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
+        amenitiesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -213,15 +209,15 @@ public class ManageHotelsListController {
 
     // إضافة زر التعديل في العمود
     private void addEditButtonToColumn() {
-        editColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
+        editColumn.setCellFactory(new Callback<TableColumn<Hotel_reem_deprecated, Void>, TableCell<Hotel_reem_deprecated, Void>>() {
             @Override
-            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
-                return new TableCell<Hotel, Void>() {
+            public TableCell<Hotel_reem_deprecated, Void> call(TableColumn<Hotel_reem_deprecated, Void> param) {
+                return new TableCell<Hotel_reem_deprecated, Void>() {
                     private final Button editButton = new Button("Edit");
 
                     {
                         editButton.setOnAction(event -> {
-                            Hotel hotel = getTableView().getItems().get(getIndex());
+                            Hotel_reem_deprecated hotel = getTableView().getItems().get(getIndex());
 
                             // تنفيذ إجراء التعديل هنا
                             try {
@@ -249,10 +245,10 @@ public class ManageHotelsListController {
 
     // إضافة زر الحذف في العمود
     private void addDeleteButtonToColumn() {
-        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
+        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel_reem_deprecated, Void>, TableCell<Hotel_reem_deprecated, Void>>() {
             @Override
-            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
-                return new TableCell<Hotel, Void>() {
+            public TableCell<Hotel_reem_deprecated, Void> call(TableColumn<Hotel_reem_deprecated, Void> param) {
+                return new TableCell<Hotel_reem_deprecated, Void>() {
                     private final Button deleteButton = new Button("Delete");
 
                     {
@@ -267,7 +263,7 @@ public class ManageHotelsListController {
                         });
 
                         deleteButton.setOnAction(event -> {
-                            Hotel hotel = getTableView().getItems().get(getIndex());
+                            Hotel_reem_deprecated hotel = getTableView().getItems().get(getIndex());
                             int hotelId = hotel.getId();  // الحصول على الـ ID للفندق
                             // تنفيذ إجراء الحذف هنا
                             DeleteHotel(event, hotelId); // الحذف
@@ -292,7 +288,7 @@ public class ManageHotelsListController {
 
     private void loadHotels() {
         List<Hotel> hotelList = hotelDOAImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
-        ObservableList<Hotel> observableList = FXCollections.observableArrayList(hotelList);
+        ObservableList<Hotel                                                            > observableList = FXCollections.observableArrayList(hotelList);
         tableView.setItems(observableList); // عرض البيانات داخل الجدول
         tableView.refresh();
     }

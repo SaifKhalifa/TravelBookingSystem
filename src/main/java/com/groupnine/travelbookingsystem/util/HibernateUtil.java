@@ -1,7 +1,5 @@
 package com.groupnine.travelbookingsystem.util;
 
-import com.groupnine.travelbookingsystem.model.Hotel;
-import com.groupnine.travelbookingsystem.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -17,7 +15,7 @@ public class HibernateUtil {
 
     private HibernateUtil(){
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Hotel.class);
+        configuration.addAnnotatedClass(Hotel_reem_deprecated.class);
         configuration.configure();
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);

@@ -1,9 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.Hotel;
-import com.groupnine.travelbookingsystem.model.services.HotelDOAImp;
+import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.*;
 import java.io.IOException;
 import javafx.scene.image.Image;
@@ -24,7 +22,7 @@ import java.util.List;
 
 public class HotelInfoController {
 
-    private HotelDOAImp hotelDOAImp = new HotelDOAImp();
+    private HotelDAOImpl hotelDOAImp = new HotelDAOImpl();
     @FXML
     private Label TitleInfo;
     @FXML
