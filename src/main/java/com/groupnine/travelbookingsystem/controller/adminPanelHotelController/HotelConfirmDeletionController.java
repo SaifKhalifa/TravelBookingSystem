@@ -1,6 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.services.HotelDOAImp_reem_deprecated;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -10,7 +10,7 @@ public class HotelConfirmDeletionController {
     @FXML
     private Button YesButton;
     private int hotelID;
-    private HotelDOAImp_reem_deprecated hotelDOAImp = new HotelDOAImp_reem_deprecated();
+    private HotelDAOImpl hotelDOAImp = new HotelDAOImpl();
     private ManageHotelsListController manageHotelsListController;  // مرجع للكونترولر الذي يحتوي على الجدول
 
     // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)

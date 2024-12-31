@@ -67,4 +67,5 @@ module com.groupnine.travelbookingsystem {
     exports com.groupnine.travelbookingsystem.otherApplications.Sana;
 
     opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
 }

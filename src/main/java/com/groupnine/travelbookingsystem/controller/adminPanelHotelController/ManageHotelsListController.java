@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
 import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
-import com.groupnine.travelbookingsystem.model.services.HotelDOAImp_reem_deprecated;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ManageHotelsListController {
 
-    private HotelDOAImp_reem_deprecated hotelDOAImp;
+    private HotelDAOImpl hotelDAOImp;
 
     @FXML
     private ToggleButton flightsButton;
@@ -42,33 +42,33 @@ public class ManageHotelsListController {
     private Button EditHotelBtn;
 
     @FXML
-    private TableView<Hotel_reem_deprecated> tableView;
+    private TableView<Hotel> tableView;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Number> idColumn;
+    private TableColumn<Hotel, Number> idColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> nameColumn;
+    private TableColumn<Hotel, String> nameColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> locationColumn;
+    private TableColumn<Hotel, String> locationColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Double> pricePerNightColumn;
+    private TableColumn<Hotel, Double> pricePerNightColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Integer> totalRoomsColumn;
+    private TableColumn<Hotel, Integer> totalRoomsColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> roomTypesColumn;
+    private TableColumn<Hotel, String> roomTypesColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> facilitiesColumn;
+    private TableColumn<Hotel, String> facilitiesColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> amenitiesColumn;
+    private TableColumn<Hotel, String> amenitiesColumn;
     //    @FXML
 //    private TableColumn<Hotel, String> promotionalOffersColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, String> availabilityColumn;
+    private TableColumn<Hotel, String> availabilityColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Number> ratingColumn;
+    private TableColumn<Hotel, Number> ratingColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Void> editColumn;
+    private TableColumn<Hotel, Void> editColumn;
     @FXML
-    private TableColumn<Hotel_reem_deprecated, Void> deleteColumn;
+    private TableColumn<Hotel, Void> deleteColumn;
 
     @FXML
     public void AddHotel() throws Exception {
@@ -108,7 +108,7 @@ public class ManageHotelsListController {
 
     @FXML
     public void initialize() {
-        hotelDOAImp = new HotelDOAImp_reem_deprecated();
+        hotelDAOImp = new HotelDAOImpl();
 
         // Create a ToggleGroup to manage the buttons
         ToggleGroup group = new ToggleGroup();
@@ -142,7 +142,7 @@ public class ManageHotelsListController {
         totalRoomsColumn.setCellValueFactory(new PropertyValueFactory<>("totalRooms"));
 
         roomTypesColumn.setCellValueFactory(new PropertyValueFactory<>("roomTypes"));
-        roomTypesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
+        roomTypesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -165,7 +165,7 @@ public class ManageHotelsListController {
 
         // تعديل facilitiesColumn
         facilitiesColumn.setCellValueFactory(new PropertyValueFactory<>("facilities"));
-        facilitiesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
+        facilitiesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -184,7 +184,7 @@ public class ManageHotelsListController {
 
 // تعديل amenitiesColumn
         amenitiesColumn.setCellValueFactory(new PropertyValueFactory<>("amenities"));
-        amenitiesColumn.setCellFactory(param -> new TableCell<Hotel_reem_deprecated, String>() {
+        amenitiesColumn.setCellFactory(param -> new TableCell<Hotel, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -209,15 +209,15 @@ public class ManageHotelsListController {
 
     // إضافة زر التعديل في العمود
     private void addEditButtonToColumn() {
-        editColumn.setCellFactory(new Callback<TableColumn<Hotel_reem_deprecated, Void>, TableCell<Hotel_reem_deprecated, Void>>() {
+        editColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
             @Override
-            public TableCell<Hotel_reem_deprecated, Void> call(TableColumn<Hotel_reem_deprecated, Void> param) {
-                return new TableCell<Hotel_reem_deprecated, Void>() {
+            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
+                return new TableCell<Hotel, Void>() {
                     private final Button editButton = new Button("Edit");
 
                     {
                         editButton.setOnAction(event -> {
-                            Hotel_reem_deprecated hotel = getTableView().getItems().get(getIndex());
+                            Hotel hotel = getTableView().getItems().get(getIndex());
 
                             // تنفيذ إجراء التعديل هنا
                             try {
@@ -245,10 +245,10 @@ public class ManageHotelsListController {
 
     // إضافة زر الحذف في العمود
     private void addDeleteButtonToColumn() {
-        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel_reem_deprecated, Void>, TableCell<Hotel_reem_deprecated, Void>>() {
+        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
             @Override
-            public TableCell<Hotel_reem_deprecated, Void> call(TableColumn<Hotel_reem_deprecated, Void> param) {
-                return new TableCell<Hotel_reem_deprecated, Void>() {
+            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
+                return new TableCell<Hotel, Void>() {
                     private final Button deleteButton = new Button("Delete");
 
                     {
@@ -263,7 +263,7 @@ public class ManageHotelsListController {
                         });
 
                         deleteButton.setOnAction(event -> {
-                            Hotel_reem_deprecated hotel = getTableView().getItems().get(getIndex());
+                            Hotel hotel = getTableView().getItems().get(getIndex());
                             int hotelId = hotel.getId();  // الحصول على الـ ID للفندق
                             // تنفيذ إجراء الحذف هنا
                             DeleteHotel(event, hotelId); // الحذف
@@ -287,7 +287,7 @@ public class ManageHotelsListController {
 
 
     private void loadHotels() {
-        List<Hotel> hotelList = hotelDOAImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
+        List<Hotel> hotelList = hotelDAOImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
         ObservableList<Hotel                                                            > observableList = FXCollections.observableArrayList(hotelList);
         tableView.setItems(observableList); // عرض البيانات داخل الجدول
         tableView.refresh();
@@ -335,7 +335,7 @@ public class ManageHotelsListController {
 
     public void updateTableView() {
         // تحميل البيانات الجديدة من قاعدة البيانات
-        ObservableList<Hotel> hotels = FXCollections.observableArrayList(hotelDOAImp.getAllHotels());
+        ObservableList<Hotel> hotels = FXCollections.observableArrayList(hotelDAOImp.getAllHotels());
 
         // تحديث الجدول بالبيانات الجديدة
         tableView.setItems(hotels);  // تأكد من أن لديك جدول يسمى hotelTable

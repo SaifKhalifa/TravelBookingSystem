@@ -7,7 +7,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "hotel_booking")
-class HotelBookingModel {
+public class HotelBookingModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
