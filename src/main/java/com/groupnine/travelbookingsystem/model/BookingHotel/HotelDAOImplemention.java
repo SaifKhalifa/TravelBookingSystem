@@ -13,7 +13,7 @@ public class HotelDAOImplemention implements HotelDAO{
     SessionFactory sessionFactory;
 
     public HotelDAOImplemention() {
-        hibernateUtil= HibernateUtil.getInstance();
+        hibernateUtil = HibernateUtil.getInstance();
         sessionFactory = hibernateUtil.getSessionFactory();
     }
 
@@ -21,8 +21,7 @@ public class HotelDAOImplemention implements HotelDAO{
     public List<HotelBookingModel> getAllBookings() {
         try (Session session = sessionFactory.openSession()) {
             // Query to fetch all hotel bookings
-            List<HotelBookingModel> bookings = session.createQuery("from HotelBookingModel", HotelBookingModel.class).list();
-
+            List<HotelBookingModel> bookings = session.createQuery("from HotelBookingModel", HotelBookingModel.class).getResultList();
             if (bookings != null && !bookings.isEmpty()) {
                 System.out.println("Fetched Bookings: " + bookings);
             } else {
@@ -39,23 +38,22 @@ public class HotelDAOImplemention implements HotelDAO{
 
     @Override
     public void save(HotelBookingModel hotelBooking) {
-        Session session=sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(hotelBooking);
-        session.getTransaction().commit();
-        session.close();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.save(hotelBooking);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.println("Error saving booking: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateBookingStatus(int bookingId, String status) {
-
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-
-            // Retrieve the booking by its ID
             HotelBookingModel booking = session.get(HotelBookingModel.class, bookingId);
             if (booking != null) {
-                // Update the status of the booking
                 booking.setStatus(status);
                 session.update(booking);
                 session.getTransaction().commit();
@@ -66,30 +64,22 @@ public class HotelDAOImplemention implements HotelDAO{
         } catch (Exception e) {
             System.err.println("Error updating booking status for Booking ID " + bookingId + ": " + e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("Error updating booking status. Please try again later.", e);
         }
     }
 
     @Override
     public void updateBooking(int bookingId, String customerName, String hotelName, Date checkIn, Date checkOut, String status) {
-
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-
-            // Retrieve the booking by its ID
             HotelBookingModel booking = session.get(HotelBookingModel.class, bookingId);
             if (booking != null) {
-                // Update the booking details
                 booking.setCustomerName(customerName);
                 booking.setHotelName(hotelName);
                 booking.setCheckIn(checkIn);
                 booking.setCheckOut(checkOut);
                 booking.setStatus(status);
-
-                // Commit the transaction after the update
                 session.update(booking);
                 session.getTransaction().commit();
-
                 System.out.println("Booking updated for Booking ID " + bookingId);
             } else {
                 System.out.println("Booking with ID " + bookingId + " not found.");
@@ -97,7 +87,6 @@ public class HotelDAOImplemention implements HotelDAO{
         } catch (Exception e) {
             System.err.println("Error updating booking for Booking ID " + bookingId + ": " + e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("Error updating booking. Please try again later.", e);
         }
     }
 }

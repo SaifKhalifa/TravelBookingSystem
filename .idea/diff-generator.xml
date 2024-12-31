@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig" isInitGenerateDdl="true">
+    <option name="initGenerateDdl" value="true" />
+    <option name="sourceModelValue" value="TravelBookingSystem:hibernate.cfg.xml" />
+    <option name="targetDbValue" value="75df4faa-674e-4ce4-ab02-0983459da1ba" />
+  </component>
+</project>

@@ -15,6 +15,7 @@
         <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.connection.autocommit">true</property>
         <property name="hibernate.c3p0.timeout">300</property>
+<!--        <mapping class="com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel"/>-->
 
     </session-factory>
 </hibernate-configuration>
