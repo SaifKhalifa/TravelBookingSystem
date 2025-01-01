@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -49,6 +51,14 @@ public class AddFlightController {
     private int currentFlightId = -1;
     @FXML
     private ChoiceBox<String>offerType;
+    @FXML
+    private TextField promotionalOffer;
+    @FXML
+    private Button uploadImageButton;
+    @FXML
+    private Label imageFileNameLabel;
+
+    private File selectedImageFile;
 
 
     @FXML
@@ -103,6 +113,18 @@ public class AddFlightController {
             int parsedSeatCapacity = parseInteger(seatcapacity.getText(), "Seat Capacity");
             BigDecimal parsedFlightPrice = parseBigDecimal(flightprice.getText(), "Flight Price");
 
+            // Validate promotional offer
+            BigDecimal parsedPromotionalOffer = BigDecimal.ZERO;
+            if (!promotionalOffer.getText().isEmpty()) {
+                parsedPromotionalOffer = parseBigDecimal(promotionalOffer.getText(), "Promotional Offer");
+            }
+
+            // Validate image file
+            if (selectedImageFile == null) {
+                showAlert("Error", "Please upload an image for the flight.", Alert.AlertType.ERROR);
+                return;
+            }
+
             // Create or update flight model object
             AdminFlightModel flight = new AdminFlightModel();
             flight.setOrigin(origin.getText());
@@ -117,7 +139,8 @@ public class AddFlightController {
             flight.setNotes(notes.getText());
             flight.setDepartureDate(parsedDepartureDate);
             flight.setArrivalDate(parsedArrivalDate);
-
+            flight.setPromotionalOffer(String.valueOf(parsedPromotionalOffer));
+            flight.setImagePath(selectedImageFile.getAbsolutePath());
             // Create service
             ImpAdminFlightInterface service = new ImpAdminFlightInterface();
 
@@ -161,6 +184,8 @@ public class AddFlightController {
                 notes.setText(flightData.getNotes());
                 departuredate.setValue(flightData.getDepartureDate());
                 arrivaldate.setValue(flightData.getArrivalDate());
+                promotionalOffer.setText(flightData.getPromotionalOffer());
+                imageFileNameLabel.setText(flightData.getImagePath() != null ? new File(flightData.getImagePath()).getName() : "No Image Selected");
 
                 currentFlightId = flightId;
                 addButton.setText("Update Flight");
@@ -220,7 +245,28 @@ public class AddFlightController {
         notes.clear();
         departuredate.setValue(null);
         arrivaldate.setValue(null);
+        promotionalOffer.clear();
+        imageFileNameLabel.setText("No Image Selected");
+        selectedImageFile = null;
+
         addButton.setText("Add Flight");
         currentFlightId = -1;
     }
+    @FXML
+    private void uploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Flight Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            selectedImageFile = file;
+            imageFileNameLabel.setText(file.getName());
+        } else {
+            showAlert("Error", "No file selected.", Alert.AlertType.ERROR);
+        }
+    }
+
 }

@@ -61,6 +61,9 @@ public class ListOfFlightsController {
     private Button hotel;
     @FXML
     private Button addnewflight;
+    @FXML
+    private TableColumn<FlightData, String> offers;
+
 
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
     private final ImpAdminFlightInterface GetFlight = new ImpAdminFlightInterface();
@@ -97,13 +100,9 @@ public class ListOfFlightsController {
         }
     }
     public void refreshTable() {
-        // Clear the existing items in the TableView
         flightTable.getItems().clear();
-
-        // Reinitialize the table data by fetching fresh data from the database
         initializeTableData();
     }
-
 
     private void initializeTableData() {
         try {
@@ -123,7 +122,9 @@ public class ListOfFlightsController {
                         new BigDecimal(flight.getPrice().toString()),
                         flight.getClassType(),
                         flight.getFlightDuration().toString(),
-                        flight.getNotes()
+                        flight.getNotes(),
+                        flight.getPromotionalOffer(),
+                        flight.getImagePath()
                 ));
             }
 
@@ -141,7 +142,7 @@ public class ListOfFlightsController {
             notes.setCellValueFactory(cellData -> cellData.getValue().notesProperty());
             price.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
             flightTable.setItems(flightDataList);
-
+            offers.setCellValueFactory(cellData -> cellData.getValue().promotionalOfferProperty());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -192,25 +193,24 @@ public class ListOfFlightsController {
 
         AddFlightController addFlightController = loader.getController();
         FlightData selectedFlight = flightTable.getSelectionModel().getSelectedItem();
-        // Close the current window (List of Flights)
-        Stage currentStage = (Stage) flightTable.getScene().getWindow();
-        currentStage.close();
-        if (selectedFlight != null) {
-            // Pass the selected flight data for editing
-            addFlightController.setFlightDataForEditing(selectedFlight.getFlightId());
 
-            // Open the edit window
+        if (selectedFlight != null) {
+            addFlightController.setFlightDataForEditing(selectedFlight.getFlightId());
             Stage stage = new Stage();
             stage.setScene(new Scene(root, 1280, 832));
             stage.setTitle("Edit Flight");
             stage.show();
+            Stage currentStage = (Stage) flightTable.getScene().getWindow();
+            currentStage.close();
 
-            // Add a listener to the stage close event to refresh the table after editing
-            stage.setOnHidden(event -> refreshTable()); // Refresh the table when the edit window is closed
+
+            stage.setOnHidden(event -> refreshTable());
         } else {
+            // Show an alert dialog without closing the parent window
             showAlert("Error", "Please select a flight to edit.", Alert.AlertType.ERROR);
         }
     }
+
 
 
 
@@ -303,10 +303,12 @@ public class ListOfFlightsController {
         private final SimpleStringProperty classType;
         private final SimpleStringProperty flightDuration;
         private final SimpleStringProperty notes;
+        private final SimpleStringProperty promotionalOffer;
+        private final SimpleStringProperty imagePath;
 
         public FlightData(int flightId, String origin, String destination, String departureDate, String arrivalDate,
                           String arrivalTime, String departureTime, int gateNumber, int seatCapacity, BigDecimal price,
-                          String classType, String flightDuration, String notes) {
+                          String classType, String flightDuration, String notes, String promotionalOffer, String imagePath) {
             this.flightId = new SimpleIntegerProperty(flightId);
             this.departureTime = new SimpleStringProperty(departureTime);
             this.arrivalTime = new SimpleStringProperty(arrivalTime);
@@ -320,6 +322,8 @@ public class ListOfFlightsController {
             this.classType = new SimpleStringProperty(classType);
             this.flightDuration = new SimpleStringProperty(flightDuration);
             this.notes = new SimpleStringProperty(notes);
+            this.promotionalOffer = new SimpleStringProperty(promotionalOffer);
+            this.imagePath = new SimpleStringProperty(imagePath);
         }
 
         public SimpleIntegerProperty flightIdProperty() { return flightId; }
@@ -335,7 +339,8 @@ public class ListOfFlightsController {
         public SimpleStringProperty classTypeProperty() { return classType; }
         public SimpleStringProperty flightDurationProperty() { return flightDuration; }
         public SimpleStringProperty notesProperty() { return notes; }
-
+        public SimpleStringProperty promotionalOfferProperty() { return promotionalOffer; }
+        public SimpleStringProperty imagePathProperty() { return imagePath; }
         public int getFlightId() {
             return flightId.get();
         }

@@ -33,6 +33,7 @@
                 <TableColumn fx:id="classType" text="Class Types" />
                 <TableColumn fx:id="notes" text="Notes" />
                 <TableColumn fx:id="price" text="Price" />
+                <TableColumn fx:id="offers" text="offers" />
                 <TableColumn fx:id="deleteColumn" text="Delete" />
                 <TableColumn fx:id="editColumn" text="Edit" />
             </columns>

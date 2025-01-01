@@ -48,8 +48,10 @@ public class AdminFlightModel {
 
     @Column(name = "notes")
     private String notes;
-
-
+    @Column(name = "promotional_offer")
+    private String promotionalOffer;
+    @Column(name = "image_path")
+    private String imagePath;
 
     public int getSeatCapacity() {
         return seatCapacity;
@@ -156,5 +158,20 @@ public class AdminFlightModel {
     }
 
     public AdminFlightModel() {
+    }
+    public String getPromotionalOffer() {
+        return promotionalOffer;
+    }
+
+    public void setPromotionalOffer(String promotionalOffer) {
+        this.promotionalOffer = promotionalOffer;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
