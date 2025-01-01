@@ -1,111 +1,93 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel.FlightDeatailsModel;
+import com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel.FlightDetailsDeoImpl;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class DetailsController {
 
     @FXML
-    private Button bookNowButton;
-
-    @FXML
     private Label departureLabel;
-
     @FXML
     private Label arrivalLabel;
-
     @FXML
     private Label durationLabel;
-
     @FXML
-    private ImageView airlineLogo;
-
-    @FXML
-    private Label routeLabel;
-
+    private Label airlineLabel;
     @FXML
     private Label departureAirportLabel;
-
     @FXML
     private Label arrivalAirportLabel;
+    @FXML
+    private Label priceLabel;
 
     @FXML
-    private Label departureTimeLabel;
+    private Button bookNowButton;
 
-    @FXML
-    private Label arrivalTimeLabel;
+    private int flightId; // Store the passed flightId
 
-    @FXML
-    private Label layoverDurationLabel;
-
-    @FXML
-    private Label flightInfoLabel;
-
-    @FXML
-    private Label layoverTitleLabel;
-
-    @FXML
-    private Label layoverDuration;
-
-    @FXML
-    private Label finalDepartureTimeLabel;
-
-    @FXML
-    private Label finalDepartureAirportLabel;
-
-    @FXML
-    private Label finalDepartureCityLabel;
-
-    @FXML
-    private Label finalDepartureCity2Label;
-
-    @FXML
-    private Label layover2DurationLabel;
-
-    @FXML
-    private Label finalArrivalTimeLabel;
-
-    @FXML
-    private Label finalArrivalAirportLabel;
-
-    @FXML
-    private Label finalArrivalCityLabel;
-
-    @FXML
-    private Label finalArrivalDateLabel;
-
+    // New method to set flightId dynamically
+    public void setCardId(int cardId) {
+        this.flightId = cardId;
+        loadFlightDetails(); // Load details for the provided cardId
+    }
 
     @FXML
     private void initialize() {
-        departureLabel.setText("Departs on Wednesday, 16 June");
-        arrivalLabel.setText("Arrives on Thursday, 17 June");
-        durationLabel.setText("Duration - 18hr 40m");
-        routeLabel.setText("Lagos - London");
-        departureAirportLabel.setText("Murtala International Airport, Lagos (LOS)");
-        arrivalAirportLabel.setText("Palestine Airport, Palestine (PAL)");
-
-        airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assests/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
-
+        // Initialization logic if needed
         bookNowButton.setOnAction(event -> handleBookNow());
+    }
+
+    private void loadFlightDetails() {
+        if (flightId <= 0) {
+            System.err.println("Invalid flightId: " + flightId);
+            departureLabel.setText("Invalid flight ID provided.");
+            return;
+        }
+
+        FlightDetailsDeoImpl dao = new FlightDetailsDeoImpl();
+        FlightDeatailsModel flightDetails = dao.getFlightDetails(flightId);
+
+        if (flightDetails != null) {
+            departureLabel.setText("Departure Time: " + flightDetails.getDepartureTime());
+            arrivalLabel.setText("Arrival Time: " + flightDetails.getArrivalTime());
+            durationLabel.setText("Flight Duration: " + flightDetails.getFlightDuration());
+            airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
+            departureAirportLabel.setText("Departure Airport: " + flightDetails.getDepartureAirport());
+            arrivalAirportLabel.setText("Arrival Airport: " + flightDetails.getArrivalAirport());
+            priceLabel.setText("Price: $" + flightDetails.getPrice());
+        } else {
+            departureLabel.setText("No flight details found.");
+            arrivalLabel.setText("");
+            durationLabel.setText("");
+            airlineLabel.setText("");
+            departureAirportLabel.setText("");
+            arrivalAirportLabel.setText("");
+            priceLabel.setText("");
+        }
     }
 
     private void handleBookNow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingFlight.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetailsView/BookingFlight.fxml"));
             Scene scene = new Scene(loader.load());
 
+            FlightController controller = loader.getController();
+
+            controller.setFlightId(flightId);
+
             Stage stage = new Stage();
-            stage.setTitle("Booking Hotel");
+            stage.setTitle("Booking Flight");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }
