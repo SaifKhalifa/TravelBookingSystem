@@ -48,8 +48,8 @@ public class Hotel {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<HotelBookingModel> bookings;
+//    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+//    private List<HotelBookingModel> bookings;
 
     // Getters and Setters
     public int getId() { return id; }
@@ -78,6 +78,6 @@ public class Hotel {
     public void setPhotos(String photos) { this.photos = photos; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-    public List<HotelBookingModel> getBookings() { return bookings; }
-    public void setBookings(List<HotelBookingModel> bookings) { this.bookings = bookings; }
+   // public List<HotelBookingModel> getBookings() { return bookings; }
+    //public void setBookings(List<HotelBookingModel> bookings) { this.bookings = bookings; }
 }

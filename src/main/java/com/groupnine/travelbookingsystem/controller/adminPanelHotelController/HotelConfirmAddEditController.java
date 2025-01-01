@@ -24,22 +24,25 @@ public class HotelConfirmAddEditController {
         this.manageHotelsListController = manageHotelsListController;
     }
 
-    public void onOKButtonClick(javafx.event.ActionEvent event) {
-//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//        stage.close();
-//        try {
-//            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml");
-//
-//            if (manageHotelsListController != null) {
-//                manageHotelsListController.updateTableView();  // استدعاء دالة تحديث الجدول
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+    @FXML
+    public void onOKButtonClick() {
         try {
-            // Navigate to the table page
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml");
+            // إغلاق الـ Popup الحالي
+            Stage popupStage = (Stage) OKButton.getScene().getWindow();
+            popupStage.close();
+
+            // الوصول إلى الـ Stage الرئيسي (Stage الخاص بـ Hotel Info)
+            Stage primaryStage = (Stage) popupStage.getOwner();
+
+            // تحميل صفحة Hotel List
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml"));
+            BorderPane root = loader.load();
+            System.out.println("from Hotel Confirm Add Edit to hotels list");
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Hotels List");
+            primaryStage.show();
 
             // Refresh the table if the controller is available
             if (manageHotelsListController != null) {
@@ -48,35 +51,15 @@ public class HotelConfirmAddEditController {
             } else {
                 System.err.println("Controller is null. Table cannot be refreshed.");
             }
-        } catch (IOException e) {
-            System.err.println("Failed to switch to Manage Hotels List page: " + e.getMessage());
-        }
 
-        // Load the second page's FXML
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml"));
-//            BorderPane root = loader.load();
-//
-//            // Create a new scene for the second page
-//            Scene secondScene = new Scene(root);
-//
-//            // Get the current stage (window) and switch the scene
-//            Stage primaryStage = (Stage) OKButton.getScene().getWindow();
-//            primaryStage.setScene(secondScene);
-//
-//            // Refresh the table if the controller is available
-//            if (manageHotelsListController != null) {
-//                manageHotelsListController.updateTableView(); // Refresh the table
-//                System.out.println("Controller is notNull. Table refreshed.");
-//            } else {
-//                System.err.println("Controller is null. Table cannot be refreshed.");
-//            }
-//        } catch (IOException e) {
-//            System.err.println("Failed to switch to Manage Hotels List page: " + e.getMessage());
-//        }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load Hotel List page: " + e.getMessage());
+        }
     }
 
     public void setTitleText(String titleText) {
         ConfirmLabel.setText(titleText);
     }
+
 }

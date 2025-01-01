@@ -18,16 +18,16 @@ public interface HotelDOA {
     // Get hotel by id
     Hotel getById(int id);
     // Get all hotel bookings
-    List<HotelBookingModel> getAllBookings();
+    //List<HotelBookingModel> getAllBookings();
 
     // Save a new booking
-    void save(HotelBookingModel hotelBooking);
+    //void save(HotelBookingModel hotelBooking);
 
     // Update the booking status
-    void updateBookingStatus(int bookingId, String status);
+    //void updateBookingStatus(int bookingId, String status);
 
     // Update hotel booking details
-    void updateBooking(int bookingId, String customerName, Date checkIn, Date checkOut, String status);
+    //void updateBooking(int bookingId, String customerName, Date checkIn, Date checkOut, String status);
     /*
     public void insert(Hotel_reem_deprecated hotel);
     public List<Hotel_reem_deprecated> getAllHotels();

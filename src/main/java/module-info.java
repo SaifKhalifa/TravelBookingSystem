@@ -20,6 +20,7 @@ module com.groupnine.travelbookingsystem {
     requires mysql.connector.java;
     requires java.smartcardio;
 
+
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
@@ -68,4 +69,6 @@ module com.groupnine.travelbookingsystem {
 
     opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
     opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
+
+    opens com.groupnine.travelbookingsystem.model.BookingHotel to javafx.base, javafx.fxml, org.hibernate.orm.core;
 }

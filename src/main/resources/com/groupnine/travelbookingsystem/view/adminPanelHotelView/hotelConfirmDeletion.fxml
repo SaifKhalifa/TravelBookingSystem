@@ -40,7 +40,7 @@
                 onAction="#onYesButtonClick"/>
 
                 <!-- Cancel button -->
-                <Button fx:id="cancelButton" prefWidth="100" onAction="#onNoButtonClick"
+                <Button fx:id="cancelButton" prefWidth="100" onAction="#onCancelButtonClick"
                         style="-fx-background-color: #ACACAC; -fx-text-fill: fff; -fx-font-weight: bold; -fx-background-radius: 5px;"
                         text="Cancel"/>
 

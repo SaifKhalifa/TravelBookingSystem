@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.util;
 
+import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,10 +16,11 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
-    private HibernateUtil(){
+    private HibernateUtil() {
         try {
             Configuration configuration = new Configuration();
             configuration.addAnnotatedClass(User.class);  // Ensure User class is mapped
+            configuration.addAnnotatedClass(Hotel.class);
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder()
@@ -35,8 +37,8 @@ public class HibernateUtil {
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
     }
 
-    public static HibernateUtil getInstance(){
-        if(instance == null) instance = new HibernateUtil();
+    public static HibernateUtil getInstance() {
+        if (instance == null) instance = new HibernateUtil();
         return instance;
     }
 

@@ -9,9 +9,28 @@ public class HotelConfirmDeletionController {
 
     @FXML
     private Button YesButton;
+
     private int hotelID;
     private HotelDAOImpl hotelDOAImp = new HotelDAOImpl();
     private ManageHotelsListController manageHotelsListController;  // مرجع للكونترولر الذي يحتوي على الجدول
+
+    @FXML
+    public void onYesButtonClick() {
+        hotelDOAImp.delete(this.hotelID);
+        Stage stage = (Stage) YesButton.getScene().getWindow();
+        stage.close();
+        // تحديث الجدول بعد الحذف
+        if (manageHotelsListController != null) {
+            manageHotelsListController.updateTableView();  // استدعاء دالة تحديث الجدول
+        }
+    }
+
+    @FXML
+    public void onCancelButtonClick(javafx.event.ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
+
+    }
 
     // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)
     public void setMainController(ManageHotelsListController manageHotelsListController) {
@@ -20,23 +39,5 @@ public class HotelConfirmDeletionController {
 
     public void setHotelId(int hotelId) {
         this.hotelID = hotelId;
-    }
-
-    @FXML
-    public void onYesButtonClick() {
-        hotelDOAImp.delete(this.hotelID);
-        Stage stage = (Stage) YesButton.getScene().getWindow();
-        stage.close();
-// تحديث الجدول بعد الحذف
-        if (manageHotelsListController != null) {
-            manageHotelsListController.updateTableView();  // استدعاء دالة تحديث الجدول
-        }
-    }
-
-    @FXML
-    public void onNoButtonClick(javafx.event.ActionEvent event) {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        stage.close();
-
     }
 }
