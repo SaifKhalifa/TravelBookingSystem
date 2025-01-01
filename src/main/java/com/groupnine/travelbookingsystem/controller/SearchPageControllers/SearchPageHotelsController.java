@@ -4,6 +4,7 @@ import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.Resu
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -167,34 +168,32 @@ public class SearchPageHotelsController {
 
     @FXML
     private void handleSearchButton2() {
-        System.out.println("Search button clicked");
-
-        // Collect data from ComboBoxes
         String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
+        if (selectedDestination != null && !selectedDestination.isEmpty()) {
+            System.out.println("Search button clicked with destination: " + selectedDestination);
+            navigateToResultsPage(selectedDestination);
+        } else {
+            System.out.println("No destination selected.");
+        }
+    }
 
-        // Create a searchH object to store the search data
-        searchH searchCriteria = new searchH(selectedDestination);
-
-
-        // Pass the search criteria to the ResultHotelsPage
+    private void navigateToResultsPage(String destination) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
-            Scene newScene = new Scene(fxmlLoader.load());
+            Parent parent = fxmlLoader.load();
 
-            // Get the controller of the ResultHotelsPage
-            ResultSearchHotelsController resultController = fxmlLoader.getController();
+            // Pass the destination to the ResultSearchHotelsController
+            ResultSearchHotelsController controller = fxmlLoader.getController();
+            controller.loadSearchResults(destination);
 
-            // Pass the search criteria to the ResultHotelsPage controller
-            resultController.setSearchCriteria(searchCriteria);
-
-            // Get the current stage and set the new scene
             Stage currentStage = (Stage) btnSearch.getScene().getWindow();
+            Scene newScene = new Scene(parent);
             currentStage.setScene(newScene);
             currentStage.setTitle("Search Results");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 }

@@ -1,6 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
 import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
+import com.groupnine.travelbookingsystem.model.resultSearchHotels.resultH;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAO;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAOImp;
@@ -53,9 +54,13 @@ public class ResultSearchHotelsController {
     @FXML
     private List<searchH> allHotels;
     @FXML
-    private ListView<Card> resultCardsList;
+    private ListView<resultH> resultCardsList;
     @FXML
     private AnchorPane cardsContainer;
+
+    @FXML
+    private ComboBox<String> cbDestination;
+
 
     // Initializes the controller
     public void initialize() {
@@ -79,7 +84,11 @@ public class ResultSearchHotelsController {
         allHotels.add(new searchH("Outstanding house",10));
         allHotels.add(new searchH("Outstanding house",4));
 
-        loadFilteredResults();
+        String destination = cbDestination.getValue(); // Get the selected destination from the ComboBox
+        loadSearchResults(destination);
+
+        ListView<resultH> resultCardsList = new ListView<>();
+
     }
 
 
@@ -246,33 +255,34 @@ public class ResultSearchHotelsController {
     }
 
 
-    // Method to accept search criteria
-    public void setSearchCriteria(searchH searchCriteria) {
-        this.searchCriteria = searchCriteria;
-        loadFilteredResults();
-    }
 
-    // Method to filter and load results
-    private void loadFilteredResults() {
-        if (searchCriteria != null) {
-            String selectedDestination = searchCriteria.getDestination();
 
-            // Filter hotels by destination
-            List<searchH> filteredHotels = allHotels.stream()
-                    .filter(hotel -> hotel.getDestination().equalsIgnoreCase(selectedDestination))
-                    .collect(Collectors.toList());
 
-            // Display the filtered hotels
-            for (searchH hotel : filteredHotels) {
-                addCardToContainer(hotel);
-            }
+
+
+
+
+
+    public void loadSearchResults(String destination) {
+        searchHDAO searchHDao = new searchHDAOImp();  // Create an instance of searchHDAOImp
+        List<searchH> filteredHotels = searchHDao.getHotelsByDestination(destination);  // Use the instance to call the method
+
+        if (filteredHotels.isEmpty()) {
+            System.out.println("No hotels found for destination: " + destination);
+            return;
         }
+
+        // Populate the ListView or UI component with the filtered results
+        ObservableList<resultH> cards = FXCollections.observableArrayList();
+        for (searchH hotel : filteredHotels) {
+            // Create UI cards or components to represent each hotel
+            // Example: Replace with your actual card creation logic
+            resultH hotelCard = new resultH(hotel.getHotelId());  // Use resultH directly as the card
+            cards.add(hotelCard);
+        }
+
+        resultCardsList.setItems(cards);  // Set the ObservableList to the ListView
     }
 
-    // Dynamically add cards to the container
-    private void addCardToContainer(searchH hotel) {
-        Label cardLabel = new Label("Hotel: " + hotel.getDestination() + " | Rooms num: " + hotel.getRoomCount());
-        cardLabel.setStyle("-fx-border-color: black; -fx-padding: 10;");
-        cardsContainer.getChildren().add(cardLabel);
-    }
+
 }

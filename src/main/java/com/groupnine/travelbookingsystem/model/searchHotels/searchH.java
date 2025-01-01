@@ -38,6 +38,8 @@ public class searchH {
         this.checkOutDate = checkOutDate;
     }
 
+    public searchH() {}
+
     // Getter and Setter methods
     public int getHotelId() {
         return hotelId;
