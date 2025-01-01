@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
+import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAO;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAOImp;
@@ -7,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -141,6 +143,29 @@ public class ResultSearchHotelsController {
         }
     }
 
+
+    private void navigateToPageWithCardId(String fxmlPath, String title, int cardId) {
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            // Get the controller of the next page
+            DetailsController controller = fxmlLoader.getController();
+            if (controller != null) {
+                // Pass the cardId to the next page's controller
+                controller.setCardId(cardId);
+            }
+
+            // Get the current stage and set the new scene
+            Stage currentStage = (Stage) homeButton.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
+        }
+    }
+
     // Handle button clicks
     @FXML
     private void handleHomeButton() {
@@ -162,45 +187,50 @@ public class ResultSearchHotelsController {
 
     @FXML
     private void handleCard1Button() {
-        System.out.println("Card 1 button clicked");
-        // Action for Card 1 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 1; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
 
     }
 
     @FXML
     private void handleCard2Button() {
-        System.out.println("Card 2 button clicked");
-        // Action for Card 2 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 2; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard3Button() {
-        System.out.println("Card 3 button clicked");
-        // Action for Card 3 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 3; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard4Button() {
-        System.out.println("Card 4 button clicked");
-        // Action for Card 4 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 4; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard5Button() {
-        System.out.println("Card 5 button clicked");
-        // Action for Card 5 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 5; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard6Button() {
-        System.out.println("Card 6 button clicked");
-        // Action for Card 6 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 6; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML

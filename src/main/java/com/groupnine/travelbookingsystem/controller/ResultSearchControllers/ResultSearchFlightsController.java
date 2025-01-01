@@ -1,7 +1,9 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
+import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -94,6 +96,7 @@ public class ResultSearchFlightsController {
             // Get the current stage
             Stage currentStage = (Stage) roundTripButton.getScene().getWindow();
 
+
             // Set the new scene
             currentStage.setScene(newScene);
             currentStage.setTitle(title);
@@ -101,6 +104,33 @@ public class ResultSearchFlightsController {
             e.printStackTrace(); // Log any loading errors
         }
     }
+
+
+    private void navigateToPageWithCardId(String fxmlPath, String title, int cardId) {
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            // Get the controller of the next page
+            DetailsController controller = fxmlLoader.getController();
+            if (controller != null) {
+                // Pass the cardId to the next page's controller
+                controller.setCardId(cardId);
+            }
+
+            // Get the current stage and set the new scene
+            Stage currentStage = (Stage) roundTripButton.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace(); // Log any loading errors
+        }
+    }
+
+
+
+
 
     // Handle button clicks for navigation
     @FXML
@@ -123,49 +153,44 @@ public class ResultSearchFlightsController {
 
     @FXML
     private void handleCard1Button() {
-        System.out.println("Round Trip Button 1 clicked");
-        // Action for Round Trip Button 2 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
+        int cardId = 1; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
     private void handleCard2Button() {
-        System.out.println("Round Trip Button 3 clicked");
-        // Action for Round Trip Button 3 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
-
+        int cardId = 2; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
     private void handleCard3Button() {
-        System.out.println("Round Trip Button 4 clicked");
-        // Action for Round Trip Button 4 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
-
+        int cardId = 3; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
     private void handleCard4Button() {
-        System.out.println("Round Trip Button 5 clicked");
-        // Action for Round Trip Button 5 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
-
+        int cardId = 4; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
     private void handleCard5Button() {
-        System.out.println("Round Trip Button 6 clicked");
-        // Action for Round Trip Button 6 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
-
+        int cardId = 5; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
     private void handleCard6Button() {
-        System.out.println("Round Trip Button 6 clicked");
-        // Action for Round Trip Button 6 click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details");
-
+        int cardId = 6; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml", "Flight Details", cardId);
     }
 
     @FXML
@@ -180,101 +205,3 @@ public class ResultSearchFlightsController {
         System.out.println("ComboBox2 selected: " + selectedOption);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*  private void setButtonActions() {
-        myBookingButton.setOnAction(event -> handleMyBooking());
-        profileButton.setOnAction(event -> handleProfile());
-        roundTripButton.setOnAction(event -> handleRoundTrip());
-        roundTripButton2.setOnAction(event -> handleRoundTrip());
-    }**********////
-
-    /// ////////////////////////////
-    // Handle button click for card 1
-   /* private void handleCard1Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    // Handle button click for card 2
-    private void handleCard2Button() {
-        System.out.println("Card 2 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard3Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard4Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard5Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    private void handleCard6Button() {
-        System.out.println("Card 1 button clicked");
-        // Implement logic when the user interacts with the button
-    }
-
-    // Handle "My Booking" button
-    @FXML
-    private void handleMyBookingButton() {
-        System.out.println("My Booking button clicked");
-        // Navigate to My Booking page or show booking details
-    }
-
-    // Handle "Profile" button
-    @FXML
-    private void handleProfileButton() {
-        System.out.println("Profile button clicked");
-        // Navigate to Profile page or show profile details
-    }
-
-    // Handle "Home" button
-    @FXML
-    private void handleHomeButton() {
-        System.out.println("Home button clicked");
-        // Navigate to the homepage
-    }
-
-    // Handle ComboBox selection changes
-    @FXML
-    private void handleComboBox1Action() {
-        String selectedOption = comboBox1.getValue();
-        System.out.println("ComboBox1 selected: " + selectedOption);
-        // Implement logic based on selected option
-    }
-
-    @FXML
-    private void handleComboBox2Action() {
-        String selectedOption = comboBox2.getValue();
-        System.out.println("ComboBox2 selected: " + selectedOption);
-        // Implement logic based on selected option
-    }*/
-
