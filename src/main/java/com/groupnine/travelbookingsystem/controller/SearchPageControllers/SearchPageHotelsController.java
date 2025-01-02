@@ -96,7 +96,7 @@ public class SearchPageHotelsController {
     @FXML
     private void handleProfileButton() {
         System.out.println("Profile button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPage;;Flights-Hotels/searchPageHotels.fxml", "Profile");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Profile");
     }
 
     @FXML
