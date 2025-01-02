@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel.FlightDeatailsModel;
-import com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel.FlightDetailsDeoImpl;
+import com.groupnine.travelbookingsystem.model.FlightDetalisModel.FlightDeatailsModel;
+import com.groupnine.travelbookingsystem.model.FlightDetalisModel.FlightDetailsDeoImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

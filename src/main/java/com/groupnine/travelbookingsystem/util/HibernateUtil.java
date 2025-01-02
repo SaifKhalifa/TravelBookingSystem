@@ -1,6 +1,6 @@
 package com.groupnine.travelbookingsystem.util;
 
-import com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel.FlightDeatailsModel;
+import com.groupnine.travelbookingsystem.model.FlightDetalisModel.FlightDeatailsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;

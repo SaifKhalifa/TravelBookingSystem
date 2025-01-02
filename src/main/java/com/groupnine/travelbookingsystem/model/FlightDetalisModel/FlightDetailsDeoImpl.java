@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel;
+package com.groupnine.travelbookingsystem.model.FlightDetalisModel;
 
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;

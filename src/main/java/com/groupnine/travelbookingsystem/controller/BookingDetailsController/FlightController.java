@@ -74,7 +74,7 @@ public class FlightController {
 
         try {
             UserDAOImpl userDAO = new UserDAOImpl();
-            String username = "currentUser"; // Replace with actual current user logic
+            String username = "currentUser";
             User user = userDAO.getUserByUsername(username);
 
             if (user == null) {
@@ -94,7 +94,7 @@ public class FlightController {
             booking.setAirline_date(arrivalDateConverted);
             booking.setBookingDate(new Date(System.currentTimeMillis()));
             booking.setUserId(userId);
-            booking.setFlightId(flightId); // Set the flight ID dynamically
+            booking.setFlightId(flightId);
 
             bookingFlightDeo.saveBooking(booking);
 

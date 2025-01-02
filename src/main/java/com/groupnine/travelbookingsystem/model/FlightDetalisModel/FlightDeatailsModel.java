@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.model.BookingFlightDetalisModel;
+package com.groupnine.travelbookingsystem.model.FlightDetalisModel;
 
 import javax.persistence.*;
 
