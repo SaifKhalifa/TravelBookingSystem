@@ -165,7 +165,6 @@ public class SearchPageHotelsController {
 
 
 
-
     @FXML
     private void handleSearchButton2() {
         String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
