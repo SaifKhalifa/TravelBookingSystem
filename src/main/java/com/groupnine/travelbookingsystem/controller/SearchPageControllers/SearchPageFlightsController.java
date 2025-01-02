@@ -1,9 +1,11 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
+import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -187,6 +189,7 @@ public class SearchPageFlightsController {
         }
     }
 
+/*
     // New functionality for search
     private void handleSearch() {
         String query = searchBar.getText().toLowerCase().trim();
@@ -203,5 +206,48 @@ public class SearchPageFlightsController {
     private void updateListView(List<String> filteredDestinations) {
         ObservableList<String> observableList = FXCollections.observableArrayList(filteredDestinations);
         listView.setItems(observableList);
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    private void handleSearchButtonFlights() {
+        String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
+        if (selectedDestination != null && !selectedDestination.isEmpty()) {
+            System.out.println("Search button clicked with destination: " + selectedDestination);
+            navigateToFlightResultsPage(selectedDestination);
+        } else {
+            System.out.println("No destination selected.");
+        }
     }
+
+    private void navigateToFlightResultsPage(String destination) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml"));
+            Parent parent = fxmlLoader.load();
+
+            // Pass the destination to the ResultSearchFlightsController
+            ResultSearchFlightsController controller = fxmlLoader.getController();
+            controller.loadSearchResults(destination);
+
+            // Set up the new scene
+            Scene scene = new Scene(parent);
+            Stage currentStage = (Stage) btnSearch.getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Flight Search Results - " + destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading flight search results page.");
+        }
+    }
+
 }

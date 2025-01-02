@@ -186,14 +186,19 @@ public class SearchPageHotelsController {
             ResultSearchHotelsController controller = fxmlLoader.getController();
             controller.loadSearchResults(destination);
 
+            // Set up the new scene
+            Scene scene = new Scene(parent);
             Stage currentStage = (Stage) btnSearch.getScene().getWindow();
-            Scene newScene = new Scene(parent);
-            currentStage.setScene(newScene);
-            currentStage.setTitle("Search Results");
+            currentStage.setScene(scene);
+            currentStage.setTitle("Search Results - " + destination);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Error loading search results page.");
         }
     }
+
+
+
 
 
 }

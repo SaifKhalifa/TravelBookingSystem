@@ -11,6 +11,10 @@ public class resultF {
     @Column(name = "card_id") // Updated to match the cards concept
     private int cardId;
 
+    public resultF(int bookingId) {}
+
+    public resultF() {}
+
     public void resultF() {}
 
     public void resultF(int cardId) {

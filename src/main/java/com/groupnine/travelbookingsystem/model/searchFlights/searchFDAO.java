@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.model.searchFlights;
 
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import java.util.List;
 
 public interface searchFDAO {
-    // Search for flight by destination
-    List<searchF> searchFlightsByDestination(String destination);
+    List<searchF> getFlightsByDestination(String destination);
 }

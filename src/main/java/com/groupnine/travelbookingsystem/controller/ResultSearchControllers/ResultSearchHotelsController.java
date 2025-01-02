@@ -163,7 +163,7 @@ public class ResultSearchHotelsController {
             DetailsController controller = fxmlLoader.getController();
             if (controller != null) {
                 // Pass the cardId to the next page's controller
-                controller.setCardId(cardId);
+                //controller.setCardId(cardId);
             }
 
             // Get the current stage and set the new scene

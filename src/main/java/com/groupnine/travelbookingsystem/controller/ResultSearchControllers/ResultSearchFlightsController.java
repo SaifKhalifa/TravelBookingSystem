@@ -1,6 +1,14 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
 import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
+import com.groupnine.travelbookingsystem.model.resultSearchFlights.resultF;
+import com.groupnine.travelbookingsystem.model.resultSearchHotels.resultH;
+import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
+import com.groupnine.travelbookingsystem.model.searchFlights.searchFDAO;
+import com.groupnine.travelbookingsystem.model.searchFlights.searchFDAOImp;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +19,8 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultSearchFlightsController {
 
@@ -36,6 +46,14 @@ public class ResultSearchFlightsController {
     private Button roundTripButton6;
     @FXML
     public Button homeButton;
+    @FXML
+    private List<searchF> allFlights;
+    @FXML
+    private ListView<resultF> resultCardsList;
+    @FXML
+    private ComboBox<String> cbDestination;
+
+
 
     // Initializes the controller
     public void initialize() {
@@ -49,6 +67,20 @@ public class ResultSearchFlightsController {
         setCard4();
         setCard5();
         setCard6();
+
+        allFlights = new ArrayList<>(); // Create an empty list of hotels
+
+        allFlights.add(new searchF("Paris",6));
+        allFlights.add(new searchF("London",2));
+        allFlights.add(new searchF("Madrid",15));
+        allFlights.add(new searchF("Maldives",9));
+        allFlights.add(new searchF("Dubai",10));
+        allFlights.add(new searchF("Istanbul",4));
+
+        String destination = cbDestination.getValue(); // Get the selected destination from the ComboBox
+        loadSearchResults(destination);
+
+        ListView<resultH> resultCardsList = new ListView<>();
     }
 
 
@@ -116,7 +148,7 @@ public class ResultSearchFlightsController {
             DetailsController controller = fxmlLoader.getController();
             if (controller != null) {
                 // Pass the cardId to the next page's controller
-                controller.setCardId(cardId);
+               // controller.setCardId(cardId);
             }
 
             // Get the current stage and set the new scene
@@ -204,4 +236,33 @@ public class ResultSearchFlightsController {
         String selectedOption = comboBox2.getSelectionModel().getSelectedItem();
         System.out.println("ComboBox2 selected: " + selectedOption);
     }
-}
+
+
+
+
+
+
+
+
+        public void loadSearchResults(String destination) {
+            // Create an instance of flightDAOImp (assuming the name of the implementation class)
+            searchFDAO flightDao = new searchFDAOImp();  // Create an instance of flightDAOImp
+            List<searchF> filteredFlights = flightDao.getFlightsByDestination(destination);  // Use the instance to call the method
+
+            if (filteredFlights.isEmpty()) {
+                System.out.println("No flights found for destination: " + destination);
+                return;
+            }
+
+            // Populate the ListView or UI component with the filtered results
+            ObservableList<resultF> cards = FXCollections.observableArrayList();
+            for (searchF flight : filteredFlights) {
+                // Create UI cards or components to represent each flight
+                // Example: Replace with your actual card creation logic
+                resultF flightCard = new resultF(flight.getBookingId());  // Use resultF directly as the card
+                cards.add(flightCard);
+            }
+
+            resultCardsList.setItems(cards);  // Set the ObservableList to the ListView
+        }
+    }

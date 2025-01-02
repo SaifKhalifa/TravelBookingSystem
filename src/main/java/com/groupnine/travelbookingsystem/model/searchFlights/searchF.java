@@ -35,6 +35,11 @@ public class searchF {
         this.checkOutDate = checkOutDate;
     }
 
+    public searchF(String destination, int passengerCount) {
+        this.passengerCount = passengerCount;
+        this.destination = destination;
+    }
+
     // Getters and Setters
     public int getBookingId() {
         return bookingId;
@@ -87,4 +92,5 @@ public class searchF {
                 ", checkOutDate=" + checkOutDate +
                 '}';
     }
+
 }
