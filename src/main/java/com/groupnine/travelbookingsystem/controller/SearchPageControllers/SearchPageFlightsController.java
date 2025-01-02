@@ -92,7 +92,7 @@ public class SearchPageFlightsController {
 
         // Initialize search functionality
         listView.setItems(FXCollections.observableArrayList(flightDestinations));
-        searchBar.setOnAction(event -> handleSearch());
+        searchBar.setOnAction(event -> handleSearchButtonFlights());
     }
 
     private void setBackgroundImage() {
