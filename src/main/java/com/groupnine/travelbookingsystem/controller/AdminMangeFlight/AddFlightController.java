@@ -119,10 +119,9 @@ public class AddFlightController {
                 parsedPromotionalOffer = parseBigDecimal(promotionalOffer.getText(), "Promotional Offer");
             }
 
-            // Validate image file
+
             if (selectedImageFile == null) {
-                showAlert("Error", "Please upload an image for the flight.", Alert.AlertType.ERROR);
-                return;
+                selectedImageFile = new File("");
             }
 
             // Create or update flight model object
@@ -264,8 +263,6 @@ public class AddFlightController {
         if (file != null) {
             selectedImageFile = file;
             imageFileNameLabel.setText(file.getName());
-        } else {
-            showAlert("Error", "No file selected.", Alert.AlertType.ERROR);
         }
     }
 
