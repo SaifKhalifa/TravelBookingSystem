@@ -11,9 +11,20 @@ public class resultF {
     @Column(name = "card_id") // Updated to match the cards concept
     private int cardId;
 
+    private static String destination;
+
+
     public resultF(int bookingId) {}
 
     public resultF() {}
+
+    public static String getDestination() {
+        return destination;
+    }
+
+    public static void setDestination(String destination) {
+        resultF.destination = destination;
+    }
 
     public void resultF() {}
 

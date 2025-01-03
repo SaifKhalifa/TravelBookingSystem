@@ -1,16 +1,14 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
 import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController;
+import com.groupnine.travelbookingsystem.model.resultSearchFlights.resultF;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
@@ -85,14 +83,14 @@ public class SearchPageFlightsController {
         btnFlights.setOnAction(event -> handleFlightsButton());
         btnHotels.setOnAction(event -> handleHotelsButton());
         btnSearch.setOnAction(event -> handleSearchButton());
-        cbFlightsHotels.setOnAction(event -> handleFlightsHotelsCombo());
+        //cbFlightsHotels.setOnAction(event -> handleFlightsHotelsCombo());
         cbSignupLogin.setOnAction(event -> handleSignupLoginCombo());
 
         setBackgroundImage();
 
         // Initialize search functionality
         listView.setItems(FXCollections.observableArrayList(flightDestinations));
-        searchBar.setOnAction(event -> handleSearchButtonFlights());
+        //searchBar.setOnAction(event -> handleSearchButtonFlights());
     }
 
     private void setBackgroundImage() {
@@ -147,7 +145,24 @@ public class SearchPageFlightsController {
 
     @FXML
     private void handleSearchButton() {
-        System.out.println("Search button clicked");
+        System.out.println("Search button clicked, storing data in the model..., and moving to search results page!");
+
+        /*if(searchBar.getText().equals("")) {
+            showAlert("Search", "You need to enter the destination to search for!");
+            return;
+        }
+        else {
+            resultF.setDestination(searchBar.getText()); //store the entered destination
+        }*/
+
+        if(cbDestination.getSelectionModel().getSelectedItem() == null) {
+            showAlert("Search", "You need to select a destination to search for!");
+            return;
+        }
+        else {
+            resultF.setDestination(cbDestination.getSelectionModel().getSelectedItem());
+        }
+
         navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml", "Search Results");
     }
 
@@ -219,7 +234,7 @@ public class SearchPageFlightsController {
 
 
 
-    @FXML
+    /*@FXML
     private void handleSearchButtonFlights() {
         String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
         if (selectedDestination != null && !selectedDestination.isEmpty()) {
@@ -228,9 +243,9 @@ public class SearchPageFlightsController {
         } else {
             System.out.println("No destination selected.");
         }
-    }
+    }*/
 
-    private void navigateToFlightResultsPage(String destination) {
+    /*private void navigateToFlightResultsPage(String destination) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml"));
             Parent parent = fxmlLoader.load();
@@ -248,6 +263,13 @@ public class SearchPageFlightsController {
             e.printStackTrace();
             System.out.println("Error loading flight search results page.");
         }
-    }
+    }*/
 
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
