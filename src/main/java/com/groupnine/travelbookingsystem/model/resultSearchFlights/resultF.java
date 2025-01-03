@@ -8,11 +8,10 @@ public class resultF {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "card_id") // Updated to match the cards concept
+    @Column(name = "card_id")
     private int cardId;
 
     private static String destination;
-
 
     public resultF(int bookingId) {}
 
