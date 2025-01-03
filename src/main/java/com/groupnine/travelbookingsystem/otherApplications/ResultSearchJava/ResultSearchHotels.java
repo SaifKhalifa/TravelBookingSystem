@@ -16,8 +16,9 @@ public class ResultSearchHotels extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
         Parent root = loader.load();
 
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Result Search Hotels");
-        primaryStage.setScene(new Scene(root, 1280, 800));
         primaryStage.show();
     }
 

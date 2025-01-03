@@ -1,5 +1,7 @@
 package com.groupnine.travelbookingsystem.model.searchHotels;
 
+import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -13,7 +15,7 @@ public class searchH {
     private int hotelId;
 
     @Column(name = "destination")
-    private String destination;
+    private static String destination;
 
     @Column(name = "roomCount")
     private int roomCount;
@@ -53,8 +55,8 @@ public class searchH {
         return destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public static void setDestination(String destination) {
+        searchH.destination = destination;
     }
 
     public int getRoomCount() {

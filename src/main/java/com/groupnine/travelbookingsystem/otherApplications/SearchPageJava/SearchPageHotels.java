@@ -16,8 +16,9 @@ public class SearchPageHotels extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml"));
         Parent root = loader.load();
 
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Search Page Hotels");
-        primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
     }
 
