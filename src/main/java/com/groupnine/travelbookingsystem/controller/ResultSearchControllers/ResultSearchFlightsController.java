@@ -153,6 +153,7 @@ public class ResultSearchFlightsController {
             return;
         }
 
+
         switch (searchF.getDestination().toLowerCase()) {
             case "paris":
                 card_paris.setVisible(true);
