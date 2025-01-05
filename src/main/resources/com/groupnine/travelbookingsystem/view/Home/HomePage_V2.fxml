@@ -77,8 +77,8 @@
             </HBox>
 
             <!-- Last Logged-in Agent -->
-            <VBox opacity="0.81" prefHeight="226.0" prefWidth="1044.0" style="-fx-padding: 20; -fx-background-radius: 20;">
-                <HBox opacity="0.75" prefHeight="24.0" prefWidth="1004.0" style="-fx-background-color: #CCD2D9; -fx-background-radius: 10;">
+            <VBox opacity="0.8" prefHeight="226.0" prefWidth="1044.0" style="-fx-padding: 20; -fx-background-radius: 20;">
+                <HBox opacity="0.8" prefHeight="24.0" prefWidth="1004.0" style="-fx-background-color: #CCD2D9; -fx-background-radius: 10;">
                     <children>
                         <Label contentDisplay="CENTER" opacity="0.8" prefHeight="28.0" prefWidth="352.0" style="-fx-font-size: 17; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-color: #CCD2D9; -fx-background-radius: 10;" text="AGENT NAME">
                             <padding>
@@ -92,7 +92,7 @@
                         <Label opacity="0.8" prefHeight="27.0" prefWidth="318.0" style="-fx-font-size: 17; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-color: #CCD2D9; -fx-background-radius: 10;" text=" EMAIL" />
                     </children>
                 </HBox>
-                <HBox opacity="0.89" prefHeight="54.0" prefWidth="1004.0" style="-fx-background-color: black; -fx-background-radius: 10;">
+                <HBox opacity="0.9" prefHeight="54.0" prefWidth="1004.0" style="-fx-background-color: black; -fx-background-radius: 10;">
                     <children>
                         <Label fx:id="agentName" prefHeight="62.0" prefWidth="350.0" style="-fx-font-size: 18; -fx-text-fill: white; -fx-opacity: 2; -fx-background-radius: 10;">
                             <padding>
@@ -122,7 +122,7 @@
             </VBox>
 
             <!-- Latest Booking Info Table -->
-            <VBox opacity="0.75" prefHeight="329.0" prefWidth="1044.0" style="-fx-padding: 20; -fx-background-radius: 20;">
+            <VBox opacity="0.8" prefHeight="329.0" prefWidth="1044.0" style="-fx-padding: 20; -fx-background-radius: 20;">
                 <Label opacity="0.9" prefHeight="34.0" prefWidth="250.0" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Latest Booking Info">
                     <padding>
                         <Insets left="15.0" />
