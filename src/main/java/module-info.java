@@ -81,4 +81,11 @@ module com.groupnine.travelbookingsystem {
     opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
 
 
+    exports com.groupnine.travelbookingsystem.otherApplications.Roaa;
+
+    // Hibernate model exports
+    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.BookingHotel to org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
+//    exports com.groupnine.travelbookingsystem.model.BookingHotel;
 }

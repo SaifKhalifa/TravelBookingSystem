@@ -57,6 +57,10 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError("Failed to initialize Hibernate: " + e.getMessage());
         }
         /*Configuration configuration = new Configuration();
+    private HibernateUtil(){
+        Configuration configuration = new Configuration();
+        configuration.addAnnotatedClass( FlightBookingModel.class);
+        configuration.addAnnotatedClass( HotelBookingModel.class);
         configuration.configure();
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
