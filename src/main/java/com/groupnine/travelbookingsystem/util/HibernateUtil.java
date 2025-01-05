@@ -1,6 +1,8 @@
 package com.groupnine.travelbookingsystem.util;
+
 import com.groupnine.travelbookingsystem.model.Users;
 import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -19,8 +21,10 @@ public class HibernateUtil {
         try {
             Configuration configuration = new Configuration();
 
+
             configuration.addAnnotatedClass(AdminFlightModel.class);  // Ensure User class is mapped
             configuration.addAnnotatedClass(Users.class);
+
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder()

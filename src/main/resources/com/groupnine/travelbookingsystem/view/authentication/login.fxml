@@ -41,7 +41,7 @@
                   <Label layoutX="21.0" layoutY="101.0" styleClass="description-label" text="Please login to continue to your account." />-->
       
                   <!-- Email Field -->
-                  <TextField fx:id="usernameTextField" layoutX="48.0" layoutY="124.0" promptText="Email or Username" styleClass="text-field-custom" />
+                  <TextField fx:id="usernameTextField" layoutX="48.0" layoutY="124.0" promptText="Username" styleClass="text-field-custom" />
       
                   <!-- Password Field with Toggle -->
                   <PasswordField fx:id="passwordField" layoutX="48.0" layoutY="164.0" promptText="Password" styleClass="password-field-custom" />
@@ -69,11 +69,16 @@
             </Group>
          </children>
       </AnchorPane>
-      <Label fx:id="statusLabel" layoutX="21.0" layoutY="361.0" text="Connecting to database..." textFill="#acacac">
+      <Label fx:id="statusLabel" layoutX="46.0" layoutY="351.0" text="Connecting to database..." textFill="#acacac">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </Label>
+      <ImageView fx:id="statusIcon" fitHeight="15.0" fitWidth="25.0" layoutX="23.0" layoutY="354.0" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/imgs/auth/disconnected_icon.png" />
+         </image>
+      </ImageView>
    </children>
    <stylesheets>
       <URL value="@../../Assets/css/authStyle.css" />

@@ -5,37 +5,67 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 
 public class MainApplication_DEFAULT extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/authentication/login.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml"));
+    // app data
+    private static String loggedInUser = "", loggedInUserRole = "";
+    private static Stage primaryStage;
 
-        Parent root = fxmlLoader.load();
+    //--------------------------------------------------------------------------
 
-        // Automatically set stage size based on the root node
-        Scene scene = new Scene(root);
-        stage.setTitle("Login");
-        stage.setResizable(true);
-        stage.setScene(scene);
-
-        // Adjust stage size to fit the root node's preferred dimensions
-        stage.sizeToScene();
-        stage.show();
+    public static String getLoggedInUser() {
+        return loggedInUser;
     }
 
+    public static void setLoggedInUser(String loggedInUser) {
+        MainApplication_DEFAULT.loggedInUser = loggedInUser;
+    }
 
-    public static void main(String[] args) {
-        //launch();
+    public static String getLoggedInUserRole() {
+        return loggedInUserRole;
+    }
 
+    public static void setLoggedInUserRole(String loggedInUserRole) {
+        MainApplication_DEFAULT.loggedInUserRole = loggedInUserRole;
+    }
+
+    //--------------------------------------------------------------------------
+    public static void loadScene(String fxmlPath, String title, boolean resizable) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            Scene newScene = new Scene(root);
+            primaryStage.setTitle(title);
+            primaryStage.setResizable(resizable);
+            primaryStage.setScene(newScene);
+            primaryStage.sizeToScene();  // Adjust stage size to fit content
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Failed to load scene: " + fxmlPath);
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    @Override
+    public void start(Stage stage) throws IOException {
+        primaryStage = stage;  // Store reference to primary stage
+
+        loadScene("/com/groupnine/travelbookingsystem/view/authentication/login.fxml", "Login", true);
+    }
+
+    private static void checkHibernateConnection() {
         boolean status = HibernateUtil.getInstance().isConnected();
         System.out.println("Database Connected: " + status);
+    }
+
+    //--------------------------------------------------------------------------
+    public static void main(String[] args) {
+        checkHibernateConnection();
+        launch();
     }
 }
