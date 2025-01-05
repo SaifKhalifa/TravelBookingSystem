@@ -1,9 +1,15 @@
 package com.groupnine.travelbookingsystem.model.customerManagment;
 
+
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import org.hibernate.query.Query;
+
 import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO {
@@ -75,4 +81,23 @@ public class CustomerDAOImpl implements CustomerDAO {
             sessionFactory.close();
         }
     }
+
+    // get the number of customers
+    public long getCustomersCount() {
+        long count = 0;
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query<Long> query = session.createQuery("SELECT COUNT(c) FROM Customer c", Long.class);
+            count = query.getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            System.out.println("Error fetching customer count: " + e.getMessage());
+        }
+
+        return count;
+    }
+
 }

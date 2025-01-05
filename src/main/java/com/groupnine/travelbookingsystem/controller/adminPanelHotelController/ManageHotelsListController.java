@@ -71,42 +71,114 @@ public class ManageHotelsListController {
     private TableColumn<Hotel, Void> deleteColumn;
 
     @FXML
-    public void AddHotel() throws Exception {
+    public void AddHotelBtn() throws Exception {
         try {
-            openSecondPage("Add a Hotel Information");
+            openHotelInfoPage("Add a Hotel Information", -1);
         } catch (Exception e) {
             e.printStackTrace();  // This will print the error stack trace in the console
         }
     }
 
-    @FXML
-    public void EditHotel() throws Exception {
-        try {
-            openSecondPage("Edit a Hotel Information");
-        } catch (Exception e) {
-            e.printStackTrace();  // This will print the error stack trace in the console
-        }
+    private void addEditButtonToColumn() {
+        editColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
+            @Override
+            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
+                return new TableCell<Hotel, Void>() {
+                    private final Button editButton = new Button("Edit");
+
+                    {
+                        editButton.setOnAction(event -> {
+                            Hotel hotel = getTableView().getItems().get(getIndex());
+                            int hotelId = hotel.getId();  // الحصول على الـ ID للفندق
+                            // تنفيذ إجراء التعديل هنا
+                            try {
+                                openHotelInfoPage("Edit a Hotel Information", hotelId); // افتح صفحة التعديل مع الـ ID
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox box = new HBox(editButton);
+                            setGraphic(box);
+                        }
+                    }
+                };
+            }
+        });
     }
 
-    private void openSecondPage(String titleText) throws Exception {
-        // Load the second page's FXML
+    private void addDeleteButtonToColumn() {
+        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
+            @Override
+            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
+                return new TableCell<Hotel, Void>() {
+                    private final Button deleteButton = new Button("Delete");
+
+                    {
+                        deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+                        // إضافة تأثير hover
+                        deleteButton.setOnMouseEntered(event -> {
+                            deleteButton.setStyle("-fx-background-color: #9e4040; -fx-text-fill: white;");
+                        });
+
+                        deleteButton.setOnMouseExited(event -> {
+                            deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+                        });
+
+                        deleteButton.setOnAction(event -> {
+                            Hotel hotel = getTableView().getItems().get(getIndex());
+                            int hotelId = hotel.getId();  // الحصول على الـ ID للفندق
+                            // تنفيذ إجراء الحذف هنا
+                            DeleteHotel(event, hotelId); // الحذف
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox box = new HBox(deleteButton);
+                            setGraphic(box);
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+
+    private void openHotelInfoPage(String titleText, int hotelId) throws Exception {
+
+        // تحميل الـ FXML الخاص بالصفحة الثانية
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/hotelInfo.fxml"));
         BorderPane root = loader.load();
 
-        // Get the controller of the second page to set the label text
+        // الوصول إلى الكنترولر الخاص بالصفحة الثانية
         HotelInfoController hotelInfoController = loader.getController();
-        hotelInfoController.setTitleText(titleText); // Pass the title text to the second page controller
-        hotelInfoController.setMainController(this);
-        // Create a new scene for the second page
-        Scene secondScene = new Scene(root);
+        hotelInfoController.setTitleText(titleText); // تمرير العنوان
+        hotelInfoController.setMainController(this); // تمرير الكنترولر الرئيسي
+        hotelInfoController.setHotelId(hotelId); // تمرير معرف الفندق
 
-        // Get the current stage (window) and switch the scene
-        Stage primaryStage = (Stage) AddHotelBtn.getScene().getWindow(); // You can also use EditBtn if needed
+        // استبدال الـ Scene على نفس الـ Stage
+        Scene secondScene = new Scene(root);
+        Stage primaryStage = (Stage) AddHotelBtn.getScene().getWindow();
         primaryStage.setScene(secondScene);
+        primaryStage.setTitle("Hotel Information");
+
+        hotelInfoController.setPrimaryStage(primaryStage);
+        primaryStage.show();
 
     }
 
-    @FXML
     public void initialize() {
         hotelDAOImp = new HotelDAOImpl();
 
@@ -120,11 +192,10 @@ public class ManageHotelsListController {
         // Get all columns from TableView
         tableView.getColumns().forEach(column -> {
             column.setResizable(true);
-            // column.setPrefWidth(100); // Set a default width
         });
 
         // Optionally, set dynamic width for each column based on the percentage of total width
-        double[] columnRatios = {0.05, 0.1, 0.1, 0.08, 0.08, 0.1, 0.101, 0.101 , 0.1, 0.05, 0.05, 0.05}; // Total = 100%
+        double[] columnRatios = {0.05, 0.1, 0.1, 0.08, 0.08, 0.1, 0.101, 0.101, 0.1, 0.05, 0.05, 0.05}; // Total = 100%
         tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
             double tableWidth = newValue.doubleValue();
             for (int i = 0; i < tableView.getColumns().size(); i++) {
@@ -207,92 +278,6 @@ public class ManageHotelsListController {
         loadHotels();
     }
 
-    // إضافة زر التعديل في العمود
-    private void addEditButtonToColumn() {
-        editColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
-            @Override
-            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
-                return new TableCell<Hotel, Void>() {
-                    private final Button editButton = new Button("Edit");
-
-                    {
-                        editButton.setOnAction(event -> {
-                            Hotel hotel = getTableView().getItems().get(getIndex());
-
-                            // تنفيذ إجراء التعديل هنا
-                            try {
-                                EditHotel(); // فتح صفحة التعديل
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
-                            }
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox box = new HBox(editButton);
-                            setGraphic(box);
-                        }
-                    }
-                };
-            }
-        });
-    }
-
-    // إضافة زر الحذف في العمود
-    private void addDeleteButtonToColumn() {
-        deleteColumn.setCellFactory(new Callback<TableColumn<Hotel, Void>, TableCell<Hotel, Void>>() {
-            @Override
-            public TableCell<Hotel, Void> call(TableColumn<Hotel, Void> param) {
-                return new TableCell<Hotel, Void>() {
-                    private final Button deleteButton = new Button("Delete");
-
-                    {
-                        deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
-                        // إضافة تأثير hover
-                        deleteButton.setOnMouseEntered(event -> {
-                            deleteButton.setStyle("-fx-background-color: #9e4040; -fx-text-fill: white;");
-                        });
-
-                        deleteButton.setOnMouseExited(event -> {
-                            deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
-                        });
-
-                        deleteButton.setOnAction(event -> {
-                            Hotel hotel = getTableView().getItems().get(getIndex());
-                            int hotelId = hotel.getId();  // الحصول على الـ ID للفندق
-                            // تنفيذ إجراء الحذف هنا
-                            DeleteHotel(event, hotelId); // الحذف
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox box = new HBox(deleteButton);
-                            setGraphic(box);
-                        }
-                    }
-                };
-            }
-        });
-    }
-
-
-    private void loadHotels() {
-        List<Hotel> hotelList = hotelDAOImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
-        ObservableList<Hotel                                                            > observableList = FXCollections.observableArrayList(hotelList);
-        tableView.setItems(observableList); // عرض البيانات داخل الجدول
-        tableView.refresh();
-    }
-
 
     public void DeleteHotel(ActionEvent event, int id) {
 
@@ -333,12 +318,19 @@ public class ManageHotelsListController {
         }
     }
 
+
+    private void loadHotels() {
+        List<Hotel> hotelList = hotelDAOImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
+        ObservableList<Hotel> observableList = FXCollections.observableArrayList(hotelList);
+        tableView.setItems(observableList); // عرض البيانات داخل الجدول
+        tableView.refresh();
+    }
+
     public void updateTableView() {
         // تحميل البيانات الجديدة من قاعدة البيانات
         ObservableList<Hotel> hotels = FXCollections.observableArrayList(hotelDAOImp.getAllHotels());
-
         // تحديث الجدول بالبيانات الجديدة
-        tableView.setItems(hotels);  // تأكد من أن لديك جدول يسمى hotelTable
+        tableView.setItems(hotels);
     }
 
     public void ToFlightsList(ActionEvent event) {

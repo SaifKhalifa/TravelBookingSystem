@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.hotel.Hotel;
-import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +14,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.*;
+
 import java.io.IOException;
+
 import javafx.scene.image.Image;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HotelInfoController {
@@ -127,8 +131,10 @@ public class HotelInfoController {
     private Label photoErrorLabel;
     @FXML
     private Label promotionalOffersErrorLabel;
+
     private List<String> photoPaths = new ArrayList<>();
     private ManageHotelsListController manageHotelsListController;  // مرجع للكونترولر الذي يحتوي على الجدول
+    private int hotelId;
 
     @FXML
     public void BackToHotelsList(ActionEvent event) {
@@ -139,243 +145,17 @@ public class HotelInfoController {
         }
     }
 
-    // Method to set the title text from the first page
-    public void setTitleText(String titleText) {
-        if (TitleInfo != null) {
-            TitleInfo.setText(titleText);
-        } else {
-            System.out.println("Error: Label not initialized properly.");
-        }
-    }
-
     @FXML
-    public void SaveHotelInfo() throws Exception {
-
+    public void SaveHotelInfoBtn() throws Exception {
         if (TitleInfo.getText().equals("Add a Hotel Information")) {
             if (saveHotelToDatabase()) {
                 SetLabelText("Hotel Added to the System Successfully!");
             }
         } else {
 
-//           if(updateHotelInDatabase()) // check if the data modified
-            SetLabelText("Hotel Information Updated Successfully!");
+            if (updateHotelInDatabase(hotelId)) // check if the data modified
+                SetLabelText("Hotel Information Updated Successfully!");
 
-        }
-    }
-
-    // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)
-    public void setMainController(ManageHotelsListController manageHotelsListController) {
-        this.manageHotelsListController = manageHotelsListController;
-    }
-
-    private boolean checkValidation() {
-        boolean isValid = true;
-//        // التحقق من حقل الاسم
-        if (HotelName.getText().trim().isEmpty()) {
-            nameErrorLabel.setText("Name is required!");
-            nameErrorLabel.setVisible(true);
-            HotelName.setStyle("-fx-border-color: red");
-            isValid = false;
-        } else {
-            nameErrorLabel.setVisible(false);
-            HotelName.setStyle("");
-        }
-        // التحقق من حقل الوصف
-        if (Description.getText().trim().isEmpty()) {
-            descriptionErrorLabel.setText("Description is required!");
-            descriptionErrorLabel.setVisible(true);
-            Description.setStyle("-fx-border-color: red");
-            isValid = false;
-        } else {
-            descriptionErrorLabel.setVisible(false);
-            Description.setStyle("");
-        }
-
-        // التحقق من حقل السعر
-        try {
-            if (Price.getText().trim().isEmpty() || Double.parseDouble(Price.getText()) <= 0) {
-                priceErrorLabel.setText("Price must be a positive number!");
-                priceErrorLabel.setVisible(true);
-                Price.setStyle("-fx-border-color: red");
-                isValid = false;
-            } else {
-                priceErrorLabel.setVisible(false);
-                Price.setStyle("");
-            }
-        } catch (NumberFormatException e) {
-            priceErrorLabel.setText("Invalid price!");
-            priceErrorLabel.setVisible(true);
-            isValid = false;
-        }
-
-        // التحقق من حقل عدد الغرف
-        try {
-            if (TotalRooms.getText().trim().isEmpty() || Integer.parseInt(TotalRooms.getText()) <= 0) {
-                totalRoomsErrorLabel.setText("Total rooms must be a positive number!");
-                totalRoomsErrorLabel.setVisible(true);
-                TotalRooms.setStyle("-fx-border-color: red");
-                isValid = false;
-            } else {
-                totalRoomsErrorLabel.setVisible(false);
-                TotalRooms.setStyle("");
-            }
-        } catch (NumberFormatException e) {
-            totalRoomsErrorLabel.setText("Invalid number of rooms!");
-            totalRoomsErrorLabel.setVisible(true);
-            isValid = false;
-        }
-
-        // التحقق من حقل الموقع
-        if (Location.getText().trim().isEmpty()) {
-            locationErrorLabel.setText("Location is required!");
-            locationErrorLabel.setVisible(true);
-            Location.setStyle("-fx-border-color: red");
-            isValid = false;
-        } else {
-            locationErrorLabel.setVisible(false);
-            Location.setStyle("");
-        }
-
-
-        if (PromotionalOffers.getText().trim().isEmpty()) {
-            promotionalOffersErrorLabel.setText("Promotional Offers is required!");
-            promotionalOffersErrorLabel.setVisible(true);
-            PromotionalOffers.setStyle("-fx-border-color: red");
-            isValid = false;
-        } else {
-            promotionalOffersErrorLabel.setVisible(false);
-            PromotionalOffers.setStyle("");
-        }
-        // Validate if the GridPane has any images
-        boolean hasImage = false;
-
-        // Loop through all children in the GridPane
-        for (Node node : GridPhotos.getChildren()) {
-            if (node instanceof ImageView) { // Check if the node is an ImageView
-                ImageView imageView = (ImageView) node;
-                if (imageView.getImage() != null) { // Check if the ImageView has an image
-                    hasImage = true;
-                    break; // Exit the loop once an image is found
-                }
-            }
-        }
-        // Handle validation result
-        if (!hasImage) {
-            photoErrorLabel.setText("At least one image is required!");
-            photoErrorLabel.setVisible(true);
-            uploadPhotoButton.setStyle("-fx-border-color: red"); // Highlight button in red
-            isValid = false;
-        } else {
-            photoErrorLabel.setVisible(false); // Hide error if valid
-            uploadPhotoButton.setStyle("");    // Reset button style
-        }
-        return isValid;
-    }
-
-    private boolean saveHotelToDatabase() {
-
-        boolean isValid = checkValidation();
-
-        // إذا كانت جميع الحقول صحيحة، إضافة الفندق إلى قاعدة البيانات
-        if (isValid) {
-            Hotel hotel = new Hotel();
-            hotel.setName(HotelName.getText());
-            hotel.setLocation(Location.getText());
-            hotel.setPrice(Double.parseDouble(Price.getText()));
-            hotel.setTotalRooms(Integer.parseInt(TotalRooms.getText()));
-            hotel.setDescription(Description.getText());
-            hotel.setPromotionalOffers(PromotionalOffers.getText());
-            hotel.setAvailability(AvailabilityComboBox.getValue());
-            hotel.setRating(currentRating);
-
-            List<String> selectedRoomTypes = new ArrayList<>();
-            if (SingleRoom.isSelected()) selectedRoomTypes.add("Single Room");
-            if (DoubleRoom.isSelected()) selectedRoomTypes.add("Double Room");
-            if (TwinRoom.isSelected()) selectedRoomTypes.add("Twin Room");
-            if (TripleRoom.isSelected()) selectedRoomTypes.add("Triple Room");
-            if (DeluxeRoom.isSelected()) selectedRoomTypes.add("Deluxe Room");
-            if (FamilyRoom.isSelected()) selectedRoomTypes.add("Family Room");
-            if (Villa.isSelected()) selectedRoomTypes.add("Villa");
-            if (Bungalow.isSelected()) selectedRoomTypes.add("Bungalow");
-
-            // Convert List<String> to a comma-separated String
-            String roomTypesString = String.join(",", selectedRoomTypes);
-            hotel.setRoomTypes(roomTypesString);
-
-            // Add the selected checkboxes to the hotel object
-            List<String> selectedFacilities = new ArrayList<>();
-            if (Garden.isSelected()) selectedFacilities.add("Garden");
-            if (Restaurant.isSelected()) selectedFacilities.add("Restaurant");
-            if (Lounge.isSelected()) selectedFacilities.add("Lounge");
-            if (BusinessCenter.isSelected()) selectedFacilities.add("Business Center");
-            if (MeetingRooms.isSelected()) selectedFacilities.add("Meeting Rooms");
-            if (SwimmingPool.isSelected()) selectedFacilities.add("Swimming Pool");
-            if (GymFitnessCenter.isSelected()) selectedFacilities.add("Gym/Fitness Center");
-            if (KidsPlayArea.isSelected()) selectedFacilities.add("Kids Play Area");
-            if (TennisCourt.isSelected()) selectedFacilities.add("Tennis Court");
-            if (Parking.isSelected()) selectedFacilities.add("Parking");
-            String FacilitiesString = String.join(",", selectedFacilities);
-            hotel.setFacilities(FacilitiesString);
-
-            List<String> selectedAmenities = new ArrayList<>();
-            if (AirConditioning.isSelected()) selectedAmenities.add("Air Conditioning");
-            if (FreeWiFi.isSelected()) selectedAmenities.add("Free WiFi");
-            if (Television.isSelected()) selectedAmenities.add("Television");
-            if (CoffeTeaMaker.isSelected()) selectedAmenities.add("Coffee/Tea Maker");
-            if (HairDryer.isSelected()) selectedAmenities.add("Hair Dryer");
-            if (DeskWorkspace.isSelected()) selectedAmenities.add("Desk/Workspace");
-            if (FreeBreakfast.isSelected()) selectedAmenities.add("Free Breakfast");
-            if (BottledWater.isSelected()) selectedAmenities.add("Bottled Water");
-            if (PremiumBedding.isSelected()) selectedAmenities.add("Premium Bedding");
-            if (BathrobeSlippers.isSelected()) selectedAmenities.add("Bathrobe/Slippers");
-            String AmenitiesString = String.join(",", selectedAmenities);
-            hotel.setAmenities(AmenitiesString);
-
-            // Set the photos collected earlier
-            hotel.setPhotos(String.join(",", photoPaths));
-
-            hotelDOAImp.addHotel(hotel);
-
-
-        }
-        return isValid;
-    }
-
-    private void SetLabelText(String titleText) throws Exception {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/hotelConfirmAddEdit.fxml"));
-            AnchorPane root = loader.load();
-
-            // Get the controller of the second page to set the label text
-            HotelConfirmAddEditController hotelConfirmAddEditController = loader.getController();
-            hotelConfirmAddEditController.setTitleText(titleText); // Pass the title text to the second page controller
-
-            hotelConfirmAddEditController.setMainController(this.manageHotelsListController);
-
-            // Create a new stage for the modal dialog
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal
-            stage.initStyle(StageStyle.UNDECORATED); // Remove the title bar
-
-            // Get the primary screen bounds (screen width and height)
-            Screen screen = Screen.getPrimary();
-            double screenWidth = screen.getBounds().getWidth();
-            double screenHeight = screen.getBounds().getHeight();
-
-            // Calculate the center of the screen
-            stage.setX((screenWidth - 400) / 2); // Center on X, adjusted for the popup size
-            stage.setY((screenHeight - 200) / 2); // Center on Y, adjusted for the popup size
-
-            // Set the scene with the loaded FXML content
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            // Show the popup
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -564,6 +344,424 @@ public class HotelInfoController {
 
     }
 
+    // Method to set the title text from Hotel list page
+    public void setTitleText(String titleText) {
+        if (TitleInfo != null) {
+            TitleInfo.setText(titleText);
+        } else {
+            System.out.println("Error: Label not initialized properly.");
+        }
+    }
+
+
+    private void SetLabelText(String titleText) throws Exception {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/hotelConfirmAddEdit.fxml"));
+            AnchorPane root = loader.load();
+
+            // Get the controller of the second page to set the label text
+            HotelConfirmAddEditController hotelConfirmAddEditController = loader.getController();
+            hotelConfirmAddEditController.setTitleText(titleText); // Pass the title text to the second page controller
+            hotelConfirmAddEditController.setMainController(this.manageHotelsListController);
+
+            // Create a new stage for the modal dialog
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal
+            stage.initStyle(StageStyle.UNDECORATED); // Remove the title bar
+
+            // Get the primary screen bounds (screen width and height)
+            Screen screen = Screen.getPrimary();
+            double screenWidth = screen.getBounds().getWidth();
+            double screenHeight = screen.getBounds().getHeight();
+
+            // Calculate the center of the screen
+            stage.setX((screenWidth - 400) / 2); // Center on X, adjusted for the popup size
+            stage.setY((screenHeight - 200) / 2); // Center on Y, adjusted for the popup size
+
+            // Set the scene with the loaded FXML content
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            hotelConfirmAddEditController.setPrimaryStage(primaryStage);
+            // Show the popup
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)
+    public void setMainController(ManageHotelsListController manageHotelsListController) {
+        this.manageHotelsListController = manageHotelsListController;
+    }
+
+    private boolean checkValidation() {
+        boolean isValid = true;
+//        // التحقق من حقل الاسم
+        if (HotelName.getText().trim().isEmpty()) {
+            nameErrorLabel.setText("Name is required!");
+            nameErrorLabel.setVisible(true);
+            HotelName.setStyle("-fx-border-color: red");
+            isValid = false;
+        } else {
+            nameErrorLabel.setVisible(false);
+            HotelName.setStyle("");
+        }
+        // التحقق من حقل الوصف
+        if (Description.getText().trim().isEmpty()) {
+            descriptionErrorLabel.setText("Description is required!");
+            descriptionErrorLabel.setVisible(true);
+            Description.setStyle("-fx-border-color: red");
+            isValid = false;
+        } else {
+            descriptionErrorLabel.setVisible(false);
+            Description.setStyle("");
+        }
+
+        // التحقق من حقل السعر
+        try {
+            if (Price.getText().trim().isEmpty() || Double.parseDouble(Price.getText()) <= 0) {
+                priceErrorLabel.setText("Price must be a positive number!");
+                priceErrorLabel.setVisible(true);
+                Price.setStyle("-fx-border-color: red");
+                isValid = false;
+            } else {
+                priceErrorLabel.setVisible(false);
+                Price.setStyle("");
+            }
+        } catch (NumberFormatException e) {
+            priceErrorLabel.setText("Invalid price!");
+            priceErrorLabel.setVisible(true);
+            isValid = false;
+        }
+
+        // التحقق من حقل عدد الغرف
+        try {
+            if (TotalRooms.getText().trim().isEmpty() || Integer.parseInt(TotalRooms.getText()) <= 0) {
+                totalRoomsErrorLabel.setText("Total rooms must be a positive number!");
+                totalRoomsErrorLabel.setVisible(true);
+                TotalRooms.setStyle("-fx-border-color: red");
+                isValid = false;
+            } else {
+                totalRoomsErrorLabel.setVisible(false);
+                TotalRooms.setStyle("");
+            }
+        } catch (NumberFormatException e) {
+            totalRoomsErrorLabel.setText("Invalid number of rooms!");
+            totalRoomsErrorLabel.setVisible(true);
+            isValid = false;
+        }
+
+        // التحقق من حقل الموقع
+        if (Location.getText().trim().isEmpty()) {
+            locationErrorLabel.setText("Location is required!");
+            locationErrorLabel.setVisible(true);
+            Location.setStyle("-fx-border-color: red");
+            isValid = false;
+        } else {
+            locationErrorLabel.setVisible(false);
+            Location.setStyle("");
+        }
+
+
+        if (PromotionalOffers.getText().trim().isEmpty()) {
+            promotionalOffersErrorLabel.setText("Promotional Offers is required!");
+            promotionalOffersErrorLabel.setVisible(true);
+            PromotionalOffers.setStyle("-fx-border-color: red");
+            isValid = false;
+        } else {
+            promotionalOffersErrorLabel.setVisible(false);
+            PromotionalOffers.setStyle("");
+        }
+        // Validate if the GridPane has any images
+        boolean hasImage = false;
+
+        // Loop through all children in the GridPane
+        for (Node node : GridPhotos.getChildren()) {
+            if (node instanceof ImageView) { // Check if the node is an ImageView
+                ImageView imageView = (ImageView) node;
+                if (imageView.getImage() != null) { // Check if the ImageView has an image
+                    hasImage = true;
+                    break; // Exit the loop once an image is found
+                }
+            }
+        }
+        // Handle validation result
+        if (!hasImage) {
+            photoErrorLabel.setText("At least one image is required!");
+            photoErrorLabel.setVisible(true);
+            uploadPhotoButton.setStyle("-fx-border-color: red"); // Highlight button in red
+            isValid = false;
+        } else {
+            photoErrorLabel.setVisible(false); // Hide error if valid
+            uploadPhotoButton.setStyle("");    // Reset button style
+        }
+        return isValid;
+    }
+
+    private boolean saveHotelToDatabase() {
+
+        boolean isValid = checkValidation();
+
+        // إذا كانت جميع الحقول صحيحة، إضافة الفندق إلى قاعدة البيانات
+        if (isValid) {
+            Hotel hotel = new Hotel();
+            hotel.setName(HotelName.getText());
+            hotel.setLocation(Location.getText());
+            hotel.setPrice(Double.parseDouble(Price.getText()));
+            hotel.setTotalRooms(Integer.parseInt(TotalRooms.getText()));
+            hotel.setDescription(Description.getText());
+            hotel.setPromotionalOffers(PromotionalOffers.getText());
+            hotel.setAvailability(AvailabilityComboBox.getValue());
+            hotel.setRating(currentRating);
+
+            List<String> selectedRoomTypes = new ArrayList<>();
+            if (SingleRoom.isSelected()) selectedRoomTypes.add("Single Room");
+            if (DoubleRoom.isSelected()) selectedRoomTypes.add("Double Room");
+            if (TwinRoom.isSelected()) selectedRoomTypes.add("Twin Room");
+            if (TripleRoom.isSelected()) selectedRoomTypes.add("Triple Room");
+            if (DeluxeRoom.isSelected()) selectedRoomTypes.add("Deluxe Room");
+            if (FamilyRoom.isSelected()) selectedRoomTypes.add("Family Room");
+            if (Villa.isSelected()) selectedRoomTypes.add("Villa");
+            if (Bungalow.isSelected()) selectedRoomTypes.add("Bungalow");
+
+            // Convert List<String> to a comma-separated String
+            String roomTypesString = String.join(",", selectedRoomTypes);
+            hotel.setRoomTypes(roomTypesString);
+
+            // Add the selected checkboxes to the hotel object
+            List<String> selectedFacilities = new ArrayList<>();
+            if (Garden.isSelected()) selectedFacilities.add("Garden");
+            if (Restaurant.isSelected()) selectedFacilities.add("Restaurant");
+            if (Lounge.isSelected()) selectedFacilities.add("Lounge");
+            if (BusinessCenter.isSelected()) selectedFacilities.add("Business Center");
+            if (MeetingRooms.isSelected()) selectedFacilities.add("Meeting Rooms");
+            if (SwimmingPool.isSelected()) selectedFacilities.add("Swimming Pool");
+            if (GymFitnessCenter.isSelected()) selectedFacilities.add("Gym/Fitness Center");
+            if (KidsPlayArea.isSelected()) selectedFacilities.add("Kids Play Area");
+            if (TennisCourt.isSelected()) selectedFacilities.add("Tennis Court");
+            if (Parking.isSelected()) selectedFacilities.add("Parking");
+            String FacilitiesString = String.join(",", selectedFacilities);
+            hotel.setFacilities(FacilitiesString);
+
+            List<String> selectedAmenities = new ArrayList<>();
+            if (AirConditioning.isSelected()) selectedAmenities.add("Air Conditioning");
+            if (FreeWiFi.isSelected()) selectedAmenities.add("Free WiFi");
+            if (Television.isSelected()) selectedAmenities.add("Television");
+            if (CoffeTeaMaker.isSelected()) selectedAmenities.add("Coffee/Tea Maker");
+            if (HairDryer.isSelected()) selectedAmenities.add("Hair Dryer");
+            if (DeskWorkspace.isSelected()) selectedAmenities.add("Desk/Workspace");
+            if (FreeBreakfast.isSelected()) selectedAmenities.add("Free Breakfast");
+            if (BottledWater.isSelected()) selectedAmenities.add("Bottled Water");
+            if (PremiumBedding.isSelected()) selectedAmenities.add("Premium Bedding");
+            if (BathrobeSlippers.isSelected()) selectedAmenities.add("Bathrobe/Slippers");
+            String AmenitiesString = String.join(",", selectedAmenities);
+            hotel.setAmenities(AmenitiesString);
+
+            // Set the photos collected earlier
+            hotel.setPhotos(String.join(",", photoPaths));
+
+            hotelDOAImp.insert(hotel);
+
+
+        }
+        return isValid;
+    }
+
+    private boolean updateHotelInDatabase(int hotelId) {
+
+        boolean isValid = checkValidation();
+        if (isValid) {
+            HotelDAOImpl hotelDAO = new HotelDAOImpl();
+            Hotel hotel = hotelDAO.getById(hotelId);
+
+            hotel.setName(HotelName.getText());
+            hotel.setLocation(Location.getText());
+            hotel.setPrice(Double.parseDouble(Price.getText()));
+            hotel.setTotalRooms(Integer.parseInt(TotalRooms.getText()));
+            hotel.setDescription(Description.getText());
+            hotel.setPromotionalOffers(PromotionalOffers.getText());
+            hotel.setAvailability(AvailabilityComboBox.getValue());
+            hotel.setRating(currentRating);
+
+            List<String> selectedRoomTypes = new ArrayList<>();
+            if (SingleRoom.isSelected()) selectedRoomTypes.add("Single Room");
+            if (DoubleRoom.isSelected()) selectedRoomTypes.add("Double Room");
+            if (TwinRoom.isSelected()) selectedRoomTypes.add("Twin Room");
+            if (TripleRoom.isSelected()) selectedRoomTypes.add("Triple Room");
+            if (DeluxeRoom.isSelected()) selectedRoomTypes.add("Deluxe Room");
+            if (FamilyRoom.isSelected()) selectedRoomTypes.add("Family Room");
+            if (Villa.isSelected()) selectedRoomTypes.add("Villa");
+            if (Bungalow.isSelected()) selectedRoomTypes.add("Bungalow");
+
+            // Convert List<String> to a comma-separated String
+            String roomTypesString = String.join(",", selectedRoomTypes);
+            hotel.setRoomTypes(roomTypesString);
+
+            // Add the selected checkboxes to the hotel object
+            List<String> selectedFacilities = new ArrayList<>();
+            if (Garden.isSelected()) selectedFacilities.add("Garden");
+            if (Restaurant.isSelected()) selectedFacilities.add("Restaurant");
+            if (Lounge.isSelected()) selectedFacilities.add("Lounge");
+            if (BusinessCenter.isSelected()) selectedFacilities.add("Business Center");
+            if (MeetingRooms.isSelected()) selectedFacilities.add("Meeting Rooms");
+            if (SwimmingPool.isSelected()) selectedFacilities.add("Swimming Pool");
+            if (GymFitnessCenter.isSelected()) selectedFacilities.add("Gym/Fitness Center");
+            if (KidsPlayArea.isSelected()) selectedFacilities.add("Kids Play Area");
+            if (TennisCourt.isSelected()) selectedFacilities.add("Tennis Court");
+            if (Parking.isSelected()) selectedFacilities.add("Parking");
+            String FacilitiesString = String.join(",", selectedFacilities);
+            hotel.setFacilities(FacilitiesString);
+
+            List<String> selectedAmenities = new ArrayList<>();
+            if (AirConditioning.isSelected()) selectedAmenities.add("Air Conditioning");
+            if (FreeWiFi.isSelected()) selectedAmenities.add("Free WiFi");
+            if (Television.isSelected()) selectedAmenities.add("Television");
+            if (CoffeTeaMaker.isSelected()) selectedAmenities.add("Coffee/Tea Maker");
+            if (HairDryer.isSelected()) selectedAmenities.add("Hair Dryer");
+            if (DeskWorkspace.isSelected()) selectedAmenities.add("Desk/Workspace");
+            if (FreeBreakfast.isSelected()) selectedAmenities.add("Free Breakfast");
+            if (BottledWater.isSelected()) selectedAmenities.add("Bottled Water");
+            if (PremiumBedding.isSelected()) selectedAmenities.add("Premium Bedding");
+            if (BathrobeSlippers.isSelected()) selectedAmenities.add("Bathrobe/Slippers");
+            String AmenitiesString = String.join(",", selectedAmenities);
+            hotel.setAmenities(AmenitiesString);
+
+            hotel.setPhotos(String.join(",", photoPaths));
+
+            hotelDAO.update(hotel);
+
+        }
+        return isValid;
+    }
+
+    private void loadHotelPhotos(int hotelId) {
+        HotelDAOImpl hotelDAO = new HotelDAOImpl();
+        Hotel hotel = hotelDAO.getById(hotelId);
+
+        if (hotel != null && hotel.getPhotos() != null && !hotel.getPhotos().isEmpty()) {
+            GridPhotos.getChildren().clear();
+            int row = 0;
+            int column = 0;
+
+
+            try {
+                // تقسيم النصوص المخزنة في photos إلى قائمة مسارات
+                String[] photoPaths = hotel.getPhotos().split(",");
+
+                for (String path : photoPaths) {
+                    if (row > 2) break; // الحد الأقصى 3 صفوف
+
+                    path = path.trim();
+                    System.out.println("Loading image from path: " + path); // تحقق من المسار
+
+                    try {
+                        Image image = new Image(path, true); // true لتحميل الصورة بشكل آمن
+                        if (image.isError()) {
+                            System.out.println("Failed to load image: " + path);
+                            continue; // تجاوز الصورة المعطوبة
+                        }
+
+                        ImageView imageView = new ImageView(image);
+                        imageView.setFitWidth(100);
+                        imageView.setFitHeight(100);
+                        imageView.setPreserveRatio(true);
+
+                        GridPhotos.add(imageView, column, row);
+
+                        column++;
+                        if (column > 2) { // الانتقال إلى الصف التالي بعد 3 أعمدة
+                            column = 0;
+                            row++;
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid image path: " + path);
+                    }
+                }
+
+                System.out.println("Photos loaded successfully!");
+            } catch (Exception e) {
+                System.out.println("Failed to load photos: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No photos found for this hotel!");
+        }
+    }
+
+    // Setter method to receive hotel ID from the Hotel list page
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+        if (hotelId == -1) {
+            System.out.println("Hotel id is add page!");
+        } else
+            loadHotelData();
+    }
+
+    private void loadHotelData() {
+        HotelDAOImpl hotelDAO = new HotelDAOImpl();
+        Hotel hotel;
+        hotel = hotelDAO.getById(hotelId);
+
+        if (hotel != null) {
+            try {
+                HotelName.setText(hotel.getName());
+                Location.setText(hotel.getLocation());
+                Price.setText(String.valueOf(hotel.getPrice()));
+                TotalRooms.setText(String.valueOf(hotel.getTotalRooms()));
+                PromotionalOffers.setText(hotel.getPromotionalOffers());
+                Description.setText(hotel.getDescription());
+                AvailabilityComboBox.setValue(hotel.getAvailability());
+                updateRating(hotel.getRating());
+
+                // Load Room Types
+                String[] roomTypes = hotel.getRoomTypes().split(",");
+                SingleRoom.setSelected(Arrays.asList(roomTypes).contains("Single Room"));
+                DoubleRoom.setSelected(Arrays.asList(roomTypes).contains("Double Room"));
+                TwinRoom.setSelected(Arrays.asList(roomTypes).contains("Twin Room"));
+                TripleRoom.setSelected(Arrays.asList(roomTypes).contains("Triple Room"));
+                DeluxeRoom.setSelected(Arrays.asList(roomTypes).contains("Deluxe Room"));
+                FamilyRoom.setSelected(Arrays.asList(roomTypes).contains("Family Room"));
+                Villa.setSelected(Arrays.asList(roomTypes).contains("Villa"));
+                Bungalow.setSelected(Arrays.asList(roomTypes).contains("Bungalow"));
+
+                // Load Facilities
+                String[] facilities = hotel.getFacilities().split(",");
+                Garden.setSelected(Arrays.asList(facilities).contains("Garden"));
+                Restaurant.setSelected(Arrays.asList(facilities).contains("Restaurant"));
+                Lounge.setSelected(Arrays.asList(facilities).contains("Lounge"));
+                BusinessCenter.setSelected(Arrays.asList(facilities).contains("Business Center"));
+                MeetingRooms.setSelected(Arrays.asList(facilities).contains("Meeting Rooms"));
+                SwimmingPool.setSelected(Arrays.asList(facilities).contains("Swimming Pool"));
+                GymFitnessCenter.setSelected(Arrays.asList(facilities).contains("Gym/Fitness Center"));
+                KidsPlayArea.setSelected(Arrays.asList(facilities).contains("Kids Play Area"));
+                TennisCourt.setSelected(Arrays.asList(facilities).contains("Tennis Court"));
+                Parking.setSelected(Arrays.asList(facilities).contains("Parking"));
+
+                // Load Amenities
+                String[] amenities = hotel.getAmenities().split(",");
+                AirConditioning.setSelected(Arrays.asList(amenities).contains("Air Conditioning"));
+                FreeWiFi.setSelected(Arrays.asList(amenities).contains("Free WiFi"));
+                Television.setSelected(Arrays.asList(amenities).contains("Television"));
+                CoffeTeaMaker.setSelected(Arrays.asList(amenities).contains("Coffee/Tea Maker"));
+                HairDryer.setSelected(Arrays.asList(amenities).contains("Hair Dryer"));
+                DeskWorkspace.setSelected(Arrays.asList(amenities).contains("Desk/Workspace"));
+                FreeBreakfast.setSelected(Arrays.asList(amenities).contains("Free Breakfast"));
+                BottledWater.setSelected(Arrays.asList(amenities).contains("Bottled Water"));
+                PremiumBedding.setSelected(Arrays.asList(amenities).contains("Premium Bedding"));
+                BathrobeSlippers.setSelected(Arrays.asList(amenities).contains("Bathrobe/Slippers"));
+                loadHotelPhotos(hotelId);
+
+                System.out.println("Hotel data successfully loaded into the UI!");
+            } catch (Exception e) {
+                System.out.println("Failed to load hotel data: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Hotel not found!");
+        }
+    }
+
     private boolean isPositiveDouble(String text) {
         try {
             return Double.parseDouble(text) > 0;
@@ -645,5 +843,11 @@ public class HotelInfoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 }

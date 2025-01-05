@@ -3,6 +3,15 @@ package com.groupnine.travelbookingsystem.util;
 
 import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
 import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.FlightBookingModel; //sana
+
+import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
+import com.groupnine.travelbookingsystem.model.customerManagment.Customer;
+
+
+import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel; //sana
+
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 //import com.groupnine.travelbookingsystem.model.toRemove.rahaf.BookingFlightModel;
 import org.hibernate.Session;
@@ -19,15 +28,23 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
-    private HibernateUtil(){
+    private HibernateUtil() {
         try {
             Configuration configuration = new Configuration();
+
+           
+            configuration.addAnnotatedClass(Hotel.class);
+            configuration.addAnnotatedClass(Customer.class);
+          
+            configuration.addAnnotatedClass(HotelBookingModel.class);
+
 
 
             configuration.addAnnotatedClass(AdminFlightModel.class);  // Ensure User class is mapped
             configuration.addAnnotatedClass(User.class);
             configuration.addAnnotatedClass(FlightBookingModel.class);
-           // configuration.addAnnotatedClass(BookingFlightModel.class);
+         
+
 
             configuration.configure();
 
@@ -45,8 +62,8 @@ public class HibernateUtil {
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
     }
 
-    public static HibernateUtil getInstance(){
-        if(instance == null) instance = new HibernateUtil();
+    public static HibernateUtil getInstance() {
+        if (instance == null) instance = new HibernateUtil();
         return instance;
     }
 

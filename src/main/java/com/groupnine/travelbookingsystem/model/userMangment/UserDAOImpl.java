@@ -142,4 +142,32 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
     }
+
+    // to get Last Logged-In Agent
+    public User getLastLoggedInAgent() {
+        User agent = null;
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Query<User> query = session.createQuery(
+                    "FROM User u WHERE u.role = :role AND u.lastLogin IS NOT NULL ORDER BY u.lastLogin DESC",
+                    User.class
+            );
+            query.setParameter("role", "Agent");
+            query.setMaxResults(1); // استرجاع آخر Agent فقط
+
+            agent = query.uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println("Error fetching last logged-in agent: " + e.getMessage());
+        }
+
+        return agent;
+    }
 }
