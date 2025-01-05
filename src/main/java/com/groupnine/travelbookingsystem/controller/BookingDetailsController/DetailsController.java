@@ -42,13 +42,16 @@ public class DetailsController {
         // Initialization logic if needed
         bookNowButton.setOnAction(event -> handleBookNow());
     }
-
+  
     private void loadFlightDetails() {
         if (flightId <= 0) {
             System.err.println("Invalid flightId: " + flightId);
             departureLabel.setText("Invalid flight ID provided.");
             return;
         }
+/*
+        airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
+*/
 
         FlightDetailsDeoImpl dao = new FlightDetailsDeoImpl();
         FlightDeatailsModel flightDetails = dao.getFlightDetails(flightId);

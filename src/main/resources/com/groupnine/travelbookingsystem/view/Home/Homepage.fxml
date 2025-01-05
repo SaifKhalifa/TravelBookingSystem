@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootPane" style="-fx-background-color: #CCD2D9;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomeController.HomepageController">
+   <left>
+      <fx:include source="../Sidebar/Sidebar.fxml" />
+   </left>
+   <right>
+      <StackPane>
+         <ImageView fx:id="backgroundImage" fitHeight="750.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../Assets/imgs/Home/img1.jpeg" />
+            </image>
+         </ImageView>
+         <VBox alignment="CENTER" prefHeight="698.0" prefWidth="645.0" spacing="10.0">
+            <Label fx:id="mainTitle" text="Your Dream Cruise Awaits-" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+            <Label fx:id="subTitle" text="Explore, Relax, and Enjoy" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" text="Explore breathtaking destination, indulge in luxury, and create unforgettable memories" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </VBox>
+      </StackPane>
+   </right>
+</BorderPane>

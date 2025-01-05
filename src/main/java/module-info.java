@@ -2,7 +2,11 @@ module com.groupnine.travelbookingsystem {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-
+    requires java.transaction;
+    requires spring.context;
+    requires spring.beans;
+    requires spring.core;
+    requires spring.tx;
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -13,6 +17,9 @@ module com.groupnine.travelbookingsystem {
     requires java.naming;
     requires java.persistence;
     requires java.sql;
+    requires mysql.connector.java;
+    requires java.smartcardio;
+
     // authentication
     opens com.groupnine.travelbookingsystem to javafx.fxml;
     exports com.groupnine.travelbookingsystem;
@@ -46,9 +53,8 @@ module com.groupnine.travelbookingsystem {
     //booking details
     exports com.groupnine.travelbookingsystem.controller.BookingDetailsController;
     opens com.groupnine.travelbookingsystem.controller.BookingDetailsController to javafx.fxml;
-
     opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
-
+  
     //search page
     exports com.groupnine.travelbookingsystem.controller.SearchPageControllers;
     opens com.groupnine.travelbookingsystem.controller.SearchPageControllers to javafx.fxml;
@@ -58,5 +64,9 @@ module com.groupnine.travelbookingsystem {
     //TO REMOVE LATER:
     exports com.groupnine.travelbookingsystem.otherApplications;
     opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
+
+    exports com.groupnine.travelbookingsystem.otherApplications.Sana;
+    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
 
 }

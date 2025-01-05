@@ -85,7 +85,8 @@
 .add-button:hover, #SaveButton:hover {
     -fx-background-color: #2c4861;
 }
-#uploadButton:hover {
+
+#uploadPhotoButton:hover {
     -fx-background-color: #8cafc8;
 }
 
@@ -107,6 +108,22 @@
     -fx-background-color: #A3CAE9;
     -fx-text-fill: black;
     -fx-background-radius: 5;
+}
+#uploadPhotoButton{
+    -fx-background-color: #A3CAE9;
+    -fx-text-fill: black;
+    -fx-background-radius: 5;
+    -fx-border-radius: 3;
+}
+
+.text-field-custom{
+    -fx-background-radius: 5;
+    /*-fx-border-color: black;*/
+    -fx-border-color: #E9ECEE;
+    /*-fx-background-color: #E9ECEE;*/
+    /*-fx-background-color: White;*/
+    -fx-text-fill: black;
+    -fx-border-radius: 3;
 }
 
 /* تصميم النص داخل الـ Label */
@@ -348,6 +365,3 @@ __________________________________
         -fx-padding: 10px 20px;
     }
 }
-
-
-
