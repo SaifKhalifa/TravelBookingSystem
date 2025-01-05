@@ -5,46 +5,66 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<AnchorPane prefHeight="840.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.ListOfFlightsController">
+<AnchorPane prefHeight="840.0" prefWidth="1553.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.ListOfFlightsController">
 
     <children>
-        <StackPane prefHeight="820.0">
+        <!-- Sidebar -->
+        <StackPane prefHeight="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <fx:include source="../Sidebar/Sidebar.fxml" />
         </StackPane>
 
-
-
-
-        <TableView fx:id="flightTable" layoutX="251.0" prefHeight="720.0" prefWidth="1269.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+        <!-- Flight Table -->
+        <TableView fx:id="flightTable" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0">
             <columns>
                 <TableColumn fx:id="flightId" text="Flight ID" />
-                <TableColumn text="Origin" />
-                <TableColumn fx:id="flightDuration" text="Destination" />
-                <TableColumn text="Departure Date" />
-                <TableColumn text="Arrival Date" />
+                <TableColumn fx:id="origin" text="Origin" />
+                <TableColumn fx:id="destination" text="Destination" />
+                <TableColumn fx:id="departureDate" text="Departure Date" />
+                <TableColumn fx:id="arrivalDate" text="Arrival Date" />
                 <TableColumn fx:id="departureTime" text="Departure Time" />
-                <TableColumn text="Arrival Time" />
-                <TableColumn text="Gate Number" />
-                <TableColumn text="Flight Duration" />
-                <TableColumn text="Seat Capacity" />
-                <TableColumn text="Class Types" />
-                <TableColumn text="Notes" />
-                <TableColumn text="Price" />
+                <TableColumn fx:id="arrivalTime" text="Arrival Time" />
+                <TableColumn fx:id="gateNumber" text="Gate Number" />
+                <TableColumn fx:id="flightDuration" text="Flight Duration" />
+                <TableColumn fx:id="seatCapacity" text="Seat Capacity" />
+                <TableColumn fx:id="classType" text="Class Types" />
+                <TableColumn fx:id="notes" text="Notes" />
+                <TableColumn fx:id="price" text="Price" />
+                <TableColumn fx:id="offers" text="offers" />
                 <TableColumn fx:id="deleteColumn" text="Delete" />
                 <TableColumn fx:id="editColumn" text="Edit" />
             </columns>
         </TableView>
-        <Button fx:id="hotel" mnemonicParsing="false" style="-fx-background-color: #334C6840;" text="Hotels" AnchorPane.leftAnchor="317.0" AnchorPane.topAnchor="63.0" />
-        <Button fx:id="flight" mnemonicParsing="false" style="-fx-background-color: #385A7F;" text="Flights" textFill="WHITE" AnchorPane.leftAnchor="266.0" AnchorPane.topAnchor="63.0" />
-        <Label layoutX="266.0" layoutY="14.0" text="List Of Flights:" AnchorPane.leftAnchor="266.0" AnchorPane.topAnchor="14.0">
+
+        <!-- Title -->
+        <Label text="List of Flights:" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="20.0">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="36.0" />
             </font>
         </Label>
-        <Button fx:id="addnewflight" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #385A7F;" text="Add" textFill="WHITE" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="63.0" />
+
+        <!-- Navigation Buttons -->
+        <HBox prefHeight="25.0" prefWidth="196.0" spacing="10.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="100.0">
+            <children>
+                <Button fx:id="flight" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #385A7F;" text="Flights" textFill="WHITE" />
+                <Button fx:id="hotel" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #334C6840;" text="Hotels" textFill="#1b1b1b" />
+            </children>
+        </HBox>
+
+        <!-- Add New Flight Button -->
+        <Button fx:id="addnewflight" layoutX="1458.0" layoutY="102.0" prefHeight="36.0" prefWidth="59.0" style="-fx-background-color: #385A7F;" text="Add" textFill="WHITE" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="102.0">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+
+        <!-- Create Account Button -->
+        <Button layoutX="1417.0" layoutY="34.0" prefHeight="33.0" prefWidth="124.0" style="-fx-background-color: #334C6840;" text="Create Account" textFill="#393939" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="34.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
     </children>
 </AnchorPane>
