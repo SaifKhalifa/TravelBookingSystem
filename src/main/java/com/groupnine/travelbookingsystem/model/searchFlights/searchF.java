@@ -14,7 +14,7 @@ public class searchF {
     private int bookingId;
 
     @Column(name = "destination", nullable = false)
-    private String destination;
+    private static String destination;
 
     @Column(name = "passenger_count", nullable = false)
     private int passengerCount;
@@ -35,6 +35,11 @@ public class searchF {
         this.checkOutDate = checkOutDate;
     }
 
+    public searchF(String destination, int passengerCount) {
+        this.passengerCount = passengerCount;
+        this.destination = destination;
+    }
+
     // Getters and Setters
     public int getBookingId() {
         return bookingId;
@@ -48,9 +53,10 @@ public class searchF {
         return destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public static void setDestination(String destination) {
+        searchF.destination = destination;
     }
+
 
     public int getPassengerCount() {
         return passengerCount;
@@ -87,4 +93,5 @@ public class searchF {
                 ", checkOutDate=" + checkOutDate +
                 '}';
     }
+
 }
