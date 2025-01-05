@@ -1,7 +1,5 @@
 package com.groupnine.travelbookingsystem.model.searchHotels;
 
-import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
-
 import javax.persistence.*;
 import java.sql.Date;
 

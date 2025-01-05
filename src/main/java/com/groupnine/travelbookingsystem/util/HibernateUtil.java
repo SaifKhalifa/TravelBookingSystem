@@ -4,8 +4,8 @@ package com.groupnine.travelbookingsystem.util;
 import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
 import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.FlightBookingModel; //sana
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelBookingModel;
 import com.groupnine.travelbookingsystem.model.customerManagment.Customer;
 
 

@@ -58,7 +58,7 @@ SessionFactory sessionFactory;
     }
 package com.groupnine.travelbookingsystem.model.BookingFlight;
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelBookingModel;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

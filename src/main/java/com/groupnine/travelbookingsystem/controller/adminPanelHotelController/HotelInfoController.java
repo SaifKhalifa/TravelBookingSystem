@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelDAOImpl;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

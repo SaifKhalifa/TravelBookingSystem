@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.model.BookingHotel;
+package com.groupnine.travelbookingsystem.model.toRemove.BookingHotel;
 
 import java.sql.Date;
 import java.util.List;

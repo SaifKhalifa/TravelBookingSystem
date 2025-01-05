@@ -1,4 +1,4 @@
-package com.groupnine.travelbookingsystem.model.BookingHotel;
+package com.groupnine.travelbookingsystem.model.toRemove.BookingHotel;
 
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
