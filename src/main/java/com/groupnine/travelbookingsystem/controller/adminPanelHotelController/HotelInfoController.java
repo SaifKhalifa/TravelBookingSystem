@@ -382,6 +382,7 @@ public class HotelInfoController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
+            hotelConfirmAddEditController.setPrimaryStage(primaryStage);
             // Show the popup
             stage.showAndWait();
 
@@ -842,5 +843,11 @@ public class HotelInfoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 }

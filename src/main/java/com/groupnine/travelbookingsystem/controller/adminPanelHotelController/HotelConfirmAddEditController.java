@@ -32,7 +32,7 @@ public class HotelConfirmAddEditController {
             popupStage.close();
 
             // الوصول إلى الـ Stage الرئيسي (Stage الخاص بـ Hotel Info)
-            Stage primaryStage = (Stage) popupStage.getOwner();
+            //  Stage primaryStage = (Stage) popupStage.getOwner();
 
             // تحميل صفحة Hotel List
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml"));
@@ -62,4 +62,9 @@ public class HotelConfirmAddEditController {
         ConfirmLabel.setText(titleText);
     }
 
+    Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 }

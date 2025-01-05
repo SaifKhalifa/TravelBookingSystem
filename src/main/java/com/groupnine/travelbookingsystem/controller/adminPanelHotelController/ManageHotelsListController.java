@@ -173,6 +173,8 @@ public class ManageHotelsListController {
         Stage primaryStage = (Stage) AddHotelBtn.getScene().getWindow();
         primaryStage.setScene(secondScene);
         primaryStage.setTitle("Hotel Information");
+
+        hotelInfoController.setPrimaryStage(primaryStage);
         primaryStage.show();
 
     }
