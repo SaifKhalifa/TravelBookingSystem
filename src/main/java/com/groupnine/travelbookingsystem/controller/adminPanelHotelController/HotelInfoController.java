@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotel.Hotel;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -334,7 +334,7 @@ public class HotelInfoController {
             // Set the photos collected earlier
             hotel.setPhotos(String.join(",", photoPaths));
 
-            hotelDOAImp.insert(hotel);
+            hotelDOAImp.addHotel(hotel);
 
 
         }

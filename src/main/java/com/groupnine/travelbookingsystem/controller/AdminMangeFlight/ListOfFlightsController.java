@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
 import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
-import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.ImpAdminFlightInterface;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

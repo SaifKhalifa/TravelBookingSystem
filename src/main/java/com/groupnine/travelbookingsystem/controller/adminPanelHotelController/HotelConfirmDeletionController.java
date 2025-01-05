@@ -1,6 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightInterface;
-import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightInterface;
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.ImpAdminFlightInterface;
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

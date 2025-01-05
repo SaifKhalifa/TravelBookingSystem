@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.BookingFlight.BookingFlightDeo;
-import com.groupnine.travelbookingsystem.model.BookingFlight.BookingFlightDeoImp;
-import com.groupnine.travelbookingsystem.model.BookingFlight.BookingFlightModel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightDeo;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightDeoImp;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightModel;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
 import javafx.fxml.FXML;

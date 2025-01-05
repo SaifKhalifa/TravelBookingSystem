@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBooking;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,7 +116,7 @@ public class HotelBookingController {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            HotelBookingModel hotelModel = session.get(HotelBookingModel.class, Integer.parseInt(hotel.getHotelId()));
+            HotelBooking hotelModel = session.get(HotelBooking.class, Integer.parseInt(hotel.getHotelId()));
             if (hotelModel != null) {
                 hotelModel.setStatus(hotel.getStatus());
                 session.update(hotelModel);

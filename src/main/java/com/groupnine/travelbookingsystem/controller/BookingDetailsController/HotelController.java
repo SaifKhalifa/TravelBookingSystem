@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.HotelDetalisModel.HotelDetailsDeoImp;
-import com.groupnine.travelbookingsystem.model.HotelDetalisModel.HotelDetalisModel;
+import com.groupnine.travelbookingsystem.model.toRemove.HotelDetalisModel.HotelDetailsDeoImp;
+import com.groupnine.travelbookingsystem.model.toRemove.HotelDetalisModel.HotelDetalisModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

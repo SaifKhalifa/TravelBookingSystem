@@ -1,10 +1,10 @@
 package com.groupnine.travelbookingsystem.util;
 
 
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel; //sana
+import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.FlightBookingModel; //sana
 import com.groupnine.travelbookingsystem.model.userMangment.User;
-//import com.groupnine.travelbookingsystem.model.rahaf.BookingFlightModel;
+//import com.groupnine.travelbookingsystem.model.toRemove.rahaf.BookingFlightModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;

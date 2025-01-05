@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.FlightBookingModel;
+import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.FlightDAOImp;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
