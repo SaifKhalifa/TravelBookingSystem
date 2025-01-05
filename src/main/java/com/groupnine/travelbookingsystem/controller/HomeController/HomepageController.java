@@ -1,23 +1,16 @@
 package com.groupnine.travelbookingsystem.controller.HomeController;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
-import com.groupnine.travelbookingsystem.controller.BookingController.HotelBookingController;
 import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
 import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
-import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
 import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
 import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
 import com.groupnine.travelbookingsystem.model.customerManagment.CustomerDAOImpl;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.time.format.DateTimeFormatter;
@@ -87,7 +80,7 @@ public class HomepageController {
     private FlightDAOImp flightDAOImp = new FlightDAOImp();
 
     public void initialize() {
-        vbox.setStyle("-fx-background-image: url('" + getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/space.png") + "');");
+        vbox.setStyle("-fx-background-image: url('" + getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/space.jpg") + "');");
 
         // استرجاع البيانات من MainApplication_DEFAULT
         String loggedInUser = MainApplication_DEFAULT.getLoggedInUser();
