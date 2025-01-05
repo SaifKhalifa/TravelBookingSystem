@@ -1,8 +1,10 @@
 package com.groupnine.travelbookingsystem.util;
 
-import com.groupnine.travelbookingsystem.model.Users;
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
 
+import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel; //sana
+import com.groupnine.travelbookingsystem.model.userMangment.User;
+//import com.groupnine.travelbookingsystem.model.rahaf.BookingFlightModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -23,7 +25,9 @@ public class HibernateUtil {
 
 
             configuration.addAnnotatedClass(AdminFlightModel.class);  // Ensure User class is mapped
-            configuration.addAnnotatedClass(Users.class);
+            configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(FlightBookingModel.class);
+           // configuration.addAnnotatedClass(BookingFlightModel.class);
 
             configuration.configure();
 

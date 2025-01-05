@@ -1,10 +1,10 @@
-package com.groupnine.travelbookingsystem.model.BookingFlight;
+package com.groupnine.travelbookingsystem.model.rahaf;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class BookingFlightDeoImp implements BookingFlightDeo{
+public class BookingFlightDeoImp implements BookingFlightDeo {
     private SessionFactory sessionFactory;
 
     public BookingFlightDeoImp(SessionFactory sessionFactory) {
