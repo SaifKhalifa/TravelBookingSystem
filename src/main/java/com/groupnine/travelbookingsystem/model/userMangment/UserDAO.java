@@ -17,4 +17,7 @@ public interface UserDAO {
     String getUserAddressByUsername(String username);
 
     void updateLastLogin(String username);
+
+    // to get Last Logged-In Agent
+    User getLastLoggedInAgent();
 }

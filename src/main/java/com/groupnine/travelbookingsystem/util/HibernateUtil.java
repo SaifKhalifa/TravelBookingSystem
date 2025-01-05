@@ -1,6 +1,9 @@
 package com.groupnine.travelbookingsystem.util;
 
+import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
 import com.groupnine.travelbookingsystem.model.BookingHotel.Hotel;
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
+import com.groupnine.travelbookingsystem.model.customerManagment.Customer;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,6 +24,9 @@ public class HibernateUtil {
             Configuration configuration = new Configuration();
             configuration.addAnnotatedClass(User.class);  // Ensure User class is mapped
             configuration.addAnnotatedClass(Hotel.class);
+            configuration.addAnnotatedClass(Customer.class);
+            configuration.addAnnotatedClass(FlightBookingModel.class);
+            configuration.addAnnotatedClass(HotelBookingModel.class);
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder()

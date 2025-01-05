@@ -1,8 +1,11 @@
 package com.groupnine.travelbookingsystem.model.BookingFlight;
 
+import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -56,4 +59,68 @@ SessionFactory sessionFactory;
             throw new RuntimeException("Error updating flight status. Please try again later.", e);
         }
     }
+
+
+    // get the number of bookings
+    public long getBookingsCount() {
+        long count = 0;
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query<Long> query = session.createQuery("SELECT COUNT(b) FROM FlightBookingModel b", Long.class);
+            count = query.getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            System.out.println("Error fetching booking count: " + e.getMessage());
+        }
+
+        return count;
+    }
+
+
+    // get the last flight booking
+    public List<FlightBookingModel> getLastBooking() {
+        Transaction transaction = null;
+        List<FlightBookingModel> lastBooking = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            // جلب آخر حجز
+            Query<FlightBookingModel> query = session.createQuery(
+                    "FROM FlightBookingModel ORDER BY flightId DESC", FlightBookingModel.class
+            );
+            query.setMaxResults(1); // تحديد نتيجة واحدة
+
+            lastBooking = query.getResultList();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+        return lastBooking;
+    }
+
+    // get the number of Flights
+//    public long getFlightsCount() {
+//        long count = 0;
+//        Transaction transaction = null;
+//
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            transaction = session.beginTransaction();
+//            Query<Long> query = session.createQuery("SELECT COUNT(f) FROM Flight f", Long.class);
+//            count = query.getSingleResult();
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) transaction.rollback();
+//            System.out.println("Error fetching flight count: " + e.getMessage());
+//        }
+//
+//        return count;
+//    }
+
+
 }

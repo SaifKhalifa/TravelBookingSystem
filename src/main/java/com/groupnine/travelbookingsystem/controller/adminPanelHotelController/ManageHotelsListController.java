@@ -190,7 +190,6 @@ public class ManageHotelsListController {
         // Get all columns from TableView
         tableView.getColumns().forEach(column -> {
             column.setResizable(true);
-            // column.setPrefWidth(100); // Set a default width
         });
 
         // Optionally, set dynamic width for each column based on the percentage of total width
