@@ -1,39 +1,48 @@
 package com.groupnine.travelbookingsystem.util;
-
+import com.groupnine.travelbookingsystem.model.Users;
+import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import com.groupnine.travelbookingsystem.model.AdminFlightModel;
+
 
 public class HibernateUtil {
 
-    private static volatile HibernateUtil instance = null;
-    private static volatile SessionFactory sessionFactory;
+    private static HibernateUtil instance = null;
+
+    private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
     private HibernateUtil(){
-        Configuration configuration = new Configuration();
-        // Add your model classes
-        configuration.addAnnotatedClass(AdminFlightModel.class);
-        configuration.configure();  // Load hibernate.cfg.xml
+        try {
+            Configuration configuration = new Configuration();
+
+            configuration.addAnnotatedClass(AdminFlightModel.class);  // Ensure User class is mapped
+            configuration.addAnnotatedClass(Users.class);
+            configuration.configure();
+
+            serviceRegistry = new StandardServiceRegistryBuilder()
+                    .applySettings(configuration.getProperties())
+                    .build();
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ExceptionInInitializerError("Failed to initialize Hibernate: " + e.getMessage());
+        }
+        /*Configuration configuration = new Configuration();
+        configuration.configure();
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
     }
 
     public static HibernateUtil getInstance(){
-        if(instance == null) {
-            synchronized (HibernateUtil.class) {
-                if (instance == null) {
-                    instance = new HibernateUtil();
-                }
-            }
-        }
+        if(instance == null) instance = new HibernateUtil();
         return instance;
     }
 
-    public static SessionFactory getSessionFactory() {
+    public synchronized static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
