@@ -1,78 +1,39 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.model.HotelDetalisModel.HotelDetailsDeoImp;
+import com.groupnine.travelbookingsystem.model.HotelDetalisModel.HotelDetalisModel;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class HotelController {
 
-    @FXML private ImageView starsImage;
-    @FXML private Label hotelTitle;
-    @FXML private ImageView hotelImage;
-    @FXML private ImageView emptyImage1;
-    @FXML private ImageView emptyImage2;
-    @FXML private ImageView emptyImage3;
-    @FXML private ImageView emptyImage4;
-    @FXML private VBox aboutHotelBox;
-    @FXML private Label aboutHotelLabel;
-    @FXML private Label hotelDescription;
-    @FXML private VBox amenityBox;
-    @FXML private Label amenityLabel;
-    @FXML private HBox firstAmenityRow;
-    @FXML private Label swimmingPoolLabel;
-    @FXML private Label spaLabel;
-    @FXML private Label barLabel;
-    @FXML private Label restaurantLabel;
-    @FXML private HBox secondAmenityRow;
-    @FXML private Label breakfastLabel;
-    @FXML private Label wifiLabel;
-    @FXML private Label roomServiceLabel;
-    @FXML private HBox thirdAmenityRow;
-    @FXML private Label coastalLabel;
-    @FXML private Label fitnessLabel;
-    @FXML private Label airportShuttleLabel;
-    @FXML private Button bookNowButton;
-
     @FXML
-    public void handleBookNowButton() {
-        System.out.println("Button clicked: Booking now!");
+    private Label hotelTitleLabel;
+    @FXML
+    private Label hotelLocationLabel;
+    @FXML
+    private Label hotelPriceLabel;
+    @FXML
+    private Label hotelAmenitiesLabel;
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingHotel.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
+    private int hotelId;
 
-            stage.setTitle("Booking Hotel");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+        loadHotelDetails();
     }
 
-    @FXML
-    public void initialize() {
-        hotelTitle.setText("Condo To The Beach");
-        hotelDescription.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        swimmingPoolLabel.setText("Open Pool");
-        spaLabel.setText("SPA Center");
-        barLabel.setText("Bar");
-        restaurantLabel.setText("Restaurant");
-        breakfastLabel.setText("Breakfast Included");
-        wifiLabel.setText("Wi-Fi");
-        roomServiceLabel.setText("Room Service");
-        coastalLabel.setText("First Coastal");
-        fitnessLabel.setText("Fitness Center");
-        airportShuttleLabel.setText("Airport Shuttle");
+    private void loadHotelDetails() {
+        HotelDetailsDeoImp hotelDetailsDeo = new HotelDetailsDeoImp();
+        HotelDetalisModel hotel = hotelDetailsDeo.getHotelById(hotelId);
 
-        bookNowButton.setOnAction(event -> handleBookNowButton());
+        if (hotel != null) {
+            hotelTitleLabel.setText(hotel.getHotelName());
+            hotelLocationLabel.setText(hotel.getLocation());
+            hotelPriceLabel.setText("Price per Night: $" + hotel.getPricePerNight());
+            hotelAmenitiesLabel.setText("Amenities: " + hotel.getAmenities());
+        } else {
+            hotelTitleLabel.setText("No details available for this hotel.");
+        }
     }
 }

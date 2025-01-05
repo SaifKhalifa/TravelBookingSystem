@@ -1,10 +1,11 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.model.BookingHotel.BookingHotelDeo;
+import com.groupnine.travelbookingsystem.model.BookingHotel.BookingHotelModel;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.time.LocalDate;
 
 public class BookingHotelControoler {
 
@@ -12,13 +13,13 @@ public class BookingHotelControoler {
     private TextField hotelNameField;
 
     @FXML
-    private TextField checkOutDateField;
+    private DatePicker checkOutDatePicker;
 
     @FXML
     private TextField customerNameField;
 
     @FXML
-    private TextField checkInDateField;
+    private DatePicker checkInDatePicker;
 
     @FXML
     private Button bookingButton;
@@ -34,20 +35,36 @@ public class BookingHotelControoler {
 
     @FXML
     private Label checkInDateLabel;
+    private int hotelId;
+    private BookingHotelDeo bookingHotelDeo;
+
+    public BookingHotelControoler() {
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+        System.out.println("Received hotelId: " + hotelId);
+    }
 
     @FXML
     private void onBookingButtonClick() {
-
         String hotelName = hotelNameField.getText();
         String customerName = customerNameField.getText();
-        String checkInDate = checkInDateField.getText();
-        String checkOutDate = checkOutDateField.getText();
+        LocalDate checkInDate = checkInDatePicker.getValue();
+        LocalDate checkOutDate = checkOutDatePicker.getValue();
 
-        System.out.println("Hotel Name: " + hotelName);
-        System.out.println("Customer Name: " + customerName);
-        System.out.println("Check-In Date: " + checkInDate);
-        System.out.println("Check-Out Date: " + checkOutDate);
-        System.out.println("Button clicked!");
+        if (hotelName.isEmpty() || customerName.isEmpty() || checkInDate == null || checkOutDate == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please fill in all fields correctly.");
+            alert.showAndWait();
+            return;
+        }
+
+        BookingHotelModel booking = new BookingHotelModel(hotelName, customerName, checkInDate, checkOutDate);
+
+        bookingHotelDeo.saveBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Booking Confirmation");
