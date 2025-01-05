@@ -54,7 +54,8 @@ module com.groupnine.travelbookingsystem {
     //booking details
     exports com.groupnine.travelbookingsystem.controller.BookingDetailsController;
     opens com.groupnine.travelbookingsystem.controller.BookingDetailsController to javafx.fxml;
-
+    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
+  
     //search page
     exports com.groupnine.travelbookingsystem.controller.SearchPageControllers;
     opens com.groupnine.travelbookingsystem.controller.SearchPageControllers to javafx.fxml;
@@ -67,10 +68,16 @@ module com.groupnine.travelbookingsystem {
 
     exports com.groupnine.travelbookingsystem.otherApplications.Sana;
 
+
     opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core,javafx.base, javafx.fxml;
-    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
+ 
 
     opens com.groupnine.travelbookingsystem.model.BookingHotel to javafx.base, javafx.fxml, org.hibernate.orm.core;
     opens com.groupnine.travelbookingsystem.model.customerManagment to javafx.base, javafx.fxml, org.hibernate.orm.core;
+
+
+   
+    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
+
 
 }
