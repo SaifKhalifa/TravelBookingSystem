@@ -8,6 +8,7 @@ import java.sql.Date;
 @Table(name = "hotel_booking")
 public class HotelBookingModel {
 
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
