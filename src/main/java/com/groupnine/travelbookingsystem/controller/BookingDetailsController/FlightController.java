@@ -1,8 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightDeo;
-import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightDeoImp;
-import com.groupnine.travelbookingsystem.model.toRemove.BookingFlight.BookingFlightModel;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBooking;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBookingDAOImpl;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
 import javafx.fxml.FXML;
@@ -35,25 +34,10 @@ public class FlightController {
     @FXML
     private Button bookingButton;
 
-    private BookingFlightDeo bookingFlightDeo;
+    private FlightBookingDAOImpl bookingFlightDeo;
 
     private int flightId; // Flight ID passed dynamically
 
-    // Constructor to initialize Hibernate
-    public FlightController() {
-        Configuration configuration = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(BookingFlightModel.class)
-                .addAnnotatedClass(User.class);
-
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties())
-                .build();
-
-        SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-        this.bookingFlightDeo = new BookingFlightDeoImp(sessionFactory);
-    }
 
     // Method to dynamically set the flight ID
     public void setFlightId(int flightId) {
@@ -87,16 +71,16 @@ public class FlightController {
             Date departureDateConverted = Date.valueOf(departureDate);
             Date arrivalDateConverted = Date.valueOf(arrivalDate);
 
-            BookingFlightModel booking = new BookingFlightModel();
-            booking.setCustomer_name(customerName);
-            booking.setDeparture_date(departureDateConverted);
-            booking.setAirline_name(airlineName);
-            booking.setAirline_date(arrivalDateConverted);
+            FlightBooking booking = new FlightBooking();
+
+            booking.setCustomerName(customerName);
+            booking.setDeparture(departureDateConverted);
+            booking.setAirline(airlineName);
+            booking.setArrival(arrivalDateConverted);
             booking.setBookingDate(new Date(System.currentTimeMillis()));
-            booking.setUserId(userId);
             booking.setFlightId(flightId);
 
-            bookingFlightDeo.saveBooking(booking);
+            bookingFlightDeo.addFlightBooking(booking);
 
             showAlert(Alert.AlertType.INFORMATION, "Success", "Flight booking completed successfully!");
         } catch (Exception e) {

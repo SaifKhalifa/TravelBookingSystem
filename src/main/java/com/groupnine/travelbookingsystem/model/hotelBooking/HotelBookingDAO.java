@@ -9,6 +9,8 @@ public interface HotelBookingDAO {
     //Reading
     List<HotelBooking> getAllHotelBookings();
     HotelBooking getHotelBookingById(int hotelBookingId);
+    HotelBooking getLatestHotelBooking();
+    long getBookingsCount();
 
     //Updating
     void updateHotelBookingStatus(int bookingId, String status);

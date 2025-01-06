@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
-import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.Hotel;
-import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotel.Hotel;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -560,9 +560,9 @@ public class HotelInfoController {
             hotel.setAmenities(AmenitiesString);
 
             // Set the photos collected earlier
-            hotel.setPhotos(String.join(",", photoPaths));
+            hotel.setPhotoPath(String.join(",", photoPaths));
 
-            hotelDOAImp.insert(hotel);
+            hotelDOAImp.addHotel(hotel);
 
 
         }
@@ -574,7 +574,7 @@ public class HotelInfoController {
         boolean isValid = checkValidation();
         if (isValid) {
             HotelDAOImpl hotelDAO = new HotelDAOImpl();
-            Hotel hotel = hotelDAO.getById(hotelId);
+            Hotel hotel = hotelDAO.getHotelById(hotelId);
 
             hotel.setName(HotelName.getText());
             hotel.setLocation(Location.getText());
@@ -628,9 +628,9 @@ public class HotelInfoController {
             String AmenitiesString = String.join(",", selectedAmenities);
             hotel.setAmenities(AmenitiesString);
 
-            hotel.setPhotos(String.join(",", photoPaths));
+            hotel.setPhotoPath(String.join(",", photoPaths));
 
-            hotelDAO.update(hotel);
+            hotelDAO.updateHotel(hotel);
 
         }
         return isValid;
@@ -638,9 +638,9 @@ public class HotelInfoController {
 
     private void loadHotelPhotos(int hotelId) {
         HotelDAOImpl hotelDAO = new HotelDAOImpl();
-        Hotel hotel = hotelDAO.getById(hotelId);
+        Hotel hotel = hotelDAO.getHotelById(hotelId);
 
-        if (hotel != null && hotel.getPhotos() != null && !hotel.getPhotos().isEmpty()) {
+        if (hotel != null && hotel.getPhotoPath() != null && !hotel.getPhotoPath().isEmpty()) {
             GridPhotos.getChildren().clear();
             int row = 0;
             int column = 0;
@@ -648,7 +648,7 @@ public class HotelInfoController {
 
             try {
                 // تقسيم النصوص المخزنة في photos إلى قائمة مسارات
-                String[] photoPaths = hotel.getPhotos().split(",");
+                String[] photoPaths = hotel.getPhotoPath().split(",");
 
                 for (String path : photoPaths) {
                     if (row > 2) break; // الحد الأقصى 3 صفوف
@@ -702,7 +702,7 @@ public class HotelInfoController {
     private void loadHotelData() {
         HotelDAOImpl hotelDAO = new HotelDAOImpl();
         Hotel hotel;
-        hotel = hotelDAO.getById(hotelId);
+        hotel = hotelDAO.getHotelById(hotelId);
 
         if (hotel != null) {
             try {

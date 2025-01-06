@@ -42,6 +42,7 @@ public class FlightDAOImpl implements FlightDAO {
         }
     }
 
+
     @Override
     public void updateFlight(Flight flight) {
         Transaction transaction = null;

@@ -16,7 +16,7 @@ public class HotelConfirmDeletionController {
 
     @FXML
     public void onYesButtonClick() {
-        hotelDOAImp.delete(this.hotelID);
+        hotelDOAImp.deleteHotelById(this.hotelID);
         Stage stage = (Stage) YesButton.getScene().getWindow();
         stage.close();
         // تحديث الجدول بعد الحذف

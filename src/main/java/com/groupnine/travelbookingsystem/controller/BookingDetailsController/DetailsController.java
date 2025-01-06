@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.toRemove.FlightDetalisModel.FlightDeatailsModel;
-import com.groupnine.travelbookingsystem.model.toRemove.FlightDetalisModel.FlightDetailsDeoImpl;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -53,14 +53,14 @@ public class DetailsController {
         airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
 */
 
-        FlightDetailsDeoImpl dao = new FlightDetailsDeoImpl();
-        FlightDeatailsModel flightDetails = dao.getFlightDetails(flightId);
+        FlightDAOImpl dao = new FlightDAOImpl();
+        Flight flightDetails = dao.getFlightById(flightId);
 
         if (flightDetails != null) {
             departureLabel.setText("Departure Time: " + flightDetails.getDepartureTime());
             arrivalLabel.setText("Arrival Time: " + flightDetails.getArrivalTime());
             durationLabel.setText("Flight Duration: " + flightDetails.getFlightDuration());
-            airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
+            //airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
             departureAirportLabel.setText("Departure Airport: " + flightDetails.getDepartureAirport());
             arrivalAirportLabel.setText("Arrival Airport: " + flightDetails.getArrivalAirport());
             priceLabel.setText("Price: $" + flightDetails.getPrice());

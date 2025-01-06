@@ -54,38 +54,24 @@ module com.groupnine.travelbookingsystem {
     //booking details
     exports com.groupnine.travelbookingsystem.controller.BookingDetailsController;
     opens com.groupnine.travelbookingsystem.controller.BookingDetailsController to javafx.fxml;
-    opens com.groupnine.travelbookingsystem.model.toRemove.BookingFlight to org.hibernate.orm.core;
-  
+
     //search page
     exports com.groupnine.travelbookingsystem.controller.SearchPageControllers;
     opens com.groupnine.travelbookingsystem.controller.SearchPageControllers to javafx.fxml;
     exports com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
     opens com.groupnine.travelbookingsystem.controller.ResultSearchControllers to javafx.fxml;
 
-    //TO REMOVE LATER:
-    exports com.groupnine.travelbookingsystem.otherApplications;
-    opens com.groupnine.travelbookingsystem.otherApplications to javafx.fxml;
-
-    exports com.groupnine.travelbookingsystem.otherApplications.Sana;
-    opens com.groupnine.travelbookingsystem.model.toRemove.BookingFlight to org.hibernate.orm.core;
-
-
-    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core,javafx.base, javafx.fxml;
- 
-
-    opens com.groupnine.travelbookingsystem.model.toRemove.BookingHotel to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    //models
     opens com.groupnine.travelbookingsystem.model.customerManagment to javafx.base, javafx.fxml, org.hibernate.orm.core;
-
-
-   
+    opens com.groupnine.travelbookingsystem.model.flight to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.hotel to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.flightBooking to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.hotelBooking to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.resultSearchFlights to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.resultSearchHotels to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.searchFlights to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.searchHotels to javafx.base, javafx.fxml, org.hibernate.orm.core;
     opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
-
-
-    exports com.groupnine.travelbookingsystem.otherApplications.Roaa;
 
     // Hibernate model exports
-    opens com.groupnine.travelbookingsystem.model.BookingFlight to org.hibernate.orm.core;
-    opens com.groupnine.travelbookingsystem.model.toRemove.BookingHotel to org.hibernate.orm.core;
-    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
-//    exports com.groupnine.travelbookingsystem.model.toRemove.BookingHotel;
 }

@@ -11,8 +11,6 @@ import java.sql.Date;
 import java.util.List;
 
 public class HotelDAOImpl implements HotelDAO {
-    private SessionFactory sessionFactory;
-public class HotelDAOImpl implements HotelDOA {
     SessionFactory sessionFactory;
     HibernateUtil hibernateUtil;
 
@@ -76,7 +74,7 @@ public class HotelDAOImpl implements HotelDOA {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteHotelById(int id) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         Hotel hotel = session.get(Hotel.class, id);
@@ -93,93 +91,5 @@ public class HotelDAOImpl implements HotelDOA {
         Hotel hotel = session.get(Hotel.class, id);
         session.close();
         return hotel;
-    }
-
-    @Override
-    public List<HotelBooking> getAllBookings() {
-        Session session = sessionFactory.openSession();
-        Query<HotelBooking> query = session.createQuery("FROM HotelBooking", HotelBooking.class);
-        List<HotelBooking> bookings = query.list();
-        session.close();
-        return bookings;
-    }
-
-    @Override
-    public void saveBooking(HotelBooking hotelBooking) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(hotelBooking);
-        tx.commit();
-        session.close();
-    }
-
-    @Override
-    public void updateBookingStatus(int bookingId, String status) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        HotelBooking booking = session.get(HotelBooking.class, bookingId);
-        if (booking != null) {
-            booking.setStatus(status);
-            session.update(booking);
-        }
-        tx.commit();
-        session.close();
-    }
-
-    @Override
-    public void updateBooking(int bookingId, String customerName, Date checkIn, Date checkOut, String status) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        HotelBooking booking = session.get(HotelBooking.class, bookingId);
-        if (booking != null) {
-            booking.setCustomerName(customerName);
-            booking.setCheckIn(checkIn);
-            booking.setCheckOut(checkOut);
-            booking.setStatus(status);
-            session.update(booking);
-        }
-        tx.commit();
-        session.close();
-    }
-
-    // get the number of bookings
-    public long getBookingsCount() {
-        long count = 0;
-        Transaction transaction = null;
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            Query<Long> query = session.createQuery("SELECT COUNT(b) FROM HotelBookingModel b", Long.class);
-            count = query.getSingleResult();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            System.out.println("Error fetching booking count: " + e.getMessage());
-        }
-
-        return count;
-    }
-
-    public List<HotelBookingModel> getLastBooking() {
-        Transaction transaction = null;
-        List<HotelBookingModel> lastBooking = null;
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-
-            // جلب آخر حجز
-            Query<HotelBookingModel> query = session.createQuery(
-                    "FROM HotelBookingModel ORDER BY id DESC", HotelBookingModel.class
-            );
-            query.setMaxResults(1); // تحديد نتيجة واحدة
-
-            lastBooking = query.getResultList();
-
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        }
-        return lastBooking;
     }
 }

@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
-import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightInterface;
-import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.ImpAdminFlightInterface;
-import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAO;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -125,7 +125,7 @@ public class AddFlightController {
             }
 
             // Create or update flight model object
-            AdminFlightModel flight = new AdminFlightModel();
+            Flight flight = new Flight();
             flight.setOrigin(origin.getText());
             flight.setDestination(destination.getText());
             flight.setDepartureTime(parsedDepartureTime);
@@ -141,7 +141,7 @@ public class AddFlightController {
             flight.setPromotionalOffer(String.valueOf(parsedPromotionalOffer));
             flight.setImagePath(selectedImageFile.getAbsolutePath());
             // Create service
-            ImpAdminFlightInterface service = new ImpAdminFlightInterface();
+            FlightDAOImpl service = new FlightDAOImpl();
 
             if (currentFlightId == -1) {
                 // Add new flight
@@ -167,8 +167,8 @@ public class AddFlightController {
 
     public void setFlightDataForEditing(int flightId) {
         try {
-            AdminFlightInterface adminFlightInterface = new ImpAdminFlightInterface();
-            AdminFlightModel flightData = adminFlightInterface.getFlightById(flightId);
+            FlightDAOImpl adminFlightInterface = new FlightDAOImpl();
+            Flight flightData = adminFlightInterface.getFlightById(flightId);
 
             if (flightData != null) {
                 origin.setText(flightData.getOrigin());

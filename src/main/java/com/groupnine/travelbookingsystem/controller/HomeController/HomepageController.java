@@ -1,11 +1,12 @@
 package com.groupnine.travelbookingsystem.controller.HomeController;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
-import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelBookingModel;
-import com.groupnine.travelbookingsystem.model.toRemove.BookingHotel.HotelDAOImpl;
 import com.groupnine.travelbookingsystem.model.customerManagment.CustomerDAOImpl;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBooking;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBookingDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBooking;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBookingDAOImpl;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
 import com.groupnine.travelbookingsystem.model.userMangment.UserDAOImpl;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class HomepageController {
 
@@ -76,8 +76,8 @@ public class HomepageController {
     private Button flightBtn;
 
     private final UserDAOImpl userDAOImp = new UserDAOImpl();
-    private HotelDAOImpl hotelDAOImp = new HotelDAOImpl();
-    private FlightDAOImp flightDAOImp = new FlightDAOImp();
+    private HotelBookingDAOImpl hotelBookingDAOImp = new HotelBookingDAOImpl();
+    private FlightBookingDAOImpl flightBookingDAOImp = new FlightBookingDAOImpl();
 
     public void initialize() {
         vbox.setStyle("-fx-background-image: url('" + getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/space.jpg") + "');");
@@ -91,14 +91,15 @@ public class HomepageController {
         roleLabel.setText(loggedInUserRole);
 
         HotelDAOImpl hotelDAO = new HotelDAOImpl();
+        HotelBookingDAOImpl hotelBookingDAO = new HotelBookingDAOImpl();
         CustomerDAOImpl customerDAO = new CustomerDAOImpl();
-        FlightDAOImp flightDAO = new FlightDAOImp();
+        FlightBookingDAOImpl flightBookingDAO = new FlightBookingDAOImpl();
 
 
         long countHotel = hotelDAO.getHotelsCount();
-//        long countFlight= flightDAO.getFlightsCount();
-        long countBookingHotel = hotelDAO.getBookingsCount();
-        long countBookingFlight = flightDAO.getBookingsCount();
+//        long countFlight= flightBookingDAO.getFlightsCount();
+        long countBookingHotel = hotelBookingDAO.getBookingsCount();
+        long countBookingFlight = flightBookingDAO.getBookingsCount();
         long countBookings = countBookingHotel + countBookingFlight;
         long countCustomer = customerDAO.getCustomersCount();
 
@@ -150,9 +151,19 @@ public class HomepageController {
         hotelBookingContainer.setVisible(false); // إخفاء حجوزات الفنادق
 
         // تحميل آخر حجز طيران
-        List<FlightBookingModel> lastBooking = flightDAOImp.getLastBooking();
+        FlightBooking lastBooking = flightBookingDAOImp.getLatestFlightBooking();
 
-        if (lastBooking != null && !lastBooking.isEmpty()) {
+        if (lastBooking != null) {
+            // تعبئة البيانات في الـ Labels
+            flightBookingID.setText(String.valueOf(lastBooking.getFlightId()));
+            customerNameFlight.setText(lastBooking.getCustomerName());
+            airline.setText(lastBooking.getAirline());
+            bookingDateFlight.setText(lastBooking.getBookingDate().toString());
+            departure.setText(lastBooking.getDeparture().toString());
+            arrival.setText(lastBooking.getArrival().toString());
+            statusFlight.setText(lastBooking.getStatus());
+        }
+        /*if (lastBooking != null && !lastBooking.isEmpty()) {
             FlightBookingModel booking = lastBooking.get(0);
 
             // تعبئة البيانات في الـ Labels
@@ -163,7 +174,7 @@ public class HomepageController {
             departure.setText(booking.getDeparture().toString());
             arrival.setText(booking.getArrival().toString());
             statusFlight.setText(booking.getStatus());
-        }
+        }*/
     }
 
 
@@ -177,9 +188,20 @@ public class HomepageController {
         flightBookingContainer.setVisible(false); // إخفاء حجوزات الطيران
 
         // تحميل آخر حجز فندق
-        List<HotelBookingModel> lastBooking = hotelDAOImp.getLastBooking();
+        HotelBooking lastBooking = hotelBookingDAOImp.getLatestHotelBooking();
 
-        if (lastBooking != null && !lastBooking.isEmpty()) {
+        if (lastBooking != null) {
+            // تعبئة البيانات في الـ Labels
+            hotelBookingID.setText(String.valueOf(lastBooking.getId()));
+            customerNameHotel.setText(lastBooking.getCustomerName());
+            hotelName.setText(lastBooking.getHotel().getName());
+            bookingDateHotel.setText(lastBooking.getBookingDate().toString());
+            checkIn.setText(lastBooking.getCheckIn().toString());
+            checkOut.setText(lastBooking.getCheckOut().toString());
+            statusHotel.setText(lastBooking.getStatus());
+        }
+
+        /*if (lastBooking != null && !lastBooking.isEmpty()) {
             HotelBookingModel booking = lastBooking.get(0);
 
             // تعبئة البيانات في الـ Labels
@@ -190,6 +212,6 @@ public class HomepageController {
             checkIn.setText(booking.getCheckIn().toString());
             checkOut.setText(booking.getCheckOut().toString());
             statusHotel.setText(booking.getStatus());
-        }
+        }*/
     }
 }

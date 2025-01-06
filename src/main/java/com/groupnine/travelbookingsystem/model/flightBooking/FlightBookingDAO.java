@@ -9,6 +9,8 @@ public interface FlightBookingDAO {
     //Reading
     List<FlightBooking> getAllFlightBookings();
     void getFlightBookingById(int flightBookingID);
+    long getBookingsCount();
+    FlightBooking getLatestFlightBooking();
 
     //Updating
     void updateFlightBookingStatus(int flightId, String status);

@@ -9,7 +9,6 @@ public interface HotelDAO {
     //Reading
     List<Hotel> getAllHotels();
     Hotel getHotelById(int id);
-    Hotel getHotelByName(String hotelName);
 
     //Updating
     void updateHotel(Hotel hotel);

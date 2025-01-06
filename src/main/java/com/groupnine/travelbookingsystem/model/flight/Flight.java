@@ -69,12 +69,20 @@ public class Flight {
         return flightId;
     }
 
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
+
     public LocalTime getDepartureTime() {
         return departureTime;
     }
 
     public LocalDate getDepartureDate() {
         return departureDate;
+    }
+
+    public String getArrivalAirport() {
+        return arrivalAirport;
     }
 
     public LocalTime getArrivalTime() {
@@ -126,12 +134,20 @@ public class Flight {
     }
 
     //Setters
+    public void setDepartureAirport(String departureAirport) {
+        this.departureAirport = departureAirport;
+    }
+
     public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 
     public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public void setArrivalAirport(String arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
     }
 
     public void setArrivalTime(LocalTime arrivalTime) {

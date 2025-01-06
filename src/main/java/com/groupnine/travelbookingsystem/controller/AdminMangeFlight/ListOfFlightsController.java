@@ -1,8 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
 import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
-import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.AdminFlightModel;
-import com.groupnine.travelbookingsystem.model.toRemove.AdminFlight.ImpAdminFlightInterface;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -66,7 +66,7 @@ public class ListOfFlightsController {
 
 
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
-    private final ImpAdminFlightInterface GetFlight = new ImpAdminFlightInterface();
+    private final FlightDAOImpl GetFlight = new FlightDAOImpl();
 
 
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -106,9 +106,9 @@ public class ListOfFlightsController {
 
     private void initializeTableData() {
         try {
-            List<AdminFlightModel> flights = GetFlight.getAllFlights();
+            List<Flight> flights = GetFlight.getFlights();
             ObservableList<FlightData> flightDataList = FXCollections.observableArrayList();
-            for (AdminFlightModel flight : flights) {
+            for (Flight flight : flights) {
                 flightDataList.add(new FlightData(
                         flight.getFlightId(),
                         flight.getOrigin(),
@@ -239,7 +239,7 @@ public class ListOfFlightsController {
                 try (Session session = sessionFactory.openSession()) {
                     Transaction transaction = session.beginTransaction();
 
-                    AdminFlightModel flight = session.get(AdminFlightModel.class, data.flightIdProperty().get());
+                    Flight flight = session.get(Flight.class, data.flightIdProperty().get());
 
                     if (flight != null) {
                         session.delete(flight);

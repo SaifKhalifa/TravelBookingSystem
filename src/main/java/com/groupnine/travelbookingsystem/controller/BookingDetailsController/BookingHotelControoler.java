@@ -1,5 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBooking;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBookingDAOImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -34,7 +36,7 @@ public class BookingHotelControoler {
     @FXML
     private Label checkInDateLabel;
     private int hotelId;
-    private BookingHotelDeo bookingHotelDeo;
+    private HotelBookingDAOImpl bookingHotelDeo;
 
     public BookingHotelControoler() {
     }
@@ -60,9 +62,9 @@ public class BookingHotelControoler {
             return;
         }
 
-        BookingHotelModel booking = new BookingHotelModel(hotelName, customerName, checkInDate, checkOutDate);
+        HotelBooking booking = new HotelBooking(hotelName, customerName, checkInDate, checkOutDate);
 
-        bookingHotelDeo.saveBooking(booking);
+        bookingHotelDeo.addHotelBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Booking Confirmation");

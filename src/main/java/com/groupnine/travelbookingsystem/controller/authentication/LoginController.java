@@ -104,6 +104,7 @@ public class LoginController {
 
                     MainApplication_DEFAULT.setLoggedInUser(user.getName());
                     MainApplication_DEFAULT.setLoggedInUserRole(user.getRole());
+                    MainApplication_DEFAULT.setLoggedInUserId(user.getId());
 
                     MainApplication_DEFAULT.loadScene(
                             "/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml",

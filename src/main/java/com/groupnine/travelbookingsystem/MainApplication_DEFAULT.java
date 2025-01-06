@@ -12,6 +12,7 @@ import java.io.IOException;
 public class MainApplication_DEFAULT extends Application {
     // app data
     private static String loggedInUser = "", loggedInUserRole = "";
+    private static int loggedInUserId = 0;
     private static Stage primaryStage;
 
     //--------------------------------------------------------------------------
@@ -30,6 +31,13 @@ public class MainApplication_DEFAULT extends Application {
 
     public static void setLoggedInUserRole(String loggedInUserRole) {
         MainApplication_DEFAULT.loggedInUserRole = loggedInUserRole;
+    }
+    public static int getLoggedInUserId() {
+        return loggedInUserId;
+    }
+
+    public static void setLoggedInUserId(int loggedInUserId) {
+        MainApplication_DEFAULT.loggedInUserId = loggedInUserId;
     }
 
     //--------------------------------------------------------------------------

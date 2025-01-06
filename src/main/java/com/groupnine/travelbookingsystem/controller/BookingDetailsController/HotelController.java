@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.toRemove.HotelDetalisModel.HotelDetailsDeoImp;
-import com.groupnine.travelbookingsystem.model.toRemove.HotelDetalisModel.HotelDetalisModel;
+import com.groupnine.travelbookingsystem.model.hotel.Hotel;
+import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -24,11 +24,11 @@ public class HotelController {
     }
 
     private void loadHotelDetails() {
-        HotelDetailsDeoImp hotelDetailsDeo = new HotelDetailsDeoImp();
-        HotelDetalisModel hotel = hotelDetailsDeo.getHotelById(hotelId);
+        HotelDAOImpl hotelDetailsDeo = new HotelDAOImpl();
+        Hotel hotel = hotelDetailsDeo.getHotelById(hotelId);
 
         if (hotel != null) {
-            hotelTitleLabel.setText(hotel.getHotelName());
+            hotelTitleLabel.setText(hotel.getName());
             hotelLocationLabel.setText(hotel.getLocation());
             hotelPriceLabel.setText("Price per Night: $" + hotel.getPricePerNight());
             hotelAmenitiesLabel.setText("Amenities: " + hotel.getAmenities());
