@@ -88,7 +88,6 @@ public class SearchPageFlightsController {
     // Handle Flights button click
     @FXML
     private void handleFlightsButton() {
-        //setActiveTab(flightsBox);
         MainApplication_DEFAULT.loadScene(
                 "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml",
                 "Flights",
@@ -101,7 +100,6 @@ public class SearchPageFlightsController {
     // Handle Hotels button click
     @FXML
     private void handleHotelsButton() {
-        //setActiveTab(flightsBox);
         MainApplication_DEFAULT.loadScene(
                 "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml",
                 "Hotels",
