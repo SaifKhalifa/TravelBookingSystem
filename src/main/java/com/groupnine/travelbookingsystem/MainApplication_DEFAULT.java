@@ -3,8 +3,10 @@ package com.groupnine.travelbookingsystem;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,7 +43,15 @@ public class MainApplication_DEFAULT extends Application {
     }
 
     //--------------------------------------------------------------------------
-    public static void loadScene(String fxmlPath, String title, boolean resizable) {
+    public static void loadScene(String fxmlPath, String title, boolean resizable){
+        loadScene(fxmlPath, title, resizable, false);
+    }
+    public static void loadScene(String fxmlPath, String title, boolean resizable, boolean maximized) {
+        primaryStage.setMaximized(false);
+        primaryStage.setScene(null);
+        primaryStage.setResizable(true);
+        primaryStage.setFullScreen(false);
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource(fxmlPath));
             Parent root = fxmlLoader.load();
@@ -50,13 +60,21 @@ public class MainApplication_DEFAULT extends Application {
             primaryStage.setTitle(title);
             primaryStage.setResizable(resizable);
             primaryStage.setScene(newScene);
-            primaryStage.sizeToScene();  // Adjust stage size to fit content
+
+            if (maximized) {
+                primaryStage.setMaximized(true);  // Maximize after showing the stage
+            } else {
+                primaryStage.sizeToScene();  // Adjust to fit content if not maximized
+            }
             primaryStage.show();
+
+            //primaryStage.centerOnScreen();
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Failed to load scene: " + fxmlPath);
         }
     }
+
 
     //--------------------------------------------------------------------------
     @Override

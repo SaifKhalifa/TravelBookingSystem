@@ -109,6 +109,7 @@ public class LoginController {
                     MainApplication_DEFAULT.loadScene(
                             "/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml",
                             "Welcome " + user.getName() + "! - " + "(" + user.getRole() + ")",
+                            true,
                             true
                     );
                 }
