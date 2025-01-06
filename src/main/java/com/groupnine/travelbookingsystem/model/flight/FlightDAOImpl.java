@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.model.flight;
 
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,18 +8,12 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class FlightDAOImpl implements FlightDAO {
-    private SessionFactory sessionFactory;
-
     public FlightDAOImpl() {}
-    // Constructor with SessionFactory Injection
-    public FlightDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void addFlight(Flight flight) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.save(flight);
             transaction.commit();
@@ -30,14 +25,14 @@ public class FlightDAOImpl implements FlightDAO {
 
     @Override
     public List<Flight> getFlights() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Flight", Flight.class).list();
         }
     }
 
     @Override
     public Flight getFlightById(int flightId) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Flight.class, flightId);
         }
     }
@@ -46,7 +41,7 @@ public class FlightDAOImpl implements FlightDAO {
     @Override
     public void updateFlight(Flight flight) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.update(flight);
             transaction.commit();
@@ -59,7 +54,7 @@ public class FlightDAOImpl implements FlightDAO {
     @Override
     public void deleteFlightById(int flightId) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Flight flight = session.get(Flight.class, flightId);
             if (flight != null) {

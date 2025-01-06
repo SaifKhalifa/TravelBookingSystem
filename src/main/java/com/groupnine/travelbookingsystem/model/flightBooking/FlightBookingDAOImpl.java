@@ -2,6 +2,7 @@ package com.groupnine.travelbookingsystem.model.flightBooking;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,19 +10,12 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class FlightBookingDAOImpl implements FlightBookingDAO {
-    private SessionFactory sessionFactory;
-
     public FlightBookingDAOImpl() {}
-
-    // Constructor with SessionFactory Injection
-    public FlightBookingDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void addFlightBooking(FlightBooking flightBooking) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // Get logged-in user ID from the application context/session
@@ -46,14 +40,14 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
 
     @Override
     public List<FlightBooking> getAllFlightBookings() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from FlightBooking", FlightBooking.class).list();
         }
     }
 
     @Override
     public void getFlightBookingById(int flightBookingID) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             FlightBooking booking = session.get(FlightBooking.class, flightBookingID);
             if (booking != null) {
                 System.out.println(booking);
@@ -68,7 +62,7 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
         Transaction transaction = null;
         long count = 0;
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // HQL to count flight bookings
@@ -89,7 +83,7 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
         Transaction transaction = null;
         FlightBooking latestBooking = null;
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // HQL to fetch the latest hotel booking
@@ -109,7 +103,7 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
     @Override
     public void updateFlightBookingStatus(int flightId, String status) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             FlightBooking booking = session.get(FlightBooking.class, flightId);
             if (booking != null) {
@@ -126,7 +120,7 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
     @Override
     public void updateFlightBooking(FlightBooking flightBooking) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.update(flightBooking);
             transaction.commit();
@@ -139,7 +133,7 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
     @Override
     public void deleteFlightBookingById(int flightId) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             FlightBooking booking = session.get(FlightBooking.class, flightId);
             if (booking != null) {

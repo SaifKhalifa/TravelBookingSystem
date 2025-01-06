@@ -11,18 +11,9 @@ import java.sql.Date;
 import java.util.List;
 
 public class HotelDAOImpl implements HotelDAO {
-    SessionFactory sessionFactory;
-    HibernateUtil hibernateUtil;
-
-    public HotelDAOImpl() {
-        hibernateUtil = HibernateUtil.getInstance();
-        sessionFactory = hibernateUtil.getSessionFactory();
-    }
-
-    public HotelDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
+   
+    public HotelDAOImpl() {}
+    
     // دالة لاسترجاع عدد الفنادق
     public long getHotelsCount() {
         long count = 0;
@@ -48,7 +39,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public void addHotel(Hotel hotel) {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.save(hotel);
         tx.commit();
@@ -57,7 +48,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public List<Hotel> getAllHotels() {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Query<Hotel> query = session.createQuery("FROM Hotel", Hotel.class);
         List<Hotel> hotels = query.list();
         session.close();
@@ -66,7 +57,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public void updateHotel(Hotel hotel) {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.update(hotel);
         tx.commit();
@@ -75,7 +66,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public void deleteHotelById(int id) {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         Hotel hotel = session.get(Hotel.class, id);
         if (hotel != null) {
@@ -87,7 +78,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public Hotel getHotelById(int id) {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Hotel hotel = session.get(Hotel.class, id);
         session.close();
         return hotel;

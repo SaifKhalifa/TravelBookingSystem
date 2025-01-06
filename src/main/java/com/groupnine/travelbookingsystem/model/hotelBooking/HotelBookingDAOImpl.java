@@ -2,6 +2,7 @@ package com.groupnine.travelbookingsystem.model.hotelBooking;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.model.userMangment.User;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,18 +10,12 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class HotelBookingDAOImpl implements HotelBookingDAO {
-    private SessionFactory sessionFactory;
-
     public HotelBookingDAOImpl() {}
-    // Constructor with SessionFactory Injection
-    public HotelBookingDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void addHotelBooking(HotelBooking hotelBooking) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // Get logged-in user ID from the application context/session
@@ -44,14 +39,14 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
 
     @Override
     public List<HotelBooking> getAllHotelBookings() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from HotelBooking", HotelBooking.class).list();
         }
     }
 
     @Override
     public HotelBooking getHotelBookingById(int hotelBookingId) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(HotelBooking.class, hotelBookingId);
         }
     }
@@ -61,7 +56,7 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
         Transaction transaction = null;
         HotelBooking latestBooking = null;
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // HQL to fetch the latest hotel booking
@@ -83,7 +78,7 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
         Transaction transaction = null;
         long count = 0;
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             // HQL to count flight bookings
@@ -103,7 +98,7 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
     @Override
     public void updateHotelBookingStatus(int bookingId, String status) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             HotelBooking booking = session.get(HotelBooking.class, bookingId);
             if (booking != null) {
@@ -120,7 +115,7 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
     @Override
     public void updateHotelBooking(HotelBooking hotelBooking) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.update(hotelBooking);
             transaction.commit();
@@ -133,7 +128,7 @@ public class HotelBookingDAOImpl implements HotelBookingDAO {
     @Override
     public void deleteHotelBookingById(int hotelBookingId) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             HotelBooking booking = session.get(HotelBooking.class, hotelBookingId);
             if (booking != null) {
