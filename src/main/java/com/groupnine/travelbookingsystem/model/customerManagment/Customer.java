@@ -10,9 +10,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "customer_name")
-    private String customerName;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -22,8 +19,7 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    public Customer(String customerName, String phoneNumber, String address, String name) {
-        this.customerName = customerName;
+    public Customer(String phoneNumber, String address, String name) {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.name = name;
@@ -34,14 +30,6 @@ public class Customer {
 
     public int getId() {
         return id;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
     }
 
     public String getPhoneNumber() {

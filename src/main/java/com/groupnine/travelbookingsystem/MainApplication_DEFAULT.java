@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -72,6 +73,32 @@ public class MainApplication_DEFAULT extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Failed to load scene: " + fxmlPath);
+        }
+    }
+
+    public static void showPopup(String fxmlPath, String title, boolean resizable) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication_DEFAULT.class.getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            Stage popupStage = new Stage(); // Create a new Stage
+            Scene popupScene = new Scene(root);
+
+            popupStage.setTitle(title);
+            popupStage.setResizable(resizable);
+            popupStage.setScene(popupScene);
+
+            // Set the modality to block interaction with other windows
+            popupStage.initModality(Modality.WINDOW_MODAL);
+
+            // Set the owner to the primary stage
+            popupStage.initOwner(primaryStage);
+
+            // Show the popup
+            popupStage.showAndWait(); // Blocks until the popup is closed
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Failed to load popup scene: " + fxmlPath);
         }
     }
 

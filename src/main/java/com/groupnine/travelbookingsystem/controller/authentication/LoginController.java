@@ -138,6 +138,8 @@ public class LoginController {
     @FXML
     private void onCreateAccountButtonClick()
     {
+        AccountCreationController.showLogin = true;
+
         /*if(MainApplication_DEFAULT.getLoggedInUser() != null
             || !Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "")
             && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "Admin"))

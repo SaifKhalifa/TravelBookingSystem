@@ -1,6 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
+import com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController;
 import com.groupnine.travelbookingsystem.model.flight.Flight;
 import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
@@ -58,7 +60,7 @@ public class ListOfFlightsController {
     @FXML
     private TableColumn<FlightData, Void> editColumn;
     @FXML
-    private Button hotel;
+    private Button hotel, createAcctBtn;
     @FXML
     private Button addnewflight;
     @FXML
@@ -287,6 +289,16 @@ public class ListOfFlightsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createAccount(){
+        AccountCreationController.showLogin = false;
+
+        MainApplication_DEFAULT.showPopup(
+                "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                "Create New User Account",
+                false
+        );
     }
 
     public static class FlightData {

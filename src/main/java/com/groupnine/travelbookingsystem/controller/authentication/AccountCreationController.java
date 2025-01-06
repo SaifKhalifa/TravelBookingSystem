@@ -7,10 +7,12 @@ import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -18,7 +20,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class AccountCreationController {
-
+    public static boolean showLogin = true;
     @FXML
     private TextField nameTextField, usernameTextField, emailTextField, phoneNumberTextField, addressTextField, passwordTextField;
 
@@ -38,7 +40,17 @@ public class AccountCreationController {
     private Button passwordToggleButton, createAccountBtn;
 
     @FXML
+    private Group backToLoginBtn;
+
+    @FXML
     private void initialize() {
+        if (showLogin) {
+            backToLoginBtn.setVisible(true);
+        }
+        else {
+            backToLoginBtn.setVisible(false);
+        }
+
         if(!HibernateUtil.getInstance().isConnected())
         {
             statusLabel.setText("Error connecting to database");
