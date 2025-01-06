@@ -181,4 +181,6 @@ public class Flight {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public void setFlightId(int currentFlightId) { this.flightId = currentFlightId; }
 }
