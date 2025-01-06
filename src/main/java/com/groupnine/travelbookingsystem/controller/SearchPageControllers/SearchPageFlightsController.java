@@ -87,13 +87,6 @@ public class SearchPageFlightsController {
 
     // Handle Flights button click
     @FXML
-    private void handleFlightsButton000() {
-        System.out.println("Flights button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
-    }
-
-
-    @FXML
     private void handleFlightsButton() {
         //setActiveTab(flightsBox);
         MainApplication_DEFAULT.loadScene(
@@ -105,12 +98,6 @@ public class SearchPageFlightsController {
     }
 
 
-
-    @FXML
-    private void handleHotelsButton000() {
-        System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
-    }
     // Handle Hotels button click
     @FXML
     private void handleHotelsButton() {
