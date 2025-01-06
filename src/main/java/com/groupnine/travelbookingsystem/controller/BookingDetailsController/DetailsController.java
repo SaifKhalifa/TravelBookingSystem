@@ -34,7 +34,7 @@ public class DetailsController {
     // New method to set flightId dynamically
     public void setCardId(int cardId) {
         this.flightId = cardId;
-        loadFlightDetails(); // Load details for the provided cardId
+        loadFlightDetails();
     }
 
     @FXML
@@ -81,7 +81,6 @@ public class DetailsController {
             Scene scene = new Scene(loader.load());
 
             FlightController controller = loader.getController();
-
             controller.setFlightId(flightId);
 
             Stage stage = new Stage();
@@ -92,5 +91,6 @@ public class DetailsController {
             e.printStackTrace();
         }
     }
+
 
 }

@@ -34,12 +34,11 @@ public class FlightController {
     @FXML
     private Button bookingButton;
 
-    private FlightBookingDAOImpl bookingFlightDeo;
+    private FlightBookingDAOImpl bookingFlightDeo = new FlightBookingDAOImpl();
 
-    private int flightId; // Flight ID passed dynamically
+    private int flightId;
 
 
-    // Method to dynamically set the flight ID
     public void setFlightId(int flightId) {
         this.flightId = flightId;
     }
@@ -55,24 +54,16 @@ public class FlightController {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields.");
             return;
         }
-
+        if (flightId <= 0) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Invalid flight ID.");
+            return;
+        }
         try {
-            UserDAOImpl userDAO = new UserDAOImpl();
-            String username = "currentUser";
-            User user = userDAO.getUserByUsername(username);
-
-            if (user == null) {
-                showAlert(Alert.AlertType.ERROR, "Error", "User not found!");
-                return;
-            }
-
-            int userId = user.getId();
-
             Date departureDateConverted = Date.valueOf(departureDate);
             Date arrivalDateConverted = Date.valueOf(arrivalDate);
 
-            FlightBooking booking = new FlightBooking();
 
+            FlightBooking booking = new FlightBooking();
             booking.setCustomerName(customerName);
             booking.setDeparture(departureDateConverted);
             booking.setAirline(airlineName);
