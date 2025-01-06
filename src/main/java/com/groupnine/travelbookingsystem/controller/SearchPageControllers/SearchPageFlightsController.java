@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController;
 import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -85,17 +87,40 @@ public class SearchPageFlightsController {
 
     // Handle Flights button click
     @FXML
-    private void handleFlightsButton() {
+    private void handleFlightsButton000() {
         System.out.println("Flights button clicked");
         navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
     }
 
 
+    @FXML
+    private void handleFlightsButton() {
+        //setActiveTab(flightsBox);
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml",
+                "Flights",
+                true,
+                true
+        );
+    }
+
+
+
+    @FXML
+    private void handleHotelsButton000() {
+        System.out.println("Hotels button clicked");
+        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
+    }
     // Handle Hotels button click
     @FXML
     private void handleHotelsButton() {
-        System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
+        //setActiveTab(flightsBox);
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml",
+                "Hotels",
+                true,
+                true
+        );
     }
 
 
@@ -131,7 +156,13 @@ public class SearchPageFlightsController {
         String selectedDestination = cbDestination.getValue();
         searchF.setDestination(selectedDestination);
         System.out.println("Search button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml", "Search Results");
+        //navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml", "Search Results");
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchFlights.fxml",
+                "Search Results",
+                true,
+                true
+        );
         try {
             NavigationHelper.showResultsPage((Stage) btnSearch.getScene().getWindow());
         } catch (Exception e) {
