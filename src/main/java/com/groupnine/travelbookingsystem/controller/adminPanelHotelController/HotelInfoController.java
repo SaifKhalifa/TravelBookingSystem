@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 
@@ -149,13 +150,39 @@ public class HotelInfoController {
     public void SaveHotelInfoBtn() throws Exception {
         if (TitleInfo.getText().equals("Add a Hotel Information")) {
             if (saveHotelToDatabase()) {
-                SetLabelText("Hotel Added to the System Successfully!");
+               // SetLabelText("Hotel Added to the System Successfully!");
+                showAlert("Success", "Hotel has been added successfully.", Alert.AlertType.INFORMATION);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml"));
+                BorderPane root = loader.load();
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.setTitle("Hotels List");
+                primaryStage.show();
+                if (manageHotelsListController != null) {
+                    manageHotelsListController.updateTableView(); // Refresh the table
+                    System.out.println("Controller is notNull. Table refreshed.");
+                } else {
+                    System.err.println("Controller is null. Table cannot be refreshed.");
+                }
+
             }
         } else {
 
             if (updateHotelInDatabase(hotelId)) // check if the data modified
-                SetLabelText("Hotel Information Updated Successfully!");
-
+               // SetLabelText("Hotel Information Updated Successfully!");
+            showAlert("Success", "Hotel has been updated successfully.", Alert.AlertType.INFORMATION);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml"));
+            BorderPane root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Hotels List");
+            primaryStage.show();
+            if (manageHotelsListController != null) {
+                manageHotelsListController.updateTableView(); // Refresh the table
+                System.out.println("Controller is notNull. Table refreshed.");
+            } else {
+                System.err.println("Controller is null. Table cannot be refreshed.");
+            }
         }
     }
 
@@ -353,42 +380,12 @@ public class HotelInfoController {
         }
     }
 
-
-    private void SetLabelText(String titleText) throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/hotelConfirmAddEdit.fxml"));
-            AnchorPane root = loader.load();
-
-            // Get the controller of the second page to set the label text
-            HotelConfirmAddEditController hotelConfirmAddEditController = loader.getController();
-            hotelConfirmAddEditController.setTitleText(titleText); // Pass the title text to the second page controller
-            hotelConfirmAddEditController.setMainController(this.manageHotelsListController);
-
-            // Create a new stage for the modal dialog
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal
-            stage.initStyle(StageStyle.UNDECORATED); // Remove the title bar
-
-            // Get the primary screen bounds (screen width and height)
-            Screen screen = Screen.getPrimary();
-            double screenWidth = screen.getBounds().getWidth();
-            double screenHeight = screen.getBounds().getHeight();
-
-            // Calculate the center of the screen
-            stage.setX((screenWidth - 400) / 2); // Center on X, adjusted for the popup size
-            stage.setY((screenHeight - 200) / 2); // Center on Y, adjusted for the popup size
-
-            // Set the scene with the loaded FXML content
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            hotelConfirmAddEditController.setPrimaryStage(primaryStage);
-            // Show the popup
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     // دالة لتعيين مرجع الـ controller الرئيسي (الذي يحتوي على الجدول)
