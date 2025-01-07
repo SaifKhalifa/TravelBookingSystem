@@ -60,11 +60,14 @@ public class ListOfFlightsController {
     @FXML
     private TableColumn<FlightData, Void> editColumn;
     @FXML
-    private Button hotel, createAcctBtn;
+    private Button createAcctBtn;
     @FXML
     private Button addnewflight;
     @FXML
     private TableColumn<FlightData, String> offers;
+
+    @FXML
+    private ToggleButton hotel, flight;
 
 
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
@@ -79,6 +82,16 @@ public class ListOfFlightsController {
 
     @FXML
     public void initialize() {
+
+        // Create a ToggleGroup to manage the buttons
+        ToggleGroup group = new ToggleGroup();
+        // Add the buttons to the ToggleGroup
+        flight.setToggleGroup(group);
+        hotel.setToggleGroup(group);
+        flight.setSelected(true); // You can change this to hotelsButton if needed
+        hotel.setSelected(false);
+
+
         flightTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         flightTable.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             double totalWidth = newWidth.doubleValue();

@@ -1,5 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.adminPanelHotelController;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController;
 import com.groupnine.travelbookingsystem.model.hotel.Hotel;
 import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
 import javafx.collections.FXCollections;
@@ -318,7 +320,6 @@ public class ManageHotelsListController {
         }
     }
 
-
     private void loadHotels() {
         List<Hotel> hotelList = hotelDAOImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
         ObservableList<Hotel> observableList = FXCollections.observableArrayList(hotelList);
@@ -335,11 +336,20 @@ public class ManageHotelsListController {
 
     public void ToFlightsList(ActionEvent event) {
         try {
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml");
+            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights_V2.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
+    public void createAccount(){
+        AccountCreationController.showLogin = false;
+
+        MainApplication_DEFAULT.showPopup(
+                "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                "Create New User Account",
+                false
+        );
+    }
 }
