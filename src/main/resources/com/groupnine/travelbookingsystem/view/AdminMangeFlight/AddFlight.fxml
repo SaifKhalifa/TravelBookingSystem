@@ -138,6 +138,6 @@
         </font>
     </Label>
     <Button fx:id="uploadImageButton" onAction="#uploadImage" prefHeight="30.0" prefWidth="201.0" text="Upload Image" textFill="#172d75" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-    <Label fx:id="imageFileNameLabel" style="-fx-text-fill: white;" text="No file selected" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+    <Label fx:id="imageFileNameLabel" prefHeight="17.0" prefWidth="114.0" style="-fx-text-fill: white;" text="No file selected" GridPane.columnIndex="2" GridPane.rowIndex="6" />
 
 </GridPane>
