@@ -17,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.io.IOException;
@@ -69,7 +71,8 @@ public class ListOfFlightsController {
     @FXML
     private ToggleButton hotel, flight;
 
-
+    @FXML
+    private VBox adminDashboardBox;
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
     private final FlightDAOImpl GetFlight = new FlightDAOImpl();
 
@@ -105,15 +108,18 @@ public class ListOfFlightsController {
         initializeTableData();
         addEditButtonToTable();
         addDeleteButtonToTable();
+        handleAdminHotelDashboardClick();
 
         if (addnewflight != null) {
             addnewflight.setOnAction(event -> navigateToAddFlight());
         }
 
-        if (hotel != null) {
-            hotel.setOnAction(event -> navigateToHotel(event));
-        }
+
     }
+
+    private void handleAdminHotelDashboardClick() {
+    }
+
     public void refreshTable() {
         flightTable.getItems().clear();
         initializeTableData();
@@ -302,13 +308,18 @@ public class ListOfFlightsController {
             e.printStackTrace();
         }
     }
-
-    private void navigateToHotel(ActionEvent event) {
-        try {
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @FXML
+    private void handleAdminHotelDashboardClick(MouseEvent event) {
+        setActiveTab(adminDashboardBox);
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml",
+                "Admin Dashboard",
+                true,
+                true
+        );
+    }
+    private void setActiveTab(VBox tab) {
+        // Implementation of tab switching logic
     }
 
     public void createAccount(){
