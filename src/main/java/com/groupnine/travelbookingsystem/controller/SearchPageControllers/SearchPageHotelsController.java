@@ -167,8 +167,14 @@ public class SearchPageHotelsController {
             controller.setSearchH(searchH);  // Pass the searchH object to the controller
 
             Stage stage = (Stage) btnSearch.getScene().getWindow();
+            stage.setMaximized(false);
+            stage.setScene(null);
+            stage.setResizable(true);
+            stage.setFullScreen(false);
+
             stage.setScene(new Scene(root));
             stage.show();
+            stage.setMaximized(true);
 
         } catch (IOException e) {
             e.printStackTrace();
