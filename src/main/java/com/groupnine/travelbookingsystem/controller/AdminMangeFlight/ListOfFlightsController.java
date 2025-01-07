@@ -117,9 +117,6 @@ public class ListOfFlightsController {
 
     }
 
-    private void handleAdminHotelDashboardClick() {
-    }
-
     public void refreshTable() {
         flightTable.getItems().clear();
         initializeTableData();
@@ -309,8 +306,8 @@ public class ListOfFlightsController {
         }
     }
     @FXML
-    private void handleAdminHotelDashboardClick(MouseEvent event) {
-        setActiveTab(adminDashboardBox);
+    private void handleAdminHotelDashboardClick() {
+        //setActiveTab(adminDashboardBox);
         MainApplication_DEFAULT.loadScene(
                 "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml",
                 "Admin Dashboard",
