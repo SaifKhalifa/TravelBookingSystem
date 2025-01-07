@@ -12,16 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.ManageHotelsListController">
+<BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.adminPanelHotelController.ManageHotelsListController">
     <stylesheets>
-        <URL value="@../../Assets/css/AdminPanelHotel.css"/>
+        <URL value="@../../Assets/css/AdminPanelHotel.css" />
     </stylesheets>
     <!-- Left Navigation Pane -->
     <left>
 
-        <fx:include source="../Sidebar/Sidebar.fxml"/>
+        <fx:include source="../Sidebar/Sidebar.fxml" />
         <!--
                 <VBox alignment="CENTER" layoutX="130.0" layoutY="349.0" prefWidth="258.0" spacing="15" style="-fx-background-color: #395A7F; -fx-background-color: #CCD2D9; -fx-padding: 10;">
         -->
@@ -30,66 +28,60 @@
     <!-- Main Content -->
 
     <center>
-        <VBox prefHeight="846.0" prefWidth="1320.0" spacing="10"
-              style="-fx-padding: 10; -fx-background-color: #E9ECEE;">
+        <VBox prefHeight="846.0" prefWidth="1320.0" spacing="10" style="-fx-padding: 10; -fx-background-color: #E9ECEE;">
 
             <!-- Header -->
             <HBox prefHeight="30.0" prefWidth="1261.0">
-                <Label fx:id="TitleLabel" prefHeight="75.0" prefWidth="1126.0"
-                       style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Dashboard" wrapText="true">
+                <Label fx:id="TitleLabel" prefHeight="75.0" prefWidth="1126.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Dashboard" wrapText="true">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                     <VBox.margin>
-                        <Insets left="3.0"/>
+                        <Insets left="3.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets left="5.0" top="8.0"/>
+                        <Insets left="5.0" top="8.0" />
                     </padding>
                 </Label>
-                <Button fx:id="createAcctBtn" onAction="#createAccount" prefHeight="30.0" prefWidth="137.0"
-                        style="-fx-background-color: #334C6840;" text="Create Account" textFill="#393939">
+                <Button fx:id="createAcctBtn" onAction="#createAccount" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #334C6840;" text="Create Account" textFill="#393939">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
             </HBox>
             <HBox prefHeight="20.0" prefWidth="1269.0">
                 <HBox alignment="CENTER_LEFT" prefHeight="8.0" prefWidth="186.0">
-                    <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList"
-                                  prefHeight="38.0" prefWidth="136.0" text="Flights" styleClass="ToggleBtn"/>
-                    <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0"
-                                  text="Hotels" styleClass="ToggleBtn"/>
+                    <ToggleButton fx:id="flightsButton" mnemonicParsing="false" onAction="#ToFlightsList" prefHeight="38.0" prefWidth="136.0" styleClass="ToggleBtn" text="Flights" />
+                    <ToggleButton fx:id="hotelsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" styleClass="ToggleBtn" text="Hotels" />
                     <HBox.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </HBox.margin>
                 </HBox>
                 <HBox alignment="TOP_RIGHT" prefHeight="9.0" prefWidth="1086.0" spacing="5">
-                    <Button fx:id="AddHotelBtn" onAction="#AddHotelBtn" prefHeight="35.0" prefWidth="76.0"
-                            styleClass="add-button" text="+ Add"/>
+                    <Button fx:id="AddHotelBtn" onAction="#AddHotelBtn" prefHeight="35.0" prefWidth="76.0" styleClass="add-button" text="+ Add" />
                     <HBox.margin>
-                        <Insets right="5.0"/>
+                        <Insets right="5.0" />
                     </HBox.margin>
 
                 </HBox>
             </HBox>
 
             <!-- Table -->
-            <TableView fx:id="tableView" prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 10;">
+            <TableView fx:id="tableView" prefHeight="764.0" prefWidth="1261.0" style="-fx-padding: 0;">
                 <columns>
-                    <TableColumn fx:id="idColumn" text="ID"/>
-                    <TableColumn fx:id="nameColumn" text="Name"/>
-                    <TableColumn fx:id="locationColumn" text="Location"/>
-                    <TableColumn fx:id="pricePerNightColumn" text="Price Per Night"/>
-                    <TableColumn fx:id="totalRoomsColumn" text="Total Rooms"/>
-                    <TableColumn fx:id="roomTypesColumn" text="Room Types"/>
-                    <TableColumn fx:id="facilitiesColumn" text="Facilities"/>
-                    <TableColumn fx:id="amenitiesColumn" text="Amenities"/>
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="nameColumn" text="Name" />
+                    <TableColumn fx:id="locationColumn" text="Location" />
+                    <TableColumn fx:id="pricePerNightColumn" text="Price Per Night" />
+                    <TableColumn fx:id="totalRoomsColumn" text="Total Rooms" />
+                    <TableColumn fx:id="roomTypesColumn" text="Room Types" />
+                    <TableColumn fx:id="facilitiesColumn" text="Facilities" />
+                    <TableColumn fx:id="amenitiesColumn" text="Amenities" />
                     <!--                    <TableColumn fx:id="promotionalOffersColumn" text="Promotional Offers" />-->
-                    <TableColumn fx:id="availabilityColumn" text="Availability"/>
-                    <TableColumn fx:id="ratingColumn" text="Rating"/>
-                    <TableColumn fx:id="editColumn"/>
-                    <TableColumn fx:id="deleteColumn"/>
+                    <TableColumn fx:id="availabilityColumn" text="Availability" />
+                    <TableColumn fx:id="ratingColumn" text="Rating" />
+                    <TableColumn fx:id="editColumn" />
+                    <TableColumn fx:id="deleteColumn" />
                 </columns>
             </TableView>
         </VBox>

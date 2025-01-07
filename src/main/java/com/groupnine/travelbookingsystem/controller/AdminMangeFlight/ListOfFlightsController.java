@@ -226,14 +226,21 @@ public class ListOfFlightsController {
         }
     }
 
-
-
-
     private void addDeleteButtonToTable() {
         Callback<TableColumn<FlightData, Void>, TableCell<FlightData, Void>> cellFactory = param -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete");
-
             {
+                deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+                // إضافة تأثير hover
+                deleteButton.setOnMouseEntered(event -> {
+                    deleteButton.setStyle("-fx-background-color: #9e4040; -fx-text-fill: white;");
+                });
+
+                deleteButton.setOnMouseExited(event -> {
+                    deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+                });
+
+
                 deleteButton.setOnAction(event -> {
                     FlightData data = getTableView().getItems().get(getIndex());
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
