@@ -108,6 +108,12 @@ public class MainApplication_DEFAULT extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;  // Store reference to primary stage
 
+        /*loadScene(
+                "/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_f.fxml",
+                "testing",
+                true,
+                true
+        );*/
         loadScene("/com/groupnine/travelbookingsystem/view/authentication/login.fxml", "Login", true);
     }
 

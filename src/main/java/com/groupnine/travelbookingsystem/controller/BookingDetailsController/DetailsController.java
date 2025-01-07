@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.model.flight.Flight;
 import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import javafx.fxml.FXML;
@@ -81,7 +82,7 @@ public class DetailsController {
 
     private void handleBookNow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetailsView/BookingFlight.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingFlight.fxml"));
             Scene scene = new Scene(loader.load());
 
             FlightController controller = loader.getController();

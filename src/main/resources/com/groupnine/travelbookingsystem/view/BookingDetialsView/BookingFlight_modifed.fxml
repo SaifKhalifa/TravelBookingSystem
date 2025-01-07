@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.groupnine.travelbookingsystem.controller.BookingDetailsController.FlightController"
+            prefHeight="550.0" prefWidth="806.0"
+            xmlns="http://javafx.com/javafx/23.0.1">
+
+   <children>
+      <AnchorPane layoutX="118.0" layoutY="60.0" prefHeight="420.0" prefWidth="536.0"
+                  style="-fx-border-radius: 20; -fx-border-color: #334C68; -fx-background-color: white;">
+         <children>
+            <!-- Customer Name -->
+            <TextField fx:id="customerNameField" layoutX="21.0" layoutY="75.0"
+                       prefHeight="30.0" prefWidth="230.0" promptText="Enter customer name"
+                       style="-fx-border-color: #336C68;" />
+            <Label layoutX="21.0" layoutY="50.0" text="Customer Name" textFill="#336c68"/>
+
+            <!-- Airline -->
+            <TextField fx:id="airlineNameField" layoutX="284.0" layoutY="75.0"
+                       prefHeight="30.0" prefWidth="230.0" promptText="Enter airline"
+                       style="-fx-border-color: #336C68;" />
+            <Label layoutX="284.0" layoutY="50.0" text="Airline Name" textFill="#336c68"/>
+
+            <!-- Departure Date -->
+            <DatePicker fx:id="departureDatePicker" layoutX="21.0" layoutY="145.0"
+                        prefHeight="30.0" prefWidth="230.0" promptText="Select departure date"
+                        style="-fx-border-color: #336C68;" />
+            <Label layoutX="21.0" layoutY="120.0" text="Departure Date" textFill="#336c68"/>
+
+            <!-- Arrival Date -->
+            <DatePicker fx:id="arrivalDatePicker" layoutX="284.0" layoutY="145.0"
+                        prefHeight="30.0" prefWidth="230.0" promptText="Select arrival date"
+                        style="-fx-border-color: #336C68;" />
+            <Label layoutX="284.0" layoutY="120.0" text="Arrival Date" textFill="#336c68"/>
+
+            <!-- Flight ID -->
+            <TextField fx:id="flightIdField" layoutX="21.0" layoutY="215.0"
+                       prefHeight="30.0" prefWidth="230.0" promptText="Enter flight ID"
+                       style="-fx-border-color: #336C68;" />
+            <Label layoutX="21.0" layoutY="190.0" text="Flight ID" textFill="#336c68"/>
+
+            <!-- Status -->
+            <ComboBox fx:id="statusComboBox" layoutX="284.0" layoutY="215.0"
+                      prefHeight="30.0" prefWidth="230.0"
+                      style="-fx-border-color: #336C68;">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Pending"/>
+                     <String fx:value="Confirmed"/>
+                     <String fx:value="Cancelled"/>
+                  </FXCollections>
+               </items>
+            </ComboBox>
+            <Label layoutX="284.0" layoutY="190.0" text="Booking Status" textFill="#336c68"/>
+
+            <!-- Agent ID -->
+            <TextField fx:id="agentIdField" layoutX="21.0" layoutY="285.0"
+                       prefHeight="30.0" prefWidth="230.0" promptText="Enter agent ID"
+                       style="-fx-border-color: #336C68;" />
+            <Label layoutX="21.0" layoutY="260.0" text="Agent ID" textFill="#336c68"/>
+
+            <!-- Booking Button -->
+            <Button fx:id="bookingButton" layoutX="289.0" layoutY="350.0"
+                    mnemonicParsing="false" prefHeight="38.0" prefWidth="174.0"
+                    style="-fx-font-weight: bold; -fx-background-color: #334C68; -fx-background-radius: 20;"
+                    text="Book Now" textFill="#fffefe" onAction="#onBookingButtonClick" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
