@@ -13,7 +13,7 @@ public class searchH {
     private int hotelId;
 
     @Column(name = "destination")
-    private static String destination;
+    private String destination;
 
     @Column(name = "roomCount")
     private int roomCount;
@@ -24,12 +24,16 @@ public class searchH {
     @Column(name = "checkOutDate")
     private Date checkOutDate;
 
-   public searchH(String destination, int roomCount) {
-       this.destination = destination;
-       this.roomCount = roomCount;
-   }
 
-    public searchH(String destination){}
+    // Constructors
+    public searchH(String destination, int roomCount) {
+        this.destination = destination;
+        this.roomCount = roomCount;
+    }
+
+    public searchH(String destination) {
+        this.destination = destination;
+    }
 
     public searchH(String destination, int roomCount, Date checkInDate, Date checkOutDate) {
         this.destination = destination;
@@ -53,8 +57,8 @@ public class searchH {
         return destination;
     }
 
-    public static void setDestination(String destination) {
-        searchH.destination = destination;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public int getRoomCount() {
@@ -91,5 +95,4 @@ public class searchH {
                 ", checkOutDate=" + checkOutDate +
                 '}';
     }
-
 }
