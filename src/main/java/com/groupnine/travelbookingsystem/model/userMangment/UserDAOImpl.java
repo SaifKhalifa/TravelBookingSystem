@@ -11,6 +11,16 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
 
     @Override
+    public User getUserById(int user_id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
+            query.setParameter("user_id", user_id);
+            return query.uniqueResult();
+        }
+    }
+
+
+    @Override
     public User getUserByUsername(String username) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<User> query = session.createQuery("FROM User WHERE username = :username", User.class);

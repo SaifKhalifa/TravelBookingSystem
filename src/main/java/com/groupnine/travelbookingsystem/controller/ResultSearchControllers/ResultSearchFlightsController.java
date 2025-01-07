@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -83,24 +84,34 @@ public class ResultSearchFlightsController {
     }
 
 
-    //Navigates to a details page and passes a card ID to the controller
     private void navigateToPageWithCardId(String fxmlPath, String title, int cardId) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = fxmlLoader.load();
 
+            // Pass card ID to the controller
             DetailsController controller = fxmlLoader.getController();
             if (controller != null) {
-
+                controller.setCardId(cardId);
             }
 
-            Stage currentStage = (Stage) cardBtn_paris.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-            currentStage.setTitle(title);
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Makes the stage modal
+            popupStage.setTitle(title);
+            popupStage.setScene(new Scene(root));
+
+            // Disable resizing
+            popupStage.setResizable(false);
+
+            // Show the popup and wait for it to close
+            popupStage.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
     // Handlers for individual card buttons, each passes a unique card ID

@@ -63,12 +63,12 @@ public class HotelBooking {
 
     //Getters
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getHotelName()
     {
-        return hotel.getName();
+        return this.hotelName;
     }
 
     public String getCustomerName() {

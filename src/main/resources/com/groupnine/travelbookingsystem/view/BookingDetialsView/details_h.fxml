@@ -125,6 +125,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="bookNowButton" layoutX="75.0" layoutY="556.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="691.0" style="-fx-font-weight: bold; -fx-background-color: #334C68; -fx-background-radius: 20;" text="Book now" textFill="#fffefe" />
+      <Button fx:id="bookNowButton" onAction="#handleBookNowButtonClick" layoutX="75.0" layoutY="556.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="691.0" style="-fx-font-weight: bold; -fx-background-color: #334C68; -fx-background-radius: 20;" text="Book now" textFill="#fffefe" />
    </children>
 </AnchorPane>
