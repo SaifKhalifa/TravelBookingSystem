@@ -19,8 +19,8 @@ public class Hotel {
     @Column(name = "location")
     private String location;
 
-    @Column(name = "price")
-    private double price;
+//    @Column(name = "price_per_night")
+//    private double price;
 
     @Column(name = "total_rooms")
     private int totalRooms;
@@ -73,7 +73,7 @@ public class Hotel {
     }
 
     public double getPrice() {
-        return price;
+        return pricePerNight;
     }
 
     public int getTotalRooms() {
@@ -134,7 +134,7 @@ public class Hotel {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.pricePerNight = price;
     }
 
     public void setTotalRooms(int totalRooms) {

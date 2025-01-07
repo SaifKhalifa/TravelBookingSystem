@@ -71,7 +71,7 @@ module com.groupnine.travelbookingsystem {
     opens com.groupnine.travelbookingsystem.model.resultSearchHotels to javafx.base, javafx.fxml, org.hibernate.orm.core;
     opens com.groupnine.travelbookingsystem.model.searchFlights to javafx.base, javafx.fxml, org.hibernate.orm.core;
     opens com.groupnine.travelbookingsystem.model.searchHotels to javafx.base, javafx.fxml, org.hibernate.orm.core;
-    opens com.groupnine.travelbookingsystem.model.userMangment to org.hibernate.orm.core;
+    opens com.groupnine.travelbookingsystem.model.userMangment to javafx.base, javafx.fxml, org.hibernate.orm.core;
 
     // Hibernate model exports
 }

@@ -2,9 +2,7 @@ package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController;
-import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchHotelsController;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
-import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import java.io.IOException;
-import java.sql.Date;
 
 
 public class SearchPageHotelsController {
@@ -41,10 +36,10 @@ public class SearchPageHotelsController {
     private void initialize() {
 
         cbDestination.getItems().addAll("See All", "Big White Village", "Condo To The Beach", "Outstanding house");
-        cbRooms.getItems().addAll("2", "3", "4", "5", "6", "7", "10");
-        cbCheckIn.getItems().addAll("2024-12-11", "2025-03-6", "2025-12-20", "2025-11-16", "2025-11-6", "2025-04-16");
-        cbCheckOut.getItems().addAll("2025-01-30", "2025-03-31", "2025-01-12", "2025-11-30", "2025-05-16", "2025-12-16");
-        cbPersons.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "10");
+        cbRooms.getItems().addAll("2", "3", "4", "5", "More than 5");
+        cbCheckIn.getItems().addAll("2024-12-11", "2025-03-6", "2025-12-20", "2025-11-16", "2025-11-6","2025-04-16");
+        cbCheckOut.getItems().addAll("2025-01-30", "2025-03-31", "2025-01-12", "2025-11-30", "2025-05-16","2025-12-16");
+        cbPersons.getItems().addAll("1", "2", "3", "4", "5","6", "More than 6");
 
         btnFlights.setOnAction(event -> handleFlightsButton());
         btnHotels.setOnAction(event -> handleHotelsButton());
@@ -102,6 +97,7 @@ public class SearchPageHotelsController {
     }
 
 
+
     // Inner class to help with navigation between result pages (could be used for flight results as well)
     public class NavigationHelper {
 
@@ -119,64 +115,31 @@ public class SearchPageHotelsController {
     }
 
 
-
+    // Method for handling the search button click (initiates the search process)
     private void handleSearch(ActionEvent event) {
+
         System.out.println("Search button clicked, storing data in the model..., and moving to search results page!");
 
         if (cbDestination.getSelectionModel().getSelectedItem() == null) {
-            showAlert("Search", "You need to select a destination to search for!");
+            showAlert("Search", "You need to select a hotel type to search for!");
             return;
         }
 
-        Date selectedCheckInDate = Date.valueOf(cbCheckIn.getValue());
-        Date selectedCheckOutDate = Date.valueOf(cbCheckOut.getValue());
-        Integer selectedRoomCount = Integer.valueOf(cbRooms.getValue());
-
         searchH searchH = new searchH();
+
         String selectedDestination = cbDestination.getValue();
         searchH.setDestination(selectedDestination);
-        searchH.setRoomCount(selectedRoomCount != null ? selectedRoomCount : 0);
-        searchH.setCheckInDate(selectedCheckInDate);
-        searchH.setCheckOutDate(selectedCheckOutDate);
-
-        System.out.println("Selected destination: " + selectedDestination);
-        System.out.println("Saving searchH object: " + searchH.toString());
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        System.out.println("Search button clicked");
+        //navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml", "Search Results");
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml",
+                "Search Results",
+                true,
+                true
+        );
         try {
-            transaction = session.beginTransaction();
-            session.save(searchH);
-            transaction.commit();
-            System.out.println("Selected destination Saved");
+            SearchPageFlightsController.NavigationHelper.showResultsPage((Stage) btnSearch.getScene().getWindow());
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            System.out.println("Selected destination Did not Save");
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
-
-        try {
-            Parent root = loader.load();
-
-            ResultSearchHotelsController controller = loader.getController();
-            controller.setSearchH(searchH);  // Pass the searchH object to the controller
-
-            Stage stage = (Stage) btnSearch.getScene().getWindow();
-            stage.setMaximized(false);
-            stage.setScene(null);
-            stage.setResizable(true);
-            stage.setFullScreen(false);
-
-            stage.setScene(new Scene(root));
-            stage.show();
-            stage.setMaximized(true);
-
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -190,5 +153,4 @@ public class SearchPageHotelsController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

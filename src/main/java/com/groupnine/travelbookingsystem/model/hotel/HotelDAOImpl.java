@@ -15,6 +15,7 @@ public class HotelDAOImpl implements HotelDAO {
     public HotelDAOImpl() {}
     
     // دالة لاسترجاع عدد الفنادق
+    @Override
     public long getHotelsCount() {
         long count = 0;
         Transaction transaction = null;

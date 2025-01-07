@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="845.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.AdminMangeFlight.ListOfFlightsController">
+    <stylesheets>
+        <URL value="@../../Assets/css/AdminPanelHotel.css" />
+    </stylesheets>
+    <left>
+        <fx:include source="../Sidebar/Sidebar.fxml" />
+    </left>
+    <center>
+        <VBox prefHeight="846.0" prefWidth="1320.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #E9ECEE;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="37.0" prefWidth="1269.0">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="1126.0" text="Admin Dashboard">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="3.0" />
+                            </VBox.margin>
+                            <padding>
+                                <Insets left="5.0" top="8.0" />
+                            </padding>
+                        </Label>
+                        <Button fx:id="createAcctBtn" onAction="#createAccount" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #334C6840;" text="Create Account" textFill="#393939">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <HBox prefHeight="20.0" prefWidth="1269.0">
+                    <HBox alignment="CENTER_LEFT" prefHeight="8.0" prefWidth="186.0">
+                        <ToggleButton fx:id="flight" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" styleClass="ToggleBtn" text="Flights" />
+                        <ToggleButton fx:id="hotel" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" styleClass="ToggleBtn" text="Hotels" />
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </HBox>
+                    <HBox alignment="TOP_RIGHT" prefHeight="9.0" prefWidth="1086.0" spacing="5">
+                        <Button fx:id="addnewflight" prefHeight="35.0" prefWidth="76.0" styleClass="add-button" text="+ Add" />
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+
+                    </HBox>
+                </HBox>
+                <TableView fx:id="flightTable" prefHeight="750.0" prefWidth="1269.0">
+                    <columns>
+                        <TableColumn fx:id="flightId" text="Flight ID" />
+                        <TableColumn fx:id="origin" text="Origin" />
+                        <TableColumn fx:id="destination" text="Destination" />
+                        <TableColumn fx:id="departureDate" text="Departure Date" />
+                        <TableColumn fx:id="arrivalDate" text="Arrival Date" />
+                        <TableColumn fx:id="departureTime" text="Departure Time" />
+                        <TableColumn fx:id="arrivalTime" text="Arrival Time" />
+                        <TableColumn fx:id="gateNumber" text="Gate Number" />
+                        <TableColumn fx:id="flightDuration" text="Flight Duration" />
+                        <TableColumn fx:id="seatCapacity" text="Seat Capacity" />
+                        <TableColumn fx:id="classType" text="Class Types" />
+                        <TableColumn fx:id="notes" text="Notes" />
+                        <TableColumn fx:id="price" text="Price" />
+                        <TableColumn fx:id="offers" text="offers" />
+                        <TableColumn fx:id="editColumn" text="Edit" />
+                        <TableColumn fx:id="deleteColumn" text="Delete" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

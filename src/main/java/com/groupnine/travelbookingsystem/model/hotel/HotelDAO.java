@@ -15,4 +15,6 @@ public interface HotelDAO {
 
     //Deletion
     void deleteHotelById(int id);
+
+    long getHotelsCount();
 }
