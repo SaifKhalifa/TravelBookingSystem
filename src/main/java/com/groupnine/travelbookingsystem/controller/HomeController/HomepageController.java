@@ -2,6 +2,7 @@ package com.groupnine.travelbookingsystem.controller.HomeController;
 
 import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.model.customerManagment.CustomerDAOImpl;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import com.groupnine.travelbookingsystem.model.flightBooking.FlightBooking;
 import com.groupnine.travelbookingsystem.model.flightBooking.FlightBookingDAOImpl;
 import com.groupnine.travelbookingsystem.model.hotel.HotelDAOImpl;
@@ -78,6 +79,8 @@ public class HomepageController {
     private final UserDAOImpl userDAOImp = new UserDAOImpl();
     private HotelBookingDAOImpl hotelBookingDAOImp = new HotelBookingDAOImpl();
     private FlightBookingDAOImpl flightBookingDAOImp = new FlightBookingDAOImpl();
+//    private HotelDAOImpl hotelDAOImp = new HotelDAOImpl();
+//    private FlightDAOImpl flightDAOImp = new FlightDAOImpl();
 
     public void initialize() {
         vbox.setStyle("-fx-background-image: url('" + getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/space.jpg") + "');");
@@ -91,20 +94,25 @@ public class HomepageController {
         roleLabel.setText(loggedInUserRole);
 
         HotelDAOImpl hotelDAO = new HotelDAOImpl();
+        FlightDAOImpl flightDAO = new FlightDAOImpl();
+
         HotelBookingDAOImpl hotelBookingDAO = new HotelBookingDAOImpl();
-        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
         FlightBookingDAOImpl flightBookingDAO = new FlightBookingDAOImpl();
+
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
 
         long countHotel = hotelDAO.getHotelsCount();
-//        long countFlight= flightBookingDAO.getFlightsCount();
+        long countFlight = flightDAO.getFlightsCount();
+
         long countBookingHotel = hotelBookingDAO.getBookingsCount();
         long countBookingFlight = flightBookingDAO.getBookingsCount();
         long countBookings = countBookingHotel + countBookingFlight;
+
         long countCustomer = customerDAO.getCustomersCount();
 
         hotelsCount.setText(String.valueOf(countHotel));
-//        flightsCount.setText(String.valueOf(countFlight));
+        flightsCount.setText(String.valueOf(countFlight));
         bookingsCount.setText(String.valueOf(countBookings));
         customersCount.setText(String.valueOf(countCustomer));
 
@@ -116,8 +124,7 @@ public class HomepageController {
             agentLastLogin.setText(lastAgent.getLastLogin().format(formatter));
             agentEmail.setText(lastAgent.getEmail());
         } else {
-            agentName.setText("Agent: N/A");
-            agentLastLogin.setText("Last Login: N/A");
+           System.out.println("No last logged in user");
         }
 
 //        // Get all columns from TableView

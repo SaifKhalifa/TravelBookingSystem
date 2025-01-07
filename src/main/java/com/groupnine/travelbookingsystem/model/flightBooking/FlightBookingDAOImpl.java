@@ -15,27 +15,33 @@ public class FlightBookingDAOImpl implements FlightBookingDAO {
     @Override
     public void addFlightBooking(FlightBooking flightBooking) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = null;  // Declare session outside try block
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();  // Open session
             transaction = session.beginTransaction();
 
-            // Get logged-in user ID from the application context/session
-            int loggedInUserId = MainApplication_DEFAULT.getLoggedInUserId();  // Hypothetical context method
+            int loggedInUserId = MainApplication_DEFAULT.getLoggedInUserId();
+            User user = session.get(User.class, loggedInUserId);  // Fetch user while session is open
 
-            // Fetch User object from the database
-            User user = session.get(User.class, loggedInUserId);
+            if (user == null) {
+                throw new Exception("User not found with ID: " + loggedInUserId);
+            }
 
-            // Set the user in the flight booking
-            flightBooking.setUser(user);
+            flightBooking.setUser(user);  // Associate user with booking
+            session.save(flightBooking);  // Persist booking
 
-            // Save the flight booking
-            session.save(flightBooking);
-
-            transaction.commit();
+            transaction.commit();  // Commit transaction
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();  // Close session in finally block
+            }
         }
     }
+
 
 
     @Override

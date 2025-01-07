@@ -168,8 +168,14 @@ public class SearchPageFlightsController {
             controller.setSearchF(searchF); // Pass the searchF object to the controller
 
             Stage stage = (Stage) btnSearch.getScene().getWindow();
+            stage.setMaximized(false);
+            stage.setScene(null);
+            stage.setResizable(true);
+            stage.setFullScreen(false);
+
             stage.setScene(new Scene(root));
             stage.show();
+            stage.setMaximized(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
