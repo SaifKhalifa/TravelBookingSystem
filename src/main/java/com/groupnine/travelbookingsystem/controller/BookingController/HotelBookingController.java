@@ -96,6 +96,7 @@ public class HotelBookingController {
             HotelBooking hotel = new HotelBooking(
                     hotelBooking.getId(),
                     hotelBooking.getCustomerName(),
+                    hotelBooking.getHotelName(),
                     hotelBooking.getBookingDate(),
                     hotelBooking.getCheckIn(),
                     hotelBooking.getCheckOut(),
@@ -108,6 +109,12 @@ public class HotelBookingController {
 
         // Set the data to the TableView
         hotelsTable.setItems(hotelData);
+
+        for (HotelBooking booking : hotelData) {
+            System.out.println("Hotel ID: " + booking.getId() + ", Hotel Name: " + booking.getHotelName());
+        }
+
+
         session.close();
     }
 
