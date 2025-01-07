@@ -104,10 +104,12 @@ public class LoginController {
 
                     MainApplication_DEFAULT.setLoggedInUser(user.getName());
                     MainApplication_DEFAULT.setLoggedInUserRole(user.getRole());
+                    MainApplication_DEFAULT.setLoggedInUserId(user.getId());
 
                     MainApplication_DEFAULT.loadScene(
                             "/com/groupnine/travelbookingsystem/view/Home/HomePage_V2.fxml",
                             "Welcome " + user.getName() + "! - " + "(" + user.getRole() + ")",
+                            true,
                             true
                     );
                 }
@@ -136,6 +138,8 @@ public class LoginController {
     @FXML
     private void onCreateAccountButtonClick()
     {
+        AccountCreationController.showLogin = true;
+
         /*if(MainApplication_DEFAULT.getLoggedInUser() != null
             || !Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "")
             && Objects.equals(MainApplication_DEFAULT.getLoggedInUserRole(), "Admin"))

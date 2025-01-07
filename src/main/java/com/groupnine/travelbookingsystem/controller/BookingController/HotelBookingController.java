@@ -1,35 +1,28 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
 
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingHotel.HotelDAOImpl;
+import com.groupnine.travelbookingsystem.model.hotel.Hotel;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBooking;
+import com.groupnine.travelbookingsystem.model.hotelBooking.HotelBookingDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
-
-
 
 public class HotelBookingController {
 
-
-
     @FXML
-    private TableView<Hotel> hotelsTable;
+    private TableView<HotelBooking> hotelsTable;
 
     @FXML
     private TableColumn<Hotel, String> hotleIdColumn;
@@ -52,11 +45,9 @@ public class HotelBookingController {
     @FXML
     private TableColumn<Hotel, String> statussColumn;
 
+    private HotelBooking lastSelectedHotel = null;  // Track the last selected hotel
 
-    private Hotel lastSelectedHotel = null;  // Track the last selected hotel
-
-    private HotelDAOImpl hotelDAO = new HotelDAOImpl();
-
+    private HotelBookingDAOImpl hotelDAO = new HotelBookingDAOImpl();
 
     public void initialize() {
         // Setting column value factories
@@ -68,16 +59,8 @@ public class HotelBookingController {
         checkOutColumn.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         statussColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-
-
-        // Adding test data to the table
-        ObservableList<Hotel> hotelData = FXCollections.observableArrayList(
-                new Hotel("H001", "John Doe", "Hilton", "2024-12-01", "2024-12-05", "2024-12-10", "Confirmed"),
-                new Hotel("H002", "Jane Smith", "Marriott", "2024-12-02", "2024-12-10", "2024-12-15", "Pending"),
-                new Hotel("H003", "Alice Brown", "Sheraton", "2024-12-03", "2024-12-12", "2024-12-18", "Pending")
-        );
-
-        hotelsTable.setItems(hotelData);
+        // Adding data to the table by reading from the database
+        loadHotelData();
 
         // Center align column headers
         hotleIdColumn.setStyle("-fx-alignment: CENTER;");
@@ -95,9 +78,42 @@ public class HotelBookingController {
         hotelsTable.setOnMouseClicked(this::handleRowClick);
     }
 
+    // Function to load hotel data from the database
+    private void loadHotelData() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<HotelBooking> hotelDataList = hotelDAO.getAllHotelBookings();
+        ObservableList<HotelBooking> hotelData = FXCollections.observableArrayList();
+
+        /*this.id = id;
+        this.customerName = customerName;
+        this.bookingDate = bookingDate;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.status = status;
+        this.hotel = hotel;
+        this.user = user;*/
+        for (HotelBooking hotelBooking : hotelDataList) {
+            HotelBooking hotel = new HotelBooking(
+                    hotelBooking.getId(),
+                    hotelBooking.getCustomerName(),
+                    hotelBooking.getBookingDate(),
+                    hotelBooking.getCheckIn(),
+                    hotelBooking.getCheckOut(),
+                    hotelBooking.getStatus(),
+                    hotelBooking.getHotel(),
+                    hotelBooking.getUser()
+            );
+            hotelData.add(hotel);
+        }
+
+        // Set the data to the TableView
+        hotelsTable.setItems(hotelData);
+        session.close();
+    }
+
     private void handleRowClick(MouseEvent event) {
         // Get the clicked row (hotel)
-        Hotel selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+        HotelBooking selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
 
         if (selectedHotel != null) {
             if (selectedHotel.equals(lastSelectedHotel)) {
@@ -111,19 +127,19 @@ public class HotelBookingController {
         }
     }
 
-    private  void updateFlightStatusInDatabase(Hotel hotel) {
+    private void updateHotelStatusInDatabase(HotelBooking hotel) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            HotelBookingModel hotelModel = session.get(HotelBookingModel.class, Integer.parseInt(hotel.getHotelId()));
+            HotelBooking hotelModel = session.get(HotelBooking.class, hotel.getId());
             if (hotelModel != null) {
                 hotelModel.setStatus(hotel.getStatus());
                 session.update(hotelModel);
                 transaction.commit();
-                System.out.println("Flight status updated successfully in the database.");
+                System.out.println("Booking status updated successfully in the database.");
             } else {
-                System.out.println("Flight not found in the database.");
+                System.out.println("Booking not found in the database.");
             }
         } catch (Exception e) {
             if (transaction != null) {
@@ -138,12 +154,41 @@ public class HotelBookingController {
     @FXML
     private void cancelHotelBooking() {
         // Get the selected hotel
-        Hotel selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+        HotelBooking selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
 
         if (selectedHotel != null) {
             if (!selectedHotel.getStatus().equalsIgnoreCase("Cancelled")) {
                 // Update the status to "Cancelled"
                 selectedHotel.setStatus("Cancelled");
+
+                // تحديث الحجز في قاعدة البيانات
+                updateHotelStatusInDatabase(selectedHotel);
+
+                // تحديث واجهة المستخدم (Refresh the TableView)
+                hotelsTable.refresh();
+
+                // Show success message
+                showAlert(Alert.AlertType.INFORMATION, "Cancellation Successful", "The booking has been successfully cancelled.");
+            } else {
+                // If already cancelled
+                showAlert(Alert.AlertType.WARNING, "Already Cancelled", "This booking is already cancelled.");
+            }
+        } else {
+            // No hotel selected
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a booking to cancel.");
+        }
+    }
+
+    @FXML
+    private void cancelPendingBooking() {
+        // Get the selected hotel
+        HotelBooking selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedHotel != null) {
+            if (!selectedHotel.getStatus().equalsIgnoreCase("Cancelled")) {
+                // Update the status to "Cancelled"
+                selectedHotel.setStatus("Cancelled");
+                updateHotelStatusInDatabase(selectedHotel);
                 hotelsTable.refresh();
 
                 // Show success message
@@ -161,71 +206,59 @@ public class HotelBookingController {
     @FXML
     private void setPendingBooking() {
         // Get the selected hotel
-        Hotel selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+        HotelBooking selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
 
         if (selectedHotel != null) {
             if (!selectedHotel.getStatus().equalsIgnoreCase("Pending")) {
                 // Update the status to "Pending Booking"
                 selectedHotel.setStatus("Pending");
-                updateFlightStatusInDatabase(selectedHotel);
+                updateHotelStatusInDatabase(selectedHotel);
                 hotelsTable.refresh();
 
                 // Show success message
                 showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The booking is now in Pending Booking status.");
-
-            }
-
-
-            else {
-                if (selectedHotel != null) {
-                    if (selectedHotel.getStatus().equalsIgnoreCase("Pending")) {
-
-                        selectedHotel.setStatus("Confirmed");
-                        updateFlightStatusInDatabase(selectedHotel);
-                        hotelsTable.refresh(); // Refresh TableView to reflect changes
-                        showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The Pending Booking status has been cancelled.");
-
-                    }
-                    else {
-                        showAlert(Alert.AlertType.WARNING, "Not Pending", "This flight is not in Pending Booking status.");
-                    }
-                }
-                else {
-                    showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a flight to cancel Pending Booking.");
-                }
             }
         }
     }
+    private void updateBookingInDatabase(HotelBooking hotel) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
 
-    @FXML
-    private void cancelPendingBooking() {
-        // Get the selected hotel
-        Hotel selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+            // Fetch the existing booking from the database
+            HotelBooking hotelModel = session.get(HotelBooking.class, hotel.getId());
+            if (hotelModel != null) {
+                // Update the fields in the database object
+                hotelModel.setCustomerName(hotel.getCustomerName());
+                hotelModel.setHotelName(hotel.getHotelName());
+                hotelModel.setBookingDate(hotel.getBookingDate()); // Convert string to Date
+                hotelModel.setCheckIn(hotel.getCheckIn());         // Convert string to Date
+                hotelModel.setCheckOut(hotel.getCheckOut());       // Convert string to Date
+                hotelModel.setStatus(hotel.getStatus());
 
-        if (selectedHotel != null) {
-            if (selectedHotel.getStatus().equalsIgnoreCase("Pending")) {
-                // Change the status back to "Confirmed"
-                selectedHotel.setStatus("Confirmed");
-                hotelsTable.refresh();
-
-                // Show success message
-                showAlert(Alert.AlertType.INFORMATION, "Status Updated", "The Pending Booking status has been cancelled.");
+                // Save the updated object back to the database
+                session.update(hotelModel);
+                transaction.commit();
+                System.out.println("Booking details updated successfully in the database.");
             } else {
-                // If not in Pending Booking
-                showAlert(Alert.AlertType.WARNING, "Not Pending", "This booking is not in Pending Booking status.");
+                System.out.println("Booking not found in the database.");
             }
-        } else {
-            // No hotel selected
-            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a booking to cancel Pending Booking.");
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
-
 
 
     @FXML
     private void modifyBooking() {
         // Get the selected hotel booking
-        Hotel selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
+        HotelBooking selectedHotel = hotelsTable.getSelectionModel().getSelectedItem();
 
         if (selectedHotel != null) {
             // Create a dialog for the user to modify booking details
@@ -239,9 +272,12 @@ public class HotelBookingController {
             // Create the text fields for modifying booking details
             TextField customerNameField = new TextField(selectedHotel.getCustomerName());
             TextField hotelNameField = new TextField(selectedHotel.getHotelName());
-            TextField bookingDateField = new TextField(selectedHotel.getBookingDate());
+            /*TextField bookingDateField = new TextField(selectedHotel.getBookingDate());
             TextField checkInDateField = new TextField(selectedHotel.getCheckIn());
-            TextField checkOutDateField = new TextField(selectedHotel.getCheckOut());
+            TextField checkOutDateField = new TextField(selectedHotel.getCheckOut());*/
+            DatePicker bookingDateField = new DatePicker(selectedHotel.getBookingDate());
+            DatePicker checkInDateField = new DatePicker(selectedHotel.getCheckIn());
+            DatePicker checkOutDateField = new DatePicker(selectedHotel.getCheckOut());
 
             // Create a ComboBox for status modification
             ComboBox<String> statusComboBox = new ComboBox<>();
@@ -254,8 +290,8 @@ public class HotelBookingController {
                     new Label("Hotel Name:"), hotelNameField,
                     new Label("Booking Date:"), bookingDateField,
                     new Label("Check-In Date:"), checkInDateField,
-                    new Label("Check-Out Date:"), checkOutDateField,
-                    new Label("Status:"), statusComboBox
+                    new Label("Check-Out Date:"), checkOutDateField
+                   // new Label("Status:"), statusComboBox
             );
 
             dialog.getDialogPane().setContent(vbox);
@@ -263,13 +299,16 @@ public class HotelBookingController {
             // Show the dialog and wait for the result
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                // Apply the modifications if the user confirmed
+                // Apply the modifications to the selectedHotel object
                 selectedHotel.setCustomerName(customerNameField.getText());
                 selectedHotel.setHotelName(hotelNameField.getText());
-                selectedHotel.setBookingDate(bookingDateField.getText());
-                selectedHotel.setCheckIn(checkInDateField.getText());
-                selectedHotel.setCheckOut(checkOutDateField.getText());
+                selectedHotel.setBookingDate(bookingDateField.getValue());
+                selectedHotel.setCheckIn(checkInDateField.getValue());
+                selectedHotel.setCheckOut(checkOutDateField.getValue());
                 selectedHotel.setStatus(statusComboBox.getValue());
+
+                // Update the database with all the changes
+                updateBookingInDatabase(selectedHotel);
 
                 // Refresh the table to reflect the changes
                 hotelsTable.refresh();
@@ -282,6 +321,7 @@ public class HotelBookingController {
         }
     }
 
+
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -289,87 +329,4 @@ public class HotelBookingController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-    // Hotel class representing hotel booking data
-    public static class Hotel {
-        private String hotelId;
-        private String customerrName;
-        private String hotelName;
-        private String bookinggDate;
-        private String checkIn;
-        private String checkOut;
-        private String statuss;
-
-        // Constructor
-        public Hotel(String hotelId, String customerName, String hotelName, String bookingDate, String checkIn, String checkOut, String status) {
-            this.hotelId = hotelId;
-            this.customerrName = customerName;
-            this.hotelName = hotelName;
-            this.bookinggDate = bookingDate;
-            this.checkIn = checkIn;
-            this.checkOut = checkOut;
-            this.statuss = status;
-        }
-
-        // Getters and setters
-        public String getHotelId() {
-            return hotelId;
-        }
-
-        public String getCustomerName() {
-            return customerrName;
-        }
-
-        public String getHotelName() {
-            return hotelName;
-        }
-
-        public String getBookingDate() {
-            return bookinggDate;
-        }
-
-        public String getCheckIn() {
-            return checkIn;
-        }
-
-        public String getCheckOut() {
-            return checkOut;
-        }
-
-        public String getStatus() {
-            return statuss;
-        }
-
-        public void setStatus(String status) {
-            this.statuss = status;
-        }
-
-        public void setHotelName(String hotelName) {
-            this.hotelName = hotelName;
-        }
-        public void setHotelId(String hotelId) {
-            this.hotelId = hotelId;
-        }
-
-        public void setCustomerName(String customerName) {
-            this.customerrName = customerName;
-        }
-
-
-        public void setBookingDate(String bookingDate) {
-            this.bookinggDate = bookingDate;
-        }
-
-        public void setCheckIn(String checkIn) {
-            this.checkIn = checkIn;
-        }
-
-        public void setCheckOut(String checkOut) {
-            this.checkOut = checkOut;
-        }
-
-
-    }
-
-
 }

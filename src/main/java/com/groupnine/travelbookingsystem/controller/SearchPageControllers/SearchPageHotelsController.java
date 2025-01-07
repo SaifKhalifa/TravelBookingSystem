@@ -1,200 +1,188 @@
 package com.groupnine.travelbookingsystem.controller.SearchPageControllers;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
+import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchFlightsController;
 import com.groupnine.travelbookingsystem.controller.ResultSearchControllers.ResultSearchHotelsController;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
+import com.groupnine.travelbookingsystem.util.HibernateUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import java.io.IOException;
 import java.sql.Date;
+
 
 public class SearchPageHotelsController {
 
     @FXML public ImageView backGG;
-    @FXML private Button btnMyBooking;
-    @FXML private Button btnProfile;
     @FXML private Button btnHome;
     @FXML private Button btnFlights;
     @FXML private Button btnHotels;
-    @FXML private Button btnSearch;
-    @FXML private ComboBox<String> cbFlightsHotels;
-    @FXML private ComboBox<String> cbSignupLogin;
     @FXML private ComboBox<String> cbDestination;
     @FXML private ComboBox<String> cbRooms;
     @FXML private ComboBox<String> cbCheckIn;
     @FXML private ComboBox<String> cbCheckOut;
     @FXML private ComboBox<String> cbPersons;
+    @FXML private Button btnSearch;
 
-    // Event handlers for buttons
+
+    // Method to initialize the page and set up the UI elements
     @FXML
     private void initialize() {
-        // Initialize ComboBoxes with sample data or dynamic data from a service
-        cbFlightsHotels.getItems().addAll("Flights", "Hotels");
-        cbSignupLogin.getItems().addAll("Signup", "Login");
-        cbDestination.getItems().addAll("New York", "Paris", "London");
-        cbRooms.getItems().addAll("1", "2", "3", "4");
-        cbCheckIn.getItems().addAll("2024-01-01", "2024-02-01", "2024-03-01");
-        cbCheckOut.getItems().addAll("2024-01-05", "2024-02-05", "2024-03-05");
-        cbPersons.getItems().addAll("1", "2", "3", "4");
 
-
-        btnHome.setOnAction(event -> handleHomeButton());
-        btnMyBooking.setOnAction(event -> handleMyBookingButton());
-        btnProfile.setOnAction(event -> handleProfileButton());
+        cbDestination.getItems().addAll("See All", "Big White Village", "Condo To The Beach", "Outstanding house");
+        cbRooms.getItems().addAll("2", "3", "4", "5", "6", "7", "10");
+        cbCheckIn.getItems().addAll("2024-12-11", "2025-03-6", "2025-12-20", "2025-11-16", "2025-11-6", "2025-04-16");
+        cbCheckOut.getItems().addAll("2025-01-30", "2025-03-31", "2025-01-12", "2025-11-30", "2025-05-16", "2025-12-16");
+        cbPersons.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "10");
 
         btnFlights.setOnAction(event -> handleFlightsButton());
         btnHotels.setOnAction(event -> handleHotelsButton());
-        btnSearch.setOnAction(event -> handleSearchButton());
 
-        cbFlightsHotels.setOnAction(event -> handleFlightsHotelsCombo());
-        cbSignupLogin.setOnAction(event -> handleSignupLoginCombo());
-
+        btnSearch.setOnAction(this::handleSearch);
 
         setBackgroundImage();
     }
 
+
+    // Method to set a background image for the page
     private void setBackgroundImage() {
         backGG.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/result_search/sh.jpeg").toExternalForm()));
 
     }
 
-    // Navigation logic
+
+    // Helper method to navigate to a different page by loading an FXML file
     private void navigateToPage(String fxmlPath, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Scene newScene = new Scene(fxmlLoader.load());
 
-            // Get the current stage
             Stage currentStage = (Stage) btnHome.getScene().getWindow();
 
-            // Set the new scene
             currentStage.setScene(newScene);
             currentStage.setTitle(title);
         } catch (IOException e) {
-            e.printStackTrace(); // Log any loading errors
+            e.printStackTrace();
         }
     }
 
-    @FXML
-    private void handleHomeButton() {
-        System.out.println("Home button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/Home/Homepage_V2.fxml", "Home");
-    }
 
-    @FXML
-    private void handleMyBookingButton() {
-        System.out.println("My Booking button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/my_booking.fxml", "My Booking");
-    }
-
-    @FXML
-    private void handleProfileButton() {
-        System.out.println("Profile button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPage;;Flights-Hotels/searchPageHotels.fxml", "Profile");
-    }
-
+    // Methods for handling the buttons
     @FXML
     private void handleFlightsButton() {
-        System.out.println("Flights button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml",
+                "Flights",
+                true,
+                true
+        );
     }
 
+
+    // Handle Hotels button click
     @FXML
     private void handleHotelsButton() {
-        System.out.println("Hotels button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml",
+                "Hotels",
+                true,
+                true
+        );
     }
 
-    @FXML
-    private void handleSearchButton() {
-        System.out.println("Search button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml", "Search Results");
-    }
 
-    @FXML
-    private void handleFlightsHotelsCombo() {
-        String selectedOption = cbFlightsHotels.getSelectionModel().getSelectedItem();
-        System.out.println("Flights/Hotels ComboBox selected: " + selectedOption);
+    // Inner class to help with navigation between result pages (could be used for flight results as well)
+    public class NavigationHelper {
 
-        if (selectedOption != null) {
-            switch (selectedOption) {
-                case "Flights":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageFlights.fxml", "Flights");
-                    break;
-                case "Hotels":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/SearchPageFlighte-Hotels/searchPageHotels.fxml", "Hotels");
-                    break;
-                default:
-                    System.out.println("Unknown option selected.");
-            }
-        }
-    }
+        public static void showResultsPage(Stage stage) throws Exception {
+            FXMLLoader loader = new FXMLLoader(SearchPageFlightsController.NavigationHelper.class.getResource("/path/to/result_page.fxml"));
+            Parent root = loader.load();
 
-    @FXML
-    private void handleSignupLoginCombo() {
-        String selectedOption = cbSignupLogin.getSelectionModel().getSelectedItem();
-        System.out.println("Signup/Login ComboBox selected: " + selectedOption);
+            ResultSearchFlightsController resultPageController = loader.getController();
+            resultPageController.initialize();
 
-        if (selectedOption != null) {
-            switch (selectedOption) {
-                case "Signup":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/signup.fxml", "Signup");
-                    break;
-                case "Login":
-                    navigateToPage("/com/groupnine/travelbookingsystem/view/login.fxml", "Login");
-                    break;
-                default:
-                    System.out.println("Unknown option selected.");
-            }
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
 
 
+    private void handleSearch(ActionEvent event) {
+        System.out.println("Search button clicked, storing data in the model..., and moving to search results page!");
 
+        if (cbDestination.getSelectionModel().getSelectedItem() == null) {
+            showAlert("Search", "You need to select a destination to search for!");
+            return;
+        }
 
+        Date selectedCheckInDate = Date.valueOf(cbCheckIn.getValue());
+        Date selectedCheckOutDate = Date.valueOf(cbCheckOut.getValue());
+        Integer selectedRoomCount = Integer.valueOf(cbRooms.getValue());
 
+        searchH searchH = new searchH();
+        String selectedDestination = cbDestination.getValue();
+        searchH.setDestination(selectedDestination);
+        searchH.setRoomCount(selectedRoomCount != null ? selectedRoomCount : 0);
+        searchH.setCheckInDate(selectedCheckInDate);
+        searchH.setCheckOutDate(selectedCheckOutDate);
 
+        System.out.println("Selected destination: " + selectedDestination);
+        System.out.println("Saving searchH object: " + searchH.toString());
 
-
-
-
-
-    @FXML
-    private void handleSearchButton2() {
-        System.out.println("Search button clicked");
-
-        // Collect data from ComboBoxes
-        String selectedDestination = cbDestination.getSelectionModel().getSelectedItem();
-
-        // Create a searchH object to store the search data
-        searchH searchCriteria = new searchH(selectedDestination);
-
-
-        // Pass the search criteria to the ResultHotelsPage
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
-            Scene newScene = new Scene(fxmlLoader.load());
+            transaction = session.beginTransaction();
+            session.save(searchH);
+            transaction.commit();
+            System.out.println("Selected destination Saved");
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println("Selected destination Did not Save");
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/ResultSearchFlights-Hotels/resultSearchHotels.fxml"));
 
-            // Get the controller of the ResultHotelsPage
-            ResultSearchHotelsController resultController = fxmlLoader.getController();
+        try {
+            Parent root = loader.load();
 
-            // Pass the search criteria to the ResultHotelsPage controller
-            resultController.setSearchCriteria(searchCriteria);
+            ResultSearchHotelsController controller = loader.getController();
+            controller.setSearchH(searchH);  // Pass the searchH object to the controller
 
-            // Get the current stage and set the new scene
-            Stage currentStage = (Stage) btnSearch.getScene().getWindow();
-            currentStage.setScene(newScene);
-            currentStage.setTitle("Search Results");
+            Stage stage = (Stage) btnSearch.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    // Method to show an alert dialog
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

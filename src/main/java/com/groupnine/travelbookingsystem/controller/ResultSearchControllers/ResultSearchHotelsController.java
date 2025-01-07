@@ -1,248 +1,234 @@
 package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
+import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
 import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
-import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAO;
-import com.groupnine.travelbookingsystem.model.searchHotels.searchHDAOImp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import javax.smartcardio.Card;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ResultSearchHotelsController {
 
 
     @FXML
-    private Button myBookingButton;
+    private AnchorPane card_BigWhiteVillage, card_BigWhiteVillage2, card_CondoToTheBeach, card_CondoToTheBeach2, card_OutstandingHouse, card_OutstandingHouse2;
     @FXML
-    private Button profileButton;
+    private Button cardBtn_BigWhiteVillage, cardBtn_BigWhiteVillage2, cardBtn_CondoToTheBeach, cardBtn_CondoToTheBeach2, cardBtn_OutstandingHouse, cardBtn_OutstandingHouse2;
     @FXML
-    private Button homeButton;
-    @FXML
-    private ComboBox<String> comboBox1;
-    @FXML
-    private ComboBox<String> comboBox2;
-    @FXML
-    private Button card1Button;
-    @FXML
-    private Button button2;
-    @FXML
-    private Button button3;
-    @FXML
-    private Button button4;
-    @FXML
-    private Button button5;
-    @FXML
-    private Button button6;
-    @FXML
-    private searchH searchCriteria;
+    private searchH searchH;
 
-    @FXML
-    private searchHDAO searchHDao = new searchHDAOImp();
-    @FXML
-    private List<searchH> allHotels;
-    @FXML
-    private ListView<Card> resultCardsList;
-    @FXML
-    private AnchorPane cardsContainer;
 
-    // Initializes the controller
+    // Initialize the controller and set up event listeners for card buttons
     public void initialize() {
-        // Initialize ComboBoxes
-        comboBox1.getItems().addAll("Flights", "Hotels");
-        comboBox2.getItems().addAll("Signup", "Login");
+
         setCard1();
         setCard2();
         setCard3();
         setCard4();
         setCard5();
         setCard6();
-        //loadSearchResults();
 
-        allHotels = new ArrayList<>(); // Create an empty list of hotels
-
-        allHotels.add(new searchH("Big White Village",6));
-        allHotels.add(new searchH("Condo To The Beach",10));
-        allHotels.add(new searchH("Big White Village",15));
-        allHotels.add(new searchH("Condo To The Beach",5));
-        allHotels.add(new searchH("Outstanding house",10));
-        allHotels.add(new searchH("Outstanding house",4));
-
-        loadFilteredResults();
+        handleSearchResult();
     }
 
 
-    //card 1
+    // Setter method to pass searchH from SearchHotelsController
+    public void setSearchH(searchH searchH) {
+        this.searchH = searchH;
+        handleSearchResult();
+    }
+
+    // Set the actions for all the cards buttons
     private void setCard1() {
-        card1Button.setOnAction(event -> handleCard1Button());
+        cardBtn_BigWhiteVillage.setOnAction(event -> handleCard1Button());
     }
 
-    //card2
     private void setCard2() {
-        button2.setOnAction(event -> handleCard2Button());
+        cardBtn_OutstandingHouse.setOnAction(event -> handleCard2Button());
     }
-
-    //card3
 
     private void setCard3() {
-        button3.setOnAction(event -> handleCard3Button());
+        cardBtn_CondoToTheBeach.setOnAction(event -> handleCard3Button());
     }
 
-    //card4
     private void setCard4() {
-        button4.setOnAction(event -> handleCard4Button());
+        cardBtn_OutstandingHouse2.setOnAction(event -> handleCard4Button());
     }
 
-    //card5
     private void setCard5() {
-        button5.setOnAction(event -> handleCard5Button());
+        cardBtn_BigWhiteVillage2.setOnAction(event -> handleCard5Button());
     }
 
-    //card6
     private void setCard6() {
-        button6.setOnAction(event -> handleCard6Button());
+        cardBtn_CondoToTheBeach2.setOnAction(event -> handleCard6Button());
     }
 
-    private void setHomeButton() {
-        homeButton.setOnAction(event -> handleHomeButton());
-    }
 
-    private void setMyBookingButton() {
-        myBookingButton.setOnAction(event -> handleMyBookingButton());
-    }
-
-    private void setProfileButton() {
-        profileButton.setOnAction(event -> handleProfileButton());
-    }
-
-    // Navigation logic
+    // Navigate to another page (e.g., booking details) by loading an FXML file
     private void navigateToPage(String fxmlPath, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Scene newScene = new Scene(fxmlLoader.load());
 
-            // Get the current stage
-            Stage currentStage = (Stage) homeButton.getScene().getWindow();
+            Stage currentStage = (Stage) cardBtn_BigWhiteVillage.getScene().getWindow();
 
-            // Set the new scene
             currentStage.setScene(newScene);
             currentStage.setTitle(title);
         } catch (IOException e) {
-            e.printStackTrace(); // Log any loading errors
+            e.printStackTrace();
         }
     }
 
-    // Handle button clicks
-    @FXML
-    private void handleHomeButton() {
-        System.out.println("Home button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/Home/Homepage_V2.fxml", "Home");
+
+    // Navigate to a page with cardId to pass information to the next page
+    private void navigateToPageWithCardId(String fxmlPath, String title, int cardId) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
+
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof DetailsController) {
+                DetailsController detailsController = (DetailsController) controller;
+                detailsController.setCardId(cardId);
+            } else {
+                System.err.println("Controller is not an instance of DetailsController.");
+            }
+
+            Stage currentStage = (Stage) cardBtn_BigWhiteVillage.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    private void handleMyBookingButton() {
-        System.out.println("My Booking button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/my_booking.fxml", "My Booking");
-    }
 
-    @FXML
-    private void handleProfileButton() {
-        System.out.println("Profile button clicked");
-        navigateToPage("/com/groupnine/travelbookingsystem/view/profile.fxml", "Profile");
-    }
 
+
+    // Handle cards actions
     @FXML
     private void handleCard1Button() {
-        System.out.println("Card 1 button clicked");
-        // Action for Card 1 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 1; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
 
     }
 
     @FXML
     private void handleCard2Button() {
-        System.out.println("Card 2 button clicked");
-        // Action for Card 2 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 2; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard3Button() {
-        System.out.println("Card 3 button clicked");
-        // Action for Card 3 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 3; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard4Button() {
-        System.out.println("Card 4 button clicked");
-        // Action for Card 4 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 4; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard5Button() {
-        System.out.println("Card 5 button clicked");
-        // Action for Card 5 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 5; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
     @FXML
     private void handleCard6Button() {
-        System.out.println("Card 6 button clicked");
-        // Action for Card 6 button click
-        navigateToPage("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details");
+        int cardId = 6; // Replace with the actual cardId of the clicked card
+        System.out.println("Round Trip Button clicked, cardId: " + cardId);
+        navigateToPageWithCardId("/com/groupnine/travelbookingsystem/view/BookingDetialsView/details_h.fxml", "Hotel Details", cardId);
+
     }
 
-    @FXML
-    private void handleComboBox1Selection() {
-        String selectedOption = comboBox1.getSelectionModel().getSelectedItem();
-        System.out.println("ComboBox1 selected: " + selectedOption);
-    }
+    // Handle the results based on the destination selected
+    private void handleSearchResult() {
+        // If searchH is null, we won't show anything
+        if (searchH == null) {
+            return;
+        }
 
-    @FXML
-    private void handleComboBox2Selection() {
-        String selectedOption = comboBox2.getSelectionModel().getSelectedItem();
-        System.out.println("ComboBox2 selected: " + selectedOption);
-    }
+        resetCards();  // Hide all cards first
 
+        String destination = searchH.getDestination();
 
-    // Method to accept search criteria
-    public void setSearchCriteria(searchH searchCriteria) {
-        this.searchCriteria = searchCriteria;
-        loadFilteredResults();
-    }
+        // If the destination is "See All", show all cards
+        if (destination.equalsIgnoreCase("See All")) {
+            showAllCards();
+            return;
+        }
 
-    // Method to filter and load results
-    private void loadFilteredResults() {
-        if (searchCriteria != null) {
-            String selectedDestination = searchCriteria.getDestination();
+        switch (destination.toLowerCase()) {
+            case "big white village":
+                card_BigWhiteVillage.setVisible(true);
+                card_BigWhiteVillage.setLayoutX(402);
+                card_BigWhiteVillage.setLayoutY(256);
 
-            // Filter hotels by destination
-            List<searchH> filteredHotels = allHotels.stream()
-                    .filter(hotel -> hotel.getDestination().equalsIgnoreCase(selectedDestination))
-                    .collect(Collectors.toList());
+                card_BigWhiteVillage2.setVisible(true);
+                card_BigWhiteVillage2.setLayoutX(802);
+                card_BigWhiteVillage2.setLayoutY(256);
+                break;
 
-            // Display the filtered hotels
-            for (searchH hotel : filteredHotels) {
-                addCardToContainer(hotel);
-            }
+            case "condo to the beach":
+                card_CondoToTheBeach.setVisible(true);
+                card_CondoToTheBeach.setLayoutX(402);
+                card_CondoToTheBeach.setLayoutY(256);
+
+                card_CondoToTheBeach2.setVisible(true);
+                card_CondoToTheBeach2.setLayoutX(802);
+                card_CondoToTheBeach2.setLayoutY(256);
+                break;
+
+            case "outstanding house":
+                card_OutstandingHouse.setVisible(true);
+                card_OutstandingHouse.setLayoutX(402);
+                card_OutstandingHouse.setLayoutY(256);
+
+                card_OutstandingHouse2.setVisible(true);
+                card_OutstandingHouse2.setLayoutX(802);
+                card_OutstandingHouse2.setLayoutY(256);
+                break;
+
+            default:
+                System.out.println("Destination not recognized: " + destination);
+                break;
         }
     }
 
-    // Dynamically add cards to the container
-    private void addCardToContainer(searchH hotel) {
-        Label cardLabel = new Label("Hotel: " + hotel.getDestination() + " | Rooms num: " + hotel.getRoomCount());
-        cardLabel.setStyle("-fx-border-color: black; -fx-padding: 10;");
-        cardsContainer.getChildren().add(cardLabel);
+    // Reset all cards to be hidden and enabled
+    private void resetCards() {
+        card_BigWhiteVillage.setVisible(false);
+        card_BigWhiteVillage2.setVisible(false);
+        card_CondoToTheBeach.setVisible(false);
+        card_CondoToTheBeach2.setVisible(false);
+        card_OutstandingHouse.setVisible(false);
+        card_OutstandingHouse2.setVisible(false);
+    }
+
+    // Show all cards (if type is not selected or is "See All")
+    private void showAllCards() {
+        card_BigWhiteVillage.setVisible(true);
+        card_BigWhiteVillage2.setVisible(true);
+        card_CondoToTheBeach.setVisible(true);
+        card_CondoToTheBeach2.setVisible(true);
+        card_OutstandingHouse.setVisible(true);
+        card_OutstandingHouse2.setVisible(true);
     }
 }

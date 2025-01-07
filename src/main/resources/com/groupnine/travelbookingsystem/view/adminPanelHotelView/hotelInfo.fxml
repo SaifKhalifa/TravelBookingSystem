@@ -209,7 +209,7 @@
                 <HBox alignment="TOP_RIGHT" prefHeight="177.0" prefWidth="514.0" spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <children>
                         <Button fx:id="HotelInfoBackBtn" maxHeight="40" minHeight="21.0" onAction="#BackToHotelsList" prefHeight="44.0" prefWidth="83.0" text=" Back" />
-                        <Button fx:id="SaveButton" maxHeight="40" minHeight="21.0" onAction="#SaveHotelInfo" prefHeight="44.0" prefWidth="132.0" text="Save" />
+                        <Button fx:id="SaveButton" maxHeight="40" minHeight="21.0" onAction="#SaveHotelInfoBtn" prefHeight="44.0" prefWidth="132.0" text="Save" />
                     </children>
                     <padding>
                         <Insets bottom="8.0" right="8.0" />

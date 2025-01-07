@@ -1,8 +1,10 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
-import com.groupnine.travelbookingsystem.model.AdminFlight.AdminFlightModel;
-import com.groupnine.travelbookingsystem.model.AdminFlight.ImpAdminFlightInterface;
+import com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -58,7 +60,7 @@ public class ListOfFlightsController {
     @FXML
     private TableColumn<FlightData, Void> editColumn;
     @FXML
-    private Button hotel;
+    private Button hotel, createAcctBtn;
     @FXML
     private Button addnewflight;
     @FXML
@@ -66,7 +68,7 @@ public class ListOfFlightsController {
 
 
     private final ObservableList<FlightData> flightData = FXCollections.observableArrayList();
-    private final ImpAdminFlightInterface GetFlight = new ImpAdminFlightInterface();
+    private final FlightDAOImpl GetFlight = new FlightDAOImpl();
 
 
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -106,9 +108,9 @@ public class ListOfFlightsController {
 
     private void initializeTableData() {
         try {
-            List<AdminFlightModel> flights = GetFlight.getAllFlights();
+            List<Flight> flights = GetFlight.getFlights();
             ObservableList<FlightData> flightDataList = FXCollections.observableArrayList();
-            for (AdminFlightModel flight : flights) {
+            for (Flight flight : flights) {
                 flightDataList.add(new FlightData(
                         flight.getFlightId(),
                         flight.getOrigin(),
@@ -239,7 +241,7 @@ public class ListOfFlightsController {
                 try (Session session = sessionFactory.openSession()) {
                     Transaction transaction = session.beginTransaction();
 
-                    AdminFlightModel flight = session.get(AdminFlightModel.class, data.flightIdProperty().get());
+                    Flight flight = session.get(Flight.class, data.flightIdProperty().get());
 
                     if (flight != null) {
                         session.delete(flight);
@@ -287,6 +289,16 @@ public class ListOfFlightsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createAccount(){
+        AccountCreationController.showLogin = false;
+
+        MainApplication_DEFAULT.showPopup(
+                "/com/groupnine/travelbookingsystem/view/authentication/create_account.fxml",
+                "Create New User Account",
+                false
+        );
     }
 
     public static class FlightData {

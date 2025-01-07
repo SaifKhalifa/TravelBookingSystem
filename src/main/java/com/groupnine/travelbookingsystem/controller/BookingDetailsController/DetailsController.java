@@ -1,7 +1,7 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
-import com.groupnine.travelbookingsystem.model.FlightDetalisModel.FlightDeatailsModel;
-import com.groupnine.travelbookingsystem.model.FlightDetalisModel.FlightDetailsDeoImpl;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,12 +29,16 @@ public class DetailsController {
     @FXML
     private Button bookNowButton;
 
-    private int flightId; // Store the passed flightId
+    private int flightId=1; // Store the passed flightId
 
     // New method to set flightId dynamically
     public void setCardId(int cardId) {
-        this.flightId = cardId;
-        loadFlightDetails(); // Load details for the provided cardId
+        if (cardId <= 0) {
+            this.flightId = 1;
+        } else {
+            this.flightId = cardId;
+        }
+        loadFlightDetails();
     }
 
     @FXML
@@ -53,14 +57,14 @@ public class DetailsController {
         airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
 */
 
-        FlightDetailsDeoImpl dao = new FlightDetailsDeoImpl();
-        FlightDeatailsModel flightDetails = dao.getFlightDetails(flightId);
+        FlightDAOImpl dao = new FlightDAOImpl();
+        Flight flightDetails = dao.getFlightById(flightId);
 
         if (flightDetails != null) {
             departureLabel.setText("Departure Time: " + flightDetails.getDepartureTime());
             arrivalLabel.setText("Arrival Time: " + flightDetails.getArrivalTime());
             durationLabel.setText("Flight Duration: " + flightDetails.getFlightDuration());
-            airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
+            //airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
             departureAirportLabel.setText("Departure Airport: " + flightDetails.getDepartureAirport());
             arrivalAirportLabel.setText("Arrival Airport: " + flightDetails.getArrivalAirport());
             priceLabel.setText("Price: $" + flightDetails.getPrice());
@@ -81,7 +85,6 @@ public class DetailsController {
             Scene scene = new Scene(loader.load());
 
             FlightController controller = loader.getController();
-
             controller.setFlightId(flightId);
 
             Stage stage = new Stage();
@@ -92,5 +95,6 @@ public class DetailsController {
             e.printStackTrace();
         }
     }
+
 
 }

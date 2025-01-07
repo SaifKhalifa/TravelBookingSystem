@@ -51,9 +51,7 @@
                </HBox.margin>
                 </HBox>
                 <HBox alignment="TOP_RIGHT" prefHeight="9.0" prefWidth="1086.0" spacing="5">
-<!--                    <Button fx:id="EditHotelBtn" onAction="#EditHotel" prefWidth="100.0" styleClass="edit-button" text="Edit" />-->
-<!--                    <Button fx:id="deleteHotelBtn" onAction="#DeleteHotel" prefWidth="132.0" styleClass="delete-button" text="Delete" />-->
-                    <Button fx:id="AddHotelBtn" onAction="#AddHotel" prefHeight="35.0" prefWidth="76.0" styleClass="add-button" text="+ Add" />
+                    <Button fx:id="AddHotelBtn" onAction="#AddHotelBtn" prefHeight="35.0" prefWidth="76.0" styleClass="add-button" text="+ Add" />
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

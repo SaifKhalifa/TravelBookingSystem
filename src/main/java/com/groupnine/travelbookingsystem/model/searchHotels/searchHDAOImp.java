@@ -1,23 +1,38 @@
 package com.groupnine.travelbookingsystem.model.searchHotels;
 
-import com.groupnine.travelbookingsystem.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class searchHDAOImp implements searchHDAO {
 
     @Override
-    public List<searchH> searchHotelsByDestination(String destination) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM searchH WHERE destination = :destination";
-            Query<searchH> query = session.createQuery(hql, searchH.class);
-            query.setParameter("destination", destination);
-            return query.list();
-        } catch (Exception e) {
+    public List<searchH> getHotelsByDestination(String destination) {
+        List<searchH> hotels = new ArrayList<>();
+
+        // Replace with actual database query logic
+        try (Connection connection = DriverManager.getConnection("DB_URL", "root", "ReemaK")) {
+            String query = "SELECT * FROM hotelsbookings WHERE destination = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, destination);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                searchH hotel = new searchH(
+                        resultSet.getString("destination"),
+                        resultSet.getInt("roomCount"),
+                        resultSet.getDate("checkInDate"),
+                        resultSet.getDate("checkOutDate")
+                );
+                hotel.setHotelId(resultSet.getInt("hotelId"));
+                hotels.add(hotel);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+
+        return hotels;
     }
+
+
 }

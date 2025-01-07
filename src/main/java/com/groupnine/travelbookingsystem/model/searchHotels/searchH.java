@@ -24,12 +24,16 @@ public class searchH {
     @Column(name = "checkOutDate")
     private Date checkOutDate;
 
-   public searchH(String destination, int roomCount) {
-       this.destination = destination;
-       this.roomCount = roomCount;
-   }
 
-    public searchH(String destination){}
+    // Constructors
+    public searchH(String destination, int roomCount) {
+        this.destination = destination;
+        this.roomCount = roomCount;
+    }
+
+    public searchH(String destination) {
+        this.destination = destination;
+    }
 
     public searchH(String destination, int roomCount, Date checkInDate, Date checkOutDate) {
         this.destination = destination;
@@ -37,6 +41,8 @@ public class searchH {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
+
+    public searchH() {}
 
     // Getter and Setter methods
     public int getHotelId() {
@@ -89,5 +95,4 @@ public class searchH {
                 ", checkOutDate=" + checkOutDate +
                 '}';
     }
-
 }

@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="529.0" prefWidth="602.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.authentication.AccountCreationController">
    <children>
-      <Group layoutX="21.0" layoutY="80.0">
+      <Group fx:id="backToLoginBtn" layoutX="21.0" layoutY="80.0">
          <children>
             <ImageView fitHeight="25.0" fitWidth="23.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>

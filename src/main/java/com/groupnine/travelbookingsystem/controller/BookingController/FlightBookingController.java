@@ -1,7 +1,9 @@
 package com.groupnine.travelbookingsystem.controller.BookingController;
 
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightBookingModel;
-import com.groupnine.travelbookingsystem.model.BookingFlight.FlightDAOImp;
+import com.groupnine.travelbookingsystem.model.flight.Flight;
+import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBooking;
+import com.groupnine.travelbookingsystem.model.flightBooking.FlightBookingDAOImpl;
 import com.groupnine.travelbookingsystem.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +21,7 @@ import java.text.SimpleDateFormat;
 public class FlightBookingController {
 
     @FXML
-    private TableView<Flight> flightsTable;
+    private TableView<FlightBooking> flightsTable;
 
     @FXML
     private TableColumn<Flight, String> flightIdColumn;
@@ -42,14 +44,14 @@ public class FlightBookingController {
     @FXML
     private TableColumn<Flight, String> statusColumn;
 
-    private Flight lastSelectedFlight = null;  // Track the last selected flight
+    private FlightBooking lastSelectedFlight = null;  // Track the last selected flight
 
-    private FlightDAOImp flightRepositoryImp = new FlightDAOImp(); // Repository instance
+    private FlightBookingDAOImpl flightRepositoryImp = new FlightBookingDAOImpl(); // Repository instance
 
     public void initialize() {
         try {
             // Get all flights from repository
-            List<FlightBookingModel> flights = flightRepositoryImp.getAllFlights();
+            List<FlightBooking> flights = flightRepositoryImp.getAllFlightBookings();
             System.out.println("Flights retrieved: " + (flights != null ? flights.size() : "null"));
 
             if (flights != null && !flights.isEmpty()) {
@@ -92,7 +94,7 @@ public class FlightBookingController {
 
     private void handleRowClick(MouseEvent event) {
         // Get the clicked row (flight)
-        Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        FlightBooking selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
         System.out.println("Row clicked: " + selectedFlight);
 
         if (selectedFlight != null) {
@@ -110,26 +112,38 @@ public class FlightBookingController {
     }
 
     private void loadFlightData() {
-        ObservableList<Flight> flightData = FXCollections.observableArrayList();
+        ObservableList<FlightBooking> flightData = FXCollections.observableArrayList();
 
         // Retrieve all flights from the repository
-        List<FlightBookingModel> flightModels = flightRepositoryImp.getAllFlights();
+        List<FlightBooking> flightModels = flightRepositoryImp.getAllFlightBookings();
         System.out.println("Flight models retrieved: " + (flightModels != null ? flightModels.size() : "null"));
 
         if (flightModels != null && !flightModels.isEmpty()) {
             // Convert to Flight objects for TableView display
-            for (FlightBookingModel model : flightModels) {
+            for (FlightBooking model : flightModels) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-                System.out.println("Converting FlightBookingModel to Flight: " + model);
-                flightData.add(new Flight(
-                        String.valueOf(model.getFlightId()),
+                System.out.println("Converting FlightBooking to Flight: " + model);
+
+                /*
+                this.id = id;
+                this.customerName = customerName;
+                this.airline = airline;
+                this.bookingDate = bookingDate;
+                this.departure = departure;
+                this.arrival = arrival;
+                this.status = status;
+                this.flightId = flightId;
+                * */
+                flightData.add(new FlightBooking(
+                        model.getFlightId(),
                         model.getCustomerName(),
                         model.getAirline(),
-                        sdf.format(model.getBookingDate()),
-                        sdf.format(model.getDeparture()),
-                        sdf.format(model.getArrival()),
-                        model.getStatus()
+                        model.getBookingDate(),
+                        model.getDeparture(),
+                        model.getArrival(),
+                        model.getStatus(),
+                        model.getFlightId()
                 ));
             }
         } else {
@@ -143,7 +157,7 @@ public class FlightBookingController {
 
     @FXML
     private void cancelFlightBooking() {
-        Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        FlightBooking selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
         System.out.println("Cancel booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
@@ -163,14 +177,14 @@ public class FlightBookingController {
         }
     }
 
-    private void updateFlightStatusInDatabase(Flight flight) {
+    private void updateFlightStatusInDatabase(FlightBooking flight) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
-            FlightBookingModel flightModel = session.get(FlightBookingModel.class, Integer.parseInt(flight.getFlightId()));
+            FlightBooking flightModel = session.get(FlightBooking.class, flight.getFlightId());
 
             if (flightModel != null) {
                 flightModel.setStatus(flight.getStatus());
@@ -193,7 +207,7 @@ public class FlightBookingController {
 
     @FXML
     private void setPendingBooking() {
-        Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        FlightBooking selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
         System.out.println("Set pending booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
@@ -214,7 +228,7 @@ public class FlightBookingController {
 
     @FXML
     private void cancelPendingBooking() {
-        Flight selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
+        FlightBooking selectedFlight = flightsTable.getSelectionModel().getSelectedItem();
         System.out.println("Cancel pending booking selected flight: " + selectedFlight);
 
         if (selectedFlight != null) {
@@ -239,73 +253,5 @@ public class FlightBookingController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
-    }
-
-    // Flight class representing flight data
-    public static class Flight {
-        private String flightId;
-        private String customerName;
-        private String airline;
-        private String bookingDate;
-        private String departure;
-        private String arrival;
-        private String status;
-
-        // Constructor
-        public Flight(String flightId, String customerName, String airline, String bookingDate, String departure, String arrival, String status) {
-            this.flightId = flightId;
-            this.customerName = customerName;
-            this.airline = airline;
-            this.bookingDate = bookingDate;
-            this.departure = departure;
-            this.arrival = arrival;
-            this.status = status;
-        }
-
-        // Getters and setters
-        public String getFlightId() {
-            return flightId;
-        }
-
-        public String getCustomerName() {
-            return customerName;
-        }
-
-        public String getAirline() {
-            return airline;
-        }
-
-        public String getBookingDate() {
-            return bookingDate;
-        }
-
-        public String getDeparture() {
-            return departure;
-        }
-
-        public String getArrival() {
-            return arrival;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        @Override
-        public String toString() {
-            return "flights{" +
-                    "flightId='" + flightId + '\'' +
-                    ", customerName='" + customerName + '\'' +
-                    ", airline='" + airline + '\'' +
-                    ", bookingDate='" + bookingDate + '\'' +
-                    ", departure='" + departure + '\'' +
-                    ", arrival='" + arrival + '\'' +
-                    ", status='" + status + '\'' +
-                    '}';
-        }
     }
 }
