@@ -144,6 +144,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     // to get Last Logged-In Agent
+    @Override
     public User getLastLoggedInAgent() {
         User agent = null;
         Transaction transaction = null;

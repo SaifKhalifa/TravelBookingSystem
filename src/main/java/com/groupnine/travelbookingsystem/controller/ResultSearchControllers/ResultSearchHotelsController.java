@@ -18,6 +18,8 @@ public class ResultSearchHotelsController {
     private AnchorPane card_BigWhiteVillage, card_BigWhiteVillage2, card_CondoToTheBeach, card_CondoToTheBeach2, card_OutstandingHouse, card_OutstandingHouse2;
     @FXML
     private Button cardBtn_BigWhiteVillage, cardBtn_BigWhiteVillage2, cardBtn_CondoToTheBeach, cardBtn_CondoToTheBeach2, cardBtn_OutstandingHouse, cardBtn_OutstandingHouse2;
+    @FXML
+    private searchH searchH;
 
 
     // Initialize the controller and set up event listeners for card buttons
@@ -33,6 +35,12 @@ public class ResultSearchHotelsController {
         handleSearchResult();
     }
 
+
+    // Setter method to pass searchH from SearchHotelsController
+    public void setSearchH(searchH searchH) {
+        this.searchH = searchH;
+        handleSearchResult();
+    }
 
     // Set the actions for all the cards buttons
     private void setCard1() {
@@ -150,19 +158,24 @@ public class ResultSearchHotelsController {
 
     }
 
-
     // Handle the results based on the destination selected
     private void handleSearchResult() {
-        resetCards();
+        // If searchH is null, we won't show anything
+        if (searchH == null) {
+            return;
+        }
 
-        searchH searchH = new searchH();
+        resetCards();  // Hide all cards first
+
         String destination = searchH.getDestination();
-        if (destination == null || destination.trim().isEmpty() || destination.equalsIgnoreCase("See All")) {
-            // Show all cards if no destination is entered or "All" is selected
+
+        // If the destination is "See All", show all cards
+        if (destination.equalsIgnoreCase("See All")) {
             showAllCards();
             return;
         }
-        switch (searchH.getDestination().toLowerCase()) {
+
+        switch (destination.toLowerCase()) {
             case "big white village":
                 card_BigWhiteVillage.setVisible(true);
                 card_BigWhiteVillage.setLayoutX(402);
@@ -194,12 +207,10 @@ public class ResultSearchHotelsController {
                 break;
 
             default:
-                System.out.println("Destination not recognized: " + searchH.getDestination());
+                System.out.println("Destination not recognized: " + destination);
                 break;
         }
-
     }
-
 
     // Reset all cards to be hidden and enabled
     private void resetCards() {
@@ -209,15 +220,7 @@ public class ResultSearchHotelsController {
         card_CondoToTheBeach2.setVisible(false);
         card_OutstandingHouse.setVisible(false);
         card_OutstandingHouse2.setVisible(false);
-
-        card_BigWhiteVillage.setDisable(false);
-        card_BigWhiteVillage2.setDisable(false);
-        card_CondoToTheBeach.setDisable(false);
-        card_CondoToTheBeach2.setDisable(false);
-        card_OutstandingHouse.setDisable(false);
-        card_OutstandingHouse2.setDisable(false);
     }
-
 
     // Show all cards (if type is not selected or is "See All")
     private void showAllCards() {

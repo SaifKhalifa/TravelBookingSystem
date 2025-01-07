@@ -15,4 +15,7 @@ public interface FlightDAO {
 
     //Deletion
     void deleteFlightById(int flightId);
+
+    //Flights Count
+    long getFlightsCount();
 }
