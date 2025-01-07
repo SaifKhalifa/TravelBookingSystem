@@ -24,16 +24,26 @@ import java.sql.Date;
 
 public class SearchPageHotelsController {
 
-    @FXML public ImageView backGG;
-    @FXML private Button btnHome;
-    @FXML private Button btnFlights;
-    @FXML private Button btnHotels;
-    @FXML private ComboBox<String> cbDestination;
-    @FXML private ComboBox<String> cbRooms;
-    @FXML private ComboBox<String> cbCheckIn;
-    @FXML private ComboBox<String> cbCheckOut;
-    @FXML private ComboBox<String> cbPersons;
-    @FXML private Button btnSearch;
+    @FXML
+    public ImageView backGG;
+    @FXML
+    private Button btnHome;
+    @FXML
+    private Button btnFlights;
+    @FXML
+    private Button btnHotels;
+    @FXML
+    private ComboBox<String> cbDestination;
+    @FXML
+    private ComboBox<String> cbRooms;
+    @FXML
+    private ComboBox<String> cbCheckIn;
+    @FXML
+    private ComboBox<String> cbCheckOut;
+    @FXML
+    private ComboBox<String> cbPersons;
+    @FXML
+    private Button btnSearch;
 
 
     // Method to initialize the page and set up the UI elements
@@ -119,23 +129,29 @@ public class SearchPageHotelsController {
     }
 
 
-
+    // Handles search action: validates input, saves data, and navigates to results page.
     private void handleSearch(ActionEvent event) {
         System.out.println("Search button clicked, storing data in the model..., and moving to search results page!");
 
-        if (cbDestination.getSelectionModel().getSelectedItem() == null) {
-            showAlert("Search", "You need to select a destination to search for!");
+        if (cbDestination.getSelectionModel().getSelectedItem() == null ||
+                cbCheckIn.getValue() == null ||
+                cbCheckOut.getValue() == null ||
+                cbRooms.getValue() == null ||
+                cbPersons.getValue() == null) {
+            showAlert("Search", "Please make sure you enter all fields!");
             return;
         }
 
         Date selectedCheckInDate = Date.valueOf(cbCheckIn.getValue());
         Date selectedCheckOutDate = Date.valueOf(cbCheckOut.getValue());
         Integer selectedRoomCount = Integer.valueOf(cbRooms.getValue());
+        Integer selectedPersonCount = Integer.valueOf(cbPersons.getValue());
 
         searchH searchH = new searchH();
         String selectedDestination = cbDestination.getValue();
         searchH.setDestination(selectedDestination);
         searchH.setRoomCount(selectedRoomCount != null ? selectedRoomCount : 0);
+        searchH.setNumPersons(selectedPersonCount != null ? selectedPersonCount : 0);
         searchH.setCheckInDate(selectedCheckInDate);
         searchH.setCheckOutDate(selectedCheckOutDate);
 
