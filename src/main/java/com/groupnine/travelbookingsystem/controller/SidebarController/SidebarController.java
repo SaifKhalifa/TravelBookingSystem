@@ -83,7 +83,7 @@ public class SidebarController {
     private void handleAdminDashboardClick(MouseEvent event) {
         setActiveTab(adminDashboardBox);
         MainApplication_DEFAULT.loadScene(
-                "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights_V2.fxml",
+                "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml",
                 "Admin Dashboard",
                 true,
                 true
