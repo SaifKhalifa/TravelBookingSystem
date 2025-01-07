@@ -29,12 +29,16 @@ public class DetailsController {
     @FXML
     private Button bookNowButton;
 
-    private int flightId; // Store the passed flightId
+    private int flightId=1; // Store the passed flightId
 
     // New method to set flightId dynamically
     public void setCardId(int cardId) {
-        this.flightId = cardId;
-        loadFlightDetails(); // Load details for the provided cardId
+        if (cardId <= 0) {
+            this.flightId = 1;
+        } else {
+            this.flightId = cardId;
+        }
+        loadFlightDetails();
     }
 
     @FXML
@@ -81,7 +85,6 @@ public class DetailsController {
             Scene scene = new Scene(loader.load());
 
             FlightController controller = loader.getController();
-
             controller.setFlightId(flightId);
 
             Stage stage = new Stage();
@@ -92,5 +95,6 @@ public class DetailsController {
             e.printStackTrace();
         }
     }
+
 
 }

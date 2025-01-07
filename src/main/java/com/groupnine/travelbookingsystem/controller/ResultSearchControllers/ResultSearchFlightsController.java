@@ -2,6 +2,7 @@ package com.groupnine.travelbookingsystem.controller.ResultSearchControllers;
 
 import com.groupnine.travelbookingsystem.controller.BookingDetailsController.DetailsController;
 import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ public class ResultSearchFlightsController {
     private AnchorPane card_paris, card_london, card_maldives, card_istanbul, card_madrid, card_dubai;
     @FXML
     private Button cardBtn_paris, cardBtn_london, cardBtn_maldives, cardBtn_dubai, cardBtn_istanbul, cardBtn_madrid;
+    @FXML
+    private searchF searchF;
 
 
     public void initialize() {
@@ -32,6 +35,11 @@ public class ResultSearchFlightsController {
         handleSearchResult();
     }
 
+    // Setter method to pass searchH from SearchHotelsController
+    public void setSearchF(searchF searchF) {
+        this.searchF = searchF;
+        handleSearchResult();
+    }
 
     // Sets the actions for all the cards buttons
     private void setCard1() {
@@ -95,7 +103,6 @@ public class ResultSearchFlightsController {
     }
 
 
-
     // Handlers for individual card buttons, each passes a unique card ID
     @FXML
     private void handleCard1Button() {
@@ -142,57 +149,63 @@ public class ResultSearchFlightsController {
 
     //Handles the search result display by showing or hiding cards based on the destination
     private void handleSearchResult() {
-        // Reset all cards to default state
+        if (searchF == null) {
+            return;
+        }
+
         resetCards();
 
-        searchF searchF = new searchF();
         String destination = searchF.getDestination();
+
         if (destination == null || destination.trim().isEmpty() || destination.equalsIgnoreCase("See All")) {
-            // Show all cards if no destination is entered or "All" is selected
             showAllCards();
             return;
         }
 
-
-        switch (searchF.getDestination().toLowerCase()) {
+        switch (destination.toLowerCase()) {
             case "paris":
                 card_paris.setVisible(true);
                 card_paris.setLayoutX(502);
                 card_paris.setLayoutY(256);
                 break;
+
             case "london":
                 card_london.setVisible(true);
                 card_london.setLayoutX(502);
                 card_london.setLayoutY(256);
                 break;
+
             case "maldives":
                 card_maldives.setVisible(true);
                 card_maldives.setLayoutX(502);
                 card_maldives.setLayoutY(256);
                 break;
+
             case "istanbul":
                 card_istanbul.setVisible(true);
                 card_istanbul.setLayoutX(502);
                 card_istanbul.setLayoutY(256);
                 break;
+
             case "madrid":
                 card_madrid.setVisible(true);
                 card_madrid.setLayoutX(502);
                 card_madrid.setLayoutY(256);
                 break;
+
             case "dubai":
                 card_dubai.setVisible(true);
                 card_dubai.setLayoutX(502);
                 card_dubai.setLayoutY(256);
                 break;
+
             default:
-                System.out.println("Destination not recognized: " + searchF.getDestination());
+                System.out.println("Destination not recognized: " + destination);
                 break;
         }
     }
 
-
-    // Resets all cards to their hidden state
+    // Resets all cards to their hidden and enabled state
     private void resetCards() {
         card_paris.setVisible(false);
         card_london.setVisible(false);
@@ -200,6 +213,7 @@ public class ResultSearchFlightsController {
         card_istanbul.setVisible(false);
         card_madrid.setVisible(false);
         card_dubai.setVisible(false);
+
 
         card_paris.setDisable(false);
         card_london.setDisable(false);
@@ -209,8 +223,7 @@ public class ResultSearchFlightsController {
         card_dubai.setDisable(false);
     }
 
-
-    // Shows all cards
+    // Shows all cards (if no specific destination is selected or "See All" is chosen)
     private void showAllCards() {
         card_paris.setVisible(true);
         card_london.setVisible(true);
@@ -219,5 +232,4 @@ public class ResultSearchFlightsController {
         card_madrid.setVisible(true);
         card_dubai.setVisible(true);
     }
-
 }

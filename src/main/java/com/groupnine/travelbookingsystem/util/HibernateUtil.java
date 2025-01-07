@@ -12,6 +12,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import com.groupnine.travelbookingsystem.model.searchHotels.searchH;
+import com.groupnine.travelbookingsystem.model.searchFlights.searchF;
+
+
 
 
 public class HibernateUtil {
@@ -31,6 +35,9 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(HotelBooking.class);
             configuration.addAnnotatedClass(User.class);
             configuration.addAnnotatedClass(Customer.class);
+            configuration.addAnnotatedClass(searchH.class);
+            configuration.addAnnotatedClass(searchF.class);
+
 
             configuration.configure();
 
