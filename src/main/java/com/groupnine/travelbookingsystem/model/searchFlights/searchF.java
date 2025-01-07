@@ -10,11 +10,11 @@ public class searchF {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "booking_id")
-    private int bookingId;
+    @Column(name = "flightId")
+    private int flightId;
 
     @Column(name = "destination", nullable = false)
-    private static String destination;
+    private String destination;
 
     @Column(name = "passenger_count", nullable = false)
     private int passengerCount;
@@ -42,19 +42,19 @@ public class searchF {
 
     // Getters and Setters
     public int getBookingId() {
-        return bookingId;
+        return flightId;
     }
 
     public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+        this.flightId = bookingId;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public static void setDestination(String destination) {
-        searchF.destination = destination;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
 
@@ -86,7 +86,7 @@ public class searchF {
     @Override
     public String toString() {
         return "FlightSearchModel{" +
-                "bookingId=" + bookingId +
+                "bookingId=" + flightId +
                 ", destination='" + destination + '\'' +
                 ", passengerCount=" + passengerCount +
                 ", checkInDate=" + checkInDate +
