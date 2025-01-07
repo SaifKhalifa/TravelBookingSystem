@@ -11,7 +11,7 @@
 
 <BorderPane prefHeight="860.0" prefWidth="1454.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupnine.travelbookingsystem.controller.HomeController.HomepageController">
     <stylesheets>
-        <URL value="@../../Assets/css/homePage_V2_style.css" />
+        <URL value="@../../../../../../../../../../TravelBookingSystem2/TravelBookingSystem/src/main/resources/com/groupnine/travelbookingsystem/Assets/css/homePage_V2_style.css" />
     </stylesheets>
     <left>
         <fx:include source="../Sidebar/Sidebar.fxml" />
@@ -19,7 +19,7 @@
 
     <center>
 
-        <VBox fx:id="vbox" alignment="TOP_CENTER" spacing="20" styleClass="vbox-background" stylesheets="@../../Assets/css/homePage_V2_style.css" BorderPane.alignment="CENTER">
+        <VBox fx:id="vbox" alignment="TOP_CENTER" spacing="20" styleClass="vbox-background" stylesheets="@../../../../../../../../../../TravelBookingSystem2/TravelBookingSystem/src/main/resources/com/groupnine/travelbookingsystem/Assets/css/homePage_V2_style.css" BorderPane.alignment="CENTER">
             <HBox prefHeight="100.0" prefWidth="1204.0">
                 <children>
                     <Label alignment="TOP_LEFT" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0; -fx-text-fill: white;" text="Welcome ">
@@ -155,16 +155,16 @@
                        <!-- Flight Booking Data -->
                        <HBox opacity="0.89" prefHeight="2.0" prefWidth="983.0" spacing="8.0" style="-fx-background-color: black;">
                            <children>
-                               <Label fx:id="flightBookingID" prefHeight="27.0" prefWidth="129.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label">
+                               <Label fx:id="flightBookingID" prefHeight="27.0" prefWidth="129.0" style="-fx-font-size: 18; -fx-text-fill: white;">
                               <padding>
                                  <Insets left="4.0" />
                               </padding></Label>
-                               <Label fx:id="customerNameFlight" prefHeight="27.0" prefWidth="161.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="airline" prefHeight="27.0" prefWidth="90.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="bookingDateFlight" prefHeight="27.0" prefWidth="138.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="departure" prefHeight="27.0" prefWidth="119.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="arrival" prefHeight="27.0" prefWidth="104.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="statusFlight" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
+                               <Label fx:id="customerNameFlight" prefHeight="27.0" prefWidth="161.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="airline" prefHeight="27.0" prefWidth="90.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="bookingDateFlight" prefHeight="27.0" prefWidth="138.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="departure" prefHeight="27.0" prefWidth="119.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="arrival" prefHeight="27.0" prefWidth="104.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="statusFlight" prefHeight="27.0" prefWidth="87.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
                            </children>
                            <VBox.margin>
                                <Insets left="5.0" />
@@ -191,16 +191,16 @@
                        <!-- Hotel Booking Data -->
                        <HBox opacity="0.89" prefHeight="2.0" prefWidth="983.0" spacing="8.0" style="-fx-background-color: black;">
                            <children>
-                               <Label fx:id="hotelBookingID" prefHeight="27.0" prefWidth="127.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label">
+                               <Label fx:id="hotelBookingID" prefHeight="27.0" prefWidth="127.0" style="-fx-font-size: 18; -fx-text-fill: white;">
                               <padding>
                                  <Insets left="4.0" />
                               </padding></Label>
-                               <Label fx:id="customerNameHotel" prefHeight="27.0" prefWidth="161.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="hotelName" prefHeight="27.0" prefWidth="135.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="bookingDateHotel" prefHeight="27.0" prefWidth="145.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="checkIn" prefHeight="27.0" prefWidth="108.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="checkOut" prefHeight="27.0" prefWidth="121.0" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
-                               <Label fx:id="statusHotel" style="-fx-font-size: 18; -fx-text-fill: white;" text="Label" />
+                               <Label fx:id="customerNameHotel" prefHeight="27.0" prefWidth="161.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="hotelName" prefHeight="27.0" prefWidth="135.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="bookingDateHotel" prefHeight="27.0" prefWidth="145.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="checkIn" prefHeight="27.0" prefWidth="108.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="checkOut" prefHeight="27.0" prefWidth="121.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
+                               <Label fx:id="statusHotel" prefHeight="27.0" prefWidth="82.0" style="-fx-font-size: 18; -fx-text-fill: white;" />
                            </children>
                            <VBox.margin>
                                <Insets left="5.0" />

@@ -1,5 +1,6 @@
 package com.groupnine.travelbookingsystem.controller.BookingDetailsController;
 
+import com.groupnine.travelbookingsystem.MainApplication_DEFAULT;
 import com.groupnine.travelbookingsystem.model.flight.Flight;
 import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
 import javafx.fxml.FXML;
@@ -18,13 +19,9 @@ public class DetailsController {
     @FXML
     private Label durationLabel;
     @FXML
-    private Label airlineLabel;
-    @FXML
     private Label departureAirportLabel;
     @FXML
     private Label arrivalAirportLabel;
-    @FXML
-    private Label priceLabel;
 
     @FXML
     private Button bookNowButton;
@@ -53,9 +50,6 @@ public class DetailsController {
             departureLabel.setText("Invalid flight ID provided.");
             return;
         }
-/*
-        airlineLogo.setImage(new Image(getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/imgsDeatailsFlight/ta.png").toExternalForm()));
-*/
 
         FlightDAOImpl dao = new FlightDAOImpl();
         Flight flightDetails = dao.getFlightById(flightId);
@@ -64,24 +58,21 @@ public class DetailsController {
             departureLabel.setText("Departure Time: " + flightDetails.getDepartureTime());
             arrivalLabel.setText("Arrival Time: " + flightDetails.getArrivalTime());
             durationLabel.setText("Flight Duration: " + flightDetails.getFlightDuration());
-            //airlineLabel.setText("Airline: " + flightDetails.getAirlineName());
             departureAirportLabel.setText("Departure Airport: " + flightDetails.getDepartureAirport());
             arrivalAirportLabel.setText("Arrival Airport: " + flightDetails.getArrivalAirport());
-            priceLabel.setText("Price: $" + flightDetails.getPrice());
         } else {
             departureLabel.setText("No flight details found.");
             arrivalLabel.setText("");
             durationLabel.setText("");
-            airlineLabel.setText("");
+
             departureAirportLabel.setText("");
             arrivalAirportLabel.setText("");
-            priceLabel.setText("");
         }
     }
 
     private void handleBookNow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetailsView/BookingFlight.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/BookingDetialsView/BookingFlight.fxml"));
             Scene scene = new Scene(loader.load());
 
             FlightController controller = loader.getController();

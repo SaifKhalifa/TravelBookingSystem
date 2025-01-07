@@ -66,4 +66,25 @@ public class FlightDAOImpl implements FlightDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public long getFlightsCount() {
+        Transaction transaction = null;
+        long count = 0;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            // HQL to count flight bookings
+            count = (Long) session.createQuery(
+                            "SELECT COUNT(*) FROM Flight")
+                    .uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+        return count;
+    }
 }

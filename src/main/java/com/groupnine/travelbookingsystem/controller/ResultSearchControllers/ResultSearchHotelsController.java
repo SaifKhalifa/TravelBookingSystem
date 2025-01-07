@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -90,21 +91,31 @@ public class ResultSearchHotelsController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = fxmlLoader.load();
 
+            // Pass card ID to the controller if it is an instance of DetailsController
             Object controller = fxmlLoader.getController();
             if (controller instanceof DetailsController) {
-                DetailsController detailsController = (DetailsController) controller;
-                detailsController.setCardId(cardId);
+                ((DetailsController) controller).setCardId(cardId);
             } else {
                 System.err.println("Controller is not an instance of DetailsController.");
             }
 
-            Stage currentStage = (Stage) cardBtn_BigWhiteVillage.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-            currentStage.setTitle(title);
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Makes the stage modal
+            popupStage.setTitle(title);
+            popupStage.setScene(new Scene(root));
+
+            // Disable resizing
+            popupStage.setResizable(false);
+
+            // Show the popup and wait for it to close
+            popupStage.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
 

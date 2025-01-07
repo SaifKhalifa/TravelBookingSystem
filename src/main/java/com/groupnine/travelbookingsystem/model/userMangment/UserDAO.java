@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO {
+    User getUserById(int user_id);
+
     User getUserByUsername(String username);
     List<User> getAllUsers();
 

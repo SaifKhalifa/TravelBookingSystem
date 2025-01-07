@@ -24,7 +24,7 @@
 
 /*_______________________________________________________________________*/
 /*    !* Default style for ToggleButton *!*/
-#flightsButton, #hotelsButton {
+.ToggleBtn {
     -fx-background-color: #f0f0f0; /* Light grey background */
     -fx-text-fill: #333333; /* Dark text color */
     -fx-font-weight: normal; /* Regular text */
@@ -42,6 +42,11 @@
     -fx-font-weight: bold; /* Bold text */
 }
 
+#flight:selected{
+    -fx-background-color: #6E9FC1; /* Blue when selected */
+    -fx-text-fill: white; /* White text */
+    -fx-font-weight: bold; /* Bold text */
+}
 
 /* Hover effect for ToggleButton */
 #flightsButton:hover, #hotelsButton:hover {
