@@ -186,7 +186,6 @@ public class SearchPageFlightsController {
         }
     }
 
-
     // Show an alert dialog
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

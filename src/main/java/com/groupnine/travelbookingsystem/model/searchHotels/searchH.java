@@ -88,9 +88,7 @@ public class searchH {
         return numPersons;
     }
 
-    public void setNumPersons(int numPersons) {
-        this.numPersons = numPersons;
-    }
+    public void setNumPersons(int numPersons) {this.numPersons = numPersons;}
 
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
