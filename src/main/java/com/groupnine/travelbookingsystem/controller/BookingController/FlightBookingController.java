@@ -136,7 +136,7 @@ public class FlightBookingController {
                 this.flightId = flightId;
                 * */
                 flightData.add(new FlightBooking(
-                        model.getFlightId(),
+                        model.getId(),
                         model.getCustomerName(),
                         model.getAirline(),
                         model.getBookingDate(),
@@ -184,7 +184,7 @@ public class FlightBookingController {
 
         try {
             transaction = session.beginTransaction();
-            FlightBooking flightModel = session.get(FlightBooking.class, flight.getFlightId());
+            FlightBooking flightModel = session.get(FlightBooking.class, flight.getId());
 
             if (flightModel != null) {
                 flightModel.setStatus(flight.getStatus());
@@ -192,7 +192,7 @@ public class FlightBookingController {
                 transaction.commit();
                 System.out.println("Flight status updated successfully in the database.");
             } else {
-                System.out.println("Flight not found in the database.");
+                System.out.println("Flight booking not found in the database., ID = " + flight.getId());
             }
         } catch (Exception e) {
             if (transaction != null) {
