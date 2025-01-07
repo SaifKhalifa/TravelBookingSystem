@@ -41,23 +41,17 @@
          <Font size="36.0" />
       </font></Label>
 
-    <Label style="-fx-text-fill: white;" text="Flight ID:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <Label style="-fx-text-fill: white;" text="Gate Number:" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="flightid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="gatenumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label style="-fx-text-fill: white;" text="Gate Number:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+    <Label style="-fx-text-fill: white;" text="Seat Capacity:" GridPane.columnIndex="2" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="gatenumber" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-
-    <Label style="-fx-text-fill: white;" text="Seat Capacity:" GridPane.columnIndex="4" GridPane.rowIndex="2">
-      <font>
-         <Font size="18.0" />
-      </font></Label>
-    <TextField fx:id="seatcapacity" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+    <TextField fx:id="seatcapacity" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
     <Label style="-fx-text-fill: white;" text="Origin:" GridPane.columnIndex="0" GridPane.rowIndex="3">
       <font>
@@ -71,11 +65,11 @@
       </font></Label>
     <TextField fx:id="destination" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 
-    <Label style="-fx-text-fill: white;" text="Flight Price:" GridPane.columnIndex="4" GridPane.rowIndex="3">
+    <Label style="-fx-text-fill: white;" text="Flight Price:" GridPane.columnIndex="4" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="flightprice" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+    <TextField fx:id="flightprice" GridPane.columnIndex="5" GridPane.rowIndex="2" />
 
     <Label style="-fx-text-fill: white;" text="Departure Date:" GridPane.columnIndex="0" GridPane.rowIndex="4">
       <font>
@@ -131,22 +125,19 @@
     <Label fx:id="notificationLabel" style="-fx-text-fill: green;" text="" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="4" />
    <ChoiceBox fx:id="offerType" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
 
-    <Label style="-fx-text-fill: white;" text="Promotional Offer:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+    <Label style="-fx-text-fill: white;" text="Promotional Offer:" GridPane.columnIndex="4" GridPane.rowIndex="3">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="promotionalOffer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField fx:id="promotionalOffer" GridPane.columnIndex="5" GridPane.rowIndex="3" />
 
-    <Label style="-fx-text-fill: white;" text="Flight Image:" GridPane.columnIndex="2" GridPane.rowIndex="6">
+    <Label style="-fx-text-fill: white;" text="Flight Image:" GridPane.rowIndex="6">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <Button fx:id="uploadImageButton" onAction="#uploadImage" prefHeight="30.0" prefWidth="201.0" text="Upload Image" textFill="#172d75" GridPane.columnIndex="3" GridPane.rowIndex="6">
-      <font>
-         <Font name="System Bold" size="12.0" />
-      </font></Button>
-    <Label fx:id="imageFileNameLabel" style="-fx-text-fill: white;" text="No file selected" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+    <Button fx:id="uploadImageButton" onAction="#uploadImage" prefHeight="30.0" prefWidth="201.0" text="Upload Image" textFill="#172d75" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Label fx:id="imageFileNameLabel" style="-fx-text-fill: white;" text="No file selected" GridPane.columnIndex="2" GridPane.rowIndex="6" />
 
 </GridPane>
