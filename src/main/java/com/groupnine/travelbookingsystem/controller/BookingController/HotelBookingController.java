@@ -51,7 +51,7 @@ public class HotelBookingController {
 
     public void initialize() {
         // Setting column value factories
-        hotleIdColumn.setCellValueFactory(new PropertyValueFactory<>("hotelId"));
+        hotleIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         customerrNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("hotelName"));
         bookinggDateColumn.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
@@ -83,6 +83,7 @@ public class HotelBookingController {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<HotelBooking> hotelDataList = hotelDAO.getAllHotelBookings();
         ObservableList<HotelBooking> hotelData = FXCollections.observableArrayList();
+        hotelsTable.setItems(hotelData);
 
         /*this.id = id;
         this.customerName = customerName;
@@ -96,6 +97,7 @@ public class HotelBookingController {
             HotelBooking hotel = new HotelBooking(
                     hotelBooking.getId(),
                     hotelBooking.getCustomerName(),
+                    hotelBooking.getHotelName(),
                     hotelBooking.getBookingDate(),
                     hotelBooking.getCheckIn(),
                     hotelBooking.getCheckOut(),
@@ -108,6 +110,12 @@ public class HotelBookingController {
 
         // Set the data to the TableView
         hotelsTable.setItems(hotelData);
+
+        for (HotelBooking booking : hotelData) {
+            System.out.println("Hotel ID: " + booking.getId() + ", Hotel Name: " + booking.getHotelName());
+        }
+
+
         session.close();
     }
 

@@ -61,6 +61,18 @@ public class HotelBooking {
         this.checkOut = checkOutDate;
     }
 
+    public HotelBooking(int id, String customerName, String hotelName, LocalDate bookingDate, LocalDate checkIn, LocalDate checkOut, String status, Hotel hotel, User user) {
+        this.id = id;
+        this.customerName = customerName;
+        this.hotelName = hotelName;
+        this.bookingDate = bookingDate;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.status = status;
+        this.hotel = hotel;
+        this.user = user;
+    }
+
     //Getters
     public int getId() {
         return this.id;
@@ -105,7 +117,8 @@ public class HotelBooking {
     }
 
     public void setHotelName(String hotelName) {
-        this.hotel.setName(hotelName);
+        //this.hotel.setName(hotelName);
+        this.hotelName = hotelName;
     }
     public void setCustomerName(String customerName) {
         this.customerName = customerName;

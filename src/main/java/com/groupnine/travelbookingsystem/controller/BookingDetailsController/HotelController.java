@@ -50,6 +50,8 @@ public class HotelController {
         if (validateInput()) {
             HotelBooking booking = new HotelBooking();
             booking.setCustomerName(customerNameField.getText());
+            booking.setHotelName(hotelNameField.getText());
+
             booking.setCheckIn(checkInDatePicker.getValue());
             booking.setCheckOut(checkOutDatePicker.getValue());
             booking.setStatus(statusComboBox.getValue());
