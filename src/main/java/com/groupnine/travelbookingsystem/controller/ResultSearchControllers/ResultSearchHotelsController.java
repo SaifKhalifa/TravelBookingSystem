@@ -79,14 +79,15 @@ public class ResultSearchHotelsController {
     // Navigate to a page with cardId to pass information to the next page
     private void navigateToPageWithCardId(String fxmlPath, String title, int cardId) {
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = fxmlLoader.load();
 
-            DetailsController controller = fxmlLoader.getController();
-            if (controller != null) {
-                // Pass the cardId to the next page's controller
-                //controller.setCardId(cardId);
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof DetailsController) {
+                DetailsController detailsController = (DetailsController) controller;
+                detailsController.setCardId(cardId);
+            } else {
+                System.err.println("Controller is not an instance of DetailsController.");
             }
 
             Stage currentStage = (Stage) cardBtn_BigWhiteVillage.getScene().getWindow();
@@ -96,6 +97,7 @@ public class ResultSearchHotelsController {
             e.printStackTrace();
         }
     }
+
 
 
 
