@@ -132,7 +132,7 @@ public class SearchPageHotelsController {
                 cbCheckOut.getValue() == null ||
                 cbRooms.getValue() == null ||
                 cbPersons.getValue() == null) { // Validate number of persons
-            showAlert("Search", "Please enter all the fields!");
+            showAlert("Search", "Please make sure you enter all fields!");
             return;
         }
 
