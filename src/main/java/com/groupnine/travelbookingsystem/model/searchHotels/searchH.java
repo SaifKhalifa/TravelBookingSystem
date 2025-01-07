@@ -24,6 +24,9 @@ public class searchH {
     @Column(name = "checkOutDate")
     private Date checkOutDate;
 
+    @Column(name = "numPersons")
+    private int numPersons;
+
 
     // Constructors
     public searchH(String destination, int roomCount) {
@@ -80,6 +83,12 @@ public class searchH {
     public Date getCheckOutDate() {
         return checkOutDate;
     }
+
+    public int getNumPersons() {
+        return numPersons;
+    }
+
+    public void setNumPersons(int numPersons) {this.numPersons = numPersons;}
 
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;

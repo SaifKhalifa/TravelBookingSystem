@@ -118,11 +118,16 @@ public class SearchPageFlightsController {
     }
 
 
+    // Handles search action: validates input, saves data, and navigates to results page.
     private void handleSearch(ActionEvent event) {
         System.out.println("Search button clicked, storing data in the model..., and moving to search results page!");
 
-        if (cbDestination.getSelectionModel().getSelectedItem() == null) {
-            showAlert("Search", "You need to select a destination to search for!");
+        if (cbDestination.getSelectionModel().getSelectedItem() == null ||
+                cbCheckIn.getValue() == null ||
+                cbCheckOut.getValue() == null ||
+                cbPassengers.getValue() == null)
+        {
+            showAlert("Search", "Please make sure you enter all fields!");
             return;
         }
 
@@ -180,7 +185,6 @@ public class SearchPageFlightsController {
             e.printStackTrace();
         }
     }
-
 
     // Show an alert dialog
     private void showAlert(String title, String message) {
