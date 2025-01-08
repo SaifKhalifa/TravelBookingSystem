@@ -10,7 +10,6 @@ import java.time.LocalTime;
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "flight_id")
     private int flightId;
 
     @Column(name = "departure_airport")
