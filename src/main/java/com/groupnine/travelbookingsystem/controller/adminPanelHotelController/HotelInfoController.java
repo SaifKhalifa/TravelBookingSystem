@@ -343,32 +343,6 @@ public class HotelInfoController {
             }
         });
 
-// Upload Button Click Event
-//        uploadPhotoButton.setOnAction(event -> {
-//            boolean hasImage = false;
-//
-//            // Same validation when the button is clicked
-//            for (Node node : GridPhotos.getChildren()) {
-//                if (node instanceof ImageView) {
-//                    ImageView imageView = (ImageView) node;
-//                    if (imageView.getImage() != null) { // Check if image exists
-//                        hasImage = true;
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            // Update error label when button is clicked
-//            if (!hasImage) {
-//                photoErrorLabel.setText("At least one image is required!");
-//                photoErrorLabel.setVisible(true);
-//                uploadPhotoButton.setStyle("-fx-border-color: red");
-//            } else {
-//                photoErrorLabel.setVisible(false);
-//                uploadPhotoButton.setStyle("");
-//            }
-//        });
-
     }
 
     // Method to set the title text from Hotel list page

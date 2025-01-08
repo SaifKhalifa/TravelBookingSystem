@@ -297,45 +297,6 @@ public class ManageHotelsListController {
     }
 
 
-//    public void DeleteHotel(ActionEvent event, int id) {
-//
-//        try {
-//            // Load the FXML for the confirmation popup
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/adminPanelHotelView/hotelConfirmDeletion.fxml"));
-//            AnchorPane root = loader.load();
-//
-//            // Get controller for confirmation popup
-//            HotelConfirmDeletionController confirmController = loader.getController();
-//            confirmController.setMainController(this);
-//            // Set ID for hotel to delete in the confirmation popup (pass the hotel ID here)
-//            confirmController.setHotelId(id);  // Make sure `hotelId` is the ID of the hotel to be deleted
-//
-//            // Create a new stage for the modal dialog
-//            Stage stage = new Stage();
-//            stage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal
-//            stage.initStyle(StageStyle.UNDECORATED); // Remove the title bar
-//
-//            // Get the primary screen bounds (screen width and height)
-//            Screen screen = Screen.getPrimary();
-//            double screenWidth = screen.getBounds().getWidth();
-//            double screenHeight = screen.getBounds().getHeight();
-//
-//            // Calculate the center of the screen
-//            stage.setX((screenWidth - 400) / 2); // Center on X, adjusted for the popup size
-//            stage.setY((screenHeight - 200) / 2); // Center on Y, adjusted for the popup size
-//
-//            // Set the scene with the loaded FXML content
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//
-//            // Show the popup
-//            stage.showAndWait();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     private void loadHotels() {
         List<Hotel> hotelList = hotelDAOImp.getAllHotels(); // جلب البيانات من قاعدة البيانات
         ObservableList<Hotel> observableList = FXCollections.observableArrayList(hotelList);

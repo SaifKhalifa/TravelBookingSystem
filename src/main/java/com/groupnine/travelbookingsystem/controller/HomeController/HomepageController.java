@@ -79,8 +79,6 @@ public class HomepageController {
     private final UserDAOImpl userDAOImp = new UserDAOImpl();
     private HotelBookingDAOImpl hotelBookingDAOImp = new HotelBookingDAOImpl();
     private FlightBookingDAOImpl flightBookingDAOImp = new FlightBookingDAOImpl();
-//    private HotelDAOImpl hotelDAOImp = new HotelDAOImpl();
-//    private FlightDAOImpl flightDAOImp = new FlightDAOImpl();
 
     public void initialize() {
         vbox.setStyle("-fx-background-image: url('" + getClass().getResource("/com/groupnine/travelbookingsystem/Assets/imgs/homePage_V2/space.jpg") + "');");
@@ -127,22 +125,6 @@ public class HomepageController {
            System.out.println("No last logged in user");
         }
 
-//        // Get all columns from TableView
-//        latestHotelBookingTable.getColumns().forEach(column -> {
-//            column.setResizable(true);
-//        });
-//
-//        latestFlightBookingTable.getColumns().forEach(column -> {
-//            column.setResizable(true);
-//        });
-//        loadHotelBooking();
-//        loadFlightBooking();
-//
-//        latestFlightBookingTable.setVisible(true);
-//        latestHotelBookingTable.setVisible(false);
-//
-//        loadLastBooking();
-
         showFlightBooking();
     }
 
@@ -170,18 +152,7 @@ public class HomepageController {
             arrival.setText(lastBooking.getArrival().toString());
             statusFlight.setText(lastBooking.getStatus());
         }
-        /*if (lastBooking != null && !lastBooking.isEmpty()) {
-            FlightBookingModel booking = lastBooking.get(0);
 
-            // تعبئة البيانات في الـ Labels
-            flightBookingID.setText(String.valueOf(booking.getFlightId()));
-            customerNameFlight.setText(booking.getCustomerName());
-            airline.setText(booking.getAirline());
-            bookingDateFlight.setText(booking.getBookingDate().toString());
-            departure.setText(booking.getDeparture().toString());
-            arrival.setText(booking.getArrival().toString());
-            statusFlight.setText(booking.getStatus());
-        }*/
     }
 
 
@@ -208,17 +179,5 @@ public class HomepageController {
             statusHotel.setText(lastBooking.getStatus());
         }
 
-        /*if (lastBooking != null && !lastBooking.isEmpty()) {
-            HotelBookingModel booking = lastBooking.get(0);
-
-            // تعبئة البيانات في الـ Labels
-            hotelBookingID.setText(String.valueOf(booking.getId()));
-            customerNameHotel.setText(booking.getCustomerName());
-            hotelName.setText(booking.getHotel().getName());
-            bookingDateHotel.setText(booking.getBookingDate().toString());
-            checkIn.setText(booking.getCheckIn().toString());
-            checkOut.setText(booking.getCheckOut().toString());
-            statusHotel.setText(booking.getStatus());
-        }*/
     }
 }
