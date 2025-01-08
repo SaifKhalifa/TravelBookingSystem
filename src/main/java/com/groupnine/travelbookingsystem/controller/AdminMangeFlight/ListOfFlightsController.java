@@ -108,7 +108,7 @@ public class ListOfFlightsController {
         initializeTableData();
         addEditButtonToTable();
         addDeleteButtonToTable();
-        //handleAdminHotelDashboardClick();
+        handleAdminHotelDashboardClick();
 
         if (addnewflight != null) {
             addnewflight.setOnAction(event -> navigateToAddFlight());
@@ -294,39 +294,26 @@ public class ListOfFlightsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/AddFlight.fxml"));
             Parent root = loader.load();
 
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root, 1280, 832));
-//            stage.setTitle("Add Flight");
-//            stage.show();
-//
-//            Stage currentStage = (Stage) addnewflight.getScene().getWindow();
-//            currentStage.close();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 1280, 832));
+            stage.setTitle("Add Flight");
+            stage.show();
 
-            // استبدال الـ Scene على نفس الـ Stage
-            Scene secondScene = new Scene(root);
-            Stage primaryStage = (Stage) addnewflight.getScene().getWindow();
-            primaryStage.setScene(secondScene);
-            primaryStage.setTitle("Flight Information");
-
-            primaryStage.show();
+            Stage currentStage = (Stage) addnewflight.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     @FXML
-    private void handleAdminHotelDashboardClick(ActionEvent event) {
+    private void handleAdminHotelDashboardClick() {
         //setActiveTab(adminDashboardBox);
-//        MainApplication_DEFAULT.loadScene(
-//                "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml",
-//                "Admin Dashboard",
-//                true,
-//                true
-//        );
-        try {
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainApplication_DEFAULT.loadScene(
+                "/com/groupnine/travelbookingsystem/view/adminPanelHotelView/manageHotelsList.fxml",
+                "Admin Dashboard",
+                true,
+                true
+        );
     }
     private void setActiveTab(VBox tab) {
         // Implementation of tab switching logic

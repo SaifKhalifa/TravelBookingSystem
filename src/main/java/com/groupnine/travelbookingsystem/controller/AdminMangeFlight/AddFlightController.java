@@ -1,10 +1,8 @@
 package com.groupnine.travelbookingsystem.controller.AdminMangeFlight;
 
-import com.groupnine.travelbookingsystem.controller.adminPanelHotelController.NavigationHelper;
 import com.groupnine.travelbookingsystem.model.flight.Flight;
 import com.groupnine.travelbookingsystem.model.flight.FlightDAO;
 import com.groupnine.travelbookingsystem.model.flight.FlightDAOImpl;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,27 +70,22 @@ public class AddFlightController {
     }
 
     @FXML
-    private void navigateToListOfFlights(ActionEvent event) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml"));
-//            Parent root = loader.load();
-//
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root, 1280, 832));
-//            stage.setTitle("List Of Flights");
-//            stage.show();
-//
-//            // Close current stage
-//            Stage currentStage = (Stage) back_to_list_flight.getScene().getWindow();
-//            currentStage.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            showAlert("Error", "Unable to load ListFlights.fxml", Alert.AlertType.ERROR);
-//        }
+    private void navigateToListOfFlights() {
         try {
-            NavigationHelper.switchToPage(event, "/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/groupnine/travelbookingsystem/view/AdminMangeFlight/ListFlights.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 1280, 832));
+            stage.setTitle("List Of Flights");
+            stage.show();
+
+            // Close current stage
+            Stage currentStage = (Stage) back_to_list_flight.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert("Error", "Unable to load ListFlights.fxml", Alert.AlertType.ERROR);
         }
     }
 
